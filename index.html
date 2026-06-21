@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hudson Mar · GitHub Landing</title>
+  <title>Hudson Mar · Project Portal</title>
   <style>
     :root{
       --bg:#f5f7fb;
@@ -42,15 +42,15 @@
     .hero{background:linear-gradient(135deg,var(--hero1),var(--hero2));padding:42px;border-radius:30px;color:white;margin-bottom:22px;box-shadow:var(--shadow);position:relative;overflow:hidden}
     .hero:after{content:"";position:absolute;right:-90px;top:-90px;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.09)}
     .hero h1{font-size:2.55rem;margin-bottom:10px;letter-spacing:-.045em;position:relative;z-index:1}
-    .hero p{color:#d1d5db;max-width:800px;position:relative;z-index:1}
+    .hero p{color:#d1d5db;max-width:850px;position:relative;z-index:1}
     .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:22px;position:relative;z-index:1}
     .stat{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.14);padding:9px 13px;border-radius:999px;font-size:.92rem;color:#f3f4f6;font-weight:700}
+    .note{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:15px 17px;color:var(--muted);box-shadow:var(--shadow);margin-bottom:20px}
     .toolbar{display:grid;grid-template-columns:1fr auto;gap:12px;margin:22px 0}
     .search{width:100%;border:1px solid var(--border);background:var(--card);color:var(--text);padding:15px 17px;border-radius:18px;box-shadow:var(--shadow);font-size:1rem;outline:none}
     .filter{display:flex;gap:8px;overflow-x:auto;padding-bottom:4px}
     .filter button{border:1px solid var(--border);background:var(--card);color:var(--text);border-radius:999px;padding:11px 14px;white-space:nowrap;cursor:pointer;font-weight:800}
     .filter button.active,.filter button:hover{background:var(--text);color:var(--bg)}
-    .note{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:15px 17px;color:var(--muted);box-shadow:var(--shadow);margin-bottom:20px}
     .section-title{font-size:1.15rem;font-weight:900;margin:18px 0;color:var(--text)}
     .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
     .card{background:var(--card);border-radius:24px;padding:23px;text-decoration:none;color:var(--text);box-shadow:var(--shadow);border:1px solid var(--border);transition:.2s;display:flex;flex-direction:column;gap:12px;min-height:235px;position:relative;overflow:hidden}
@@ -58,7 +58,7 @@
     .card.featured:before{content:"Featured";position:absolute;right:-34px;top:18px;transform:rotate(35deg);background:var(--accent);color:white;font-size:.7rem;font-weight:900;padding:4px 38px}
     .card:hover{transform:translateY(-5px);border-color:var(--accent)}
     .card-head{display:flex;align-items:flex-start;justify-content:space-between;gap:10px}
-    .icon{font-size:2rem}.title{font-size:1.32rem;font-weight:900;letter-spacing:-.02em}.subtitle{font-size:.88rem;color:var(--muted);font-weight:800}.desc{color:var(--muted);flex:1}.meta{display:flex;gap:6px;flex-wrap:wrap}.badge{font-size:.78rem;font-weight:900;border-radius:999px;padding:5px 9px;background:var(--soft);color:var(--muted)}.badge.recent{background:rgba(37,99,235,.12);color:var(--accent)}.badge.protected{background:rgba(249,115,22,.14);color:var(--orange)}.badge.public{background:rgba(22,163,74,.12);color:var(--green)}.badge.auto{background:rgba(124,58,237,.13);color:var(--purple)}
+    .icon{font-size:2rem}.title{font-size:1.32rem;font-weight:900;letter-spacing:-.02em}.subtitle{font-size:.88rem;color:var(--muted);font-weight:800}.desc{color:var(--muted);flex:1}.meta{display:flex;gap:6px;flex-wrap:wrap}.badge{font-size:.78rem;font-weight:900;border-radius:999px;padding:5px 9px;background:var(--soft);color:var(--muted)}.badge.live{background:rgba(22,163,74,.12);color:var(--green)}.badge.planned{background:rgba(249,115,22,.14);color:var(--orange)}.badge.portal{background:rgba(37,99,235,.12);color:var(--accent)}.badge.auto{background:rgba(124,58,237,.13);color:var(--purple)}
     .url{font-size:.85rem;background:var(--soft);padding:9px 11px;border-radius:12px;color:var(--muted);word-break:break-word}
     .empty{display:none;text-align:center;color:var(--muted);padding:30px;background:var(--card);border-radius:24px;border:1px solid var(--border)}
     footer{text-align:center;color:var(--muted);margin-top:34px;font-size:14px}
@@ -69,100 +69,121 @@
 <body>
   <div class="container">
     <div class="topbar">
-      <div class="brand"><div class="avatar">HM</div><div><div>Hudson Mar</div><small style="color:var(--muted);font-weight:800">GitHub Subsite Control Center</small></div></div>
+      <div class="brand"><div class="avatar">HM</div><div><div>Hudson Mar</div><small style="color:var(--muted);font-weight:800">GitHub Project Portal</small></div></div>
       <button class="toggle" onclick="toggleTheme()">🌙 Dark</button>
     </div>
 
     <section class="hero">
-      <h1>Hudson Mar · Landing Place</h1>
-      <p>Upper-level landing page for all GitHub repos and subsites under <strong>hudsonmar-852</strong>. Built as a reusable catalogue: add one object to <code>sites[]</code> whenever a new subsite is created.</p>
+      <h1>Hudson Mar · GitHub Project Portal</h1>
+      <p><strong>hudsonmar-852.github.io</strong> is the landing page only. Each project stays in its own repository: Jeffrey, prompt, prompt2, Grok, DriveWebhook, Bible and future tools.</p>
       <div class="stats" id="stats"></div>
     </section>
 
     <div class="note">
-      <strong>Expandable structure:</strong> 日後加新 subsite，只需要在 JavaScript 的 <code>sites[]</code> 加一個 object；之後可升級成 auto scan repo mode。
+      <strong>Structure rule:</strong> keep this repository as the public homepage only. Do not mix project source files here unless they are only for the landing page.
     </div>
 
     <div class="toolbar">
-      <input class="search" id="searchInput" type="text" placeholder="Search repo / subsite / description / category: Bible, Jeffrey, Prompt, Grok..." />
+      <input class="search" id="searchInput" type="text" placeholder="Search project / repo / category: Jeffrey, Prompt, Grok, Bible, Automation..." />
       <div class="filter" id="filters"></div>
     </div>
 
-    <div class="section-title">Available Repos & Subsites</div>
+    <div class="section-title">Projects & Repositories</div>
     <main class="grid" id="siteGrid"></main>
-    <div class="empty" id="emptyState">No matching repo / subsite found.</div>
+    <div class="empty" id="emptyState">No matching project found.</div>
 
-    <footer>Hudson Mar GitHub Landing · Searchable · Dark Mode · Public / Protected Badges · Recent Updates</footer>
+    <footer>hudsonmar-852.github.io · Landing page only · Each project in its own repository</footer>
   </div>
 
   <script>
-    // AUTO-BUILD FRIENDLY CATALOGUE
-    // To add a new subsite later, add ONE object below.
-    const sites = [
+    const projects = [
       {
-        title:'Bible',
-        subtitle:'Bible subsite',
-        icon:'📖',
-        url:'https://hudsonmar-852.github.io/Jeffrey/bible.html',
-        repo:'hudsonmar-852/Jeffrey',
-        category:'Faith',
-        status:'Public',
-        recent:true,
+        title:'Landing Page',
+        subtitle:'Main GitHub Pages homepage only',
+        icon:'🏠',
+        url:'https://hudsonmar-852.github.io/',
+        repo:'hudsonmar-852/hudsonmar-852.github.io',
+        category:'Portal',
+        status:'Live',
         featured:true,
-        protected:false,
-        desc:'聖經金句、簡單解說、祝福短訊，可直接 Copy 分享。'
+        desc:'Central dashboard linking to all individual project repositories and published project pages.'
       },
       {
         title:'Jeffrey',
-        subtitle:'Jeffrey’s subsite',
+        subtitle:'Independent project repository',
         icon:'🏋️',
         url:'https://hudsonmar-852.github.io/Jeffrey/',
         repo:'hudsonmar-852/Jeffrey',
-        category:'Fitness',
-        status:'Public',
-        recent:true,
+        category:'Project',
+        status:'Live',
         featured:true,
-        protected:false,
-        desc:'健身教練每日關心短訊、Copy tracking、健身教材入口。'
+        desc:'Jeffrey project site, fitness content, care message workflow and related pages.'
       },
       {
         title:'Prompt',
-        subtitle:'Prompt subsite',
+        subtitle:'Independent prompt repository',
         icon:'🧠',
         url:'https://hudsonmar-852.github.io/prompt/',
         repo:'hudsonmar-852/prompt',
         category:'AI Prompt',
-        status:'Private repo / Page if enabled',
-        recent:false,
+        status:'Live / Enable Pages if needed',
         featured:false,
-        protected:true,
-        desc:'Prompt library、AI 創作流程、可重用 prompt system。'
+        desc:'Prompt library, reusable AI creation system, phrase database and workflow design.'
+      },
+      {
+        title:'Prompt2',
+        subtitle:'Independent prompt repository',
+        icon:'🧩',
+        url:'https://hudsonmar-852.github.io/prompt2/',
+        repo:'hudsonmar-852/prompt2',
+        category:'AI Prompt',
+        status:'Live / Enable Pages if needed',
+        featured:false,
+        desc:'Second prompt project repository for experiments, versions and production prompt sets.'
       },
       {
         title:'Grok',
-        subtitle:'Grok subsite',
+        subtitle:'Independent video prompt repository',
         icon:'🎬',
         url:'https://hudsonmar-852.github.io/Grok/',
         repo:'hudsonmar-852/Grok',
         category:'Video',
-        status:'Password / Protected expected',
-        recent:false,
+        status:'Live / Enable Pages if needed',
         featured:false,
-        protected:true,
-        desc:'Grok Imagine 影片 prompt、場景模板、短片創作素材。'
+        desc:'Grok Imagine prompts, video scene templates and AI short-video production workflow.'
       },
       {
-        title:'Root Landing',
-        subtitle:'Main GitHub Pages homepage',
-        icon:'🏠',
-        url:'https://hudsonmar-852.github.io/',
-        repo:'hudsonmar-852/hudsonmar-852.github.io',
-        category:'Landing',
-        status:'Public',
-        recent:true,
+        title:'GitHub Profile Repo',
+        subtitle:'Special GitHub profile repository',
+        icon:'👤',
+        url:'https://github.com/hudsonmar-852/hudsonmar-852',
+        repo:'hudsonmar-852/hudsonmar-852',
+        category:'Profile',
+        status:'Live',
         featured:false,
-        protected:false,
-        desc:'Upper-level homepage listing all repos and subsite pages.'
+        desc:'Special repository for GitHub profile README. Keep it separate from the landing page.'
+      },
+      {
+        title:'DriveWebhook',
+        subtitle:'Planned independent automation repository',
+        icon:'🔗',
+        url:'https://github.com/hudsonmar-852/DriveWebhook',
+        repo:'hudsonmar-852/DriveWebhook',
+        category:'Automation',
+        status:'Planned',
+        featured:false,
+        desc:'Google Drive / Apps Script webhook automation project. Create as its own repository when ready.'
+      },
+      {
+        title:'Bible',
+        subtitle:'Planned independent content repository',
+        icon:'📖',
+        url:'https://github.com/hudsonmar-852/Bible',
+        repo:'hudsonmar-852/Bible',
+        category:'Content',
+        status:'Planned',
+        featured:false,
+        desc:'Bible content should become its own repository if it grows beyond one Jeffrey subpage.'
       }
     ];
 
@@ -174,16 +195,15 @@
     let activeCategory = 'All';
 
     function init(){
-      const cats = ['All', ...new Set(sites.map(s=>s.category))];
+      const cats = ['All', ...new Set(projects.map(p=>p.category))];
       filters.innerHTML = cats.map(cat => `<button class="${cat==='All'?'active':''}" onclick="setCategory('${cat}', this)">${cat}</button>`).join('');
       stats.innerHTML = `
-        <span class="stat">${sites.length} sites</span>
-        <span class="stat">${new Set(sites.map(s=>s.repo)).size} repos</span>
-        <span class="stat">${sites.filter(s=>s.recent).length} recent</span>
-        <span class="stat">${sites.filter(s=>s.protected).length} protected</span>
-        <span class="stat">${sites.filter(s=>s.featured).length} featured</span>
+        <span class="stat">${projects.length} projects</span>
+        <span class="stat">${new Set(projects.map(p=>p.repo)).size} repos</span>
+        <span class="stat">${projects.filter(p=>p.status.toLowerCase().includes('live')).length} live</span>
+        <span class="stat">${projects.filter(p=>p.status.toLowerCase().includes('planned')).length} planned</span>
       `;
-      const savedTheme = localStorage.getItem('hmLandingTheme');
+      const savedTheme = localStorage.getItem('hmPortalTheme');
       if(savedTheme === 'dark') document.body.classList.add('dark');
       updateToggleText();
       render();
@@ -198,43 +218,43 @@
 
     function render(){
       const q = searchInput.value.toLowerCase().trim();
-      const data = sites
-        .filter(s => {
-          const matchesCategory = activeCategory === 'All' || s.category === activeCategory;
-          const text = `${s.title} ${s.subtitle} ${s.repo} ${s.category} ${s.desc} ${s.status}`.toLowerCase();
+      const data = projects
+        .filter(p => {
+          const matchesCategory = activeCategory === 'All' || p.category === activeCategory;
+          const text = `${p.title} ${p.subtitle} ${p.repo} ${p.category} ${p.desc} ${p.status}`.toLowerCase();
           return matchesCategory && text.includes(q);
         })
-        .sort((a,b) => Number(b.featured) - Number(a.featured) || Number(b.recent) - Number(a.recent));
-      grid.innerHTML = data.map(site => card(site)).join('');
+        .sort((a,b) => Number(b.featured) - Number(a.featured) || a.title.localeCompare(b.title));
+      grid.innerHTML = data.map(project => card(project)).join('');
       emptyState.style.display = data.length ? 'none' : 'block';
     }
 
-    function card(site){
-      return `<a class="card ${site.featured ? 'featured' : ''}" href="${site.url}" target="_blank" rel="noopener">
+    function card(project){
+      const isPlanned = project.status.toLowerCase().includes('planned');
+      const statusClass = project.category === 'Portal' ? 'portal' : isPlanned ? 'planned' : 'live';
+      return `<a class="card ${project.featured ? 'featured' : ''}" href="${project.url}" target="_blank" rel="noopener">
         <div class="card-head">
           <div>
-            <div class="icon">${site.icon}</div>
-            <div class="title">${site.title}</div>
-            <div class="subtitle">${site.subtitle}</div>
+            <div class="icon">${project.icon}</div>
+            <div class="title">${project.title}</div>
+            <div class="subtitle">${project.subtitle}</div>
           </div>
           <div class="meta">
-            ${site.recent?'<span class="badge recent">Recent</span>':''}
-            ${site.protected?'<span class="badge protected">Protected</span>':'<span class="badge public">Public</span>'}
+            <span class="badge ${statusClass}">${project.status}</span>
           </div>
         </div>
-        <div class="desc">${site.desc}</div>
+        <div class="desc">${project.desc}</div>
         <div class="meta">
-          <span class="badge">${site.category}</span>
-          <span class="badge">${site.status}</span>
-          <span class="badge auto">sites[] ready</span>
+          <span class="badge">${project.category}</span>
+          <span class="badge auto">own repo</span>
         </div>
-        <div class="url">${site.repo}<br>${site.url}</div>
+        <div class="url">${project.repo}<br>${project.url}</div>
       </a>`;
     }
 
     function toggleTheme(){
       document.body.classList.toggle('dark');
-      localStorage.setItem('hmLandingTheme', document.body.classList.contains('dark') ? 'dark' : 'light');
+      localStorage.setItem('hmPortalTheme', document.body.classList.contains('dark') ? 'dark' : 'light');
       updateToggleText();
     }
     function updateToggleText(){
