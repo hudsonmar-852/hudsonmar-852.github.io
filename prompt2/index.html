@@ -4,245 +4,46 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Prompt2 — AI Prompt Studio</title>
-  <meta name="description" content="Prompt2 is a bilingual AI prompt studio for image, video and workflow prompt creation." />
+  <meta name="description" content="Prompt2 is a bilingual AI prompt studio for phrase extraction, catalogue grouping and prompt workflow records." />
   <style>
-    :root {
-      --bg: #050507;
-      --panel: rgba(255,255,255,0.065);
-      --panel-strong: rgba(255,255,255,0.11);
-      --text: #f5f7fb;
-      --muted: #a8adbd;
-      --line: rgba(255,255,255,0.13);
-      --accent: #ffffff;
-      --soft: rgba(126,134,255,.18);
-      --glow: rgba(120, 120, 255, 0.25);
-      --good: #86efac;
-      --warn: #fde68a;
+    :root{
+      --bg:#050507;--panel:rgba(255,255,255,.065);--panel2:rgba(255,255,255,.11);--text:#f5f7fb;--muted:#a8adbd;--line:rgba(255,255,255,.13);--soft:rgba(126,134,255,.18);--good:#86efac;--glow:rgba(120,120,255,.25)
     }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 15% 10%, rgba(97, 84, 255, 0.25), transparent 30%),
-        radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.11), transparent 24%),
-        radial-gradient(circle at 50% 90%, rgba(0, 190, 255, 0.12), transparent 32%),
-        var(--bg);
-      color: var(--text);
-      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      overflow-x: hidden;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    button, input, select, textarea { font: inherit; }
-
-    .noise {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: .16;
-      background-image: linear-gradient(rgba(255,255,255,.06) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.04) 1px, transparent 1px);
-      background-size: 52px 52px;
-      mask-image: radial-gradient(circle at center, black, transparent 78%);
-    }
-
-    .wrap {
-      width: min(1180px, calc(100% - 40px));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 28px 0;
-    }
-
-    .brand { display: flex; align-items: center; gap: 12px; font-weight: 800; letter-spacing: -0.02em; }
-    .logo { width: 34px; height: 34px; border-radius: 12px; background: linear-gradient(135deg, #fff, #7e86ff 45%, #111); box-shadow: 0 0 36px var(--glow); }
-    nav { display: flex; gap: 20px; color: var(--muted); font-size: 14px; }
-    nav a:hover { color: #fff; }
-
-    .hero {
-      display: grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap: 48px;
-      align-items: center;
-      min-height: 70vh;
-      padding: 48px 0 68px;
-    }
-
-    .badge { display: inline-flex; align-items: center; gap: 9px; border: 1px solid var(--line); background: rgba(255,255,255,0.055); color: #d8dcff; border-radius: 999px; padding: 9px 14px; font-size: 13px; backdrop-filter: blur(18px); margin-bottom: 24px; }
-    .dot { width: 7px; height: 7px; border-radius: 99px; background: #aeb5ff; box-shadow: 0 0 20px #aeb5ff; }
-    h1 { margin: 0; font-size: clamp(52px, 8vw, 108px); line-height: .88; letter-spacing: -0.085em; font-weight: 850; }
-    .gradient { background: linear-gradient(180deg, #fff 0%, #cfd4ff 55%, #7780ff 100%); -webkit-background-clip: text; background-clip: text; color: transparent; }
-    .lead { max-width: 650px; margin: 28px 0 0; color: var(--muted); font-size: clamp(18px, 2vw, 22px); line-height: 1.55; letter-spacing: -0.02em; }
-    .actions { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 34px; }
-
-    .btn { display: inline-flex; align-items: center; justify-content: center; border-radius: 999px; padding: 13px 18px; border: 1px solid var(--line); font-weight: 700; cursor: pointer; transition: transform .18s ease, background .18s ease, opacity .18s ease; }
-    .btn:hover { transform: translateY(-2px); }
-    .btn.primary { background: #fff; color: #050507; }
-    .btn.secondary { background: rgba(255,255,255,.055); color: var(--text); backdrop-filter: blur(18px); }
-    .btn.small { padding: 9px 12px; font-size: 13px; }
-    .btn.danger { background: rgba(255, 90, 90, .12); color: #fecaca; }
-
-    .orb-card { position: relative; min-height: 520px; border: 1px solid var(--line); border-radius: 36px; background: linear-gradient(180deg, rgba(255,255,255,.13), rgba(255,255,255,.035)); backdrop-filter: blur(28px); overflow: hidden; box-shadow: 0 30px 120px rgba(0,0,0,.45); }
-    .orb { position: absolute; width: 360px; height: 360px; border-radius: 50%; left: 50%; top: 43%; transform: translate(-50%, -50%); background: radial-gradient(circle at 35% 30%, rgba(255,255,255,.95), rgba(185,190,255,.78) 15%, rgba(99,108,255,.42) 38%, rgba(12,12,20,.12) 66%, transparent 72%), conic-gradient(from 210deg, #fff, #8f99ff, #111, #fff); filter: saturate(1.15); box-shadow: 0 0 90px rgba(143,153,255,.36), inset 0 0 80px rgba(255,255,255,.25); }
-    .prompt-box { position: absolute; left: 24px; right: 24px; bottom: 24px; border: 1px solid var(--line); border-radius: 24px; background: rgba(5,5,7,.58); backdrop-filter: blur(24px); padding: 20px; }
-    .prompt-title { display: flex; justify-content: space-between; color: #fff; font-weight: 800; margin-bottom: 12px; }
-    .prompt-text { color: var(--muted); line-height: 1.6; font-size: 14px; }
-
-    .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; padding-bottom: 58px; }
-    .feature { border: 1px solid var(--line); border-radius: 26px; background: var(--panel); padding: 24px; min-height: 190px; }
-    .feature h3 { margin: 0 0 8px; font-size: 18px; }
-    .feature .zh { color: #fff; font-weight: 700; margin-bottom: 10px; }
-    .feature p { margin: 0; color: var(--muted); line-height: 1.55; font-size: 15px; }
-
-    .builder { border: 1px solid var(--line); border-radius: 34px; background: var(--panel-strong); padding: 30px; margin-bottom: 34px; display: grid; grid-template-columns: .85fr 1.15fr; gap: 28px; align-items: start; }
-    .builder h2, .catalogue h2, .phase-board h2 { margin: 0 0 12px; font-size: clamp(30px, 4vw, 50px); line-height: .98; letter-spacing: -0.055em; }
-    .builder p, .catalogue p, .phase-board p { color: var(--muted); line-height: 1.6; }
-
-    .panel { border: 1px solid var(--line); border-radius: 24px; background: rgba(0,0,0,.24); padding: 18px; }
-    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; margin-bottom: 12px; }
-    label { display: block; color: #dfe3ff; font-size: 13px; font-weight: 700; margin-bottom: 7px; }
-    input, select, textarea { width: 100%; border: 1px solid var(--line); border-radius: 16px; padding: 13px 14px; background: rgba(0,0,0,.34); color: var(--text); outline: none; }
-    textarea { min-height: 220px; resize: vertical; line-height: 1.5; }
-    input:focus, select:focus, textarea:focus { border-color: rgba(180,185,255,.8); box-shadow: 0 0 0 4px rgba(126,134,255,.13); }
-
-    .toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
-    .status { color: var(--good); margin-top: 12px; font-size: 14px; min-height: 20px; }
-
-    .phase-board, .catalogue { border: 1px solid var(--line); border-radius: 34px; background: var(--panel-strong); padding: 30px; margin-bottom: 34px; }
-    .phase-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 18px; }
-    .phase { border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.045); padding: 16px; min-height: 180px; }
-    .phase h3 { margin: 0 0 8px; font-size: 16px; }
-    .phase .en { color: var(--muted); font-size: 13px; line-height: 1.45; }
-    .phase .phase-content { margin-top: 14px; color: #fff; font-size: 14px; line-height: 1.55; white-space: pre-wrap; }
-
-    .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 20px 0 16px; }
-    .pill { border: 1px solid var(--line); border-radius: 999px; padding: 9px 12px; background: rgba(255,255,255,.045); color: var(--muted); cursor: pointer; }
-    .pill.active, .pill:hover { color: #050507; background: #fff; }
-
-    .records { display: grid; gap: 14px; }
-    .record { border: 1px solid var(--line); border-radius: 22px; background: rgba(255,255,255,.045); padding: 18px; }
-    .record-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 14px; margin-bottom: 10px; }
-    .record h3 { margin: 0; font-size: 18px; }
-    .meta { color: var(--muted); font-size: 12px; margin-top: 5px; }
-    .tag { display: inline-flex; align-items: center; border: 1px solid var(--line); border-radius: 999px; padding: 6px 10px; font-size: 12px; color: #dfe3ff; background: var(--soft); white-space: nowrap; }
-    .record-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
-    .copy-box { border: 1px solid var(--line); border-radius: 16px; background: rgba(0,0,0,.24); padding: 14px; color: var(--muted); white-space: pre-wrap; line-height: 1.55; font-size: 14px; max-height: 280px; overflow: auto; }
-    .record-actions { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 12px; }
-    .empty { color: var(--muted); border: 1px dashed var(--line); border-radius: 18px; padding: 24px; text-align: center; }
-
-    footer { color: var(--muted); border-top: 1px solid var(--line); padding: 26px 0 40px; font-size: 13px; }
-
-    @media (max-width: 900px) {
-      nav { display: none; }
-      .hero, .builder, .record-grid { grid-template-columns: 1fr; }
-      .orb-card { min-height: 420px; }
-      .grid, .phase-grid { grid-template-columns: 1fr; }
-      .form-row { grid-template-columns: 1fr; }
-      h1 { letter-spacing: -0.06em; }
-    }
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 10%,rgba(97,84,255,.25),transparent 30%),radial-gradient(circle at 85% 15%,rgba(255,255,255,.11),transparent 24%),radial-gradient(circle at 50% 90%,rgba(0,190,255,.12),transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.noise{position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at center,black,transparent 78%)}.wrap{width:min(1180px,calc(100% - 40px));margin:0 auto;position:relative;z-index:1}header{display:flex;align-items:center;justify-content:space-between;padding:28px 0}.brand{display:flex;align-items:center;gap:12px;font-weight:800}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#fff,#7e86ff 45%,#111);box-shadow:0 0 36px var(--glow)}nav{display:flex;gap:20px;color:var(--muted);font-size:14px}nav a:hover{color:#fff}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;min-height:66vh;padding:48px 0 58px}.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:rgba(255,255,255,.055);color:#d8dcff;border-radius:999px;padding:9px 14px;font-size:13px;backdrop-filter:blur(18px);margin-bottom:24px}.dot{width:7px;height:7px;border-radius:99px;background:#aeb5ff;box-shadow:0 0 20px #aeb5ff}h1{margin:0;font-size:clamp(52px,8vw,108px);line-height:.88;letter-spacing:-.085em;font-weight:850}.gradient{background:linear-gradient(180deg,#fff 0%,#cfd4ff 55%,#7780ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:660px;margin:28px 0 0;color:var(--muted);font-size:clamp(18px,2vw,22px);line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 18px;border:1px solid var(--line);font-weight:700;cursor:pointer;transition:.18s;background:rgba(255,255,255,.055);color:var(--text)}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#fff;color:#050507}.btn.small{padding:9px 12px;font-size:13px}.btn.danger{background:rgba(255,90,90,.12);color:#fecaca}.orb-card{position:relative;min-height:500px;border:1px solid var(--line);border-radius:36px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(28px);overflow:hidden;box-shadow:0 30px 120px rgba(0,0,0,.45)}.orb{position:absolute;width:360px;height:360px;border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(185,190,255,.78) 15%,rgba(99,108,255,.42) 38%,rgba(12,12,20,.12) 66%,transparent 72%),conic-gradient(from 210deg,#fff,#8f99ff,#111,#fff);box-shadow:0 0 90px rgba(143,153,255,.36),inset 0 0 80px rgba(255,255,255,.25)}.prompt-box{position:absolute;left:24px;right:24px;bottom:24px;border:1px solid var(--line);border-radius:24px;background:rgba(5,5,7,.58);backdrop-filter:blur(24px);padding:20px}.prompt-title{display:flex;justify-content:space-between;color:#fff;font-weight:800;margin-bottom:12px}.prompt-text{color:var(--muted);line-height:1.6;font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:46px}.feature,.panel,.phase,.record{border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:20px}.feature{min-height:185px}.feature h3{margin:0 0 8px;font-size:18px}.feature .zh{font-weight:800;margin-bottom:10px}.feature p,.section p{margin:0;color:var(--muted);line-height:1.55}.builder,.section{border:1px solid var(--line);border-radius:34px;background:var(--panel2);padding:30px;margin-bottom:34px}.builder{display:grid;grid-template-columns:.82fr 1.18fr;gap:28px;align-items:start}.builder h2,.section h2{margin:0 0 12px;font-size:clamp(30px,4vw,50px);line-height:.98;letter-spacing:-.055em}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}label{display:block;color:#dfe3ff;font-size:13px;font-weight:700;margin-bottom:7px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;background:rgba(0,0,0,.34);color:var(--text);outline:none}textarea{min-height:260px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:rgba(180,185,255,.8);box-shadow:0 0 0 4px rgba(126,134,255,.13)}.toolbar,.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.status{color:var(--good);margin-top:12px;font-size:14px;min-height:20px}.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.phase h3{margin:0 0 8px;font-size:16px}.phase .en{color:var(--muted);font-size:13px;line-height:1.45}.phrase-list,.records{display:grid;gap:14px;margin-top:18px}.phrase-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.045);padding:16px}.phrase-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.phrase-en{font-size:17px;font-weight:800}.phrase-zh{margin-top:8px;color:#dfe3ff;line-height:1.55}.impact{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.45}.tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:#dfe3ff;background:var(--soft);white-space:nowrap}.pill{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:rgba(255,255,255,.045);color:var(--muted);cursor:pointer}.pill.active,.pill:hover{color:#050507;background:#fff}.record-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px}.record h3{margin:0;font-size:18px}.meta{color:var(--muted);font-size:12px;margin-top:5px}.copy-box{border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.24);padding:14px;color:var(--muted);white-space:pre-wrap;line-height:1.55;font-size:14px;max-height:260px;overflow:auto}.empty{color:var(--muted);border:1px dashed var(--line);border-radius:18px;padding:24px;text-align:center}footer{color:var(--muted);border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px}@media(max-width:900px){nav{display:none}.hero,.builder{grid-template-columns:1fr}.orb-card{min-height:420px}.grid,.phase-grid,.form-row{grid-template-columns:1fr}h1{letter-spacing:-.06em}}
   </style>
 </head>
 <body>
   <div class="noise"></div>
   <main class="wrap">
-    <header>
-      <a class="brand" href="#studio"><span class="logo"></span><span>Prompt2</span></a>
-      <nav>
-        <a href="#studio">Studio</a>
-        <a href="#features">Features</a>
-        <a href="#builder">Builder</a>
-        <a href="#phases">Phases</a>
-        <a href="#catalogue">Catalogue</a>
-      </nav>
-    </header>
+    <header><a class="brand" href="#studio"><span class="logo"></span><span>Prompt2</span></a><nav><a href="#studio">Studio</a><a href="#features">Features</a><a href="#builder">Builder</a><a href="#phrases">Phrases</a><a href="#catalogue">Catalogue</a></nav></header>
 
     <section class="hero" id="studio">
       <div>
-        <div class="badge"><span class="dot"></span> AI Prompt Studio · Image / Video / Workflow</div>
-        <h1><span class="gradient">Prompt</span><br />without limits.</h1>
-        <p class="lead">Create, phase, catalogue and reuse prompts in Traditional Chinese and English. Designed for image generation, video scenes and automation workflows.</p>
-        <div class="actions">
-          <a class="btn primary" href="#builder">Start Building</a>
-          <a class="btn secondary" href="#catalogue">View Catalogue</a>
-        </div>
+        <div class="badge"><span class="dot"></span> AI Prompt Studio · Phrase Meaning Engine</div>
+        <h1><span class="gradient">Prompt</span><br>without limits.</h1>
+        <p class="lead">Input a rough prompt, then split it into meaningful phrases. Each phrase keeps the English original, adds Traditional Chinese meaning, and groups by creative impact.</p>
+        <div class="actions"><a class="btn primary" href="#builder">Start Building</a><a class="btn" href="#phrases">View Phrase Analysis</a></div>
       </div>
-      <div class="orb-card" aria-label="AI prompt visual card">
-        <div class="orb"></div>
-        <div class="prompt-box">
-          <div class="prompt-title"><span>Prompt Engine</span><span>v3</span></div>
-          <div class="prompt-text">RBNO + Phase Builder. Convert rough ideas into structured bilingual prompts for Grok, ChatGPT, image models, video tools and automation systems.</div>
-        </div>
-      </div>
+      <div class="orb-card"><div class="orb"></div><div class="prompt-box"><div class="prompt-title"><span>Prompt Engine</span><span>v4</span></div><div class="prompt-text">Example: “Natural Sun-Kissed Tan” stays as English, then displays 繁中 meaning: 自然陽光曬感健康古銅膚色.</div></div></div>
     </section>
 
     <section class="grid" id="features">
-      <article class="feature">
-        <h3>Image Prompt</h3>
-        <div class="zh">圖片提示詞</div>
-        <p>Identity lock, scene, lighting, skin texture, camera language and style consistency.</p>
-      </article>
-      <article class="feature">
-        <h3>Video Prompt</h3>
-        <div class="zh">影片提示詞</div>
-        <p>Action, camera movement, character behaviour, timing, transition and ending frame logic.</p>
-      </article>
-      <article class="feature">
-        <h3>Workflow Prompt</h3>
-        <div class="zh">自動化流程提示詞</div>
-        <p>Reusable instructions for job search, content batching, prompt database and browser automation.</p>
-      </article>
+      <article class="feature"><h3>Image Prompt</h3><div class="zh">圖片提示詞</div><p>Skin tone, lighting, identity lock, camera language and visual style phrases.</p></article>
+      <article class="feature"><h3>Video Prompt</h3><div class="zh">影片提示詞</div><p>Action, motion, camera movement, transition, timing and ending-frame phrases.</p></article>
+      <article class="feature"><h3>Workflow Prompt</h3><div class="zh">自動化流程提示詞</div><p>Input, process, output, rules, records and automation instruction phrases.</p></article>
     </section>
 
     <section class="builder" id="builder">
       <div>
-        <h2>Write once.<br />Reuse everywhere.</h2>
-        <p>Paste your rough prompt, select category and phase, then save it into the catalogue. The page auto-generates a bilingual meaning and phased structure.</p>
-        <p><strong>中文：</strong>輸入任何 prompt 後，可按類別及 Phase 儲存，並自動整理成中英對照，方便日後複用。</p>
+        <h2>Split prompt into meaning.</h2>
+        <p>Correct logic: the page now separates the input prompt into individual meaningful phrases, then groups them by impact to the subject.</p>
+        <p><strong>例子：</strong><br>English: Natural Sun-Kissed Tan<br>中文：自然陽光曬感健康古銅膚色</p>
       </div>
       <form class="panel" id="promptForm">
-        <div class="form-row">
-          <div>
-            <label for="titleInput">Title / 標題</label>
-            <input id="titleInput" placeholder="e.g. Sauna Skin Re-shoot Default" />
-          </div>
-          <div>
-            <label for="categoryInput">Catalogue / 分類</label>
-            <select id="categoryInput">
-              <option value="Image">Image Prompt / 圖片提示詞</option>
-              <option value="Video">Video Prompt / 影片提示詞</option>
-              <option value="Workflow">Workflow Prompt / 自動化流程提示詞</option>
-            </select>
-          </div>
-        </div>
-        <div class="form-row">
-          <div>
-            <label for="phaseInput">Phase / 階段</label>
-            <select id="phaseInput">
-              <option value="Phase 1 — Idea Capture">Phase 1 — Idea Capture / 概念收集</option>
-              <option value="Phase 2 — Structure">Phase 2 — Structure / 結構整理</option>
-              <option value="Phase 3 — Production">Phase 3 — Production / 生成執行</option>
-              <option value="Phase 4 — Archive">Phase 4 — Archive / 歸檔記錄</option>
-            </select>
-          </div>
-          <div>
-            <label for="languageInput">Display / 顯示</label>
-            <select id="languageInput">
-              <option value="Both">Traditional Chinese + English</option>
-              <option value="Chinese">Traditional Chinese only</option>
-              <option value="English">English only</option>
-            </select>
-          </div>
-        </div>
+        <div class="form-row"><div><label for="titleInput">Title / 標題</label><input id="titleInput" placeholder="e.g. Premium Skin Rendering Profile"></div><div><label for="categoryInput">Catalogue / 分類</label><select id="categoryInput"><option value="Image">Image Prompt / 圖片提示詞</option><option value="Video">Video Prompt / 影片提示詞</option><option value="Workflow">Workflow Prompt / 自動化流程提示詞</option></select></div></div>
+        <div class="form-row"><div><label for="impactInput">Main Impact / 主要影響</label><select id="impactInput"><option value="Subject Appearance">Subject Appearance / 主體外觀</option><option value="Visual Style">Visual Style / 視覺風格</option><option value="Camera & Lighting">Camera & Lighting / 鏡頭及燈光</option><option value="Action & Workflow">Action & Workflow / 動作及流程</option></select></div><div><label for="languageInput">Display / 顯示</label><select id="languageInput"><option value="Both">English + Traditional Chinese</option><option value="Chinese">Traditional Chinese only</option><option value="English">English only</option></select></div></div>
         <label for="promptInput">Prompt Content / 提示詞內容</label>
-        <textarea id="promptInput" placeholder="Paste your prompt here...">已設定為此專案的預設重拍風格。
+        <textarea id="promptInput">已設定為此專案的預設重拍風格。
 
 之後你喺呢個 Project 上載任何人物照片時，我會預設自動套用：
 
@@ -280,276 +81,135 @@ CGI 感
 AI 臉
 
 以後你直接上載相片即可，我會以此作為預設重拍基礎。</textarea>
-        <div class="toolbar">
-          <button class="btn primary" type="submit">Submit to Catalogue</button>
-          <button class="btn secondary" type="button" id="analyseBtn">Analyse Only</button>
-          <button class="btn secondary" type="button" id="clearBtn">Clear Input</button>
-        </div>
+        <div class="toolbar"><button class="btn primary" type="submit">Submit to Catalogue</button><button class="btn" type="button" id="analyseBtn">Analyse Phrases</button><button class="btn" type="button" id="clearBtn">Clear Input</button></div>
         <div class="status" id="status"></div>
       </form>
     </section>
 
-    <section class="phase-board" id="phases">
-      <h2>Prompt Phases</h2>
-      <p>Each prompt is organised into four production phases, so ideas can move from rough input to reusable asset.</p>
+    <section class="section" id="phases">
+      <h2>Meaningful Impact Groups</h2>
+      <p>Instead of forcing the whole prompt into 4 long phases, phrases are grouped by their impact on the subject and production result.</p>
       <div class="phase-grid">
-        <article class="phase"><h3>Phase 1 · 概念收集</h3><div class="en">Idea Capture: raw idea, objective, scene, user intention.</div><div class="phase-content" id="phase1">Waiting for input...</div></article>
-        <article class="phase"><h3>Phase 2 · 結構整理</h3><div class="en">Structure: role, background, need, output, constraints.</div><div class="phase-content" id="phase2">Waiting for input...</div></article>
-        <article class="phase"><h3>Phase 3 · 生成執行</h3><div class="en">Production: copy-ready prompt for AI tools.</div><div class="phase-content" id="phase3">Waiting for input...</div></article>
-        <article class="phase"><h3>Phase 4 · 歸檔記錄</h3><div class="en">Archive: category, tags, date, reusable record.</div><div class="phase-content" id="phase4">Waiting for input...</div></article>
+        <article class="phase"><h3>1 · Identity / 保留主體</h3><div class="en">Phrases that protect face, body, pose, age and expression.</div></article>
+        <article class="phase"><h3>2 · Appearance / 外觀質感</h3><div class="en">Skin, physique, texture, tone and subject rendering.</div></article>
+        <article class="phase"><h3>3 · Visual / 視覺語言</h3><div class="en">Lighting, camera, ambience, colour science and commercial style.</div></article>
+        <article class="phase"><h3>4 · Avoid / 避免錯誤</h3><div class="en">Negative quality control phrases converted into clear restrictions.</div></article>
       </div>
     </section>
 
-    <section class="catalogue" id="catalogue">
+    <section class="section" id="phrases">
+      <h2>Phrase Analysis</h2>
+      <p>Each item keeps the English or original phrase, then shows the Traditional Chinese meaning.</p>
+      <div class="phrase-list" id="phraseList"></div>
+    </section>
+
+    <section class="section" id="catalogue">
       <h2>Prompt Catalogue</h2>
-      <p>Saved prompts are stored in this browser and can be exported as JSON for GitHub record keeping.</p>
-      <div class="filters" id="filters">
-        <button class="pill active" data-filter="All">All</button>
-        <button class="pill" data-filter="Image">Image</button>
-        <button class="pill" data-filter="Video">Video</button>
-        <button class="pill" data-filter="Workflow">Workflow</button>
-      </div>
-      <div class="toolbar">
-        <button class="btn secondary small" id="exportBtn">Export JSON for GitHub</button>
-        <button class="btn secondary small" id="copyAllBtn">Copy All Records</button>
-        <button class="btn danger small" id="resetBtn">Reset Local Records</button>
-      </div>
+      <p>Saved records are stored in this browser. Export JSON and keep it in GitHub under <code>/prompt2/data/prompt-records.json</code>.</p>
+      <div class="filters" id="filters"><button class="pill active" data-filter="All">All</button><button class="pill" data-filter="Image">Image</button><button class="pill" data-filter="Video">Video</button><button class="pill" data-filter="Workflow">Workflow</button></div>
+      <div class="toolbar"><button class="btn small" id="exportBtn">Export JSON for GitHub</button><button class="btn small" id="copyAllBtn">Copy All Records</button><button class="btn danger small" id="resetBtn">Reset Local Records</button></div>
       <div class="records" id="records"></div>
     </section>
 
-    <footer>
-      Prompt2 by Hudson Mar · Built for AI creation workflows · Static GitHub Pages version. Browser records use localStorage; export JSON to keep permanent GitHub records in /prompt2/data/prompt-records.json.
-    </footer>
+    <footer>Prompt2 by Hudson Mar · Phrase-based bilingual prompt catalogue · GitHub Pages static version.</footer>
   </main>
 
   <script>
-    const STORAGE_KEY = "prompt2_catalogue_records_v1";
-    let records = [];
-    let activeFilter = "All";
+    const STORAGE_KEY="prompt2_phrase_records_v2";let records=[];let activeFilter="All";let latestPhrases=[];
+    const els={form:document.getElementById("promptForm"),title:document.getElementById("titleInput"),category:document.getElementById("categoryInput"),impact:document.getElementById("impactInput"),language:document.getElementById("languageInput"),prompt:document.getElementById("promptInput"),status:document.getElementById("status"),phraseList:document.getElementById("phraseList"),records:document.getElementById("records")};
 
-    const categoryMeaning = {
-      Image: "圖片提示詞：用於相片重拍、AI 圖像生成、身份鎖定、燈光、場景及攝影質感控制。 / Image prompt: used for image generation, identity lock, lighting, scene and photography style control.",
-      Video: "影片提示詞：用於短片生成、鏡頭運動、角色行為、動作節奏及結尾畫面控制。 / Video prompt: used for motion, camera movement, character behaviour, timing and ending-frame control.",
-      Workflow: "自動化流程提示詞：用於任務拆解、瀏覽器操作、求職、內容批量生產及系統流程。 / Workflow prompt: used for task automation, browser actions, job search, content batching and repeatable systems."
+    const phraseDictionary={
+      "Natural Sun-Kissed Tan":"自然陽光曬感健康古銅膚色",
+      "Golden Bronze":"金棕古銅色調",
+      "Identity Lock":"身份鎖定／固定同一人物特徵",
+      "Full-Frame 85mm":"全片幅 85mm 人像鏡頭效果",
+      "Sauna":"桑拿／暖木色 Wellness 空間感",
+      "Wellness Club":"高級健康會所氛圍",
+      "HDR":"HDR 過強效果",
+      "CGI":"電腦生成感／假 3D 感",
+      "AI":"AI 生成感"
     };
 
-    const els = {
-      form: document.getElementById("promptForm"),
-      title: document.getElementById("titleInput"),
-      category: document.getElementById("categoryInput"),
-      phase: document.getElementById("phaseInput"),
-      language: document.getElementById("languageInput"),
-      prompt: document.getElementById("promptInput"),
-      status: document.getElementById("status"),
-      records: document.getElementById("records"),
-      phase1: document.getElementById("phase1"),
-      phase2: document.getElementById("phase2"),
-      phase3: document.getElementById("phase3"),
-      phase4: document.getElementById("phase4")
-    };
+    function uid(){return"p2-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)}
+    function escapeHtml(v){return String(v).replace(/[&<>"]/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]))}
 
-    function uid() {
-      return "p2-" + Date.now().toString(36) + "-" + Math.random().toString(36).slice(2, 8);
+    function isHeading(line){return ["固定保留","自動套用","自動避免"].includes(line.trim())}
+    function splitPhrases(text){
+      return text.split(/\n+/).map(x=>x.trim()).filter(Boolean).filter(x=>!x.endsWith("：")&&!x.includes("已設定為此專案")&&!x.includes("之後你喺")&&!x.includes("以後你直接"));
     }
-
-    function detectTags(text, category) {
-      const source = text.toLowerCase();
-      const tags = [category];
-      const map = [
-        ["identity", ["identity", "同一人物", "五官", "face", "facial"]],
-        ["lighting", ["lighting", "燈光", "光", "amber", "warm"]],
-        ["skin", ["skin", "膚", "毛孔", "bronze", "tan"]],
-        ["camera", ["camera", "鏡頭", "85mm", "full-frame"]],
-        ["automation", ["automation", "自動化", "workflow", "browser"]],
-        ["video", ["video", "影片", "鏡頭運動", "action"]]
-      ];
-      map.forEach(([tag, keys]) => { if (keys.some(k => source.includes(k))) tags.push(tag); });
-      return [...new Set(tags)];
+    function classifyPhrase(phrase){
+      const p=phrase.toLowerCase();
+      if(isHeading(phrase)) return {group:phrase,impact:"Section Heading",zh:phrase};
+      if(p.includes("identity")||phrase.includes("同一")||phrase.includes("五官")||phrase.includes("姿勢")||phrase.includes("構圖")||phrase.includes("年齡")||phrase.includes("表情")) return {group:"Identity / 保留主體",impact:"Protects the subject identity, pose and structure.",zh:translatePhrase(phrase,"identity")};
+      if(p.includes("skin")||p.includes("tan")||p.includes("bronze")||phrase.includes("膚")||phrase.includes("毛孔")||phrase.includes("肌肉")||phrase.includes("反光")||phrase.includes("光澤")) return {group:"Appearance / 外觀質感",impact:"Changes how the subject looks: skin tone, texture, body rendering and realism.",zh:translatePhrase(phrase,"appearance")};
+      if(p.includes("85mm")||p.includes("frame")||p.includes("sauna")||p.includes("wellness")||phrase.includes("燈光")||phrase.includes("色彩")||phrase.includes("攝影")||phrase.includes("商業")) return {group:"Visual / 視覺語言",impact:"Controls camera, lighting, colour language, ambience and commercial quality.",zh:translatePhrase(phrase,"visual")};
+      if(phrase.includes("避免")||phrase.includes("塑膠")||phrase.includes("磨皮")||phrase.includes("HDR")||phrase.includes("銳化")||phrase.includes("修圖")||phrase.includes("CGI")||phrase.includes("AI 臉")) return {group:"Avoid / 避免錯誤",impact:"Prevents common AI or editing mistakes.",zh:translatePhrase(phrase,"avoid")};
+      return {group:"General / 一般指令",impact:"General prompt instruction or context.",zh:translatePhrase(phrase,"general")};
     }
-
-    function makeTitle(text, category) {
-      const firstLine = text.split("\n").map(x => x.trim()).find(Boolean);
-      if (els.title.value.trim()) return els.title.value.trim();
-      if (firstLine) return firstLine.slice(0, 52);
-      return `${category} Prompt ${new Date().toLocaleDateString()}`;
-    }
-
-    function buildPhases(text, category, phase, tags) {
-      const trimmed = text.trim();
-      const short = trimmed.length > 520 ? trimmed.slice(0, 520) + "..." : trimmed;
-      return {
-        phase1: `中文：已收集原始 prompt 及目標方向。\nEnglish: Raw prompt and objective captured.\n\n${short}`,
-        phase2: `中文：分類為「${category}」，並套入 RBNO 結構。\nEnglish: Classified as ${category} and structured with RBNO.\n\nRole: AI Prompt Builder\nBackground: User provided reusable prompt content.\nNeed: Convert input into reusable catalogue asset.\nOutput: Bilingual prompt record with phases and tags.`,
-        phase3: `中文：可直接複製到 AI 工具使用。\nEnglish: Copy-ready prompt for AI tools.\n\n${trimmed}`,
-        phase4: `中文：已準備歸檔。\nEnglish: Ready for archive.\n\nCatalogue: ${category}\nPhase: ${phase}\nTags: ${tags.join(", ")}\nRecord time: ${new Date().toLocaleString()}`
+    function translatePhrase(phrase,type){
+      for(const key in phraseDictionary){if(phrase.includes(key)) return phrase.replace(key,phraseDictionary[key])}
+      const map={
+        "亞洲男性健康古銅膚色":"亞洲男性健康古銅膚色",
+        "Golden Bronze 肌膚色調":"金棕古銅肌膚色調",
+        "真實毛孔及微皮膚紋理":"真實毛孔及細緻皮膚微紋理",
+        "健身攝影級肌肉立體感":"健身攝影級肌肉立體輪廓",
+        "肩膀、胸肌、手臂自然反光":"肩膀、胸肌及手臂呈現自然反光",
+        "輕微運動後健康光澤":"輕微運動後的健康光澤",
+        "暖木色 Sauna / Wellness Club 色彩科學":"暖木色桑拿／高級健康會所色彩語言",
+        "專業商業攝影燈光":"專業商業攝影燈光",
+        "Full-Frame 85mm 人像鏡頭效果":"全片幅 85mm 人像鏡頭效果",
+        "去 AI 感處理":"降低 AI 生成感處理",
+        "商業健身廣告級質感":"商業健身廣告級質感",
+        "塑膠皮膚":"避免塑膠感皮膚",
+        "AI 磨皮":"避免 AI 式過度磨皮",
+        "假橙色曬黑":"避免假橙色曬黑效果",
+        "過度銳化":"避免過度銳化",
+        "過度修圖":"避免過度修圖",
+        "AI 臉":"避免 AI 臉或臉部失真"
       };
+      if(map[phrase]) return map[phrase];
+      if(/[A-Za-z]/.test(phrase)&&!/[\u4e00-\u9fff]/.test(phrase)) return autoZhMeaning(phrase,type);
+      return phrase;
     }
-
-    function analyseCurrentInput() {
-      const text = els.prompt.value.trim();
-      const category = els.category.value;
-      const phase = els.phase.value;
-      if (!text) {
-        els.status.textContent = "Please enter a prompt first. / 請先輸入 prompt。";
-        return null;
-      }
-      const tags = detectTags(text, category);
-      const phases = buildPhases(text, category, phase, tags);
-      els.phase1.textContent = phases.phase1;
-      els.phase2.textContent = phases.phase2;
-      els.phase3.textContent = phases.phase3;
-      els.phase4.textContent = phases.phase4;
-      return { text, category, phase, tags, phases };
+    function autoZhMeaning(phrase,type){
+      const lower=phrase.toLowerCase();
+      if(lower.includes("sun")&&lower.includes("tan")) return "自然陽光曬感健康古銅膚色";
+      if(lower.includes("bronze")) return "金棕古銅色調";
+      if(lower.includes("identity")) return "身份鎖定／固定同一人物特徵";
+      if(lower.includes("camera")||lower.includes("frame")||lower.includes("85mm")) return "專業人像鏡頭及攝影視角";
+      if(lower.includes("workflow")) return "自動化流程指令";
+      return type==="appearance"?"外觀、膚色或質感相關描述":type==="visual"?"視覺風格、燈光或攝影語言":type==="avoid"?"需要避免的錯誤效果":"一般英文提示詞描述";
     }
-
-    function saveRecords() {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(records));
+    function analyseCurrentInput(){
+      const text=els.prompt.value.trim();if(!text){els.status.textContent="Please enter a prompt. / 請先輸入 prompt。";return[]}
+      latestPhrases=splitPhrases(text).map(raw=>({id:uid(),english:raw,...classifyPhrase(raw)}));renderPhrases(latestPhrases);return latestPhrases;
     }
-
-    function loadRecords() {
-      try {
-        records = JSON.parse(localStorage.getItem(STORAGE_KEY)) || [];
-      } catch (e) {
-        records = [];
-      }
+    function renderPhrases(items){
+      if(!items.length){els.phraseList.innerHTML='<div class="empty">No phrases found. / 未找到可分析 phrase。</div>';return}
+      const lang=els.language.value;
+      els.phraseList.innerHTML=items.map(item=>{
+        const en=lang!=="Chinese"?`<div class="phrase-en">${escapeHtml(item.english)}</div>`:"";
+        const zh=lang!=="English"?`<div class="phrase-zh"><strong>中文意思：</strong>${escapeHtml(item.zh)}</div>`:"";
+        return `<article class="phrase-card"><div class="phrase-head"><div>${en}${zh}</div><span class="tag">${escapeHtml(item.group)}</span></div><div class="impact"><strong>Impact:</strong> ${escapeHtml(item.impact)}</div></article>`
+      }).join("");
     }
-
-    function escapeHtml(value) {
-      return String(value).replace(/[&<>"]/g, s => ({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]));
-    }
-
-    function renderRecords() {
-      const list = activeFilter === "All" ? records : records.filter(r => r.category === activeFilter);
-      if (!list.length) {
-        els.records.innerHTML = `<div class="empty">No saved prompts yet. / 暫時未有已儲存 prompt。</div>`;
-        return;
-      }
-      els.records.innerHTML = list.map(record => `
-        <article class="record">
-          <div class="record-head">
-            <div>
-              <h3>${escapeHtml(record.title)}</h3>
-              <div class="meta">${escapeHtml(record.createdAt)} · ${escapeHtml(record.phase)}</div>
-            </div>
-            <span class="tag">${escapeHtml(record.category)}</span>
-          </div>
-          <p class="meta">${escapeHtml(categoryMeaning[record.category])}</p>
-          <div class="record-grid">
-            <div class="copy-box"><strong>中文意思</strong>\n${escapeHtml(record.zhMeaning)}\n\n<strong>Tags</strong>\n${escapeHtml(record.tags.join(", "))}</div>
-            <div class="copy-box"><strong>English Meaning</strong>\n${escapeHtml(record.enMeaning)}\n\n<strong>Prompt</strong>\n${escapeHtml(record.prompt)}</div>
-          </div>
-          <div class="record-actions">
-            <button class="btn secondary small" onclick="copyPrompt('${record.id}')">Copy Prompt</button>
-            <button class="btn secondary small" onclick="loadPrompt('${record.id}')">Load to Builder</button>
-            <button class="btn danger small" onclick="deletePrompt('${record.id}')">Delete</button>
-          </div>
-        </article>
-      `).join("");
-    }
-
-    function createRecord() {
-      const analysis = analyseCurrentInput();
-      if (!analysis) return;
-      const title = makeTitle(analysis.text, analysis.category);
-      const record = {
-        id: uid(),
-        title,
-        category: analysis.category,
-        phase: analysis.phase,
-        language: els.language.value,
-        prompt: analysis.text,
-        zhMeaning: `這是一個「${analysis.category}」類 prompt，用於把原始想法整理成可重用、可歸檔、可複製的 AI 生產指令。`,
-        enMeaning: `This is a ${analysis.category} prompt for converting raw ideas into reusable, archived and copy-ready AI production instructions.`,
-        tags: analysis.tags,
-        phases: analysis.phases,
-        createdAt: new Date().toISOString()
-      };
-      records.unshift(record);
-      saveRecords();
-      renderRecords();
-      els.status.textContent = "Saved to catalogue. / 已儲存到 Prompt Catalogue。";
-      document.getElementById("catalogue").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function copyPrompt(id) {
-      const record = records.find(r => r.id === id);
-      if (!record) return;
-      navigator.clipboard.writeText(record.prompt);
-      els.status.textContent = "Prompt copied. / 已複製 prompt。";
-    }
-
-    function loadPrompt(id) {
-      const record = records.find(r => r.id === id);
-      if (!record) return;
-      els.title.value = record.title;
-      els.category.value = record.category;
-      els.phase.value = record.phase;
-      els.prompt.value = record.prompt;
-      analyseCurrentInput();
-      document.getElementById("builder").scrollIntoView({ behavior: "smooth" });
-    }
-
-    function deletePrompt(id) {
-      records = records.filter(r => r.id !== id);
-      saveRecords();
-      renderRecords();
-    }
-
-    function exportJson() {
-      const blob = new Blob([JSON.stringify(records, null, 2)], { type: "application/json" });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement("a");
-      a.href = url;
-      a.download = "prompt-records.json";
-      a.click();
-      URL.revokeObjectURL(url);
-      els.status.textContent = "JSON exported. Commit it to /prompt2/data/prompt-records.json for GitHub record. / 已匯出 JSON，可上載到 GitHub 記錄。";
-    }
-
-    function copyAllRecords() {
-      navigator.clipboard.writeText(JSON.stringify(records, null, 2));
-      els.status.textContent = "All records copied as JSON. / 已複製全部記錄。";
-    }
-
-    document.getElementById("analyseBtn").addEventListener("click", () => {
-      if (analyseCurrentInput()) els.status.textContent = "Analysis updated. / 分析已更新。";
-    });
-
-    document.getElementById("clearBtn").addEventListener("click", () => {
-      els.title.value = "";
-      els.prompt.value = "";
-      els.status.textContent = "Input cleared. / 已清空輸入。";
-    });
-
-    document.getElementById("exportBtn").addEventListener("click", exportJson);
-    document.getElementById("copyAllBtn").addEventListener("click", copyAllRecords);
-    document.getElementById("resetBtn").addEventListener("click", () => {
-      if (!confirm("Reset all local records? / 確定清除本機記錄？")) return;
-      records = [];
-      saveRecords();
-      renderRecords();
-    });
-
-    document.getElementById("filters").addEventListener("click", e => {
-      if (!e.target.matches(".pill")) return;
-      document.querySelectorAll(".pill").forEach(btn => btn.classList.remove("active"));
-      e.target.classList.add("active");
-      activeFilter = e.target.dataset.filter;
-      renderRecords();
-    });
-
-    els.form.addEventListener("submit", e => {
-      e.preventDefault();
-      createRecord();
-    });
-
-    window.copyPrompt = copyPrompt;
-    window.loadPrompt = loadPrompt;
-    window.deletePrompt = deletePrompt;
-
-    loadRecords();
-    renderRecords();
-    analyseCurrentInput();
+    function saveRecords(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records))}
+    function loadRecords(){try{records=JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){records=[]}}
+    function renderRecords(){const list=activeFilter==="All"?records:records.filter(r=>r.category===activeFilter);if(!list.length){els.records.innerHTML='<div class="empty">No saved prompts yet. / 暫時未有已儲存 prompt。</div>';return}els.records.innerHTML=list.map(r=>`<article class="record"><div class="record-head"><div><h3>${escapeHtml(r.title)}</h3><div class="meta">${escapeHtml(r.createdAt)} · ${escapeHtml(r.category)} · ${escapeHtml(r.impact)}</div></div><span class="tag">${escapeHtml(r.phrases.length)} phrases</span></div><div class="copy-box">${escapeHtml(r.phrases.map(p=>`${p.english}\n中文：${p.zh}\nGroup: ${p.group}`).join("\n\n"))}</div><div class="toolbar"><button class="btn small" onclick="copyRecord('${r.id}')">Copy</button><button class="btn danger small" onclick="deleteRecord('${r.id}')">Delete</button></div></article>`).join("")}
+    function createRecord(){const phrases=analyseCurrentInput();if(!phrases.length)return;const text=els.prompt.value.trim();const title=els.title.value.trim()||phrases[0].english.slice(0,56);const rec={id:uid(),title,category:els.category.value,impact:els.impact.value,prompt:text,phrases,createdAt:new Date().toISOString()};records.unshift(rec);saveRecords();renderRecords();els.status.textContent="Saved as phrase-based bilingual record. / 已儲存為 phrase-based 中英對照記錄。";document.getElementById("catalogue").scrollIntoView({behavior:"smooth"})}
+    function copyRecord(id){const r=records.find(x=>x.id===id);if(!r)return;navigator.clipboard.writeText(r.phrases.map(p=>`${p.english}\n中文：${p.zh}\n分類：${p.group}\n影響：${p.impact}`).join("\n\n"));els.status.textContent="Record copied. / 已複製記錄。"}
+    function deleteRecord(id){records=records.filter(r=>r.id!==id);saveRecords();renderRecords()}
+    function exportJson(){const blob=new Blob([JSON.stringify(records,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="prompt-records.json";a.click();URL.revokeObjectURL(url);els.status.textContent="JSON exported. / 已匯出 JSON。"}
+    window.copyRecord=copyRecord;window.deleteRecord=deleteRecord;
+    document.getElementById("analyseBtn").addEventListener("click",()=>{analyseCurrentInput();els.status.textContent="Phrase analysis updated. / Phrase 分析已更新。"});
+    document.getElementById("clearBtn").addEventListener("click",()=>{els.title.value="";els.prompt.value="";els.phraseList.innerHTML='<div class="empty">Input cleared. / 已清空輸入。</div>'});
+    document.getElementById("exportBtn").addEventListener("click",exportJson);
+    document.getElementById("copyAllBtn").addEventListener("click",()=>{navigator.clipboard.writeText(JSON.stringify(records,null,2));els.status.textContent="All records copied. / 已複製全部記錄。"});
+    document.getElementById("resetBtn").addEventListener("click",()=>{if(!confirm("Reset all local records? / 確定清除本機記錄？"))return;records=[];saveRecords();renderRecords()});
+    document.getElementById("filters").addEventListener("click",e=>{if(!e.target.matches(".pill"))return;document.querySelectorAll(".pill").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");activeFilter=e.target.dataset.filter;renderRecords()});
+    els.form.addEventListener("submit",e=>{e.preventDefault();createRecord()});
+    els.language.addEventListener("change",()=>renderPhrases(latestPhrases));
+    loadRecords();renderRecords();analyseCurrentInput();
   </script>
 </body>
 </html>
