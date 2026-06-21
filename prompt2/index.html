@@ -1,215 +1,128 @@
 <!DOCTYPE html>
 <html lang="zh-Hant">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Prompt2 — AI Prompt Studio</title>
-  <meta name="description" content="Prompt2 is a bilingual AI prompt studio for phrase extraction, catalogue grouping and prompt workflow records." />
-  <style>
-    :root{
-      --bg:#050507;--panel:rgba(255,255,255,.065);--panel2:rgba(255,255,255,.11);--text:#f5f7fb;--muted:#a8adbd;--line:rgba(255,255,255,.13);--soft:rgba(126,134,255,.18);--good:#86efac;--glow:rgba(120,120,255,.25)
-    }
-    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 10%,rgba(97,84,255,.25),transparent 30%),radial-gradient(circle at 85% 15%,rgba(255,255,255,.11),transparent 24%),radial-gradient(circle at 50% 90%,rgba(0,190,255,.12),transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.noise{position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at center,black,transparent 78%)}.wrap{width:min(1180px,calc(100% - 40px));margin:0 auto;position:relative;z-index:1}header{display:flex;align-items:center;justify-content:space-between;padding:28px 0}.brand{display:flex;align-items:center;gap:12px;font-weight:800}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#fff,#7e86ff 45%,#111);box-shadow:0 0 36px var(--glow)}nav{display:flex;gap:20px;color:var(--muted);font-size:14px}nav a:hover{color:#fff}.hero{display:grid;grid-template-columns:1.05fr .95fr;gap:48px;align-items:center;min-height:66vh;padding:48px 0 58px}.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:rgba(255,255,255,.055);color:#d8dcff;border-radius:999px;padding:9px 14px;font-size:13px;backdrop-filter:blur(18px);margin-bottom:24px}.dot{width:7px;height:7px;border-radius:99px;background:#aeb5ff;box-shadow:0 0 20px #aeb5ff}h1{margin:0;font-size:clamp(52px,8vw,108px);line-height:.88;letter-spacing:-.085em;font-weight:850}.gradient{background:linear-gradient(180deg,#fff 0%,#cfd4ff 55%,#7780ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:660px;margin:28px 0 0;color:var(--muted);font-size:clamp(18px,2vw,22px);line-height:1.55}.actions{display:flex;flex-wrap:wrap;gap:14px;margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 18px;border:1px solid var(--line);font-weight:700;cursor:pointer;transition:.18s;background:rgba(255,255,255,.055);color:var(--text)}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#fff;color:#050507}.btn.small{padding:9px 12px;font-size:13px}.btn.danger{background:rgba(255,90,90,.12);color:#fecaca}.orb-card{position:relative;min-height:500px;border:1px solid var(--line);border-radius:36px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(28px);overflow:hidden;box-shadow:0 30px 120px rgba(0,0,0,.45)}.orb{position:absolute;width:360px;height:360px;border-radius:50%;left:50%;top:43%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(185,190,255,.78) 15%,rgba(99,108,255,.42) 38%,rgba(12,12,20,.12) 66%,transparent 72%),conic-gradient(from 210deg,#fff,#8f99ff,#111,#fff);box-shadow:0 0 90px rgba(143,153,255,.36),inset 0 0 80px rgba(255,255,255,.25)}.prompt-box{position:absolute;left:24px;right:24px;bottom:24px;border:1px solid var(--line);border-radius:24px;background:rgba(5,5,7,.58);backdrop-filter:blur(24px);padding:20px}.prompt-title{display:flex;justify-content:space-between;color:#fff;font-weight:800;margin-bottom:12px}.prompt-text{color:var(--muted);line-height:1.6;font-size:14px}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:46px}.feature,.panel,.phase,.record{border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:20px}.feature{min-height:185px}.feature h3{margin:0 0 8px;font-size:18px}.feature .zh{font-weight:800;margin-bottom:10px}.feature p,.section p{margin:0;color:var(--muted);line-height:1.55}.builder,.section{border:1px solid var(--line);border-radius:34px;background:var(--panel2);padding:30px;margin-bottom:34px}.builder{display:grid;grid-template-columns:.82fr 1.18fr;gap:28px;align-items:start}.builder h2,.section h2{margin:0 0 12px;font-size:clamp(30px,4vw,50px);line-height:.98;letter-spacing:-.055em}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}label{display:block;color:#dfe3ff;font-size:13px;font-weight:700;margin-bottom:7px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;background:rgba(0,0,0,.34);color:var(--text);outline:none}textarea{min-height:260px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:rgba(180,185,255,.8);box-shadow:0 0 0 4px rgba(126,134,255,.13)}.toolbar,.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px}.status{color:var(--good);margin-top:12px;font-size:14px;min-height:20px}.phase-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.phase h3{margin:0 0 8px;font-size:16px}.phase .en{color:var(--muted);font-size:13px;line-height:1.45}.phrase-list,.records{display:grid;gap:14px;margin-top:18px}.phrase-card{border:1px solid var(--line);border-radius:20px;background:rgba(255,255,255,.045);padding:16px}.phrase-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.phrase-en{font-size:17px;font-weight:800}.phrase-zh{margin-top:8px;color:#dfe3ff;line-height:1.55}.impact{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.45}.tag{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:#dfe3ff;background:var(--soft);white-space:nowrap}.pill{border:1px solid var(--line);border-radius:999px;padding:9px 12px;background:rgba(255,255,255,.045);color:var(--muted);cursor:pointer}.pill.active,.pill:hover{color:#050507;background:#fff}.record-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px}.record h3{margin:0;font-size:18px}.meta{color:var(--muted);font-size:12px;margin-top:5px}.copy-box{border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.24);padding:14px;color:var(--muted);white-space:pre-wrap;line-height:1.55;font-size:14px;max-height:260px;overflow:auto}.empty{color:var(--muted);border:1px dashed var(--line);border-radius:18px;padding:24px;text-align:center}footer{color:var(--muted);border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px}@media(max-width:900px){nav{display:none}.hero,.builder{grid-template-columns:1fr}.orb-card{min-height:420px}.grid,.phase-grid,.form-row{grid-template-columns:1fr}h1{letter-spacing:-.06em}}
-  </style>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Prompt2 — Prompt Intelligence Engine</title>
+<meta name="description" content="Phrase-based bilingual prompt knowledge base with catalogue, usage groups, similar and opposite prompt logic." />
+<style>
+:root{--bg:#050507;--panel:rgba(255,255,255,.065);--panel2:rgba(255,255,255,.11);--text:#f5f7fb;--muted:#a8adbd;--line:rgba(255,255,255,.13);--soft:rgba(126,134,255,.18);--good:#86efac;--warn:#fde68a;--glow:rgba(120,120,255,.25)}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;min-height:100vh;background:radial-gradient(circle at 15% 10%,rgba(97,84,255,.25),transparent 30%),radial-gradient(circle at 85% 15%,rgba(255,255,255,.11),transparent 24%),radial-gradient(circle at 50% 90%,rgba(0,190,255,.12),transparent 32%),var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}button,input,select,textarea{font:inherit}.noise{position:fixed;inset:0;pointer-events:none;opacity:.16;background-image:linear-gradient(rgba(255,255,255,.06) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:52px 52px;mask-image:radial-gradient(circle at center,black,transparent 78%)}.wrap{width:min(1240px,calc(100% - 40px));margin:0 auto;position:relative;z-index:1}header{display:flex;align-items:center;justify-content:space-between;padding:28px 0}.brand{display:flex;align-items:center;gap:12px;font-weight:850}.logo{width:34px;height:34px;border-radius:12px;background:linear-gradient(135deg,#fff,#7e86ff 45%,#111);box-shadow:0 0 36px var(--glow)}nav{display:flex;gap:18px;color:var(--muted);font-size:14px}nav a:hover{color:#fff}.hero{display:grid;grid-template-columns:1.04fr .96fr;gap:48px;align-items:center;min-height:64vh;padding:44px 0 50px}.badge{display:inline-flex;align-items:center;gap:9px;border:1px solid var(--line);background:rgba(255,255,255,.055);color:#d8dcff;border-radius:999px;padding:9px 14px;font-size:13px;backdrop-filter:blur(18px);margin-bottom:24px}.dot{width:7px;height:7px;border-radius:99px;background:#aeb5ff;box-shadow:0 0 20px #aeb5ff}h1{margin:0;font-size:clamp(48px,7.7vw,104px);line-height:.88;letter-spacing:-.078em;font-weight:880}.gradient{background:linear-gradient(180deg,#fff 0%,#cfd4ff 55%,#7780ff 100%);-webkit-background-clip:text;background-clip:text;color:transparent}.lead{max-width:690px;margin:28px 0 0;color:var(--muted);font-size:clamp(18px,2vw,22px);line-height:1.55}.actions,.toolbar,.filters{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.hero .actions{margin-top:34px}.btn{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;padding:13px 18px;border:1px solid var(--line);font-weight:750;cursor:pointer;transition:.18s;background:rgba(255,255,255,.055);color:var(--text)}.btn:hover{transform:translateY(-2px)}.btn.primary{background:#fff;color:#050507}.btn.small{padding:8px 11px;font-size:13px}.btn.danger{background:rgba(255,90,90,.12);color:#fecaca}.orb-card{position:relative;min-height:500px;border:1px solid var(--line);border-radius:36px;background:linear-gradient(180deg,rgba(255,255,255,.13),rgba(255,255,255,.035));backdrop-filter:blur(28px);overflow:hidden;box-shadow:0 30px 120px rgba(0,0,0,.45)}.orb{position:absolute;width:360px;height:360px;border-radius:50%;left:50%;top:42%;transform:translate(-50%,-50%);background:radial-gradient(circle at 35% 30%,rgba(255,255,255,.95),rgba(185,190,255,.78) 15%,rgba(99,108,255,.42) 38%,rgba(12,12,20,.12) 66%,transparent 72%),conic-gradient(from 210deg,#fff,#8f99ff,#111,#fff);box-shadow:0 0 90px rgba(143,153,255,.36),inset 0 0 80px rgba(255,255,255,.25)}.prompt-box{position:absolute;left:24px;right:24px;bottom:24px;border:1px solid var(--line);border-radius:24px;background:rgba(5,5,7,.58);backdrop-filter:blur(24px);padding:20px}.prompt-title{display:flex;justify-content:space-between;color:#fff;font-weight:850;margin-bottom:12px}.prompt-text{color:var(--muted);line-height:1.6;font-size:14px}.section,.builder{border:1px solid var(--line);border-radius:34px;background:var(--panel2);padding:30px;margin-bottom:34px}.builder{display:grid;grid-template-columns:.78fr 1.22fr;gap:28px;align-items:start}.section h2,.builder h2{margin:0 0 12px;font-size:clamp(30px,4vw,50px);line-height:.98;letter-spacing:-.055em}.section p,.builder p{margin:0 0 12px;color:var(--muted);line-height:1.6}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;padding-bottom:46px}.feature,.panel,.map-card,.record,.phrase-card{border:1px solid var(--line);background:var(--panel);border-radius:24px;padding:20px}.feature{min-height:178px}.feature h3,.map-card h3{margin:0 0 8px;font-size:18px}.zh{font-weight:800;margin-bottom:10px}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}label{display:block;color:#dfe3ff;font-size:13px;font-weight:750;margin-bottom:7px}input,select,textarea{width:100%;border:1px solid var(--line);border-radius:16px;padding:13px 14px;background:rgba(0,0,0,.34);color:var(--text);outline:none}textarea{min-height:280px;resize:vertical;line-height:1.5}input:focus,select:focus,textarea:focus{border-color:rgba(180,185,255,.8);box-shadow:0 0 0 4px rgba(126,134,255,.13)}.status{color:var(--good);margin-top:12px;font-size:14px;min-height:20px}.map-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:18px}.map-card ul{margin:10px 0 0;padding-left:18px;color:var(--muted);line-height:1.7;font-size:14px}.phrase-list,.records{display:grid;gap:14px;margin-top:18px}.phrase-card{background:rgba(255,255,255,.045)}.phrase-head{display:flex;justify-content:space-between;gap:12px;align-items:flex-start}.phrase-en{font-size:18px;font-weight:850}.phrase-zh{margin-top:8px;color:#dfe3ff;line-height:1.55}.meta-line{margin-top:10px;color:var(--muted);font-size:13px;line-height:1.45}.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}.tag,.pill{display:inline-flex;border:1px solid var(--line);border-radius:999px;padding:6px 10px;font-size:12px;color:#dfe3ff;background:var(--soft);white-space:nowrap}.pill{font-size:13px;color:var(--muted);cursor:pointer;background:rgba(255,255,255,.045)}.pill.active,.pill:hover{color:#050507;background:#fff}.relation-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:12px}.relation{border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.22);padding:12px}.relation b{display:block;margin-bottom:7px;color:#fff}.relation span{display:block;color:var(--muted);font-size:13px;line-height:1.45}.record-head{display:flex;align-items:flex-start;justify-content:space-between;gap:14px;margin-bottom:10px}.record h3{margin:0;font-size:18px}.meta{color:var(--muted);font-size:12px;margin-top:5px}.copy-box{border:1px solid var(--line);border-radius:16px;background:rgba(0,0,0,.24);padding:14px;color:var(--muted);white-space:pre-wrap;line-height:1.55;font-size:14px;max-height:300px;overflow:auto}.empty{color:var(--muted);border:1px dashed var(--line);border-radius:18px;padding:24px;text-align:center}code{color:#dfe3ff}footer{color:var(--muted);border-top:1px solid var(--line);padding:26px 0 40px;font-size:13px}@media(max-width:980px){nav{display:none}.hero,.builder{grid-template-columns:1fr}.orb-card{min-height:420px}.grid,.map-grid,.form-row,.relation-grid{grid-template-columns:1fr}h1{letter-spacing:-.06em}}
+</style>
 </head>
 <body>
-  <div class="noise"></div>
-  <main class="wrap">
-    <header><a class="brand" href="#studio"><span class="logo"></span><span>Prompt2</span></a><nav><a href="#studio">Studio</a><a href="#features">Features</a><a href="#builder">Builder</a><a href="#phrases">Phrases</a><a href="#catalogue">Catalogue</a></nav></header>
-
-    <section class="hero" id="studio">
-      <div>
-        <div class="badge"><span class="dot"></span> AI Prompt Studio · Phrase Meaning Engine</div>
-        <h1><span class="gradient">Prompt</span><br>without limits.</h1>
-        <p class="lead">Input a rough prompt, then split it into meaningful phrases. Each phrase keeps the English original, adds Traditional Chinese meaning, and groups by creative impact.</p>
-        <div class="actions"><a class="btn primary" href="#builder">Start Building</a><a class="btn" href="#phrases">View Phrase Analysis</a></div>
-      </div>
-      <div class="orb-card"><div class="orb"></div><div class="prompt-box"><div class="prompt-title"><span>Prompt Engine</span><span>v4</span></div><div class="prompt-text">Example: “Natural Sun-Kissed Tan” stays as English, then displays 繁中 meaning: 自然陽光曬感健康古銅膚色.</div></div></div>
-    </section>
-
-    <section class="grid" id="features">
-      <article class="feature"><h3>Image Prompt</h3><div class="zh">圖片提示詞</div><p>Skin tone, lighting, identity lock, camera language and visual style phrases.</p></article>
-      <article class="feature"><h3>Video Prompt</h3><div class="zh">影片提示詞</div><p>Action, motion, camera movement, transition, timing and ending-frame phrases.</p></article>
-      <article class="feature"><h3>Workflow Prompt</h3><div class="zh">自動化流程提示詞</div><p>Input, process, output, rules, records and automation instruction phrases.</p></article>
-    </section>
-
-    <section class="builder" id="builder">
-      <div>
-        <h2>Split prompt into meaning.</h2>
-        <p>Correct logic: the page now separates the input prompt into individual meaningful phrases, then groups them by impact to the subject.</p>
-        <p><strong>例子：</strong><br>English: Natural Sun-Kissed Tan<br>中文：自然陽光曬感健康古銅膚色</p>
-      </div>
-      <form class="panel" id="promptForm">
-        <div class="form-row"><div><label for="titleInput">Title / 標題</label><input id="titleInput" placeholder="e.g. Premium Skin Rendering Profile"></div><div><label for="categoryInput">Catalogue / 分類</label><select id="categoryInput"><option value="Image">Image Prompt / 圖片提示詞</option><option value="Video">Video Prompt / 影片提示詞</option><option value="Workflow">Workflow Prompt / 自動化流程提示詞</option></select></div></div>
-        <div class="form-row"><div><label for="impactInput">Main Impact / 主要影響</label><select id="impactInput"><option value="Subject Appearance">Subject Appearance / 主體外觀</option><option value="Visual Style">Visual Style / 視覺風格</option><option value="Camera & Lighting">Camera & Lighting / 鏡頭及燈光</option><option value="Action & Workflow">Action & Workflow / 動作及流程</option></select></div><div><label for="languageInput">Display / 顯示</label><select id="languageInput"><option value="Both">English + Traditional Chinese</option><option value="Chinese">Traditional Chinese only</option><option value="English">English only</option></select></div></div>
-        <label for="promptInput">Prompt Content / 提示詞內容</label>
-        <textarea id="promptInput">已設定為此專案的預設重拍風格。
-
-之後你喺呢個 Project 上載任何人物照片時，我會預設自動套用：
-
-固定保留
-同一人物（Identity Lock）
+<div class="noise"></div>
+<main class="wrap">
+<header><a class="brand" href="#studio"><span class="logo"></span><span>Prompt2</span></a><nav><a href="#studio">Studio</a><a href="#builder">Builder</a><a href="#map">Catalogue Map</a><a href="#phrases">Analysis</a><a href="#catalogue">Records</a></nav></header>
+<section class="hero" id="studio"><div><div class="badge"><span class="dot"></span> Prompt Intelligence Engine · Catalogue Graph v1</div><h1><span class="gradient">Prompt</span><br>Knowledge Base.</h1><p class="lead">Extract prompt phrases, translate meaning, classify into Image / Video / Workflow, assign usage groups, and generate Similar / Opposite / Works With relationships for faster prompt building.</p><div class="actions"><a class="btn primary" href="#builder">Start Analysing</a><a class="btn" href="#map">View Catalogue Map</a></div></div><div class="orb-card"><div class="orb"></div><div class="prompt-box"><div class="prompt-title"><span>Prompt Engine</span><span>v5</span></div><div class="prompt-text">Example: “Natural Sun-Kissed Tan” → Image · Human · Skin Tone · Appearance → Similar: Warm Bronze Skin · Opposite: Pale Cool Skin.</div></div></div></section>
+<section class="grid"><article class="feature"><h3>Image Catalogue</h3><div class="zh">圖片提示詞庫</div><p>Human, facial features, skin, body, camera, lens, lighting, environment, style and quality.</p></article><article class="feature"><h3>Video Catalogue</h3><div class="zh">影片提示詞庫</div><p>Action, movement, camera motion, transition, timing, continuity, ending frame and loop control.</p></article><article class="feature"><h3>Workflow Catalogue</h3><div class="zh">流程提示詞庫</div><p>Input, extraction, classification, generation, validation, export, archive and automation logic.</p></article></section>
+<section class="builder" id="builder"><div><h2>Paste prompt. Build knowledge.</h2><p>New logic: each phrase becomes a structured data card with catalogue, detailed usage group, Chinese meaning, similar alternatives and opposite concepts.</p><p><strong>最佳用途：</strong>累積你自己的 AI 創作詞庫，以後可以搜尋、組合、複製、匯出 JSON 作 GitHub record。</p></div><form class="panel" id="promptForm"><div class="form-row"><div><label>Title / 標題</label><input id="titleInput" placeholder="e.g. Premium Asian Fitness Skin Rendering"></div><div><label>Default Catalogue / 預設分類</label><select id="categoryInput"><option value="Auto">Auto Detect / 自動判斷</option><option value="Image">Image Prompt / 圖片提示詞</option><option value="Video">Video Prompt / 影片提示詞</option><option value="Workflow">Workflow Prompt / 自動化流程提示詞</option><option value="Marketing">Marketing / 市場推廣</option><option value="Story">Story / 故事創作</option></select></div></div><div class="form-row"><div><label>Display / 顯示</label><select id="languageInput"><option value="Both">English + Traditional Chinese</option><option value="Chinese">Traditional Chinese only</option><option value="English">English only</option></select></div><div><label>Detail Mode / 詳細程度</label><select id="detailInput"><option value="Full">Full Intelligence Card</option><option value="Compact">Compact</option></select></div></div><label>Prompt Content / 提示詞內容</label><textarea id="promptInput">同一人物（Identity Lock）
 同一五官結構
 同一身體比例
 同一姿勢
-同一構圖
-同一年齡感
-同一表情
-
-自動套用
+自然微笑表情
 亞洲男性健康古銅膚色
 Natural Sun-Kissed Tan
-Golden Bronze 肌膚色調
-真實毛孔及微皮膚紋理
-健身攝影級肌肉立體感
-肩膀、胸肌、手臂自然反光
-輕微運動後健康光澤
-暖木色 Sauna / Wellness Club 色彩科學
-專業商業攝影燈光
-Full-Frame 85mm 人像鏡頭效果
-去 AI 感處理
-商業健身廣告級質感
-
-自動避免
-塑膠皮膚
-AI 磨皮
-假橙色曬黑
-HDR 感
-過度銳化
-過度修圖
-CGI 感
-AI 臉
-
-以後你直接上載相片即可，我會以此作為預設重拍基礎。</textarea>
-        <div class="toolbar"><button class="btn primary" type="submit">Submit to Catalogue</button><button class="btn" type="button" id="analyseBtn">Analyse Phrases</button><button class="btn" type="button" id="clearBtn">Clear Input</button></div>
-        <div class="status" id="status"></div>
-      </form>
-    </section>
-
-    <section class="section" id="phases">
-      <h2>Meaningful Impact Groups</h2>
-      <p>Instead of forcing the whole prompt into 4 long phases, phrases are grouped by their impact on the subject and production result.</p>
-      <div class="phase-grid">
-        <article class="phase"><h3>1 · Identity / 保留主體</h3><div class="en">Phrases that protect face, body, pose, age and expression.</div></article>
-        <article class="phase"><h3>2 · Appearance / 外觀質感</h3><div class="en">Skin, physique, texture, tone and subject rendering.</div></article>
-        <article class="phase"><h3>3 · Visual / 視覺語言</h3><div class="en">Lighting, camera, ambience, colour science and commercial style.</div></article>
-        <article class="phase"><h3>4 · Avoid / 避免錯誤</h3><div class="en">Negative quality control phrases converted into clear restrictions.</div></article>
-      </div>
-    </section>
-
-    <section class="section" id="phrases">
-      <h2>Phrase Analysis</h2>
-      <p>Each item keeps the English or original phrase, then shows the Traditional Chinese meaning.</p>
-      <div class="phrase-list" id="phraseList"></div>
-    </section>
-
-    <section class="section" id="catalogue">
-      <h2>Prompt Catalogue</h2>
-      <p>Saved records are stored in this browser. Export JSON and keep it in GitHub under <code>/prompt2/data/prompt-records.json</code>.</p>
-      <div class="filters" id="filters"><button class="pill active" data-filter="All">All</button><button class="pill" data-filter="Image">Image</button><button class="pill" data-filter="Video">Video</button><button class="pill" data-filter="Workflow">Workflow</button></div>
-      <div class="toolbar"><button class="btn small" id="exportBtn">Export JSON for GitHub</button><button class="btn small" id="copyAllBtn">Copy All Records</button><button class="btn danger small" id="resetBtn">Reset Local Records</button></div>
-      <div class="records" id="records"></div>
-    </section>
-
-    <footer>Prompt2 by Hudson Mar · Phrase-based bilingual prompt catalogue · GitHub Pages static version.</footer>
-  </main>
-
-  <script>
-    const STORAGE_KEY="prompt2_phrase_records_v2";let records=[];let activeFilter="All";let latestPhrases=[];
-    const els={form:document.getElementById("promptForm"),title:document.getElementById("titleInput"),category:document.getElementById("categoryInput"),impact:document.getElementById("impactInput"),language:document.getElementById("languageInput"),prompt:document.getElementById("promptInput"),status:document.getElementById("status"),phraseList:document.getElementById("phraseList"),records:document.getElementById("records")};
-
-    const phraseDictionary={
-      "Natural Sun-Kissed Tan":"自然陽光曬感健康古銅膚色",
-      "Golden Bronze":"金棕古銅色調",
-      "Identity Lock":"身份鎖定／固定同一人物特徵",
-      "Full-Frame 85mm":"全片幅 85mm 人像鏡頭效果",
-      "Sauna":"桑拿／暖木色 Wellness 空間感",
-      "Wellness Club":"高級健康會所氛圍",
-      "HDR":"HDR 過強效果",
-      "CGI":"電腦生成感／假 3D 感",
-      "AI":"AI 生成感"
-    };
-
-    function uid(){return"p2-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)}
-    function escapeHtml(v){return String(v).replace(/[&<>"]/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]))}
-
-    function isHeading(line){return ["固定保留","自動套用","自動避免"].includes(line.trim())}
-    function splitPhrases(text){
-      return text.split(/\n+/).map(x=>x.trim()).filter(Boolean).filter(x=>!x.endsWith("：")&&!x.includes("已設定為此專案")&&!x.includes("之後你喺")&&!x.includes("以後你直接"));
-    }
-    function classifyPhrase(phrase){
-      const p=phrase.toLowerCase();
-      if(isHeading(phrase)) return {group:phrase,impact:"Section Heading",zh:phrase};
-      if(p.includes("identity")||phrase.includes("同一")||phrase.includes("五官")||phrase.includes("姿勢")||phrase.includes("構圖")||phrase.includes("年齡")||phrase.includes("表情")) return {group:"Identity / 保留主體",impact:"Protects the subject identity, pose and structure.",zh:translatePhrase(phrase,"identity")};
-      if(p.includes("skin")||p.includes("tan")||p.includes("bronze")||phrase.includes("膚")||phrase.includes("毛孔")||phrase.includes("肌肉")||phrase.includes("反光")||phrase.includes("光澤")) return {group:"Appearance / 外觀質感",impact:"Changes how the subject looks: skin tone, texture, body rendering and realism.",zh:translatePhrase(phrase,"appearance")};
-      if(p.includes("85mm")||p.includes("frame")||p.includes("sauna")||p.includes("wellness")||phrase.includes("燈光")||phrase.includes("色彩")||phrase.includes("攝影")||phrase.includes("商業")) return {group:"Visual / 視覺語言",impact:"Controls camera, lighting, colour language, ambience and commercial quality.",zh:translatePhrase(phrase,"visual")};
-      if(phrase.includes("避免")||phrase.includes("塑膠")||phrase.includes("磨皮")||phrase.includes("HDR")||phrase.includes("銳化")||phrase.includes("修圖")||phrase.includes("CGI")||phrase.includes("AI 臉")) return {group:"Avoid / 避免錯誤",impact:"Prevents common AI or editing mistakes.",zh:translatePhrase(phrase,"avoid")};
-      return {group:"General / 一般指令",impact:"General prompt instruction or context.",zh:translatePhrase(phrase,"general")};
-    }
-    function translatePhrase(phrase,type){
-      for(const key in phraseDictionary){if(phrase.includes(key)) return phrase.replace(key,phraseDictionary[key])}
-      const map={
-        "亞洲男性健康古銅膚色":"亞洲男性健康古銅膚色",
-        "Golden Bronze 肌膚色調":"金棕古銅肌膚色調",
-        "真實毛孔及微皮膚紋理":"真實毛孔及細緻皮膚微紋理",
-        "健身攝影級肌肉立體感":"健身攝影級肌肉立體輪廓",
-        "肩膀、胸肌、手臂自然反光":"肩膀、胸肌及手臂呈現自然反光",
-        "輕微運動後健康光澤":"輕微運動後的健康光澤",
-        "暖木色 Sauna / Wellness Club 色彩科學":"暖木色桑拿／高級健康會所色彩語言",
-        "專業商業攝影燈光":"專業商業攝影燈光",
-        "Full-Frame 85mm 人像鏡頭效果":"全片幅 85mm 人像鏡頭效果",
-        "去 AI 感處理":"降低 AI 生成感處理",
-        "商業健身廣告級質感":"商業健身廣告級質感",
-        "塑膠皮膚":"避免塑膠感皮膚",
-        "AI 磨皮":"避免 AI 式過度磨皮",
-        "假橙色曬黑":"避免假橙色曬黑效果",
-        "過度銳化":"避免過度銳化",
-        "過度修圖":"避免過度修圖",
-        "AI 臉":"避免 AI 臉或臉部失真"
-      };
-      if(map[phrase]) return map[phrase];
-      if(/[A-Za-z]/.test(phrase)&&!/[\u4e00-\u9fff]/.test(phrase)) return autoZhMeaning(phrase,type);
-      return phrase;
-    }
-    function autoZhMeaning(phrase,type){
-      const lower=phrase.toLowerCase();
-      if(lower.includes("sun")&&lower.includes("tan")) return "自然陽光曬感健康古銅膚色";
-      if(lower.includes("bronze")) return "金棕古銅色調";
-      if(lower.includes("identity")) return "身份鎖定／固定同一人物特徵";
-      if(lower.includes("camera")||lower.includes("frame")||lower.includes("85mm")) return "專業人像鏡頭及攝影視角";
-      if(lower.includes("workflow")) return "自動化流程指令";
-      return type==="appearance"?"外觀、膚色或質感相關描述":type==="visual"?"視覺風格、燈光或攝影語言":type==="avoid"?"需要避免的錯誤效果":"一般英文提示詞描述";
-    }
-    function analyseCurrentInput(){
-      const text=els.prompt.value.trim();if(!text){els.status.textContent="Please enter a prompt. / 請先輸入 prompt。";return[]}
-      latestPhrases=splitPhrases(text).map(raw=>({id:uid(),english:raw,...classifyPhrase(raw)}));renderPhrases(latestPhrases);return latestPhrases;
-    }
-    function renderPhrases(items){
-      if(!items.length){els.phraseList.innerHTML='<div class="empty">No phrases found. / 未找到可分析 phrase。</div>';return}
-      const lang=els.language.value;
-      els.phraseList.innerHTML=items.map(item=>{
-        const en=lang!=="Chinese"?`<div class="phrase-en">${escapeHtml(item.english)}</div>`:"";
-        const zh=lang!=="English"?`<div class="phrase-zh"><strong>中文意思：</strong>${escapeHtml(item.zh)}</div>`:"";
-        return `<article class="phrase-card"><div class="phrase-head"><div>${en}${zh}</div><span class="tag">${escapeHtml(item.group)}</span></div><div class="impact"><strong>Impact:</strong> ${escapeHtml(item.impact)}</div></article>`
-      }).join("");
-    }
-    function saveRecords(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records))}
-    function loadRecords(){try{records=JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){records=[]}}
-    function renderRecords(){const list=activeFilter==="All"?records:records.filter(r=>r.category===activeFilter);if(!list.length){els.records.innerHTML='<div class="empty">No saved prompts yet. / 暫時未有已儲存 prompt。</div>';return}els.records.innerHTML=list.map(r=>`<article class="record"><div class="record-head"><div><h3>${escapeHtml(r.title)}</h3><div class="meta">${escapeHtml(r.createdAt)} · ${escapeHtml(r.category)} · ${escapeHtml(r.impact)}</div></div><span class="tag">${escapeHtml(r.phrases.length)} phrases</span></div><div class="copy-box">${escapeHtml(r.phrases.map(p=>`${p.english}\n中文：${p.zh}\nGroup: ${p.group}`).join("\n\n"))}</div><div class="toolbar"><button class="btn small" onclick="copyRecord('${r.id}')">Copy</button><button class="btn danger small" onclick="deleteRecord('${r.id}')">Delete</button></div></article>`).join("")}
-    function createRecord(){const phrases=analyseCurrentInput();if(!phrases.length)return;const text=els.prompt.value.trim();const title=els.title.value.trim()||phrases[0].english.slice(0,56);const rec={id:uid(),title,category:els.category.value,impact:els.impact.value,prompt:text,phrases,createdAt:new Date().toISOString()};records.unshift(rec);saveRecords();renderRecords();els.status.textContent="Saved as phrase-based bilingual record. / 已儲存為 phrase-based 中英對照記錄。";document.getElementById("catalogue").scrollIntoView({behavior:"smooth"})}
-    function copyRecord(id){const r=records.find(x=>x.id===id);if(!r)return;navigator.clipboard.writeText(r.phrases.map(p=>`${p.english}\n中文：${p.zh}\n分類：${p.group}\n影響：${p.impact}`).join("\n\n"));els.status.textContent="Record copied. / 已複製記錄。"}
-    function deleteRecord(id){records=records.filter(r=>r.id!==id);saveRecords();renderRecords()}
-    function exportJson(){const blob=new Blob([JSON.stringify(records,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="prompt-records.json";a.click();URL.revokeObjectURL(url);els.status.textContent="JSON exported. / 已匯出 JSON。"}
-    window.copyRecord=copyRecord;window.deleteRecord=deleteRecord;
-    document.getElementById("analyseBtn").addEventListener("click",()=>{analyseCurrentInput();els.status.textContent="Phrase analysis updated. / Phrase 分析已更新。"});
-    document.getElementById("clearBtn").addEventListener("click",()=>{els.title.value="";els.prompt.value="";els.phraseList.innerHTML='<div class="empty">Input cleared. / 已清空輸入。</div>'});
-    document.getElementById("exportBtn").addEventListener("click",exportJson);
-    document.getElementById("copyAllBtn").addEventListener("click",()=>{navigator.clipboard.writeText(JSON.stringify(records,null,2));els.status.textContent="All records copied. / 已複製全部記錄。"});
-    document.getElementById("resetBtn").addEventListener("click",()=>{if(!confirm("Reset all local records? / 確定清除本機記錄？"))return;records=[];saveRecords();renderRecords()});
-    document.getElementById("filters").addEventListener("click",e=>{if(!e.target.matches(".pill"))return;document.querySelectorAll(".pill").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");activeFilter=e.target.dataset.filter;renderRecords()});
-    els.form.addEventListener("submit",e=>{e.preventDefault();createRecord()});
-    els.language.addEventListener("change",()=>renderPhrases(latestPhrases));
-    loadRecords();renderRecords();analyseCurrentInput();
-  </script>
+Golden Bronze Skin Tone
+Realistic skin pores and micro texture
+Strong jawline
+Deep-set eyes
+High cheekbones
+Straight nose bridge
+Short black hair
+Broad shoulders
+Defined chest physique
+Subtle perspiration sheen
+Warm amber directional lighting
+Full-Frame 85mm portrait lens
+Shallow depth of field
+Luxury hotel suite ambience
+Static camera
+Slow cinematic push-in
+Export JSON to GitHub record
+Auto classify prompt phrases into catalogue</textarea><div class="toolbar"><button class="btn primary" type="submit">Submit to Records</button><button class="btn" type="button" id="analyseBtn">Analyse Now</button><button class="btn" type="button" id="copyBuilderBtn">Copy Analysis</button><button class="btn" type="button" id="clearBtn">Clear</button></div><div class="status" id="status"></div></form></section>
+<section class="section" id="map"><h2>Practical Catalogue Map</h2><p>Detailed grouping designed for real prompt reuse. Facial Features is intentionally deep because it is high-impact for character and identity consistency.</p><div class="map-grid"><article class="map-card"><h3>Human / 人物</h3><ul><li>Man / Men / Woman / Child / Elderly</li><li>Body Shape / Height / Build</li><li>Pose / Gesture / Expression</li><li>Clothing / Styling / Grooming</li></ul></article><article class="map-card"><h3>Facial Features / 五官細項</h3><ul><li>Face Shape / 臉型</li><li>Eyes / 眼形眼神</li><li>Eyebrows / 眉形</li><li>Nose / 鼻樑鼻翼</li><li>Mouth / Lips / Smile</li><li>Jawline / Chin / Cheekbones</li><li>Skin / Pores / Texture</li><li>Hair / Beard / Age</li></ul></article><article class="map-card"><h3>Visual / 視覺</h3><ul><li>Camera / Lens / Angle</li><li>Lighting / Shadow / Highlight</li><li>Colour / Mood / Style</li><li>Composition / Depth / Quality</li></ul></article><article class="map-card"><h3>Environment / 場景</h3><ul><li>Indoor / Outdoor</li><li>Hotel / Gym / Sauna / Street</li><li>Weather / Season / Time</li><li>Background / Props / Setting</li></ul></article><article class="map-card"><h3>Video / 影片</h3><ul><li>Action / Motion</li><li>Camera Movement</li><li>Transition / Timing</li><li>Ending Frame / Loop</li></ul></article><article class="map-card"><h3>Workflow / 流程</h3><ul><li>Input / Extract / Classify</li><li>Generate / Validate</li><li>Export / Archive</li><li>GitHub / Drive Record</li></ul></article><article class="map-card"><h3>Animal / 動物</h3><ul><li>Species / Breed</li><li>Fur / Feather / Scale</li><li>Pose / Motion</li><li>Habitat / Behaviour</li></ul></article><article class="map-card"><h3>Opposite Logic / 反向概念</h3><ul><li>Warm ↔ Cool</li><li>Soft ↔ Harsh</li><li>Realistic ↔ Stylized</li><li>Sharp ↔ Dreamy</li></ul></article></div></section>
+<section class="section" id="phrases"><h2>Phrase Intelligence Analysis</h2><p>Each phrase is analysed as a reusable knowledge item.</p><div class="filters" id="analysisFilters"><button class="pill active" data-analysis="All">All</button><button class="pill" data-analysis="Image">Image</button><button class="pill" data-analysis="Video">Video</button><button class="pill" data-analysis="Workflow">Workflow</button><button class="pill" data-analysis="Facial Features">Facial Features</button><button class="pill" data-analysis="Skin">Skin</button><button class="pill" data-analysis="Camera & Lens">Camera & Lens</button></div><div class="phrase-list" id="phraseList"></div></section>
+<section class="section" id="catalogue"><h2>Saved Records</h2><p>Records are stored in this browser. Export JSON and keep it in GitHub under <code>/prompt2/data/prompt-records.json</code>.</p><div class="filters" id="recordFilters"><button class="pill active" data-filter="All">All</button><button class="pill" data-filter="Image">Image</button><button class="pill" data-filter="Video">Video</button><button class="pill" data-filter="Workflow">Workflow</button></div><div class="toolbar"><button class="btn small" id="exportBtn">Export JSON</button><button class="btn small" id="copyAllBtn">Copy All Records</button><button class="btn danger small" id="resetBtn">Reset Local Records</button></div><div class="records" id="records"></div></section>
+<footer>Prompt2 by Hudson Mar · Prompt Intelligence Engine v5 · Static GitHub Pages + localStorage + JSON export.</footer>
+</main>
+<script>
+const STORAGE_KEY="prompt2_intelligence_records_v5";let records=[];let latestItems=[];let analysisFilter="All";let recordFilter="All";
+const els={form:document.getElementById("promptForm"),title:document.getElementById("titleInput"),category:document.getElementById("categoryInput"),language:document.getElementById("languageInput"),detail:document.getElementById("detailInput"),prompt:document.getElementById("promptInput"),status:document.getElementById("status"),phraseList:document.getElementById("phraseList"),records:document.getElementById("records")};
+const lexicon=[
+{keys:["identity lock","同一人物","same person"],zh:"身份鎖定／固定同一人物",cat:"Image",usage:["Human","Identity"],detail:"Identity Lock",subject:["Human"],impact:"Protects identity consistency",similar:["same facial identity","consistent character","face lock"],opposite:["different person","face drift","identity change"],works:["same facial structure","same age","same expression"]},
+{keys:["五官","facial structure","face structure"],zh:"固定五官結構",cat:"Image",usage:["Human","Facial Features"],detail:"Facial Structure",subject:["Face"],impact:"Keeps core facial geometry stable",similar:["facial geometry","face proportion","feature lock"],opposite:["altered face","different features"],works:["eyes","nose","mouth","jawline"]},
+{keys:["face shape","臉型","oval face","square face","round face"],zh:"臉型輪廓",cat:"Image",usage:["Human","Facial Features"],detail:"Face Shape",subject:["Face"],impact:"Defines overall facial silhouette",similar:["facial outline","head shape"],opposite:["distorted face shape","wrong facial contour"],works:["jawline","cheekbones","chin"]},
+{keys:["eye","eyes","眼","deep-set eyes","almond eyes"],zh:"眼形、眼神及眼部深度",cat:"Image",usage:["Human","Facial Features"],detail:"Eyes",subject:["Face","Eyes"],impact:"Controls character expression and identity",similar:["sharp eyes","deep gaze","almond-shaped eyes"],opposite:["blank eyes","crossed eyes","dead eyes"],works:["eyebrows","expression","catchlight"]},
+{keys:["eyebrow","eyebrows","眉"],zh:"眉形、眉峰及眉毛濃度",cat:"Image",usage:["Human","Facial Features"],detail:"Eyebrows",subject:["Face","Eyebrows"],impact:"Shapes expression and masculinity",similar:["straight brows","thick brows","soft brow arch"],opposite:["missing eyebrows","overdrawn brows"],works:["eyes","forehead","expression"]},
+{keys:["nose","鼻","nose bridge","鼻樑"],zh:"鼻樑、鼻尖及鼻翼比例",cat:"Image",usage:["Human","Facial Features"],detail:"Nose",subject:["Face","Nose"],impact:"Defines facial identity and side profile",similar:["straight nose bridge","defined nose","natural nasal wings"],opposite:["flat distorted nose","wrong nose shape"],works:["cheekbones","lighting","profile angle"]},
+{keys:["mouth","lips","smile","微笑","嘴","唇"],zh:"嘴形、唇形及微笑表情",cat:"Image",usage:["Human","Facial Features"],detail:"Mouth & Smile",subject:["Face","Mouth"],impact:"Controls friendliness, mood and expression",similar:["natural smile","soft smile","relaxed lips"],opposite:["forced smile","open distorted mouth"],works:["expression","cheeks","eyes"]},
+{keys:["jaw","jawline","chin","下巴","下顎"],zh:"下顎線及下巴輪廓",cat:"Image",usage:["Human","Facial Features"],detail:"Jawline & Chin",subject:["Face","Jaw"],impact:"Adds masculine structure and facial definition",similar:["defined jawline","strong chin","angular jaw"],opposite:["soft jaw","blurred jawline"],works:["cheekbones","neck shadow","side lighting"]},
+{keys:["cheekbone","cheekbones","顴骨"],zh:"顴骨高度及面部立體感",cat:"Image",usage:["Human","Facial Features"],detail:"Cheekbones",subject:["Face","Cheeks"],impact:"Adds facial depth and editorial structure",similar:["high cheekbones","defined cheeks"],opposite:["flat cheeks","puffy face"],works:["jawline","nose bridge","side light"]},
+{keys:["hair","black hair","short hair","頭髮","髮"],zh:"髮型、髮色及修飾感",cat:"Image",usage:["Human","Facial Features"],detail:"Hair",subject:["Head","Hair"],impact:"Controls age, style and grooming",similar:["short black hair","clean haircut","neat hairstyle"],opposite:["messy hair","wrong hair color"],works:["face shape","lighting","styling"]},
+{keys:["beard","facial hair","鬍"],zh:"鬍鬚、鬚根及面部修飾",cat:"Image",usage:["Human","Facial Features"],detail:"Beard / Facial Hair",subject:["Face","Grooming"],impact:"Changes age, masculinity and character",similar:["light stubble","clean-shaven","trimmed beard"],opposite:["unwanted beard","patchy beard"],works:["jawline","skin texture","age"]},
+{keys:["skin","膚","pores","毛孔","texture","微皮膚紋理"],zh:"真實皮膚、毛孔及微細紋理",cat:"Image",usage:["Human","Skin"],detail:"Skin Texture",subject:["Skin"],impact:"Improves realism and reduces AI plastic look",similar:["realistic pores","natural skin texture","micro texture"],opposite:["plastic skin","over-smoothed skin","wax skin"],works:["soft light","subtle perspiration","high resolution"]},
+{keys:["natural sun-kissed tan","sun-kissed","tan","曬黑"],zh:"自然陽光曬感健康古銅膚色",cat:"Image",usage:["Human","Skin"],detail:"Skin Tone",subject:["Skin"],impact:"Adds healthy outdoor warmth to the subject",similar:["warm tan","healthy bronze skin","athletic tan"],opposite:["pale skin","cool white skin","porcelain skin"],works:["golden hour light","bronze undertone","skin pores"]},
+{keys:["bronze","golden bronze","古銅","金棕"],zh:"金棕古銅肌膚色調",cat:"Image",usage:["Human","Skin"],detail:"Skin Tone",subject:["Skin"],impact:"Creates premium warm commercial skin colour",similar:["warm bronze skin","honey bronze","golden tan"],opposite:["blue undertone","grey skin","flat pale skin"],works:["amber lighting","fitness photography","subtle sheen"]},
+{keys:["perspiration","sweat","sheen","光澤","汗"],zh:"輕微汗感及自然皮膚反光",cat:"Image",usage:["Human","Skin"],detail:"Skin Sheen",subject:["Skin","Body"],impact:"Adds athletic realism and dimensional highlights",similar:["subtle sweat sheen","hydrated skin","fitness glow"],opposite:["dry flat skin","oily overdone shine"],works:["shoulders","chest","warm lighting"]},
+{keys:["body proportion","身體比例","build","physique"],zh:"身體比例及整體體型",cat:"Image",usage:["Human","Body"],detail:"Body Proportion",subject:["Body"],impact:"Controls realism and subject consistency",similar:["natural proportions","athletic build","balanced physique"],opposite:["warped body","wrong proportion","oversized head"],works:["pose","camera angle","clothing"]},
+{keys:["shoulder","shoulders","broad shoulders","肩"],zh:"寬肩及上身力量感",cat:"Image",usage:["Human","Body"],detail:"Shoulders",subject:["Body","Upper Body"],impact:"Adds masculine athletic silhouette",similar:["broad shoulders","powerful upper body"],opposite:["narrow shoulders","collapsed posture"],works:["chest","arms","side lighting"]},
+{keys:["chest","胸","defined chest"],zh:"胸肌輪廓及上身立體感",cat:"Image",usage:["Human","Body"],detail:"Chest",subject:["Body","Upper Body"],impact:"Defines athletic fitness appearance",similar:["defined chest","strong torso","athletic chest"],opposite:["flat chest","over-exaggerated muscles"],works:["shoulders","arms","skin sheen"]},
+{keys:["pose","姿勢","gesture","手勢"],zh:"姿勢、動作及身體語言",cat:"Image",usage:["Human","Pose"],detail:"Pose",subject:["Human"],impact:"Controls subject attitude and composition",similar:["relaxed pose","confident stance","natural gesture"],opposite:["awkward pose","stiff posture"],works:["composition","expression","clothing"]},
+{keys:["expression","表情","relaxed","confident"],zh:"表情及情緒狀態",cat:"Image",usage:["Human","Expression"],detail:"Expression",subject:["Face"],impact:"Controls emotional tone",similar:["natural expression","relaxed confidence","soft smile"],opposite:["blank stare","forced expression"],works:["eyes","mouth","pose"]},
+{keys:["man","male","men","男性"],zh:"男性人物主體",cat:"Image",usage:["Human","Gender"],detail:"Man / Men",subject:["Human","Male"],impact:"Defines subject type and styling direction",similar:["Asian male","athletic man","masculine subject"],opposite:["woman","female subject"],works:["jawline","broad shoulders","male styling"]},
+{keys:["woman","female","女性"],zh:"女性人物主體",cat:"Image",usage:["Human","Gender"],detail:"Woman",subject:["Human","Female"],impact:"Defines subject type and styling direction",similar:["female portrait","elegant woman"],opposite:["man","male subject"],works:["hair","makeup","soft lighting"]},
+{keys:["animal","dog","cat","bird","動物","貓","狗"],zh:"動物主體及品種特徵",cat:"Image",usage:["Animal"],detail:"Animal Subject",subject:["Animal"],impact:"Defines non-human subject and natural behaviour",similar:["pet portrait","wildlife subject","animal character"],opposite:["human subject","object only"],works:["fur texture","habitat","motion"]},
+{keys:["environment","background","setting","ambience","場景","背景","環境"],zh:"場景、背景及環境氛圍",cat:"Image",usage:["Environment"],detail:"Environment",subject:["Scene"],impact:"Defines where the subject exists",similar:["clean background","premium ambience","contextual setting"],opposite:["messy background","wrong environment"],works:["lighting","props","composition"]},
+{keys:["hotel","suite","luxury hotel","酒店"],zh:"高級酒店套房氛圍",cat:"Image",usage:["Environment","Indoor"],detail:"Luxury Hotel",subject:["Scene"],impact:"Adds premium lifestyle context",similar:["premium suite","luxury interior","hotel room ambience"],opposite:["street setting","plain studio"],works:["warm lighting","clean composition","premium styling"]},
+{keys:["gym","fitness","健身"],zh:"健身房或運動場景",cat:"Image",usage:["Environment","Fitness"],detail:"Gym / Fitness",subject:["Scene","Body"],impact:"Supports athletic body language",similar:["fitness studio","training environment"],opposite:["office scene","formal setting"],works:["sweat sheen","athletic clothing","muscle definition"]},
+{keys:["sauna","wellness","桑拿"],zh:"桑拿或健康會所暖木色場景",cat:"Image",usage:["Environment","Wellness"],detail:"Sauna / Wellness",subject:["Scene"],impact:"Creates warm premium relaxation atmosphere",similar:["wellness club","spa ambience","warm wood interior"],opposite:["cold clinical room","outdoor street"],works:["bronze skin","soft steam","amber lighting"]},
+{keys:["camera","static camera","鏡頭"],zh:"鏡頭控制及拍攝方式",cat:"Video",usage:["Camera"],detail:"Camera",subject:["Camera"],impact:"Controls framing and motion stability",similar:["locked camera","steady shot","camera control"],opposite:["shaky camera","random camera movement"],works:["composition","lens","motion"]},
+{keys:["lens","85mm","full-frame","人像鏡頭"],zh:"全片幅人像鏡頭及焦段效果",cat:"Image",usage:["Camera & Lens"],detail:"Lens",subject:["Camera","Lens"],impact:"Controls portrait compression and premium look",similar:["portrait lens","85mm f/2","full-frame rendering"],opposite:["wide-angle distortion","fisheye lens"],works:["shallow depth of field","headshot","portrait lighting"]},
+{keys:["angle","angel","low angle","high angle","角度"],zh:"拍攝角度及視覺視角",cat:"Image",usage:["Camera & Lens"],detail:"Angle",subject:["Camera"],impact:"Changes power, proportion and composition",similar:["eye-level angle","low angle","three-quarter view"],opposite:["unflattering angle","distorted perspective"],works:["pose","lens","composition"]},
+{keys:["lighting","light","amber","燈光","光"],zh:"燈光方向、色溫及高光控制",cat:"Image",usage:["Lighting"],detail:"Lighting",subject:["Visual"],impact:"Shapes mood, realism and subject dimension",similar:["warm directional light","soft studio light","golden light"],opposite:["flat lighting","harsh flash","cold lighting"],works:["skin texture","shadow","highlight"]},
+{keys:["depth of field","dof","shallow","景深"],zh:"淺景深及背景虛化",cat:"Image",usage:["Camera & Lens"],detail:"Depth of Field",subject:["Camera","Visual"],impact:"Separates subject from background",similar:["soft background blur","portrait bokeh"],opposite:["everything sharp","busy background"],works:["85mm lens","portrait","clean composition"]},
+{keys:["composition","構圖","centered","framing"],zh:"構圖、畫面比例及主體位置",cat:"Image",usage:["Composition"],detail:"Composition",subject:["Visual"],impact:"Controls readability and visual hierarchy",similar:["clean composition","centered subject","balanced framing"],opposite:["cropped head","messy composition"],works:["background","pose","camera angle"]},
+{keys:["quality","commercial","廣告","premium","realistic","photorealistic"],zh:"商業級真實攝影質感",cat:"Image",usage:["Quality"],detail:"Realism / Commercial Quality",subject:["Output Quality"],impact:"Improves final production standard",similar:["editorial quality","brand campaign look","photorealistic"],opposite:["AI artifact","CGI look","low resolution"],works:["skin pores","professional lighting","camera realism"]},
+{keys:["action","movement","motion","動作"],zh:"動作、運動及角色行為",cat:"Video",usage:["Action & Motion"],detail:"Action",subject:["Video"],impact:"Defines what happens in the clip",similar:["slow movement","controlled action","natural motion"],opposite:["frozen pose","random motion"],works:["timing","camera movement","ending frame"]},
+{keys:["push-in","pan","zoom","tracking","tilt"],zh:"影片鏡頭運動方式",cat:"Video",usage:["Camera Movement"],detail:"Camera Motion",subject:["Video","Camera"],impact:"Controls video dynamism",similar:["slow push-in","side tracking","gentle pan"],opposite:["shaky zoom","fast random pan"],works:["static subject","ending frame","smooth motion"]},
+{keys:["transition","cut","fade","轉場"],zh:"轉場及畫面銜接",cat:"Video",usage:["Transition"],detail:"Transition",subject:["Video"],impact:"Controls scene-to-scene flow",similar:["soft fade","match cut","seamless transition"],opposite:["jump cut","glitchy transition"],works:["timing","ending frame","storyboard"]},
+{keys:["ending frame","loop","last frame","結尾"],zh:"結尾畫面及循環控制",cat:"Video",usage:["Ending Frame"],detail:"Ending / Loop",subject:["Video"],impact:"Makes video easier to continue or loop",similar:["clean final frame","loop-ready ending"],opposite:["blurred ending","random last frame"],works:["camera motion","pose hold","transition"]},
+{keys:["workflow","automation","自動化","流程"],zh:"自動化工作流程",cat:"Workflow",usage:["Workflow"],detail:"Automation Workflow",subject:["System"],impact:"Defines repeatable process logic",similar:["automation flow","task pipeline","repeatable workflow"],opposite:["manual one-off task","unstructured process"],works:["input","classification","export"]},
+{keys:["input","輸入","paste"],zh:"輸入資料或原始內容",cat:"Workflow",usage:["Input"],detail:"Input",subject:["System"],impact:"Defines what the user provides",similar:["raw input","source prompt","uploaded content"],opposite:["missing input","unclear source"],works:["extract","classify","validate"]},
+{keys:["extract","抽取","separate","split"],zh:"抽取及拆分有用片語",cat:"Workflow",usage:["Extraction"],detail:"Extraction",subject:["System"],impact:"Turns rough text into reusable units",similar:["phrase extraction","keyword mining","semantic parsing"],opposite:["keep as whole block","no parsing"],works:["classification","tags","knowledge base"]},
+{keys:["classify","catalogue","分類","group"],zh:"分類、目錄及語義分組",cat:"Workflow",usage:["Classification"],detail:"Catalogue Classification",subject:["System"],impact:"Organises knowledge for search and reuse",similar:["tagging","grouping","taxonomy"],opposite:["uncategorised","messy archive"],works:["usage group","similar","opposite"]},
+{keys:["export","json","github","record","archive","匯出","記錄","歸檔"],zh:"匯出、GitHub 記錄及歸檔",cat:"Workflow",usage:["Archive"],detail:"Export / Archive",subject:["System"],impact:"Keeps long-term reusable record",similar:["JSON export","GitHub record","database archive"],opposite:["lost local input","temporary draft"],works:["localStorage","prompt-records.json","version history"]}
+];
+const general={zh:"一般提示詞片語",cat:"Image",usage:["General"],detail:"General Prompt Phrase",subject:["General"],impact:"General descriptive or instructional phrase",similar:["related descriptive phrase","supporting prompt phrase"],opposite:["unrelated phrase","conflicting phrase"],works:["clear structure","specific context","quality control"]};
+function uid(){return"p2-"+Date.now().toString(36)+"-"+Math.random().toString(36).slice(2,8)}
+function esc(v){return String(v).replace(/[&<>"]/g,s=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[s]))}
+function splitPhrases(text){return text.split(/\n|,|;|\|/).map(x=>x.trim()).filter(Boolean).filter(x=>!x.endsWith("：")&&!x.endsWith(":"))}
+function detectCatalogue(line,match){if(els.category.value!=="Auto")return els.category.value;return match.cat}
+function analyseLine(line){const lower=line.toLowerCase();let match=lexicon.find(item=>item.keys.some(k=>lower.includes(k.toLowerCase())||line.includes(k)));if(!match)match=general;const cat=detectCatalogue(line,match);return{ id:uid(), phrase:line, english:line, zh:translate(line,match), catalogue:cat, usageGroup:match.usage, detailedGroup:match.detail, subject:match.subject, impact:match.impact, similar:match.similar, opposite:match.opposite, worksWith:match.works }}
+function translate(line,match){if(/[A-Za-z]/.test(line)&&!/[一-鿿]/.test(line))return match.zh;const mixed=line.replace(/Natural Sun-Kissed Tan/g,"自然陽光曬感健康古銅膚色").replace(/Golden Bronze Skin Tone/g,"金棕古銅肌膚色調").replace(/Identity Lock/g,"身份鎖定").replace(/Full-Frame 85mm/g,"全片幅 85mm");return mixed===line?match.zh:mixed}
+function analyse(){const text=els.prompt.value.trim();if(!text){els.status.textContent="Please enter a prompt. / 請先輸入 prompt。";return[]}latestItems=splitPhrases(text).map(analyseLine);renderPhrases();return latestItems}
+function itemVisible(i){return analysisFilter==="All"||i.catalogue===analysisFilter||i.usageGroup.includes(analysisFilter)||i.detailedGroup===analysisFilter}
+function renderPhrases(){const items=latestItems.filter(itemVisible);if(!items.length){els.phraseList.innerHTML='<div class="empty">No matching phrase found. / 未有符合條件的 phrase。</div>';return}const full=els.detail.value==="Full";const lang=els.language.value;els.phraseList.innerHTML=items.map(i=>{const en=lang!=="Chinese"?`<div class="phrase-en">${esc(i.english)}</div>`:"";const zh=lang!=="English"?`<div class="phrase-zh"><b>中文意思：</b>${esc(i.zh)}</div>`:"";const detail=full?`<div class="relation-grid"><div class="relation"><b>Similar / Alternative</b><span>${esc(i.similar.join(" · "))}</span></div><div class="relation"><b>Opposite</b><span>${esc(i.opposite.join(" · "))}</span></div><div class="relation"><b>Works With</b><span>${esc(i.worksWith.join(" · "))}</span></div></div>`:"";return`<article class="phrase-card"><div class="phrase-head"><div>${en}${zh}</div><span class="tag">${esc(i.catalogue)}</span></div><div class="chips"><span class="tag">${esc(i.usageGroup.join(" / "))}</span><span class="tag">${esc(i.detailedGroup)}</span><span class="tag">Subject: ${esc(i.subject.join(" / "))}</span></div><div class="meta-line"><b>Impact:</b> ${esc(i.impact)}</div>${detail}</article>`}).join("")}
+function loadRecords(){try{records=JSON.parse(localStorage.getItem(STORAGE_KEY))||[]}catch(e){records=[]}}
+function saveRecords(){localStorage.setItem(STORAGE_KEY,JSON.stringify(records))}
+function renderRecords(){const list=recordFilter==="All"?records:records.filter(r=>r.primaryCatalogue===recordFilter);if(!list.length){els.records.innerHTML='<div class="empty">No saved records yet. / 暫時未有已儲存記錄。</div>';return}els.records.innerHTML=list.map(r=>`<article class="record"><div class="record-head"><div><h3>${esc(r.title)}</h3><div class="meta">${esc(r.createdAt)} · ${esc(r.primaryCatalogue)} · ${r.items.length} items</div></div><span class="tag">${esc(r.primaryCatalogue)}</span></div><div class="copy-box">${esc(formatItems(r.items))}</div><div class="toolbar"><button class="btn small" onclick="copyRecord('${r.id}')">Copy</button><button class="btn danger small" onclick="deleteRecord('${r.id}')">Delete</button></div></article>`).join("")}
+function formatItems(items){return items.map(i=>`${i.english}\n中文：${i.zh}\nCatalogue: ${i.catalogue}\nUsage Group: ${i.usageGroup.join(" / ")}\nDetailed Group: ${i.detailedGroup}\nSubject: ${i.subject.join(" / ")}\nSimilar: ${i.similar.join(" / ")}\nOpposite: ${i.opposite.join(" / ")}\nWorks With: ${i.worksWith.join(" / ")}`).join("\n\n")}
+function primaryCatalogue(items){const counts={};items.forEach(i=>counts[i.catalogue]=(counts[i.catalogue]||0)+1);return Object.entries(counts).sort((a,b)=>b[1]-a[1])[0]?.[0]||"Image"}
+function createRecord(){const items=analyse();if(!items.length)return;const rec={id:uid(),title:els.title.value.trim()||items[0].english.slice(0,60),primaryCatalogue:primaryCatalogue(items),items,prompt:els.prompt.value.trim(),createdAt:new Date().toISOString()};records.unshift(rec);saveRecords();renderRecords();els.status.textContent="Saved with detailed catalogue logic. / 已按詳細分類邏輯儲存。";document.getElementById("catalogue").scrollIntoView({behavior:"smooth"})}
+function copyRecord(id){const r=records.find(x=>x.id===id);if(!r)return;navigator.clipboard.writeText(formatItems(r.items));els.status.textContent="Record copied. / 已複製記錄。"}
+function deleteRecord(id){records=records.filter(r=>r.id!==id);saveRecords();renderRecords()}
+function exportJson(){const blob=new Blob([JSON.stringify(records,null,2)],{type:"application/json"});const url=URL.createObjectURL(blob);const a=document.createElement("a");a.href=url;a.download="prompt-records.json";a.click();URL.revokeObjectURL(url);els.status.textContent="JSON exported. / 已匯出 JSON。"}
+window.copyRecord=copyRecord;window.deleteRecord=deleteRecord;
+document.getElementById("analyseBtn").addEventListener("click",()=>{analyse();els.status.textContent="Analysis updated. / 分析已更新。"});
+document.getElementById("copyBuilderBtn").addEventListener("click",()=>{analyse();navigator.clipboard.writeText(formatItems(latestItems));els.status.textContent="Analysis copied. / 已複製分析。"});
+document.getElementById("clearBtn").addEventListener("click",()=>{els.title.value="";els.prompt.value="";latestItems=[];renderPhrases()});
+document.getElementById("exportBtn").addEventListener("click",exportJson);
+document.getElementById("copyAllBtn").addEventListener("click",()=>{navigator.clipboard.writeText(JSON.stringify(records,null,2));els.status.textContent="All records copied. / 已複製全部記錄。"});
+document.getElementById("resetBtn").addEventListener("click",()=>{if(!confirm("Reset all local records? / 確定清除本機記錄？"))return;records=[];saveRecords();renderRecords()});
+document.getElementById("analysisFilters").addEventListener("click",e=>{if(!e.target.matches(".pill"))return;document.querySelectorAll("#analysisFilters .pill").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");analysisFilter=e.target.dataset.analysis;renderPhrases()});
+document.getElementById("recordFilters").addEventListener("click",e=>{if(!e.target.matches(".pill"))return;document.querySelectorAll("#recordFilters .pill").forEach(b=>b.classList.remove("active"));e.target.classList.add("active");recordFilter=e.target.dataset.filter;renderRecords()});
+els.language.addEventListener("change",renderPhrases);els.detail.addEventListener("change",renderPhrases);els.category.addEventListener("change",analyse);els.form.addEventListener("submit",e=>{e.preventDefault();createRecord()});
+loadRecords();renderRecords();analyse();
+</script>
 </body>
 </html>
