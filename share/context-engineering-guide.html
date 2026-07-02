@@ -1,0 +1,198 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Context Engineering｜由 Prompt Engineering 走向 AI 上下文工程</title>
+  <meta name="description" content="一篇以香港繁體中文整理的 Context Engineering 分享指南：解釋 Prompt Engineering 與 Context Engineering 的差異、五大原則、AI Agent / RAG / MCP 的應用，以及實際工作流程。" />
+  <style>
+    :root{--bg:#0f172a;--panel:#111827;--card:#1e293b;--soft:#334155;--text:#f8fafc;--muted:#cbd5e1;--gold:#facc15;--cyan:#22d3ee;--green:#86efac;--red:#fca5a5;--line:rgba(255,255,255,.12)}
+    *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:linear-gradient(180deg,#0f172a 0%,#111827 56%,#020617 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans HK","Noto Sans TC","PingFang TC",Arial,sans-serif;line-height:1.72;font-size:18px}a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}.wrap{max-width:980px;margin:0 auto;padding:22px 18px 56px}.hero{padding:34px 22px;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at top right,rgba(34,211,238,.2),transparent 36%),linear-gradient(135deg,rgba(250,204,21,.13),rgba(30,41,59,.75));box-shadow:0 18px 50px rgba(0,0,0,.28)}.eyebrow{color:var(--gold);font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}h1{font-size:35px;line-height:1.16;margin:0 0 14px;font-weight:900}h2{font-size:26px;margin:34px 0 14px;line-height:1.25}h3{font-size:21px;margin:22px 0 10px}.lead{font-size:20px;color:var(--muted);margin:0}.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}.meta div{background:rgba(15,23,42,.72);border:1px solid var(--line);border-radius:16px;padding:12px}.meta b{display:block;color:var(--gold);font-size:13px;margin-bottom:3px}.card{background:rgba(30,41,59,.82);border:1px solid var(--line);border-radius:24px;padding:20px;margin:16px 0;box-shadow:0 10px 30px rgba(0,0,0,.18)}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:6px 11px;margin:4px 4px 4px 0;background:rgba(255,255,255,.06);font-size:14px;color:var(--muted)}ul,ol{padding-left:22px}.highlight{border-left:5px solid var(--gold);background:rgba(250,204,21,.08)}.cyan{border-left:5px solid var(--cyan);background:rgba(34,211,238,.08)}.green{border-left:5px solid var(--green);background:rgba(134,239,172,.08)}.red{border-left:5px solid var(--red);background:rgba(252,165,165,.08)}table{width:100%;border-collapse:collapse;margin:12px 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:table}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:rgba(255,255,255,.08);color:var(--gold);text-align:left}tr:last-child td{border-bottom:none}.small{font-size:15px;color:var(--muted)}.toc a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:14px;margin:8px 0;background:rgba(255,255,255,.05)}.quote{font-size:20px;font-weight:850;color:#fff}.footer{margin-top:34px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}.code{font-family:ui-monospace,SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono",monospace;background:rgba(0,0,0,.25);border:1px solid var(--line);border-radius:16px;padding:14px;overflow:auto;white-space:pre-wrap}.badge{font-size:13px;color:#020617;background:var(--gold);padding:4px 8px;border-radius:999px;font-weight:800}@media(max-width:760px){body{font-size:17px}.wrap{padding:16px 14px 42px}.hero{padding:26px 18px;border-radius:22px}h1{font-size:30px}h2{font-size:23px}.meta,.grid{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:normal}th,td{min-width:150px}.lead{font-size:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Hudson Share Guide｜AI Workflow</div>
+      <h1>Context Engineering：AI 應用正由「寫 Prompt」走向「設計上下文」</h1>
+      <p class="lead">Prompt Engineering 仍然重要，但在 RAG、AI Agent、Memory、MCP 與企業知識系統時代，真正決定 AI 表現的，往往是模型在回答前「看見了甚麼」。</p>
+      <div class="meta">
+        <div><b>Version</b>v1.0</div>
+        <div><b>Updated</b>2026-07-03</div>
+        <div><b>What’s New</b>根據原始內容重組成手機友善分享頁，加入 AI Agent、RAG、Memory、MCP、朋友角度、唔講你唔知及來源。</div>
+        <div><b>Git Code</b>see latest commit</div>
+      </div>
+    </section>
+
+    <section class="card toc">
+      <h2>目錄</h2>
+      <a href="#one">1. 一句講清楚</a>
+      <a href="#principles">2. Context Engineering 五大原則</a>
+      <a href="#difference">3. 與 Prompt Engineering 的分別</a>
+      <a href="#architecture">4. 典型架構</a>
+      <a href="#examples">5. 實際例子</a>
+      <a href="#friend">6. 如果我是你的朋友，我最想知道……</a>
+      <a href="#facts">7. 唔講你唔知</a>
+      <a href="#mistakes">8. 常見誤解</a>
+      <a href="#workflow">9. Hudson AIOS 可用做法</a>
+      <a href="#sources">10. Sources & Further Reading</a>
+      <a href="#quick">11. 三分鐘快速看完</a>
+    </section>
+
+    <section id="one" class="card highlight">
+      <h2>1. 一句講清楚</h2>
+      <p class="quote">Prompt Engineering 問的是：「我應該點樣問？」<br>Context Engineering 問的是：「AI 回答前，應該知道啲咩？」</p>
+      <p>以前很多人以為，只要寫一句很聰明的 prompt，AI 就會自然給出好答案。現在的 AI 應用愈來愈像一個小型作業系統：它會讀文件、查資料、使用工具、記住偏好、連接外部服務，甚至按步驟完成任務。</p>
+      <p>所以，真正的關鍵已經不只是 prompt，而是整個 <b>context environment</b>：資料來源、工具結果、記憶、規則、權限、任務狀態，以及如何把它們整理成模型最容易使用的資訊。</p>
+    </section>
+
+    <section id="principles" class="card">
+      <h2>2. Context Engineering 五大原則</h2>
+      <table>
+        <thead><tr><th>原則</th><th>意思</th><th>目的</th></tr></thead>
+        <tbody>
+          <tr><td><b>Relevance<br>相關性</b></td><td>只放入與目前任務真正相關的資訊。</td><td>降低干擾，避免模型被無關內容帶偏。</td></tr>
+          <tr><td><b>Sufficiency<br>充分性</b></td><td>資訊要足夠完成任務，但不需要過量。</td><td>減少因資料不足而產生臆測。</td></tr>
+          <tr><td><b>Isolation<br>隔離性</b></td><td>不同任務、客戶、部門、使用者資料要分開。</td><td>保護私隱、避免 context 污染。</td></tr>
+          <tr><td><b>Provenance<br>來源可追溯</b></td><td>每段資料知道來自哪裡，例如文件、API、用戶輸入或工具結果。</td><td>方便驗證、引用、審計與更新。</td></tr>
+          <tr><td><b>Economy<br>經濟性</b></td><td>Token 是有限資源，只保留最高價值內容。</td><td>提升速度、降低成本、減少注意力分散。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="difference" class="card cyan">
+      <h2>3. 與 Prompt Engineering 的分別</h2>
+      <table>
+        <thead><tr><th>Prompt Engineering</th><th>Context Engineering</th></tr></thead>
+        <tbody>
+          <tr><td>重點是如何寫一句好 prompt。</td><td>重點是如何設計完整資訊環境。</td></tr>
+          <tr><td>假設模型已有足夠知識。</td><td>假設模型需要動態取得外部知識。</td></tr>
+          <tr><td>主要優化文字表達。</td><td>主要優化資料選擇、排序、壓縮、引用與權限。</td></tr>
+          <tr><td>多數是一次性輸入。</td><td>持續管理 context 的生命週期。</td></tr>
+          <tr><td>像寫一條好指令。</td><td>像設計一條可靠的資料管線。</td></tr>
+        </tbody>
+      </table>
+      <p>簡單講：Prompt 是「最後一句話」，Context 是「整個工作環境」。</p>
+    </section>
+
+    <section id="architecture" class="card">
+      <h2>4. Context Engineering 的典型架構</h2>
+      <div class="code">User Query
+  ↓
+Task Analysis
+  ↓
+Memory Retrieval
+  ↓
+Knowledge Retrieval / RAG
+  ↓
+Tool Results / API Results
+  ↓
+Context Filtering
+  ↓
+Ranking / Compression
+  ↓
+LLM Reasoning
+  ↓
+Response + Citation + Action Log</div>
+      <p>在這個架構入面，LLM 不是唯一主角。LLM 更像最後的推理引擎，而 Context Engineering 負責決定它看到甚麼、看多少、能否追溯、是否安全。</p>
+    </section>
+
+    <section id="examples" class="card green">
+      <h2>5. 實際例子：企業內部 AI 助理</h2>
+      <h3>傳統 Prompt Engineering</h3>
+      <p>「你是一位資深客服，請根據公司規定回答問題。」</p>
+      <h3>Context Engineering 做法</h3>
+      <ol>
+        <li>接收用戶問題。</li>
+        <li>判斷問題屬於哪個部門、產品或政策範圍。</li>
+        <li>從知識庫檢索最相關文件。</li>
+        <li>只抽取必要章節，避免整份文件塞入 context。</li>
+        <li>確認資料是否足夠，不足就再次檢索或提出限制。</li>
+        <li>隔離其他客戶、其他部門或不應暴露的資料。</li>
+        <li>回答時附上來源文件、版本和日期。</li>
+        <li>把工具結果、用戶偏好及任務狀態寫入 log，方便追蹤。</li>
+      </ol>
+      <p>這時候，真正影響回答質素的不是「你是一位資深客服」這句 prompt，而是背後的 context pipeline。</p>
+    </section>
+
+    <section id="friend" class="card highlight">
+      <h2>6. 如果我是你的朋友，我最想知道……</h2>
+      <h3>Prompt Engineering 是否已經過時？</h3>
+      <p>不是。Prompt 仍然重要，但它只是一個入口。當任務愈複雜，例如寫報告、查資料、比較文件、操作 GitHub、整理 Gmail、建立知識庫，單一句 prompt 已經不足夠。</p>
+      <h3>普通用戶要學 Context Engineering 嗎？</h3>
+      <p>要，但不需要一開始就學到很技術。最實用的第一步是：每次叫 AI 做事前，先想清楚要給它哪些背景、限制、資料來源、輸出格式和成功標準。</p>
+      <h3>企業最容易出錯的是甚麼？</h3>
+      <p>把所有資料都丟給 AI，以為「越多越準」。其實太多無關內容會令模型分心，甚至引用錯資料。好的 context 是精準，不是龐大。</p>
+      <h3>AI Agent 為甚麼特別需要 Context Engineering？</h3>
+      <p>因為 Agent 不只是回答，它會計劃、使用工具、讀寫資料、執行步驟。只要 context 錯，它就可能用錯工具、改錯文件、發錯訊息或引用錯來源。</p>
+    </section>
+
+    <section id="facts" class="card cyan">
+      <h2>7. 唔講你唔知</h2>
+      <div class="grid">
+        <div class="card"><h3>你打的 prompt 只是其中一層</h3><p>真正送入模型的內容，可能包括 system instruction、記憶、對話歷史、上載文件、工具結果、搜尋結果、圖片資訊、政策限制和用戶偏好。</p></div>
+        <div class="card"><h3>MCP 像 AI 的 USB-C</h3><p>Model Context Protocol 的官方說法，是讓 AI 應用連接資料來源、工具和 workflow 的開放標準。這正是 Context Engineering 走向標準化的例子。</p></div>
+        <div class="card"><h3>長 context 不等於好 context</h3><p>模型可以讀更多 token，不代表所有 token 都有價值。更重要是排序、壓縮、去重和來源可信度。</p></div>
+        <div class="card"><h3>Memory 其實是 context 管理</h3><p>ChatGPT 的記憶功能不是魔法，而是把與你有關的偏好或背景，在合適時加入 context 之中。</p></div>
+      </div>
+    </section>
+
+    <section id="mistakes" class="card red">
+      <h2>8. 常見誤解</h2>
+      <table>
+        <thead><tr><th>誤解</th><th>更準確理解</th></tr></thead>
+        <tbody>
+          <tr><td>Prompt 越長越好。</td><td>Prompt 要清楚，但 context 要精準。過長可能令模型分心。</td></tr>
+          <tr><td>RAG 就等於 Context Engineering。</td><td>RAG 只是其中一部分。Context Engineering 還包括 memory、tool results、ranking、compression、provenance、permissions。</td></tr>
+          <tr><td>有 AI Agent 就可以全自動。</td><td>Agent 更需要權限控制、檢查點、log、回滾和 human approval。</td></tr>
+          <tr><td>AI 答得自然就代表可信。</td><td>自然語氣不等於有來源。要看引用、資料版本和是否可驗證。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="workflow" class="card green">
+      <h2>9. Hudson AIOS 可用做法</h2>
+      <p>如果把 Context Engineering 放入 Hudson AIOS，可以變成一套可重用流程：</p>
+      <ol>
+        <li><b>Project Context：</b>每個 project 有自己的目標、規則、輸出格式和資料來源。</li>
+        <li><b>Memory Layer：</b>長期偏好、已完成事項、常用模板、禁用例子。</li>
+        <li><b>Knowledge Layer：</b>GitHub Pages、Google Drive、PDF、Report、Prompt Library。</li>
+        <li><b>Tool Layer：</b>Gmail、Calendar、GitHub、Canva、Web Search、Files。</li>
+        <li><b>Filter Layer：</b>只抽取與當前任務有關的資料。</li>
+        <li><b>Quality Gate：</b>檢查來源、事實、可讀性、行動性與安全。</li>
+        <li><b>Publish Layer：</b>輸出成 HTML、PDF、簡報或可直接貼上的內容。</li>
+      </ol>
+      <p class="quote">最實用的升級方向：由「Prompt Library」進化成「Context Library」。</p>
+    </section>
+
+    <section id="sources" class="card">
+      <h2>10. Sources & Further Reading</h2>
+      <ul>
+        <li><a href="https://www.anthropic.com/engineering/effective-context-engineering-for-ai-agents" target="_blank" rel="noopener">Anthropic Engineering — Effective context engineering for AI agents</a></li>
+        <li><a href="https://modelcontextprotocol.io/docs/getting-started/intro" target="_blank" rel="noopener">Model Context Protocol — Official introduction</a></li>
+        <li><a href="https://www.anthropic.com/news/model-context-protocol" target="_blank" rel="noopener">Anthropic — Introducing the Model Context Protocol</a></li>
+        <li><a href="https://openai.com/index/memory-and-new-controls-for-chatgpt/" target="_blank" rel="noopener">OpenAI — Memory and new controls for ChatGPT</a></li>
+        <li><a href="https://arxiv.org/abs/2510.04618" target="_blank" rel="noopener">Agentic Context Engineering: Evolving Contexts for Self-Improving Language Models</a></li>
+        <li><a href="https://arxiv.org/abs/2510.21413" target="_blank" rel="noopener">Context Engineering for AI Agents in Open-Source Software</a></li>
+        <li><a href="https://arxiv.org/abs/2512.05470" target="_blank" rel="noopener">Everything is Context: Agentic File System Abstraction for Context Engineering</a></li>
+      </ul>
+    </section>
+
+    <section id="quick" class="card highlight">
+      <h2>11. 三分鐘快速看完</h2>
+      <ul>
+        <li><b>Prompt Engineering</b> 是研究如何問得好。</li>
+        <li><b>Context Engineering</b> 是設計 AI 回答前應該看到甚麼。</li>
+        <li>高質素 context 需要相關、充分、隔離、可追溯、經濟。</li>
+        <li>RAG、Memory、Tool Use、MCP、Agent workflow 都是 Context Engineering 的一部分。</li>
+        <li>AI Agent 越有能力，越需要 context 管理、權限控制和來源追蹤。</li>
+        <li>未來 AI Workflow 的核心能力，不只是懂寫 prompt，而是懂建立可靠的 context pipeline。</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>Created for Hudson Share Project. Permanent page: /share/context-engineering-guide.html</p>
+    </footer>
+  </main>
+</body>
+</html>
