@@ -1,0 +1,30 @@
+{
+  "updated": "2026-07-02",
+  "topics": [
+    {
+      "slug": "aas-injection-guide",
+      "title": "注射類固醇快速知識指南",
+      "status": "active",
+      "latest": "v1",
+      "permanent_url": "https://hudsonmar-852.github.io/share/aas-injection-guide.html",
+      "folder": "share/aas-injection-guide/",
+      "last_update": "新增男士使用期間的簡單飲食建議，按早餐、午餐、晚餐整理。",
+      "versions": [
+        {
+          "version": "v0",
+          "file": "https://hudsonmar-852.github.io/share/aas-injection-guide/v0.html",
+          "date": "2026-07-02",
+          "git_code": "d5c08632",
+          "change": "首創版本：整理常見注射類固醇、使用概念、效果與主要副作用。"
+        },
+        {
+          "version": "v1",
+          "file": "https://hudsonmar-852.github.io/share/aas-injection-guide/v1.html",
+          "date": "2026-07-02",
+          "git_code": "c2ef18f5",
+          "change": "新增飲食建議章節，方便用早餐、午餐、晚餐方式閱讀。"
+        }
+      ]
+    }
+  ]
+}
