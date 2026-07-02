@@ -1,0 +1,226 @@
+<!doctype html>
+<html lang="zh-Hant-HK">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hudson AIOS Weekly Review｜AI 情報週報</title>
+  <meta name="description" content="Hudson AIOS Weekly Review：整合每日 AI 情報、ChatGPT 更新、Prompt Engineering、Automation、Knowledge Base 與下一步行動。" />
+  <style>
+    :root{
+      --bg:#0f172a;--panel:#111827;--card:#1e293b;--soft:#334155;--text:#f8fafc;--muted:#cbd5e1;--gold:#facc15;--cyan:#22d3ee;--green:#86efac;--red:#fca5a5;--line:rgba(255,255,255,.12);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;background:linear-gradient(180deg,#0f172a 0%,#111827 55%,#020617 100%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans HK","Noto Sans TC","PingFang TC",Arial,sans-serif;line-height:1.7;font-size:18px}
+    a{color:var(--cyan);text-decoration:none}a:hover{text-decoration:underline}
+    .wrap{max-width:980px;margin:0 auto;padding:22px 18px 56px}
+    .hero{padding:34px 22px;border:1px solid var(--line);border-radius:28px;background:radial-gradient(circle at top right,rgba(34,211,238,.18),transparent 38%),linear-gradient(135deg,rgba(250,204,21,.12),rgba(30,41,59,.7));box-shadow:0 18px 50px rgba(0,0,0,.28)}
+    .eyebrow{color:var(--gold);font-size:14px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+    h1{font-size:34px;line-height:1.18;margin:0 0 14px;font-weight:900}
+    h2{font-size:26px;margin:34px 0 14px;line-height:1.25}h3{font-size:21px;margin:22px 0 10px}.lead{font-size:20px;color:var(--muted);margin:0}
+    .meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:22px}.meta div{background:rgba(15,23,42,.72);border:1px solid var(--line);border-radius:16px;padding:12px}.meta b{display:block;color:var(--gold);font-size:13px;margin-bottom:3px}
+    .card{background:rgba(30,41,59,.82);border:1px solid var(--line);border-radius:24px;padding:20px;margin:16px 0;box-shadow:0 10px 30px rgba(0,0,0,.18)}
+    .grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}.pill{display:inline-flex;align-items:center;border:1px solid var(--line);border-radius:999px;padding:6px 11px;margin:4px 4px 4px 0;background:rgba(255,255,255,.06);font-size:14px;color:var(--muted)}
+    ul,ol{padding-left:22px}.highlight{border-left:5px solid var(--gold);background:rgba(250,204,21,.08)}.cyan{border-left:5px solid var(--cyan);background:rgba(34,211,238,.08)}.green{border-left:5px solid var(--green);background:rgba(134,239,172,.08)}
+    table{width:100%;border-collapse:collapse;margin:12px 0;border:1px solid var(--line);border-radius:16px;overflow:hidden;display:table}th,td{padding:12px;border-bottom:1px solid var(--line);vertical-align:top}th{background:rgba(255,255,255,.08);color:var(--gold);text-align:left}tr:last-child td{border-bottom:none}.small{font-size:15px;color:var(--muted)}
+    .source li{margin-bottom:8px}.footer{margin-top:34px;color:var(--muted);font-size:14px;border-top:1px solid var(--line);padding-top:18px}.toc a{display:block;padding:10px 12px;border:1px solid var(--line);border-radius:14px;margin:8px 0;background:rgba(255,255,255,.05)}
+    .badge{font-size:13px;color:#020617;background:var(--gold);padding:4px 8px;border-radius:999px;font-weight:800}.quote{font-size:20px;font-weight:800;color:#fff}
+    @media(max-width:760px){body{font-size:17px}.wrap{padding:16px 14px 42px}.hero{padding:26px 18px;border-radius:22px}h1{font-size:30px}h2{font-size:23px}.meta,.grid{grid-template-columns:1fr}table{display:block;overflow-x:auto;white-space:normal}th,td{min-width:150px}.lead{font-size:18px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <section class="hero">
+      <div class="eyebrow">Hudson AIOS Share Page</div>
+      <h1>AIOS Weekly Review｜每日 AI 情報整合週報</h1>
+      <p class="lead">將每日 AI、ChatGPT、Prompt Engineering、Automation、Canva、NotebookLM、GitHub 與 workflow 情報，整理成可保存、可行動、可分享的 AIOS 知識頁。</p>
+      <div class="meta">
+        <div><b>Version</b>v1.0</div>
+        <div><b>Updated</b>2026-07-03</div>
+        <div><b>What’s New</b>建立 AIOS Weekly Review 永久頁，加入 Daily → Weekly → Share → GitHub Pages 預設執行流程。</div>
+        <div><b>Git Code</b>pending</div>
+      </div>
+    </section>
+
+    <section class="card toc">
+      <h2>目錄</h2>
+      <a href="#summary">1. Executive Summary</a>
+      <a href="#updates">2. AI / ChatGPT 重要更新</a>
+      <a href="#tools">3. 新工具與產品動向</a>
+      <a href="#research">4. Research & Papers</a>
+      <a href="#workflow">5. AIOS 預設執行流程</a>
+      <a href="#friend">6. 如果我是你的朋友，我最想知道……</a>
+      <a href="#facts">7. 唔講你唔知</a>
+      <a href="#actions">8. 今日建議行動</a>
+      <a href="#sources">9. Sources & Further Reading</a>
+      <a href="#quick">10. 三分鐘快速看完</a>
+    </section>
+
+    <section id="summary" class="card highlight">
+      <h2>1. Executive Summary</h2>
+      <p>本週 AI 主線可以歸納為三件事：<b>企業 AI 落地、Agentic AI 主流化、模型安全與治理升級</b>。</p>
+      <ul>
+        <li><b>企業 AI 不再只是買一個模型：</b>Microsoft Frontier Company 代表企業會更重視模型選型、客製化、內部資料整合與 ROI。</li>
+        <li><b>Agentic AI 由概念進入 workflow：</b>OpenAI Codex 相關研究顯示，能代用戶執行多步驟工作的 agent 工具，使用量在 2026 上半年快速上升。</li>
+        <li><b>AIOS 下一步：</b>Hudson AIOS 應由 Prompt Engineering 升級到 <b>Context Engineering + Agent Governance</b>，特別是涉及 Google Drive、Canva、GitHub、Gmail、Job Application 等外部系統的操作。</li>
+      </ul>
+    </section>
+
+    <section id="updates" class="card">
+      <h2>2. AI / ChatGPT 重要更新</h2>
+      <table>
+        <thead><tr><th>來源</th><th>內容</th><th>對 Hudson AIOS 的影響</th><th>行動</th></tr></thead>
+        <tbody>
+          <tr><td>OpenAI</td><td>官方 News 近期集中於 GPT-5.6 Sol preview、system card、agents transforming work、Broadcom inference chip 等方向。</td><td>OpenAI 方向不只是模型更新，而是 Research、Safety、Security、Enterprise adoption、Agent workflow 同步推進。</td><td>列為 Daily Intelligence 固定來源。</td></tr>
+          <tr><td>Anthropic</td><td>Fable 5 / Mythos 5 相關部署與安全審查報道，反映高能力模型會面對更嚴格的 release governance。</td><td>高能力 agent 不能只看能力，要看權限、風險、審計、回滾。</td><td>加入 AIOS Agent Safety Gate。</td></tr>
+          <tr><td>Microsoft</td><td>Microsoft Frontier Company 以企業 AI adoption、模型選擇、客製化和整合為核心。</td><td>AI consulting / AI workflow architect 會更有市場價值。</td><td>加入 AIOS Showcase 與 CV positioning。</td></tr>
+          <tr><td>Research</td><td>Codex / agentic AI 研究指出 agent 工具使用快速增長。</td><td>AIOS 應由單次 prompt 變成可持續運作的工作系統。</td><td>建立 Automation Register。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tools" class="card cyan">
+      <h2>3. 新工具與產品動向</h2>
+      <div class="grid">
+        <div class="card"><h3>Microsoft Frontier Company</h3><p>企業級 AI 導入服務，重點是選擇不同模型、連接企業內部資料、建立可落地的 AI workflow。</p><span class="badge">值得追蹤：高</span></div>
+        <div class="card"><h3>GPT‑5.6 Sol Preview</h3><p>OpenAI 預覽更強 coding、science、cybersecurity 與 agentic capability，並同步提供 safety / preparedness 評估。</p><span class="badge">值得追蹤：高</span></div>
+        <div class="card"><h3>Agentic AI Research</h3><p>Codex 類 agent 工具正由 coding 擴展到企業工作流程，重點是 tool use、verification、permission、logging。</p><span class="badge">值得保存：高</span></div>
+        <div class="card"><h3>Model Governance</h3><p>高能力模型發佈愈來愈接近「部署前審查 + 安全分類 + 使用權限 + 監控」。</p><span class="badge">AIOS 風險設計</span></div>
+      </div>
+    </section>
+
+    <section id="research" class="card">
+      <h2>4. Research & Papers</h2>
+      <ol>
+        <li><b>The Shift to Agentic AI: Evidence from Codex</b><br>重點：agentic AI 使用快速增長，active users 在 2026 上半年增長超過五倍。適合放入 AIOS 的理論基礎。</li>
+        <li><b>AI-Native / Agentic Software Engineering</b><br>重點：工程價值由「寫每一行 code」轉向 orchestration、verification、evaluation、permission control 與 human oversight。</li>
+        <li><b>Context Engineering</b><br>重點：未來不是只靠一句 prompt，而是設計整個 context environment，包括 relevance、sufficiency、isolation、provenance、economy。</li>
+      </ol>
+    </section>
+
+    <section id="workflow" class="card green">
+      <h2>5. AIOS 預設執行流程</h2>
+      <p class="quote">Daily Reports → Weekly Consolidation → Generate HTML → Commit to GitHub → GitHub Pages Publish</p>
+      <table>
+        <thead><tr><th>階段</th><th>輸入</th><th>輸出</th></tr></thead>
+        <tbody>
+          <tr><td>Daily Reports</td><td>每日 AI 情報、工具更新、研究、workflow idea</td><td>Daily Intelligence Report</td></tr>
+          <tr><td>Weekly Consolidation</td><td>一週 Daily Reports</td><td>Weekly Review Draft</td></tr>
+          <tr><td>Knowledge Extraction</td><td>重點內容</td><td>Prompt Library、Workflow Library、Knowledge Base、Automation Register</td></tr>
+          <tr><td>Share HTML</td><td>週報內容</td><td>Mobile-first HTML page</td></tr>
+          <tr><td>GitHub Publish</td><td>HTML file</td><td>/share/aios-weekly-review.html</td></tr>
+        </tbody>
+      </table>
+
+      <h3>Agent Safety Gate</h3>
+      <table>
+        <thead><tr><th>Level</th><th>意思</th><th>例子</th></tr></thead>
+        <tbody>
+          <tr><td>Read</td><td>只讀資料，不改外部系統</td><td>搜尋 web、讀 Gmail、讀 Drive</td></tr>
+          <tr><td>Draft</td><td>只生成草稿</td><td>生成報告、cover letter、prompt</td></tr>
+          <tr><td>Edit Draft</td><td>可建立或修改草稿檔案</td><td>追加 Google Docs、建立 Canva draft</td></tr>
+          <tr><td>Commit</td><td>發布、覆寫、提交、發信</td><td>GitHub commit、send email、submit application</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section class="card">
+      <h2>6. 對 Hudson AIOS 的建議更新</h2>
+      <ul>
+        <li><b>AIOS Master：</b>新增「Automation Permission Levels」。</li>
+        <li><b>Workflow：</b>所有 workflow 加入 Read / Draft / Edit Draft / Commit 欄位。</li>
+        <li><b>Prompt Library：</b>新增「Agent Safety Gate Prompt」與「Context Engineering Checklist」。</li>
+        <li><b>Automation：</b>建立 AIOS Automation Register，記錄用途、觸發時間、來源、輸出位置、權限級別、人工確認要求。</li>
+        <li><b>Daily / Weekly Report：</b>每日只保存 Must Keep、Test Next、Watchlist；每週再整理成 Share Page。</li>
+      </ul>
+    </section>
+
+    <section id="friend" class="card highlight">
+      <h2>如果我是你的朋友，我最想知道……</h2>
+      <h3>1. 呢份週報最實際有咩用？</h3>
+      <p>唔係用嚟追新聞，而係幫你每日吸收 AI 資訊，再每週沉澱成可執行嘅 prompt、workflow、automation 同 knowledge base。</p>
+      <h3>2. Hudson AIOS 依家最應該升級咩？</h3>
+      <p>最值得先做 <b>Automation Register + Permission Level</b>。因為你已經開始連接 GitHub、Google Drive、Canva、Gmail、JobsDB 等外部工具，下一步最重要係安全、可追蹤、可回滾。</p>
+      <h3>3. 點樣避免每日 AI 情報變成資訊垃圾？</h3>
+      <p>每日只分三類：Must Keep、Test Next、Watchlist。每週只挑真正有用的內容入 AIOS Master，其他可以 archive。</p>
+      <h3>4. Canva、Google Drive、GitHub 應該點分工？</h3>
+      <p>GitHub 做公開分享與版本管理；Google Drive 做 archive；Canva 做視覺化週報或 presentation，不適合作為每日 master。</p>
+    </section>
+
+    <section id="facts" class="card cyan">
+      <h2>唔講你唔知</h2>
+      <ul>
+        <li><b>Agentic AI 最大風險唔係答錯，而係做錯。</b> 普通 chatbot 答錯，你可以不採用；agent 若有外部工具權限，可能直接改檔、發信、提交、刪除。</li>
+        <li><b>Prompt Engineering 會變成 Context Engineering。</b> 未來高手唔係只懂一句神 prompt，而係懂得設計資料來源、權限、記憶、工具、驗證、輸出格式。</li>
+        <li><b>企業最需要的人未必是純 AI engineer。</b> 更稀缺的是能把業務流程、風險控制、工具整合、知識管理和 AI workflow 連起來的人。</li>
+        <li><b>Daily Report 的價值在 Weekly Review 才出現。</b> 每日資料只是輸入；每週整理才會變成可重用資產。</li>
+      </ul>
+    </section>
+
+    <section id="actions" class="card green">
+      <h2>今日建議行動</h2>
+      <ol>
+        <li>在 AIOS Master 加入「Automation Permission Levels」。</li>
+        <li>建立 AIOS Automation Register 第一版。</li>
+        <li>將 Daily AI Intelligence Report 固定分成 Must Keep / Test Next / Watchlist。</li>
+        <li>把 OpenAI News、Reuters AI、arXiv cs.AI / cs.SE 設為固定來源。</li>
+        <li>把「Agent Safety Gate Prompt」加入 Prompt Library。</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2>Weekly Review Queue</h2>
+      <ul>
+        <li>是否將 Agent Safety Gate 寫入 AIOS Master？</li>
+        <li>是否將 Google Drive / Canva 更新分成「可自動追加」與「不可自動覆寫」？</li>
+        <li>是否建立 AIOS Automation Register，記錄每個 automation 的權限、風險、輸出位置？</li>
+        <li>是否把 Codex / agentic AI 研究加入 Hudson 的 AIOS 理論基礎？</li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2>Webhook Payload 建議欄位</h2>
+      <pre style="white-space:pre-wrap;background:#020617;border:1px solid var(--line);border-radius:16px;padding:16px;overflow:auto;color:#e2e8f0;font-size:14px">{
+  "system": "Hudson AIOS",
+  "action": "create_daily_ai_intelligence_report",
+  "date": "YYYY-MM-DD",
+  "summary": [],
+  "updates": [],
+  "tools": [],
+  "prompt_improvements": [],
+  "automation_opportunities": [],
+  "knowledge_base_candidates": [],
+  "weekly_review_queue": []
+}</pre>
+    </section>
+
+    <section id="sources" class="card">
+      <h2>Sources & Further Reading</h2>
+      <ul class="source">
+        <li><a href="https://openai.com/news/" target="_blank" rel="noopener">OpenAI News</a></li>
+        <li><a href="https://openai.com/index/previewing-gpt-5-6-sol/" target="_blank" rel="noopener">OpenAI｜Previewing GPT‑5.6 Sol</a></li>
+        <li><a href="https://www.reuters.com/business/us-lift-export-controls-anthropics-fable-ai-model-tuesday-source-says-2026-06-30/" target="_blank" rel="noopener">Reuters｜US removes curbs on Anthropic's Fable and Mythos AI models</a></li>
+        <li><a href="https://www.reuters.com/business/retail-consumer/microsoft-launches-firm-help-companies-adopt-ai-with-25-billion-2026-07-02/" target="_blank" rel="noopener">Reuters｜Microsoft launches firm to help companies adopt AI with $2.5 billion</a></li>
+        <li><a href="https://arxiv.org/abs/2606.26959" target="_blank" rel="noopener">arXiv｜The Shift to Agentic AI: Evidence from Codex</a></li>
+        <li><a href="https://arxiv.org/abs/2606.28791" target="_blank" rel="noopener">arXiv｜From Determinism to Delegation: AI-Native Software Engineering</a></li>
+      </ul>
+      <p class="small">Note: 本頁以官方來源、Reuters、arXiv 及可追溯資料作主要參考；Daily / Weekly AI 情報應避免只依賴二手摘要或社交媒體標題。</p>
+    </section>
+
+    <section id="quick" class="card highlight">
+      <h2>三分鐘快速看完</h2>
+      <ul>
+        <li>本週 AI 重點是：企業落地、Agent 化、模型治理。</li>
+        <li>Hudson AIOS 下一步應升級為：Context Engineering + Agent Governance。</li>
+        <li>所有 automation 要分 Read / Draft / Edit Draft / Commit 四級。</li>
+        <li>Daily Report 不應只是新聞，而要變成 Prompt Library、Workflow Library、Knowledge Base、Automation Register。</li>
+        <li>每週產生 Share Page，GitHub 做永久分享與版本管理。</li>
+      </ul>
+    </section>
+
+    <footer class="footer">
+      <p>Hudson AIOS｜Share Project｜Mobile-first knowledge guide</p>
+      <p>Permanent URL: https://hudsonmar-852.github.io/share/aios-weekly-review</p>
+    </footer>
+  </main>
+</body>
+</html>
