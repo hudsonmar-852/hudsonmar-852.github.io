@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-02",
+  "updated": "2026-07-03",
   "topics": [
     {
       "slug": "aas-injection-guide",
@@ -23,6 +23,24 @@
           "date": "2026-07-02",
           "git_code": "c2ef18f5",
           "change": "新增飲食建議章節，方便用早餐、午餐、晚餐方式閱讀。"
+        }
+      ]
+    },
+    {
+      "slug": "bodybuilding-nutrition-guide",
+      "title": "健美比賽營養全攻略：Bulking、Cutting 與備賽飲食指南",
+      "status": "active",
+      "latest": "v0",
+      "permanent_url": "https://hudsonmar-852.github.io/share/bodybuilding-nutrition-guide.html",
+      "folder": "share/bodybuilding-nutrition-guide/",
+      "last_update": "首創版本：整理 Bulking、Cutting、備賽飲食、補充品、香港外食選擇與常見迷思。",
+      "versions": [
+        {
+          "version": "v0",
+          "file": "https://hudsonmar-852.github.io/share/bodybuilding-nutrition-guide/v0.html",
+          "date": "2026-07-03",
+          "git_code": "b4fb6a69",
+          "change": "首創版本：整理 Bulking、Cutting、備賽飲食、補充品、香港外食選擇與常見迷思。"
         }
       ]
     }
