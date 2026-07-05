@@ -1,0 +1,37 @@
+{
+  "system": {
+    "name": "AvatarOS",
+    "version": "0.0.1-sprint-0",
+    "mode": "scrum",
+    "owner": "Hudson",
+    "defaultLanguage": "zh-HK"
+  },
+  "entryPoints": {
+    "chatgpt": true,
+    "githubPagesDashboard": true,
+    "futureApiMode": true
+  },
+  "defaultStack": {
+    "director": "ChatGPT",
+    "imageGeneration": "Grok Imagine",
+    "editing": "CapCut",
+    "design": "Canva",
+    "music": "Suno AI",
+    "review": "ChatGPT"
+  },
+  "defaults": {
+    "character": "generic-premium-avatar",
+    "style": "ultra-realistic",
+    "platform": "instagram-reel",
+    "durationSeconds": 30,
+    "aspectRatio": "9:16",
+    "language": "Traditional Chinese Cantonese",
+    "qualityThreshold": 85
+  },
+  "manualSteps": [
+    "Open Grok Imagine and paste generated image prompts.",
+    "Import selected keyframes into CapCut.",
+    "Apply motion, voice, subtitles, and final export in CapCut until API automation is available.",
+    "Use Canva for thumbnail and branded layout export."
+  ]
+}
