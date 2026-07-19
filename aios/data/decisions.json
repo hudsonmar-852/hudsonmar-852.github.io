@@ -1,0 +1,4 @@
+[
+  {"id":"public-private-separation","title":"Maintain two-layer architecture","status":"Approved","decidedAt":"2026-07-19","summary":"GitHub Pages remains the public monitoring layer; private prompts, configuration and controls remain protected."},
+  {"id":"prompt-studio-privacy","title":"Protect Prompt and Grok studios","status":"Implemented","decidedAt":"2026-07-19","summary":"The Prompt and Grok repositories are private. Prompt2 remains the public-safe prompt intelligence edition in the public portal."}
+]
