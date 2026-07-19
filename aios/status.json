@@ -1,0 +1,24 @@
+{
+  "lastUpdated": "2026-07-19T16:45:00+08:00",
+  "environment": "Phase 1 / Public Monitor",
+  "overallStatus": "In Development",
+  "privacyMode": "Public-safe metadata only",
+  "metrics": {
+    "projects": 6,
+    "liveProjects": 6,
+    "activeWorkstreams": 6,
+    "openRisks": 2
+  },
+  "workstreams": [
+    {"name":"Dashboard Foundation","owner":"Codex","status":"In Progress","progress":35,"next":"Complete responsive navigation and data adapter"},
+    {"name":"Project Registry","owner":"AIOS","status":"In Progress","progress":50,"next":"Standardise project metadata and health states"},
+    {"name":"Automation Monitor","owner":"Codex","status":"Planned","progress":10,"next":"Add safe health-check interface without exposing endpoints"},
+    {"name":"Knowledge & Reports","owner":"ChatGPT","status":"In Progress","progress":45,"next":"Connect daily and weekly report index"},
+    {"name":"Quality & Governance","owner":"AIOS","status":"In Progress","progress":30,"next":"Add provenance, review and rollback indicators"},
+    {"name":"Private Control Centre","owner":"Hudson","status":"Private","progress":15,"next":"Move credentials and administrative controls to a private repository"}
+  ],
+  "alerts": [
+    {"level":"warning","title":"Public/private separation required","detail":"Do not place webhook URLs, API keys, tokens, private prompts or folder IDs in this repository."},
+    {"level":"info","title":"Static data source","detail":"This first version reads public-safe status data. Live integrations will be added through a protected backend later."}
+  ]
+}

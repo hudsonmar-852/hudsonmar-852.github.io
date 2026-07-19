@@ -23,12 +23,13 @@
     <div class="topbar"><div class="brand"><div class="avatar">HM</div><div><div>Hudson Mar</div><small style="color:var(--muted)">GitHub Project Portal</small></div></div><button class="toggle" onclick="toggleTheme()">🌙 Dark</button></div>
     <section class="hero"><h1>Hudson Mar · GitHub Project Portal</h1><p>Central landing page for published Hudson projects. Only active public destinations are listed.</p><div class="stats" id="stats"></div></section>
     <div class="note"><strong>Privacy rule:</strong> unpublished automation endpoints, webhook URLs, tokens, folder IDs and private configuration are not listed on this public portal.</div>
-    <div class="toolbar"><input class="search" id="searchInput" type="text" placeholder="Search project: Bible, Jeffrey, Prompt, Prompt2, Grok..." /><div class="filter" id="filters"></div></div>
+    <div class="toolbar"><input class="search" id="searchInput" type="text" placeholder="Search project: AIOS, Bible, Jeffrey, Prompt, Prompt2, Grok..." /><div class="filter" id="filters"></div></div>
     <div class="section-title">Published Projects & Repositories</div><main class="grid" id="siteGrid"></main><div class="empty" id="emptyState">No matching project found.</div>
     <footer>hudsonmar-852.github.io · Hudson Project Portal</footer>
   </div>
   <script>
     const projects=[
+      {title:'AIOS Dashboard',subtitle:'Public project monitoring layer',icon:'🧭',url:'https://hudsonmar-852.github.io/aios/',repo:'Hosted in hudsonmar-852.github.io/aios',category:'AIOS',status:'Live',desc:'Public-safe dashboard for workstreams, progress, governance alerts and project access. Private controls and credentials remain outside the public repository.'},
       {title:'Bible',subtitle:'Hudson first-level project page',icon:'📖',url:'https://hudsonmar-852.github.io/bible.html',repo:'Hosted in hudsonmar-852.github.io',category:'Content',status:'Live',desc:'Bible verses and daily blessing messages. Jeffrey website links here as the official destination.'},
       {title:'Jeffrey',subtitle:'Independent project repository',icon:'🏋️',url:'https://hudsonmar-852.github.io/Jeffrey/',repo:'hudsonmar-852/Jeffrey',category:'Project',status:'Live',desc:'Jeffrey reminder engine, fitness content, care-message workflow and related pages.'},
       {title:'Prompt',subtitle:'Independent prompt repository',icon:'🧠',url:'https://hudsonmar-852.github.io/prompt/',repo:'hudsonmar-852/prompt',category:'AI Prompt',status:'Live',desc:'Reusable prompts, phrase database and workflow design.'},
