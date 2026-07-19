@@ -1,0 +1,3 @@
+[
+  {"id":"private-backend-pending","title":"Private backend pending","severity":"Medium","status":"Open","mitigation":"Keep live automation controls, credentials and endpoints outside this public repository until authenticated hosting is available."}
+]
