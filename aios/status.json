@@ -1,24 +1,30 @@
 {
-  "lastUpdated": "2026-07-19T16:45:00+08:00",
-  "environment": "Phase 1 / Public Monitor",
-  "overallStatus": "In Development",
-  "privacyMode": "Public-safe metadata only",
+  "lastUpdated": "2026-07-19T18:30:00+08:00",
+  "environment": "Phase 1 · Public Monitor",
+  "overallStatus": "Operational",
+  "privacyMode": "Public/private boundary active",
   "metrics": {
     "projects": 6,
     "liveProjects": 6,
     "activeWorkstreams": 6,
-    "openRisks": 2
+    "openRisks": 1,
+    "linkHealth": "100%"
   },
   "workstreams": [
-    {"name":"Dashboard Foundation","owner":"Codex","status":"In Progress","progress":35,"next":"Complete responsive navigation and data adapter"},
-    {"name":"Project Registry","owner":"AIOS","status":"In Progress","progress":50,"next":"Standardise project metadata and health states"},
-    {"name":"Automation Monitor","owner":"Codex","status":"Planned","progress":10,"next":"Add safe health-check interface without exposing endpoints"},
-    {"name":"Knowledge & Reports","owner":"ChatGPT","status":"In Progress","progress":45,"next":"Connect daily and weekly report index"},
-    {"name":"Quality & Governance","owner":"AIOS","status":"In Progress","progress":30,"next":"Add provenance, review and rollback indicators"},
-    {"name":"Private Control Centre","owner":"Hudson","status":"Private","progress":15,"next":"Move credentials and administrative controls to a private repository"}
+    {"name":"Dashboard & Portal","owner":"Codex","status":"Live","progress":80,"next":"Monitor public deployment and refine from usage"},
+    {"name":"AIOS Kernel","owner":"AIOS","status":"In Progress","progress":35,"next":"Implement state, dispatch, queue and dependency contracts"},
+    {"name":"Project Registry","owner":"AIOS","status":"In Progress","progress":65,"next":"Adopt one metadata schema across public projects"},
+    {"name":"Automation Monitor","owner":"Codex","status":"Planned","progress":15,"next":"Define protected health checks without exposing endpoints"},
+    {"name":"Knowledge & Reports","owner":"ChatGPT","status":"In Progress","progress":50,"next":"Standardise daily and weekly report index"},
+    {"name":"Quality & Governance","owner":"AIOS","status":"In Progress","progress":45,"next":"Add provenance, approval and rollback indicators"}
+  ],
+  "priorities": [
+    {"title":"Kernel contracts","detail":"Freeze state, dispatcher, scheduler, queue and dependency interfaces."},
+    {"title":"Protected data adapter","detail":"Keep live credentials and endpoints in a private backend only."},
+    {"title":"Reusable project schema","detail":"Use one health, owner, milestone, risk and provenance structure."}
   ],
   "alerts": [
-    {"level":"warning","title":"Public/private separation required","detail":"Do not place webhook URLs, API keys, tokens, private prompts or folder IDs in this repository."},
-    {"level":"info","title":"Static data source","detail":"This first version reads public-safe status data. Live integrations will be added through a protected backend later."}
+    {"level":"warning","title":"Private backend pending","detail":"Live automation control remains intentionally excluded until authentication is available."},
+    {"level":"info","title":"Public link audit passed","detail":"All destinations shown on this dashboard were reachable during the 19 Jul review."}
   ]
 }
