@@ -1,0 +1,33 @@
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+*.crt
+*.cer
+*.jks
+*.keystore
+
+# Local vault exports and backups
+vault/
+secrets/
+credentials/
+*.1pux
+*.bwbackup
+*.kdbx
+*recovery-code*
+*backup-code*
+
+# Personal/private data
+private/
+personal/
+exports/
+
+# Local tooling
+.DS_Store
+Thumbs.db
+.vscode/settings.json
+.idea/
