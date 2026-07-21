@@ -38,5 +38,15 @@
     "source": "AIOS-SEC-004",
     "status": "Waiting Review",
     "rollback": "Revert this feature branch or close its draft pull request without merging."
+  },
+  {
+    "id": "CL-20260721-005",
+    "date": "2026-07-21",
+    "version": "AIOS Dashboard v3.2",
+    "change": "Added a responsive Production Readiness panel driven by production-manifest.json, including public monitor, private OAuth, secret-storage and deferred-work states.",
+    "reason": "Expose the real implementation state without mixing repository completion with external Cloudflare setup.",
+    "source": "AIOS Production Consolidation v1",
+    "status": "Waiting Review",
+    "rollback": "Revert the dashboard index and project registry changes on this feature branch."
   }
 ]
