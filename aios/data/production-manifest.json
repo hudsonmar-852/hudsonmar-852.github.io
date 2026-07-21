@@ -1,0 +1,35 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-21T08:00:00Z",
+  "repository": "hudsonmar-852/hudsonmar-852.github.io",
+  "publicMonitor": {
+    "path": "/aios/",
+    "status": "operational",
+    "dataDrivenRegistry": "implemented"
+  },
+  "privateAccess": {
+    "provider": "cloudflare_access_google_oauth",
+    "repositoryAssets": "implemented",
+    "accountConfiguration": "pending_external_setup",
+    "testPath": "/private-test/"
+  },
+  "secretManagement": {
+    "onePassword": "not_used",
+    "runtimeSecrets": "cloudflare_encrypted_secrets",
+    "ciCdSecrets": "github_actions_secrets"
+  },
+  "modules": {
+    "jeffreyContextTriggerMvp": "implemented",
+    "jeffreyHumanStateVoiceLayer": "implemented",
+    "persistentAmendmentRegistry": "implemented",
+    "fiveLayerContextArchitecture": "waiting_review"
+  },
+  "deferred": [
+    {
+      "id": "grok-login-test",
+      "status": "deferred",
+      "blocking": false
+    }
+  ]
+}
+
