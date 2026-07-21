@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "thresholds": {
+    "jeffrey_voice_score": 90,
+    "warm_heart_score": 90,
+    "reply_likelihood_score": 75,
+    "ai_smell_max": 10
+  },
+  "checks": [
+    "sounds_like_natural_hong_kong_whatsapp",
+    "starts_from_life_or_relationship_context",
+    "contains_only_one_main_purpose",
+    "contains_at_most_one_action_suggestion",
+    "does_not_pressure_or_sell",
+    "does_not_expose_private_state",
+    "does_not_make_medical_claims",
+    "uses_zero_to_two_approved_emojis",
+    "would_be_sent_by_jeffrey_without_rewriting"
+  ],
+  "rewrite_policy": {
+    "max_passes": 3,
+    "reject_if_failed_after_max_passes": true,
+    "selection_rule": "Generate up to two candidates and retain only the highest-scoring approved draft."
+  }
+}
