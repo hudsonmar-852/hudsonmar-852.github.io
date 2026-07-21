@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jeffrey Client Relationship Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["client_id", "relationship_stage", "closeness_score", "preferred_tone"],
+  "properties": {
+    "client_id": {"type": "string", "description": "Use an anonymised identifier in public or test data."},
+    "relationship_stage": {"enum": ["new", "developing", "established", "long_term", "inactive"]},
+    "closeness_score": {"type": "integer", "minimum": 1, "maximum": 10},
+    "preferred_tone": {"enum": ["gentle", "direct", "professional", "light"]},
+    "humour_allowed": {"type": "boolean"},
+    "personal_checkin_allowed": {"type": "boolean"},
+    "last_contact_tone": {"enum": ["unknown", "positive", "neutral", "tired", "stressed", "motivated"]},
+    "do_not_mention": {"type": "array", "items": {"type": "string"}},
+    "consent_status": {"enum": ["unknown", "draft_assistance_allowed", "not_allowed"]},
+    "privacy_class": {"enum": ["standard", "sensitive", "restricted"]}
+  }
+}
