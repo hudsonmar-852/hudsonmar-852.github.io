@@ -1,0 +1,12 @@
+[
+  {
+    "id":"CL-20260721-001",
+    "date":"2026-07-21",
+    "version":"AIOS Dashboard v3.1",
+    "change":"Added persistent innovation watchlist, amendment candidates, discussion queue and governed merge tracking.",
+    "reason":"Prevent high-value daily recommendations from being lost in chat history.",
+    "source":"AI Daily Workflow Review",
+    "status":"Implemented",
+    "rollback":"Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."
+  }
+]
