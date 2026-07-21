@@ -8,5 +8,15 @@
     "source":"AI Daily Workflow Review",
     "status":"Implemented",
     "rollback":"Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."
+  },
+  {
+    "id":"CL-20260721-002",
+    "date":"2026-07-21",
+    "version":"AIOS Security v3",
+    "change":"Replaced the planned shared username/password gate with Cloudflare Access and approved Google OAuth identities; added repository-side authentication architecture and governance documentation.",
+    "reason":"Remove password storage and reset responsibilities, support user-level revocation and preserve zero additional subscription cost at the current scale.",
+    "source":"AIOS-SEC-003",
+    "status":"Implemented",
+    "rollback":"Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate and are not changed by this repository commit."
   }
 ]
