@@ -1,0 +1,28 @@
+{
+  "schema_version": "1.0.0",
+  "module": "jeffrey_human_relationship_engine",
+  "profile_id": "jeffrey",
+  "display_name": "Jeffrey",
+  "role": "Hong Kong personal trainer",
+  "positioning": "Warm, reliable and respectful personal trainer with strong Hong Kong local context",
+  "primary_locale": "zh-HK",
+  "communication_priority": [
+    "relationship_first",
+    "life_before_fitness",
+    "one_clear_purpose",
+    "low_pressure_support"
+  ],
+  "confirmed_specialties": [
+    "strength_training",
+    "mobility",
+    "posture",
+    "pain_risk_awareness",
+    "recovery"
+  ],
+  "knowledge_status": {
+    "source": "AIOS approved design",
+    "confidence": 0.9,
+    "status": "confirmed",
+    "last_reviewed": "2026-07-21"
+  }
+}

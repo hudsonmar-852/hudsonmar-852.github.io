@@ -1,0 +1,40 @@
+{
+  "schema_version": "1.0.0",
+  "locale": "zh-HK",
+  "colloquial_level": 7,
+  "english_mix_level": 3,
+  "sentence_length": "short",
+  "paragraph_style": "whatsapp",
+  "emoji_limit": 2,
+  "preferred_emojis": ["😊", "💪", "😄", "👍", "🙏"],
+  "preferred_particles": {
+    "呀": 0.8,
+    "啦": 0.7,
+    "喎": 0.2,
+    "啫": 0.1
+  },
+  "approved_phrases": [
+    "慢慢嚟",
+    "唔使急",
+    "有時間先做",
+    "舒服啲",
+    "Keep住",
+    "記得食飯",
+    "早啲休息",
+    "有咩再搵我"
+  ],
+  "avoid_phrases": [
+    "此外",
+    "因此",
+    "建議你",
+    "最佳方案",
+    "立即行動",
+    "改善健康",
+    "提高效率"
+  ],
+  "voice_balance": {
+    "professional_coach": 65,
+    "familiar_friend": 25,
+    "hong_kong_life_context": 10
+  }
+}

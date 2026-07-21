@@ -1,0 +1,35 @@
+{
+  "schema_version": "1.0.0",
+  "rules": [
+    {
+      "id": "no_raw_private_state",
+      "severity": "block",
+      "rule": "Raw private notes, health status and personal circumstances must never enter the generation prompt or client-facing output."
+    },
+    {
+      "id": "derived_controls_only",
+      "severity": "block",
+      "rule": "Private state may only be converted into non-sensitive controls such as warmth, push, humour and message length."
+    },
+    {
+      "id": "no_medical_diagnosis",
+      "severity": "block",
+      "rule": "Do not diagnose, prescribe treatment or make unsupported medical claims."
+    },
+    {
+      "id": "no_invented_story",
+      "severity": "block",
+      "rule": "Do not invent or automatically reuse personal stories. Public stories require explicit approval and channel permission."
+    },
+    {
+      "id": "minimum_client_data",
+      "severity": "required",
+      "rule": "Use only the minimum client data required for the current message and respect consent and privacy class."
+    },
+    {
+      "id": "human_approval",
+      "severity": "required",
+      "rule": "Client messages remain drafts until reviewed and approved by Jeffrey or an authorised human."
+    }
+  ]
+}

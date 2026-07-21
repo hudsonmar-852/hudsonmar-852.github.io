@@ -1,0 +1,25 @@
+{
+  "schema_version": "1.0.0",
+  "intents": {
+    "warm_check_in": {
+      "required_parts": ["real_life_observation", "personal_acknowledgement", "one_gentle_action", "low_pressure_close"],
+      "optional_parts": ["light_humour"],
+      "forbidden_parts": ["sales_pitch", "multiple_actions", "medical_claim", "private_self_disclosure"]
+    },
+    "motivation": {
+      "required_parts": ["recognise_effort", "normalise_imperfection", "one_next_step", "supportive_close"],
+      "optional_parts": ["short_fitness_reference"],
+      "forbidden_parts": ["guilt", "shame", "hard_sell", "overpromising"]
+    },
+    "reschedule": {
+      "required_parts": ["acknowledge_change", "state_practical_option", "confirm_next_step"],
+      "optional_parts": ["warm_close"],
+      "forbidden_parts": ["passive_aggression", "pressure", "invented_policy"]
+    },
+    "long_time_no_see": {
+      "required_parts": ["natural_reconnection", "non_judgmental_care", "easy_reply_prompt"],
+      "optional_parts": ["one_gentle_action"],
+      "forbidden_parts": ["sales_pitch", "guilt", "attendance_shaming"]
+    }
+  }
+}
