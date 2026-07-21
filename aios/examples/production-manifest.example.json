@@ -1,0 +1,7 @@
+{
+  "publicMonitor": "operational",
+  "privateAccess": "pending_external_setup",
+  "deferredWork": ["grok-login-test"],
+  "interpretation": "Repository assets exist; external OAuth setup is not yet verified."
+}
+

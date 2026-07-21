@@ -1,32 +1,52 @@
 [
   {
-    "id":"CL-20260721-001",
-    "date":"2026-07-21",
-    "version":"AIOS Dashboard v3.1",
-    "change":"Added persistent innovation watchlist, amendment candidates, discussion queue and governed merge tracking.",
-    "reason":"Prevent high-value daily recommendations from being lost in chat history.",
-    "source":"AI Daily Workflow Review",
-    "status":"Implemented",
-    "rollback":"Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."
+    "id": "CL-20260721-001",
+    "date": "2026-07-21",
+    "version": "AIOS Dashboard v3.1",
+    "change": "Added persistent innovation watchlist, amendment candidates, discussion queue and governed merge tracking.",
+    "reason": "Prevent high-value daily recommendations from being lost in chat history.",
+    "source": "AI Daily Workflow Review",
+    "status": "Implemented",
+    "rollback": "Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."
   },
   {
-    "id":"CL-20260721-002",
-    "date":"2026-07-21",
-    "version":"AIOS Security v3",
-    "change":"Replaced the planned shared username/password gate with Cloudflare Access and approved Google OAuth identities; added repository-side authentication architecture and governance documentation.",
-    "reason":"Remove password storage and reset responsibilities, support user-level revocation and preserve zero additional subscription cost at the current scale.",
-    "source":"AIOS-SEC-003",
-    "status":"Implemented",
-    "rollback":"Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate and are not changed by this repository commit."
+    "id": "CL-20260721-002",
+    "date": "2026-07-21",
+    "version": "AIOS Security v3",
+    "change": "Replaced the planned shared username/password gate with Cloudflare Access and approved Google OAuth identities; added repository-side authentication architecture and governance documentation.",
+    "reason": "Remove password storage and reset responsibilities, support user-level revocation and preserve zero additional subscription cost at the current scale.",
+    "source": "AIOS-SEC-003",
+    "status": "Implemented",
+    "rollback": "Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate."
   },
   {
-    "id":"CL-20260721-003",
-    "date":"2026-07-21",
-    "version":"AIOS Private Login Test v1",
-    "change":"Added a Cloudflare Pages Function at /private-test/ that confirms successful Access authentication, displays the authenticated email header and provides a logout test.",
-    "reason":"Provide a safe, no-secret test target before placing the real private AIOS or Jeffrey Reminder dashboard behind Google OAuth.",
-    "source":"AIOS-SEC-003 implementation test",
-    "status":"Implemented",
-    "rollback":"Delete functions/private-test/index.js and aios/security/private-login-test.md, then restore this change-log file to its prior blob. Cloudflare Access policies must be removed separately in the Cloudflare dashboard."
+    "id": "CL-20260721-003",
+    "date": "2026-07-21",
+    "version": "AIOS Private Login Test v1",
+    "change": "Added a Cloudflare Pages Function at /private-test/ that confirms successful Access authentication, displays the authenticated email header and provides a logout test.",
+    "reason": "Provide a safe, no-secret test target before placing a real private dashboard behind Google OAuth.",
+    "source": "AIOS-SEC-003 implementation test",
+    "status": "Repository implementation complete; external setup pending",
+    "rollback": "Delete functions/private-test/index.js and aios/security/private-login-test.md. Cloudflare Access policies must be removed separately."
+  },
+  {
+    "id": "CL-20260721-004",
+    "date": "2026-07-21",
+    "version": "AIOS Production Consolidation v1",
+    "change": "Removed the obsolete 1Password or Bitwarden dependency, introduced vendor-neutral secret metadata, added a machine-readable production manifest and validation assets, and recorded Grok login testing as deferred.",
+    "reason": "Turn approved decisions into consistent executable assets without overstating external OAuth deployment.",
+    "source": "AIOS-SEC-004",
+    "status": "Waiting Review",
+    "rollback": "Revert this feature branch or close its draft pull request without merging."
+  },
+  {
+    "id": "CL-20260721-005",
+    "date": "2026-07-21",
+    "version": "AIOS Dashboard v3.2",
+    "change": "Added a responsive Production Readiness panel driven by production-manifest.json, including public monitor, private OAuth, secret-storage and deferred-work states.",
+    "reason": "Expose the real implementation state without mixing repository completion with external Cloudflare setup.",
+    "source": "AIOS Production Consolidation v1",
+    "status": "Waiting Review",
+    "rollback": "Revert the dashboard index and project registry changes on this feature branch."
   }
 ]

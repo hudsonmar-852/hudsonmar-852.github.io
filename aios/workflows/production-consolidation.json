@@ -1,0 +1,15 @@
+{
+  "id": "AIOS-WF-PROD-CONSOLIDATE-001",
+  "states": ["READY", "EXECUTING", "WAITING_REVIEW", "APPROVED", "COMPLETED", "BLOCKED", "ROLLED_BACK"],
+  "currentState": "WAITING_REVIEW",
+  "steps": [
+    "read_current_registry",
+    "separate_approved_from_discussion",
+    "validate_public_safety",
+    "run_tests",
+    "open_draft_pull_request",
+    "wait_for_human_approval"
+  ],
+  "automaticMerge": false
+}
+
