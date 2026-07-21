@@ -1,0 +1,98 @@
+{
+  "schema_version": "1.0.0",
+  "date": "2026-07-21",
+  "module": "jeffrey_high_value_context_trigger",
+  "mode": "worked_example",
+  "source_policy": {
+    "official_sources_only": true,
+    "minimum_score": 70,
+    "max_daily_suggestions": 3,
+    "human_approval_required": true
+  },
+  "signals": [
+    {
+      "signal_id": "td-wch-path-closure",
+      "source_type": "official_transport_notice",
+      "source_name": "Hong Kong Transport Department",
+      "source_date": "2026-07-17",
+      "effective_period": "2026-07-20 to 2026-08-14, Mondays to Saturdays, 09:00-17:00",
+      "summary": "The section of Wong Chuk Hang Path west of Shouson Hill Road West is temporarily closed to vehicular traffic for excavation works.",
+      "scores": {
+        "source_reliability": 20,
+        "client_usefulness": 23,
+        "local_relevance": 20,
+        "conversation_naturalness": 18,
+        "jeffrey_brand_fit": 13,
+        "total": 94
+      },
+      "eligible_segments": [
+        "scheduled_today",
+        "driving_clients",
+        "southside_commuters"
+      ],
+      "recommended_intent": "travel_care",
+      "decision": "generate"
+    },
+    {
+      "signal_id": "td-wch-road-overnight-works",
+      "source_type": "official_transport_notice",
+      "source_name": "Hong Kong Transport Department",
+      "source_date": "2026-05-18",
+      "effective_period": "2026-05-26 to 2026-07-24, weekdays, 00:30-05:00",
+      "summary": "An eastbound lane on Wong Chuk Hang Road outside Derrick Industrial Building is closed overnight, with nearby night bus and minibus stops temporarily relocated.",
+      "scores": {
+        "source_reliability": 20,
+        "client_usefulness": 17,
+        "local_relevance": 20,
+        "conversation_naturalness": 14,
+        "jeffrey_brand_fit": 11,
+        "total": 82
+      },
+      "eligible_segments": [
+        "late_session_clients",
+        "night_shift_clients",
+        "southside_commuters"
+      ],
+      "recommended_intent": "travel_care",
+      "decision": "generate_for_matching_clients_only"
+    }
+  ],
+  "generated_messages": [
+    {
+      "message_id": "msg-001",
+      "target_segment": "scheduled_today",
+      "intent": "travel_care",
+      "why_now": "Daytime road closure may affect clients driving through Wong Chuk Hang Path.",
+      "draft": "提提你呀，黃竹坑徑今日朝九晚五有工程封路。你如果揸車過嚟，預多少少時間會舒服啲😊 唔使趕，安全到就得。",
+      "scores": {
+        "jeffrey_voice": 94,
+        "warm_heart": 93,
+        "reply_likelihood": 82,
+        "ai_smell": 5
+      },
+      "safety_pass": true,
+      "human_approval": "pending"
+    },
+    {
+      "message_id": "msg-002",
+      "target_segment": "late_session_clients",
+      "intent": "travel_care",
+      "why_now": "Overnight works and relocated stops may affect clients leaving very late or starting early shifts.",
+      "draft": "你今晚如果比較夜先走，黃竹坑道近德瑞大廈嗰邊有通宵工程，夜巴同小巴站會移少少位。落車前望一望路線就穩陣啲，有咩再搵我呀👍",
+      "scores": {
+        "jeffrey_voice": 92,
+        "warm_heart": 91,
+        "reply_likelihood": 79,
+        "ai_smell": 7
+      },
+      "safety_pass": true,
+      "human_approval": "pending"
+    }
+  ],
+  "selection_notes": [
+    "No forced fitness angle was added.",
+    "Each message targets only clients affected by the signal.",
+    "One practical action is used per message.",
+    "Both messages remain drafts pending human approval."
+  ]
+}
