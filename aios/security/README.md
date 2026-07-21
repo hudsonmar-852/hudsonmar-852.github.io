@@ -1,27 +1,31 @@
-# AIOS Security Center Lite v1
+# AIOS Security Center Lite v2
 
-Status: Active
-Scope: Lightweight governance for public repositories
+Status: Active  
+Scope: Lightweight governance for public and private AIOS services  
+Decision: AIOS does not require 1Password or another paid password manager at the current stage.
 
 ## Storage model
 
-### Password manager
-Use 1Password or Bitwarden as the source of truth for:
-- API keys
-- access tokens
-- webhook secrets
-- production credentials
-- recovery codes
-- sensitive personal records
+### Runtime secrets
 
-### GitHub Actions Secrets
-Use only for credentials required by CI/CD. Do not use GitHub Secrets as the complete vault or long-term inventory.
+Use Cloudflare encrypted secrets for credentials required by Cloudflare Pages, Workers or protected backend services.
+
+### CI/CD secrets
+
+Use GitHub Actions Secrets only for credentials required by CI/CD. Do not publish secret values or use repository files as a vault.
+
+### Private documents
+
+Use Google Drive account permissions for private documents. Do not expose folder IDs, private prompts or access configuration in public dashboard data.
 
 ### Public repository
-Store only:
-- secret names or IDs
+
+Store only public-safe metadata:
+
+- stable secret ID
 - owner role
 - environment
+- approved storage type
 - review and rotation dates
 - public-safe procedures
 
@@ -30,12 +34,12 @@ Never store real secret values.
 ## Minimum workflow
 
 1. Create the credential in the service provider.
-2. Save the value directly into the password manager.
-3. Record metadata in the private Secret Inventory.
-4. Add only the required CI/CD value to GitHub Actions Secrets.
-5. Reference it in code through an environment variable.
-6. Validate that no value appears in files, commit messages, logs or screenshots.
-7. Rotate and revoke immediately after suspected exposure.
+2. Store the value directly in Cloudflare encrypted secrets or GitHub Actions Secrets according to runtime need.
+3. Record metadata only in the private Secret Inventory.
+4. Reference the credential through an environment variable.
+5. Validate that no value appears in files, commit messages, logs or screenshots.
+6. Rotate and revoke immediately after suspected exposure.
+7. Record the change without copying the secret value.
 
 ## Publication Gate
 
@@ -43,28 +47,17 @@ Before every public push, confirm:
 
 - [ ] No API key, token, password or private key
 - [ ] No webhook URL or endpoint containing a secret
-- [ ] No `.env` or exported vault file
+- [ ] No `.env` file with real values
 - [ ] No personal identity or private relationship data
 - [ ] No production system prompt or private workflow detail
 - [ ] No credential in screenshots, logs, examples or commit messages
 - [ ] Only public-safe metadata is included
 
-## Naming standard
+## Authentication
 
-Environment variables:
-
-```text
-SERVICE_PURPOSE_ENV
-OPENAI_CONTENT_PROD
-GITHUB_DEPLOY_PROD
-GOOGLE_DRIVE_AUTOMATION_TEST
-```
-
-GitHub Actions secret names should identify service, purpose and environment without exposing the value.
+Private AIOS routes use Cloudflare Access with approved Google OAuth identities. AIOS does not create or store usernames and passwords. Repository assets do not prove that Cloudflare account configuration is live; production status remains pending until an approved and unapproved account test both pass.
 
 ## Incident response
-
-When exposure is suspected:
 
 1. Revoke or rotate the credential first.
 2. Stop affected automation.
@@ -75,4 +68,4 @@ When exposure is suspected:
 
 ## Boundary
 
-ChatGPT may help design inventories, checklists, naming, migration and review procedures. ChatGPT must not be treated as the storage location for secret values.
+ChatGPT and Codex may design inventories, validation, migration and review procedures. They must never be treated as storage locations for secret values.
