@@ -1,8 +1,74 @@
 [
-  {"id":"aios","name":"AIOS Dashboard","description":"Public-safe monitoring dashboard for project health, reports, risks and decisions.","category":"System","visibility":"Public","status":"Live","version":"3.0","lastUpdated":"2026-07-19","publicUrl":"./","repository":"hudsonmar-852/hudsonmar-852.github.io"},
-  {"id":"bible","name":"Bible","description":"Bible verses, daily blessings and shareable public content.","category":"Content","visibility":"Public","status":"Live","version":"1.0","lastUpdated":"2026-07-19","publicUrl":"../bible.html","repository":"hudsonmar-852/hudsonmar-852.github.io"},
-  {"id":"jeffrey-demo","name":"Jeffrey Demo","description":"Public demonstration of a fitness content and reminder workflow.","category":"Demo","visibility":"Public","status":"Live","version":"1.0","lastUpdated":"2026-07-19","publicUrl":"../Jeffrey/","repository":"hudsonmar-852/Jeffrey"},
-  {"id":"prompt-intelligence","name":"Prompt Intelligence","description":"Public-safe Prompt2 edition for prompt analysis, classification and local records; private Prompt and Grok studios are excluded.","category":"Public Tool","visibility":"Public","status":"Live","version":"2.0","lastUpdated":"2026-07-19","publicUrl":"../prompt2/","repository":"hudsonmar-852/hudsonmar-852.github.io"},
-  {"id":"avataros","name":"AvatarOS","description":"Public project specification and development status for AvatarOS.","category":"System","visibility":"Public","status":"Live","version":"0.1","lastUpdated":"2026-07-19","publicUrl":"../avataros/","repository":"hudsonmar-852/hudsonmar-852.github.io"},
-  {"id":"share-library","name":"Share Library","description":"Index of approved public guides, reports and reusable knowledge.","category":"Knowledge","visibility":"Public","status":"Live","version":"1.0","lastUpdated":"2026-07-19","publicUrl":"../share/","repository":"hudsonmar-852/hudsonmar-852.github.io"}
+  {
+    "id": "aios",
+    "name": "AIOS Dashboard",
+    "description": "Public-safe AIOS monitoring dashboard with governed decisions, amendment registry and production-readiness status.",
+    "category": "System",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "3.2",
+    "lastUpdated": "2026-07-21",
+    "publicUrl": "./",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  },
+  {
+    "id": "bible",
+    "name": "Bible",
+    "description": "Bible verses, daily blessings and shareable public content.",
+    "category": "Content",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "1.0",
+    "lastUpdated": "2026-07-19",
+    "publicUrl": "../bible.html",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  },
+  {
+    "id": "jeffrey-demo",
+    "name": "Jeffrey Demo",
+    "description": "Public demonstration of a fitness content and reminder workflow.",
+    "category": "Demo",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "1.0",
+    "lastUpdated": "2026-07-19",
+    "publicUrl": "../Jeffrey/",
+    "repository": "hudsonmar-852/Jeffrey"
+  },
+  {
+    "id": "prompt-intelligence",
+    "name": "Prompt Intelligence",
+    "description": "Public-safe Prompt2 edition for prompt analysis, classification and local records; private Prompt and Grok studios are excluded.",
+    "category": "Public Tool",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "2.0",
+    "lastUpdated": "2026-07-19",
+    "publicUrl": "../prompt2/",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  },
+  {
+    "id": "avataros",
+    "name": "AvatarOS",
+    "description": "Public project specification and development status for AvatarOS.",
+    "category": "System",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "0.1",
+    "lastUpdated": "2026-07-19",
+    "publicUrl": "../avataros/",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  },
+  {
+    "id": "share-library",
+    "name": "Share Library",
+    "description": "Index of approved public guides, reports and reusable knowledge.",
+    "category": "Knowledge",
+    "visibility": "Public",
+    "status": "Live",
+    "version": "1.0",
+    "lastUpdated": "2026-07-19",
+    "publicUrl": "../share/",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  }
 ]
