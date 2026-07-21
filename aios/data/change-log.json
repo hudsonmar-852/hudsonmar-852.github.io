@@ -18,5 +18,15 @@
     "source":"AIOS-SEC-003",
     "status":"Implemented",
     "rollback":"Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate and are not changed by this repository commit."
+  },
+  {
+    "id":"CL-20260721-003",
+    "date":"2026-07-21",
+    "version":"AIOS Private Login Test v1",
+    "change":"Added a Cloudflare Pages Function at /private-test/ that confirms successful Access authentication, displays the authenticated email header and provides a logout test.",
+    "reason":"Provide a safe, no-secret test target before placing the real private AIOS or Jeffrey Reminder dashboard behind Google OAuth.",
+    "source":"AIOS-SEC-003 implementation test",
+    "status":"Implemented",
+    "rollback":"Delete functions/private-test/index.js and aios/security/private-login-test.md, then restore this change-log file to its prior blob. Cloudflare Access policies must be removed separately in the Cloudflare dashboard."
   }
 ]
