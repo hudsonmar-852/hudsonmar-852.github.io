@@ -1,0 +1,10 @@
+{
+  "branchGoal": "Consolidate approved AIOS production state and remove the obsolete password-manager dependency.",
+  "input": ["AIOS-SEC-003", "merged dashboard registry", "private login test endpoint"],
+  "output": ["production manifest", "security storage policy", "validation assets"],
+  "affectedFiles": ["aios/data", "aios/security", "aios/config", "aios/scripts", "aios/tests"],
+  "dependencies": ["Cloudflare Access external configuration"],
+  "definitionOfDone": ["tests pass", "no secret values", "draft PR opened", "PR not merged"],
+  "reviewChecklist": ["status accuracy", "public safety", "rollback documented", "deferred work preserved"]
+}
+
