@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "status": "approved",
+  "paidPasswordManagerRequired": false,
+  "authentication": "cloudflare_access_google_oauth",
+  "secretStores": {
+    "runtime": "cloudflare_encrypted_secrets",
+    "ciCd": "github_actions_secrets",
+    "documents": "google_drive_account_permissions"
+  },
+  "forbiddenPublicContent": [
+    "secret_values",
+    "api_keys",
+    "tokens",
+    "webhook_urls",
+    "folder_ids",
+    "private_prompts",
+    "personal_relationship_data",
+    "internal_automation_configuration"
+  ]
+}
+
