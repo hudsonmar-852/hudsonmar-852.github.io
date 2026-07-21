@@ -1,0 +1,16 @@
+[
+  {
+    "id":"A-20260721-001",
+    "title":"Persistent AIOS Amendment Registry",
+    "priority":5,
+    "source":"AI Daily Workflow Review",
+    "reason":"High-value daily recommendations can be overlooked when they remain only in chat history.",
+    "mergeArea":"Governance / Knowledge / Dashboard",
+    "expectedBenefit":"Preserves recommendations as reviewable system assets with traceable status.",
+    "risk":"Queue growth without periodic triage.",
+    "recommendation":"Add to persistent discussion queue and review by priority.",
+    "status":"Discussion",
+    "addedAt":"2026-07-21",
+    "impact":{"prompt":true,"workflow":true,"dashboard":true,"memory":true,"knowledge":true,"automation":true,"qa":true,"safety":false,"cost":false,"documentation":true}
+  }
+]
