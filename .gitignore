@@ -31,3 +31,7 @@ exports/
 Thumbs.db
 .vscode/settings.json
 .idea/
+
+# Local AIOS scan and generated planning state
+scan_history.json
+aios_config.json
