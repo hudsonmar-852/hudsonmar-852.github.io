@@ -1,0 +1,36 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "generic-premium-avatar",
+  "displayName": "Generic Premium Avatar",
+  "identity": {
+    "ageRange": "adult",
+    "presentation": "confident premium fitness creator",
+    "faceShape": "balanced oval face",
+    "hair": "dark, neat, natural texture",
+    "eyes": "dark brown",
+    "skinTone": "natural warm tone"
+  },
+  "consistency": {
+    "immutableTraits": [
+      "preserve facial proportions across every frame",
+      "preserve eye colour and hairline",
+      "use realistic skin texture without plastic smoothing"
+    ],
+    "wardrobeRules": [
+      "use clean neutral athletic clothing",
+      "avoid visible third-party logos"
+    ],
+    "negativePrompts": [
+      "identity drift",
+      "asymmetric eyes",
+      "extra fingers",
+      "waxy skin",
+      "unreadable text"
+    ]
+  },
+  "approval": {
+    "publicSafe": true,
+    "approvedForGeneration": true,
+    "humanApprovalRequired": true
+  }
+}

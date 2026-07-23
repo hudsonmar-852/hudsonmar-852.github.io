@@ -17,7 +17,8 @@ test('does not require a paid password manager', () => {
 });
 
 test('preserves human approval and no auto-merge', () => {
-  assert.equal(workflow.currentState, 'WAITING_REVIEW');
+  assert.ok(workflow.states.includes(workflow.currentState));
+  assert.equal(workflow.currentState, 'COMPLETED');
   assert.equal(workflow.automaticMerge, false);
 });
 
@@ -28,4 +29,3 @@ test('records Grok testing as non-blocking deferred work', () => {
     blocking: false
   });
 });
-

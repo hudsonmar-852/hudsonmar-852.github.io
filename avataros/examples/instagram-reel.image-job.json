@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "1.0.0",
+  "id": "premium-avatar-studio-intro",
+  "characterId": "generic-premium-avatar",
+  "objective": "Create a consistent hero keyframe for a premium fitness introduction reel.",
+  "render": {
+    "provider": "Grok Imagine",
+    "style": "ultra-realistic",
+    "aspectRatio": "9:16",
+    "imageCount": 4,
+    "format": "png"
+  },
+  "scene": {
+    "location": "minimal premium training studio",
+    "camera": "eye-level medium portrait, natural 50mm perspective",
+    "lighting": "soft directional key light with controlled warm rim light"
+  },
+  "approval": {
+    "publicSafe": true,
+    "humanApprovalRequired": true
+  }
+}

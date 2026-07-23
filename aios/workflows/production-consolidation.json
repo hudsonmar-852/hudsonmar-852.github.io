@@ -1,7 +1,7 @@
 {
   "id": "AIOS-WF-PROD-CONSOLIDATE-001",
   "states": ["READY", "EXECUTING", "WAITING_REVIEW", "APPROVED", "COMPLETED", "BLOCKED", "ROLLED_BACK"],
-  "currentState": "WAITING_REVIEW",
+  "currentState": "COMPLETED",
   "steps": [
     "read_current_registry",
     "separate_approved_from_discussion",
@@ -12,4 +12,3 @@
   ],
   "automaticMerge": false
 }
-

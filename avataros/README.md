@@ -8,13 +8,21 @@ AvatarOS V3 is a modular production system for creating consistent AI avatar vid
 
 ## Current Sprint
 
-Sprint 0 — Foundation
+Sprint 2 — Prompt Engine
 
 ## Main Entry Points
 
 - ChatGPT conversation workflow
 - GitHub Pages web dashboard
 - JSON-based character, scene, camera, lighting, prompt, and export presets
+
+## Image production
+
+- Validate inputs with `node avataros/scripts/validate-avataros.mjs`.
+- Build a provider-ready prompt pack with
+  `node avataros/scripts/build-image-prompt.mjs`.
+- Follow `docs/image-production-runbook.md` for generation, failure handling
+  and human approval.
 
 ## Project Structure
 

@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hudsonmar-852.github.io/avataros/schemas/character-bible.schema.json",
+  "title": "AvatarOS Character Bible",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "id", "displayName", "identity", "consistency", "approval"],
+  "properties": {
+    "schemaVersion": {"const": "1.0.0"},
+    "id": {"type": "string", "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"},
+    "displayName": {"type": "string", "minLength": 1, "maxLength": 80},
+    "identity": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ageRange", "presentation", "faceShape", "hair", "eyes", "skinTone"],
+      "properties": {
+        "ageRange": {"type": "string", "minLength": 1, "maxLength": 40},
+        "presentation": {"type": "string", "minLength": 1, "maxLength": 80},
+        "faceShape": {"type": "string", "minLength": 1, "maxLength": 80},
+        "hair": {"type": "string", "minLength": 1, "maxLength": 120},
+        "eyes": {"type": "string", "minLength": 1, "maxLength": 80},
+        "skinTone": {"type": "string", "minLength": 1, "maxLength": 80}
+      }
+    },
+    "consistency": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["immutableTraits", "wardrobeRules", "negativePrompts"],
+      "properties": {
+        "immutableTraits": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"type": "string", "minLength": 1, "maxLength": 160}
+        },
+        "wardrobeRules": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1, "maxLength": 160}
+        },
+        "negativePrompts": {
+          "type": "array",
+          "items": {"type": "string", "minLength": 1, "maxLength": 160}
+        }
+      }
+    },
+    "approval": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["publicSafe", "approvedForGeneration", "humanApprovalRequired"],
+      "properties": {
+        "publicSafe": {"type": "boolean"},
+        "approvedForGeneration": {"type": "boolean"},
+        "humanApprovalRequired": {"const": true}
+      }
+    }
+  }
+}
