@@ -8,8 +8,8 @@ Build a reusable AI Avatar Operating System with ChatGPT monitoring, GitHub Page
 
 | Sprint | Objective | Deliverable | Status | Progress |
 |---|---|---|---|---:|
-| Sprint 0 | Foundation | Repo structure, config, dashboard placeholder | In progress | 40% |
-| Sprint 1 | Character Engine | Character Bible schema + sample character | Pending | 0% |
+| Sprint 0 | Foundation | Repo structure, config, dashboard placeholder | Completed | 100% |
+| Sprint 1 | Character Engine | Character Bible schema + sample character | Completed | 100% |
 | Sprint 2 | Prompt Engine | Prompt builder templates | Pending | 0% |
 | Sprint 3 | Web UI MVP | Interactive GitHub Pages dashboard | Pending | 0% |
 | Sprint 4 | Scene Library | Scene, camera, lighting presets | Pending | 0% |
@@ -26,14 +26,22 @@ Build a reusable AI Avatar Operating System with ChatGPT monitoring, GitHub Page
 - [x] Create `/avataros/VERSION`
 - [x] Create `/avataros/CHANGELOG.md`
 - [x] Create `/avataros/project-board.md`
-- [ ] Create `/avataros/config/avataros.config.json`
-- [ ] Create `/avataros/docs/system-spec.md`
-- [ ] Create `/avataros/index.html`
-- [ ] Create first dashboard page
+- [x] Create `/avataros/config/avataros.config.json`
+- [x] Create `/avataros/docs/system-spec.md`
+- [x] Create `/avataros/index.html`
+- [x] Create first dashboard page
 
 ## Manual Steps Required
 
 None yet.
+
+## Sprint 1 Tasks
+
+- [x] Define the Character Bible schema
+- [x] Add a public-safe sample character
+- [x] Define the structured Image Job input
+- [x] Add machine validation and failure reporting
+- [x] Add CI coverage and production runbook
 
 ## Recommended Working Mode
 

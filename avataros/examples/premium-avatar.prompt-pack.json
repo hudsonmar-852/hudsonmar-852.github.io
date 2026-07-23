@@ -1,0 +1,16 @@
+{
+  "schemaVersion": "1.0.0",
+  "jobId": "premium-avatar-studio-intro",
+  "provider": "Grok Imagine",
+  "prompt": "Create a consistent hero keyframe for a premium fitness introduction reel. Character identity: confident premium fitness creator, adult, balanced oval face, dark, neat, natural texture, dark brown, natural warm tone. Identity lock: preserve facial proportions across every frame; preserve eye colour and hairline; use realistic skin texture without plastic smoothing. Wardrobe: use clean neutral athletic clothing; avoid visible third-party logos. Scene: minimal premium training studio. Camera: eye-level medium portrait, natural 50mm perspective. Lighting: soft directional key light with controlled warm rim light. Visual style: ultra-realistic. Composition: 9:16, 4 variation(s), PNG output. Preserve natural anatomy, realistic texture, coherent lighting and exact character identity.",
+  "negativePrompt": "identity drift, asymmetric eyes, extra fingers, waxy skin, unreadable text",
+  "output": {
+    "aspectRatio": "9:16",
+    "imageCount": 4,
+    "format": "png"
+  },
+  "approval": {
+    "status": "pending_human_review",
+    "required": true
+  }
+}
