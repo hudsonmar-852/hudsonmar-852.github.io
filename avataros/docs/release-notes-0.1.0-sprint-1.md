@@ -31,6 +31,8 @@ and output quality before CapCut or Canva use.
 - The AvatarOS baseline validates one Character Bible and one Image Job.
 - The reference prompt pack matches deterministic compiler output.
 - Public source safety, required asset and local-link checks pass.
+- GitHub Actions `Test public production baseline` passed on Pull Request #11:
+  `actions/runs/29986044261`.
 
 ## Known limitations
 
@@ -38,7 +40,7 @@ and output quality before CapCut or Canva use.
 - Provider availability and output behavior are not covered by repository tests.
 - The validator enforces the approved baseline directly rather than implementing
   a general-purpose JSON Schema engine.
-- GitHub CI evidence is recorded only after the feature branch is pushed.
+- The branch remains a draft Pull Request until final Cycle 2 review.
 
 ## Upgrade notes
 

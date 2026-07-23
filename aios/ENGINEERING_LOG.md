@@ -137,6 +137,9 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Approved branch scope: commits, push and CI verification only
 - Architecture decision: `aios/adr/ADR-005-avataros-image-engine-v1.md`
 - Release notes: `avataros/docs/release-notes-0.1.0-sprint-1.md`
+- Feature branch: `agent/cycle-2-image-engine`
+- Draft Pull Request: `#11`
+- GitHub Actions: Passed — run `29986044261`
 - Feature expansion: prohibited until Cycle 2 CI and review complete
 
 ## Architecture review history
