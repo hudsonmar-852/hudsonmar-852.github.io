@@ -1,6 +1,6 @@
 # AIOS Outstanding Engineering Tasks
 
-Last scanned: 2026-07-23
+Last scanned: 2026-07-25
 Mode: Production
 Architecture gate: EO-IMG-001 complete; Cycle 2 review pending
 
@@ -22,6 +22,12 @@ Local tests and production validation pass.
 - Unblocks: Next P1 Engineering Order
 
 ## P2
+
+### AIOS-OUT-JRME-001 — Complete Jeffrey production review
+
+- Status: Blocked — human/browser production evidence required
+- Scope: Authorise integration into `hudsonmar-852/Jeffrey`, check a 390px mobile viewport, review generated Cantonese with Jeffrey and smoke-test direct HKO browser fetch.
+- Risk: Medium; merge and deployment remain prohibited until complete.
 
 ### AIOS-OUT-002 — Add validator failure-case regression tests
 

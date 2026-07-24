@@ -1,5 +1,19 @@
 [
   {
+    "id": "J-RME-001",
+    "title": "Jeffrey Relationship Messaging Engine",
+    "priority": 5,
+    "source": "Production implementation order",
+    "reason": "Existing reminder direction does not match relationship-first WhatsApp use.",
+    "mergeArea": "Jeffrey / Dashboard / Data provenance / Voice QA",
+    "expectedBenefit": "Warmer, safer and more replyable member drafts with verified context.",
+    "risk": "Medium: production is delivered by a separate repository and live context is browser-only.",
+    "recommendation": "Integrate into hudsonmar-852/Jeffrey only with explicit authority, then complete Jeffrey voice and mobile browser review.",
+    "status": "Implemented — Human Review Required",
+    "addedAt": "2026-07-25",
+    "impact": {"prompt": true, "workflow": true, "dashboard": true, "memory": true, "knowledge": true, "automation": true, "qa": true, "safety": true, "cost": false, "documentation": true}
+  },
+  {
     "id":"A-20260721-001",
     "title":"Persistent AIOS Amendment Registry",
     "priority":5,

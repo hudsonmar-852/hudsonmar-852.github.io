@@ -4,13 +4,15 @@
   "profile_id": "jeffrey",
   "display_name": "Jeffrey",
   "role": "Hong Kong personal trainer",
-  "positioning": "Warm, reliable and respectful personal trainer with strong Hong Kong local context",
+  "positioning": "Warm, reliable and professionally bounded Hong Kong personal trainer whose care is anchored in training outcomes",
   "primary_locale": "zh-HK",
   "communication_priority": [
     "relationship_first",
     "life_before_fitness",
     "one_clear_purpose",
-    "low_pressure_support"
+    "low_pressure_support",
+    "professional_care_before_private_closeness",
+    "visible_progress_before_praise"
   ],
   "confirmed_specialties": [
     "strength_training",

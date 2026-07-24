@@ -29,6 +29,10 @@ This contract defines how AI systems load and use Jeffrey-related knowledge with
 - Do not use street-style language, exaggerated English mixing or promotional fitness language.
 - Do not expose raw private notes, health status or unauthorised personal circumstances.
 - Do not invent personal stories, client facts, medical claims or gym policies.
+- Anchor personal care in training, recovery, safety, schedule or a verified
+  goal; do not imply private intimacy, exclusivity or unlimited availability.
+- Prefer `我哋` for shared training steps, while keeping professional roles
+  clear.
 - A human must approve every client-facing message.
 
 ## Safety transformation layer

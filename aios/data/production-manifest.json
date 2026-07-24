@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-07-21T08:00:00Z",
+  "generatedAt": "2026-07-25T12:00:00+08:00",
   "repository": "hudsonmar-852/hudsonmar-852.github.io",
   "publicMonitor": {
     "path": "/aios/",
@@ -21,6 +21,13 @@
   "modules": {
     "jeffreyContextTriggerMvp": "implemented",
     "jeffreyHumanStateVoiceLayer": "implemented",
+    "jeffreyRelationshipMessagingEngine": {
+      "version": "1.0.0",
+      "status": "human_review_required",
+      "publicPath": "/Jeffrey/",
+      "risk": "medium",
+      "rollbackRequired": true
+    },
     "persistentAmendmentRegistry": "implemented",
     "fiveLayerContextArchitecture": "waiting_review"
   },
@@ -32,4 +39,3 @@
     }
   ]
 }
-

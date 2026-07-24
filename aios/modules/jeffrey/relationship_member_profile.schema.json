@@ -1,0 +1,37 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Jeffrey Relationship Messaging Member Profile",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["id", "displayName", "communicationStyle"],
+  "properties": {
+    "id": {"type": "string", "maxLength": 80},
+    "displayName": {"type": "string", "maxLength": 80},
+    "nickname": {"type": "string", "maxLength": 40},
+    "trainingDay": {"type": "string", "maxLength": 40},
+    "usualTrainingTime": {"type": "string", "maxLength": 20},
+    "communicationStyle": {"enum": ["warm", "playful", "calm", "direct"]},
+    "fitnessFocus": {"type": "array", "maxItems": 8, "items": {"type": "string", "maxLength": 40}},
+    "commonIssues": {"type": "array", "maxItems": 8, "items": {"type": "string", "maxLength": 40}},
+    "recentAttendance": {"enum": ["unknown", "regular", "less_frequent"]},
+    "lastMessageType": {"type": "string", "maxLength": 40},
+    "lastMessageDate": {"type": ["string", "null"], "format": "date-time"},
+    "favouriteEmoji": {"type": "array", "maxItems": 5, "items": {"type": "string", "maxLength": 8}},
+    "notes": {
+      "type": "string",
+      "maxLength": 300,
+      "description": "Optional non-sensitive operational note. Never inject raw notes into prompts or publish them."
+    },
+    "progress": {
+      "type": "object",
+      "description": "Optional verified progress only; omitted when no reliable record exists.",
+      "required": ["recordedAt", "metric", "previousValue"],
+      "properties": {
+        "recordedAt": {"type": "string", "format": "date-time"},
+        "metric": {"type": "string", "maxLength": 60},
+        "previousValue": {"type": ["number", "string"]}
+      },
+      "additionalProperties": false
+    }
+  }
+}

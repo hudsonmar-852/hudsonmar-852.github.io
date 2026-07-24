@@ -1,10 +1,15 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "thresholds": {
     "jeffrey_voice_score": 90,
     "warm_heart_score": 90,
     "reply_likelihood_score": 75,
-    "ai_smell_max": 10
+    "ai_smell_max": 10,
+    "hong_kong_naturalness_min": 4,
+    "jeffrey_voice_match_min": 4,
+    "warmth_min": 4,
+    "factual_safety_required": 5,
+    "repetition_risk_min": 4
   },
   "checks": [
     "sounds_like_natural_hong_kong_whatsapp",
@@ -14,6 +19,10 @@
     "does_not_pressure_or_sell",
     "does_not_expose_private_state",
     "does_not_make_medical_claims",
+    "care_is_anchored_in_training_or_verified_goal",
+    "does_not_imply_private_intimacy_exclusivity_or_unlimited_availability",
+    "does_not_infer_emotional_or_physical_state",
+    "uses_team_language_for_shared_training_steps",
     "uses_zero_to_two_approved_emojis",
     "would_be_sent_by_jeffrey_without_rewriting"
   ],

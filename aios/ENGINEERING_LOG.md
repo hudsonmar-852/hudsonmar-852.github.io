@@ -83,6 +83,21 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 
 ## Governance amendments pending review
 
+### AIOS-JRME-001 — Jeffrey Relationship Messaging Engine v1.0
+
+- Priority: P1
+- Status: Implemented; Human Review Required
+- Completed: 2026-07-25
+- Objective: Build a relationship-first Hong Kong Cantonese draft engine while preserving reminder history and tracking.
+- Files: `Jeffrey/*`, `aios/modules/jeffrey/*`, AIOS registries, validation workflow and README.
+- Validation: 27 automated tests pass, including 50 voice scenario messages; production asset, secret, link and syntax validation pass.
+- Architecture impact: Additive static module using existing GitHub Pages, localStorage and mandatory human-approval boundaries.
+- Human action: Authorise the separate production repository change, run mobile browser smoke test and approve Jeffrey voice before merge.
+- Rollback: Restore commit `6130d9f`; do not clear browser storage.
+- Research enhancement: Added a Professional Relationship Guard so warmth
+  remains tied to training outcomes, safety, recovery, schedule or verified
+  goals. Full suite now passes 29/29 tests.
+
 - 2026-07-23: Added standalone `P` as the AIOS Production Mode trigger. The
   trigger activates continuous scan, prioritize, implement, validate and
   rescan behavior while preserving architecture and review gates.

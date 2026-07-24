@@ -24,14 +24,14 @@
     "repository": "hudsonmar-852/hudsonmar-852.github.io"
   },
   {
-    "id": "jeffrey-demo",
-    "name": "Jeffrey Demo",
-    "description": "Public demonstration of a fitness content and reminder workflow.",
-    "category": "Demo",
+    "id": "jeffrey-relationship-messaging-engine",
+    "name": "Jeffrey Relationship Messaging Engine",
+    "description": "Human-reviewed Hong Kong Cantonese relationship message drafts with verified daily context and history protection.",
+    "category": "Production Module",
     "visibility": "Public",
-    "status": "Live",
+    "status": "Human Review Required",
     "version": "1.0",
-    "lastUpdated": "2026-07-19",
+    "lastUpdated": "2026-07-25",
     "publicUrl": "../Jeffrey/",
     "repository": "hudsonmar-852/Jeffrey"
   },
