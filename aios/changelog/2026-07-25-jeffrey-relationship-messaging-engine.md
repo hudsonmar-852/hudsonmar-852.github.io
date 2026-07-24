@@ -21,6 +21,8 @@ linked to `/Jeffrey/` without containing that public route.
 - Verified facts or an explicit evergreen fallback.
 - Minimal member data and no inferred health, emotion or private life.
 - Every client-facing message remains a human-review draft.
+- Warmth is professionally anchored in training, recovery, safety, schedule or
+  a verified goal; private-intimacy and special-treatment cues are rejected.
 
 ## Affected modules
 

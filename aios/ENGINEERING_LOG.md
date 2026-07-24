@@ -94,6 +94,9 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Architecture impact: Additive static module using existing GitHub Pages, localStorage and mandatory human-approval boundaries.
 - Human action: Authorise the separate production repository change, run mobile browser smoke test and approve Jeffrey voice before merge.
 - Rollback: Restore commit `6130d9f`; do not clear browser storage.
+- Research enhancement: Added a Professional Relationship Guard so warmth
+  remains tied to training outcomes, safety, recovery, schedule or verified
+  goals. Full suite now passes 29/29 tests.
 
 - 2026-07-23: Added standalone `P` as the AIOS Production Mode trigger. The
   trigger activates continuous scan, prioritize, implement, validate and

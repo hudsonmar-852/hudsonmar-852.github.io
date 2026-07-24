@@ -29,6 +29,25 @@ export const VOICE_LOCK = Object.freeze({
   minLength: 8
 });
 
+export const PROFESSIONAL_RELATIONSHIP_GUARD = Object.freeze({
+  ambiguousPhrases: [
+    '突然諗起你',
+    '好耐冇同你吹兩句',
+    '我喺度等你',
+    '留返啲力畀我',
+    '你係最特別',
+    '掛住你',
+    '我同你之間'
+  ],
+  inferredStatePhrases: [
+    '你今日好似好攰',
+    '見你今日精神麻麻',
+    '你今日心情唔好',
+    '你最近壓力好大'
+  ],
+  professionalAnchors: /操|訓練|上堂|熱身|動作|姿勢|節奏|呼吸|出力|進度|目標|膊頭|髖|飲|水|郁|安全|恢復|力/
+});
+
 const WEATHER_SOURCE = Object.freeze({
   name: '香港天文台',
   url: 'https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc',
@@ -45,7 +64,7 @@ const TEMPLATES = Object.freeze({
     ['未口渴都飲兩啖水先啦😆 今日咁熱，慢慢嚟最穩陣。', 'coach']
   ],
   rain: [
-    ['出面落緊大雨☔ 今晚唔好趕，安全到就得，我喺度等你。', 'context'],
+    ['出面落緊大雨☔ 今晚唔好趕，安全到就得，到咗我哋先慢慢熱身。', 'context'],
     ['今日啲雨幾麻煩，過嚟嗰陣慢慢行，安全最緊要👍', 'context'],
     ['放工如果仲落得大，唔使急住衝過嚟，安全到就得。', 'context'],
     ['今晚見呀☔ 鞋濕咗嚟到抖一抖先，我哋慢慢開始。', 'coach'],
@@ -54,10 +73,10 @@ const TEMPLATES = Object.freeze({
   ],
   training: [
     ['今日返工忙唔忙呀？😆 今晚過嚟唔使急，慢慢嚟就得。', 'checkin'],
-    ['食咗飯未呀？今晚留返少少力畀我💪', 'checkin'],
+    ['食咗飯未呀？今晚留返少少力，我哋慢慢加💪', 'checkin'],
     ['今晚見呀，嚟到先慢慢熱身，我幫你睇住。', 'coach'],
     ['一做重啲就好易忍住口氣，今晚出力嗰下記住呼氣。', 'coach'],
-    ['今日有冇偷懶呀😏 今晚留返啲力畀我。', 'personal'],
+    ['今日有冇偷懶呀😏 今晚留返啲力，我哋專心做好動作。', 'personal'],
     ['今日有嚟已經贏咗啦💪 唔使急住做到盡。', 'motivation'],
     ['放工個人攰都正常，嚟到我哋慢慢搵返個節奏先。', 'motivation'],
     ['今日坐足成日？嚟到先郁下膊頭同髖，個人會鬆好多。', 'coach']
@@ -71,12 +90,12 @@ const TEMPLATES = Object.freeze({
     ['今日做多少少活動都算數，唔使一嚟就追到盡。', 'motivation']
   ],
   reconnect: [
-    ['最近少見你呀，今日過成點？得閒覆我一句就得😊', 'checkin'],
-    ['好耐冇同你吹兩句😆 最近忙唔忙呀？', 'personal'],
-    ['最近少咗見你，唔使急住追進度。想郁返就搵我啦。', 'motivation'],
-    ['今日突然諗起你😂 有空就同我講聲近排點呀。', 'personal'],
+    ['最近少見你上堂呀，想郁返就同我講，我哋慢慢接返個節奏。', 'checkin'],
+    ['近排訓練點呀？得閒覆我一句，我幫你執返個節奏。', 'checkin'],
+    ['一排冇一齊操，唔使急住追返。下次我哋由動作質素開始。', 'motivation'],
+    ['最近忙都唔緊要，上堂時間想點調可以同我講。', 'personal'],
     ['忙緊都唔緊要，得閒郁兩下先。想操返我幫你安排。', 'coach'],
-    ['近排點呀？唔使打長篇，覆個 emoji 畀我都得😆', 'checkin']
+    ['想操返嗰陣話我知，我哋先定一個易做到嘅目標。', 'checkin']
   ],
   evergreen: [
     ['今日返工忙唔忙呀？😆 得閒飲兩啖水先。', 'checkin'],
@@ -103,6 +122,16 @@ export function voiceLock(message, facts = {}) {
   if ((message.match(/[\u{1F300}-\u{1FAFF}]/gu) || []).length > 2) failures.push('too_many_emoji');
   if (facts.claimsRealtime && !facts.verified) failures.push('unverified_realtime_claim');
   if (facts.requiresProgress && !facts.hasProgress) failures.push('invented_progress');
+  if (PROFESSIONAL_RELATIONSHIP_GUARD.ambiguousPhrases.some((phrase) => message.includes(phrase))) {
+    failures.push('relationship_boundary');
+  }
+  if (PROFESSIONAL_RELATIONSHIP_GUARD.inferredStatePhrases.some((phrase) => message.includes(phrase))
+    && !facts.observedTrainingState) {
+    failures.push('inferred_personal_state');
+  }
+  if (!PROFESSIONAL_RELATIONSHIP_GUARD.professionalAnchors.test(message)) {
+    failures.push('missing_professional_anchor');
+  }
   return { pass: failures.length === 0, failures, length };
 }
 

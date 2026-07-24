@@ -6,6 +6,8 @@ Status: Local automated validation passed; production browser and CI pending
 ## Automated coverage
 
 - Voice Lock thresholds and hard-fail phrases.
+- Professional Relationship Guard rejects ambiguous intimacy, exclusivity,
+  inferred personal state and messages without a training-related anchor.
 - Five outputs each for hot day, heavy-rain day, ordinary workday, evening
   training, reduced attendance, long-sitting member, beginner, playful member,
   calm member and no-profile member.

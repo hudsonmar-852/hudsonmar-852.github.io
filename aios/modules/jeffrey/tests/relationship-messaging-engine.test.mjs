@@ -45,6 +45,27 @@ test('拒絕書面語、未核實即時資訊及虛構 progress', () => {
   assert.equal(scored.passes, false);
 });
 
+test('Professional Relationship Guard 阻止曖昧、私人投射及無訓練重點訊息', () => {
+  assert.deepEqual(voiceLock('今日突然諗起你😂 有空覆我呀。').failures, ['relationship_boundary', 'missing_professional_anchor']);
+  assert.equal(voiceLock('你今日好似好攰喎，我陪住你。').failures.includes('inferred_personal_state'), true);
+  assert.equal(voiceLock('掛住你呀，得閒搵我。').failures.includes('relationship_boundary'), true);
+  assert.equal(voiceLock('最近少見你上堂呀，想郁返我哋慢慢接返個節奏。').pass, true);
+  assert.equal(voiceLock('今晚動作放慢少少，我哋專心做好控制。').pass, true);
+});
+
+test('近期少出現訊息保持專業而不製造私人特殊感', () => {
+  const messages = generateMessages({
+    profile: { id: 'member-boundary', nickname: 'Chris', recentAttendance: 'less_frequent' },
+    count: 5,
+    now: NOW
+  });
+  assert.equal(messages.length, 5);
+  for (const message of messages) {
+    assert.equal(/突然諗起|吹兩句|掛住|等你|畀我/.test(message.text), false, message.text);
+    assert.equal(/操|訓練|上堂|動作|節奏|目標|郁/.test(message.text), true, message.text);
+  }
+});
+
 test('HKO fetch 成功先標示 verified daily context', async () => {
   const context = await fetchHongKongContext(async () => ({
     ok: true,

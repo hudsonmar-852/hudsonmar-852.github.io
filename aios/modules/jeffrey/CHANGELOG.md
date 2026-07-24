@@ -9,6 +9,8 @@
 - Verified Hong Kong Observatory context with stale/failure fallback.
 - Additive localStorage migration preserving history and tracking.
 - Automated functional and 50-message voice scenario tests.
+- Professional Relationship Guard anchoring warmth in training outcomes while
+  rejecting private-intimacy, exclusivity and inferred-state language.
 
 ### Governance
 - Approved Production Amendment; medium risk.
