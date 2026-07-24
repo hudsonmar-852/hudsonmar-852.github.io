@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#071521">
+  <title>Jeffrey Relationship Messaging Engine</title>
+  <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+  <main class="wrap">
+    <header>
+      <div><div class="eyebrow">今日最佳訊息</div><h1>真係記得你，先會 send 呢句。</h1><p class="sub">短句、地道、有人味。所有訊息都係草稿，copy 前由 Jeffrey 最後確認。</p></div>
+      <div id="version" class="version"></div>
+    </header>
+    <section class="panel">
+      <div id="data-status" class="status" aria-live="polite"></div>
+      <div class="controls">
+        <label>Member Selector<select id="member"></select></label>
+        <label>Tone Selector<select id="tone"><option value="warm">Warm</option><option value="playful">Playful</option><option value="calm">Calm</option><option value="coach">Coach-like</option><option value="short">Short check-in</option></select></label>
+        <label>Message Type Filter<select id="type-filter"></select></label>
+        <label>Category Filter<select id="category-filter"></select></label>
+        <label class="check"><input id="training-today" type="checkbox">今晚有堂</label>
+        <button id="generate" class="primary">生成 3–5 條</button>
+      </div>
+      <button id="refresh-context">重新確認今日資料</button>
+    </section>
+    <section id="messages" class="messages" aria-live="polite"></section>
+  </main>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>

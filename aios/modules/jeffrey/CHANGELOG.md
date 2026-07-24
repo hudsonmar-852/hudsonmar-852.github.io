@@ -1,5 +1,20 @@
 # Jeffrey AIOS Module Changelog
 
+## 2026-07-25 — v2.0.0 / Messaging Engine v1.0.0
+
+### Added
+- Production-safe `/Jeffrey/` relationship messaging dashboard.
+- Jeffrey Voice Lock v1 and nine-axis candidate scoring.
+- Member profile, single-theme selection and repetition protection.
+- Verified Hong Kong Observatory context with stale/failure fallback.
+- Additive localStorage migration preserving history and tracking.
+- Automated functional and 50-message voice scenario tests.
+
+### Governance
+- Approved Production Amendment; medium risk.
+- Human review and rollback required before final merge.
+- Live output remains a draft and is never sent automatically.
+
 ## 2026-07-21 — v1.0.0
 
 ### Decision
