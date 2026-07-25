@@ -1,0 +1,150 @@
+{
+  "catalogue_date": "2026-07-25",
+  "status": "draft_human_approval_required",
+  "merge_policy": {
+    "mode": "prepend_new_preserve_old",
+    "preserve_existing_reminders": true,
+    "new_reminders_position": "top",
+    "overwrite_existing": false
+  },
+  "weather_context": {
+    "refresh_status": "verified",
+    "source": "香港天文台開放數據 API",
+    "source_update_time": "2026-07-25T07:02:00+08:00",
+    "forecast_update_time": "2026-07-25T06:45:00+08:00",
+    "retrieval_time": "2026-07-25T08:33:50+08:00",
+    "current_conditions": "早上炎熱；香港天文台30°C、黃竹坑29°C、相對濕度81%",
+    "temperature": "市區最高約33°C，新界再高一兩度",
+    "active_warnings": ["一號熱帶氣旋警告信號", "酷熱天氣警告"],
+    "rain_thunderstorm_risk": "今日有幾陣狂風驟雨及雷暴，稍後風勢逐漸增強，狂風驟雨增多",
+    "heat_cold_risk": "酷熱及中暑風險；沒有寒冷風險",
+    "source_url_current": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc",
+    "source_url_forecast": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+  },
+  "quality_policy": {
+    "one_message_one_purpose": true,
+    "max_gentle_actions": 1,
+    "avoid_forced_fitness_angle": true,
+    "avoid_medical_claims": true,
+    "avoid_excessive_emojis": true,
+    "avoid_generic_ai_phrasing": true,
+    "quality_targets": {
+      "jeffrey_voice_min": 90,
+      "warm_heart_min": 90,
+      "reply_likelihood_min": 75,
+      "ai_smell_max": 10
+    }
+  },
+  "new_reminders": {
+    "weather_today": [
+      {
+        "text": "今日朝早已經幾熱，出門前飲幾啖水先，唔使等到口渴先記得。",
+        "source_line": "資料：香港天文台 07:02 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc"
+      },
+      {
+        "text": "今日有一號風球，晏啲風勢會再大啲；你出入嗰陣行穩少少就得。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "今日有狂風驟雨同雷暴機會，帶把遮之餘，鞋底揀防滑啲會安心好多。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "今日最高大約33度，戶外行得多嘅話，中途搵個陰涼位停一停就好。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "黃竹坑朝早大約29度，未到中午已經幾焗；今日唔使迫自己行得太急。",
+        "source_line": "資料：香港天文台 07:00 地區氣溫",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc"
+      },
+      {
+        "text": "今日天氣一時曬一時驟雨，行程留少少鬆動位，個人會舒服好多。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "晏啲狂風驟雨會增多，收工前望一望天氣先再出門，穩陣啲。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "今日又熱又濕，做完運動唔好即刻吹到冷氣太凍，俾身體慢慢降溫先。",
+        "source_line": "資料：香港天文台 07:02 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc"
+      },
+      {
+        "text": "今日海有湧浪，近海邊活動就保守少少，安全最緊要。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      },
+      {
+        "text": "今晚風雨可能比朝早明顯，返屋企條路預多少少時間，唔使趕。",
+        "source_line": "資料：香港天文台 06:45 更新",
+        "source_url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=flw&lang=tc"
+      }
+    ],
+    "hydration": [
+      {"text": "忙起上嚟最易唔記得飲水，依家飲兩啖先，唔使一次過飲好多。"},
+      {"text": "今日如果講嘢多或者周圍走，水樽放近手邊會易記得好多。"},
+      {"text": "咖啡飲完之後補返少少水，個人通常會舒服啲。"},
+      {"text": "練完唔使急住灌晒成樽水，慢慢飲返就得。"},
+      {"text": "如果今日尿色比平時深，記得補返少少水，當係提自己休息一下。"}
+    ],
+    "stretching_mobility": [
+      {"text": "坐耐咗就起身伸直個人十幾秒，腰背會冇咁繃。"},
+      {"text": "肩頸緊嗰陣唔使大力扭，慢慢郁開個幅度已經夠。"},
+      {"text": "等車或者等升降機嗰陣，輕輕郁下腳踭，都算幫對腳醒一醒。"},
+      {"text": "今日如果髖位覺得實，睡前做一個舒服嘅伸展就好，唔使拉到痛。"},
+      {"text": "工作做到一半，雙手向後打開少少，俾個胸口鬆一鬆。"}
+    ],
+    "breathing_rhythm": [
+      {"text": "做到心急嗰陣，先慢慢呼一口長氣，個節奏自然會返嚟。"},
+      {"text": "做動作時記住唔好一路忍住呼吸，順住力呼氣會穩好多。"},
+      {"text": "開會前用十秒放慢呼吸，個人會定啲。"},
+      {"text": "今日如果個腦好嘈，試一次慢吸慢呼就夠，唔使逼自己即刻放鬆。"},
+      {"text": "運動中一亂節奏，就停一停搵返呼吸先，唔使硬撐。"}
+    ],
+    "training_intensity": [
+      {"text": "今日狀態普通都冇問題，做穩每一下，比勉強加重量更值得。"},
+      {"text": "第一組當熱身試下身體反應，之後先決定今日做到幾多。"},
+      {"text": "如果動作開始走樣，減少少重量反而更專業。"},
+      {"text": "今日唔需要每組都做到盡，留少少力俾身體恢復。"},
+      {"text": "有精神就做多少少，冇精神就守住基本節奏，兩樣都係進度。"}
+    ],
+    "recovery_rest": [
+      {"text": "今晚早十分鐘放低電話，已經係幫身體回一回血。"},
+      {"text": "如果對腳仲攰，今日散步輕鬆行就夠，唔使再加碼。"},
+      {"text": "食完飯俾自己坐低抖一陣，唔需要每分鐘都安排到盡。"},
+      {"text": "肌肉有少少攰係正常，但痛感唔對路就停一停先。"},
+      {"text": "今日休息得好，聽日先有力做得靚；休息都係訓練一部分。"}
+    ],
+    "daily_care": [
+      {"text": "今日忙唔忙呀？記得中間留返一兩分鐘俾自己透下氣。"},
+      {"text": "見你最近行程幾密，今日做到最重要嗰樣已經好夠。"},
+      {"text": "唔使樣樣都即刻處理，揀一樣先完成，個人會冇咁亂。"},
+      {"text": "今日狀態點都好，食餐正常飯先，唔好忙到求其頂住。"},
+      {"text": "收工之後俾自己慢返少少，今日辛苦你喇。"}
+    ]
+  },
+  "qa_summary": {
+    "new_weather_reminders": 10,
+    "new_categories": 6,
+    "new_per_category": 5,
+    "new_evergreen_reminders": 30,
+    "total_new_reminders": 40,
+    "duplicate_check": "passed_within_new_catalogue",
+    "old_reminders_preserved": true,
+    "human_approval_required": true,
+    "estimated_scores": {
+      "jeffrey_voice": 93,
+      "warm_heart": 92,
+      "reply_likelihood": 79,
+      "ai_smell": 6
+    }
+  }
+}
