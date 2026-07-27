@@ -1,0 +1,62 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-07-27",
+  "timezone": "Asia/Hong_Kong",
+  "generated_at": "2026-07-27T09:03:41.460Z",
+  "source_records": [
+    {
+      "record_id": "jeffrey-catalogue:2026-07-27",
+      "record_type": "weather",
+      "source_kind": "jeffrey_project_context",
+      "source_name": "AIOS Jeffrey stored daily catalogue",
+      "record_url": "/aios/modules/jeffrey/catalogues/2026-07-27-daily-style-catalogue.json",
+      "source_timestamp": "2026-07-27T06:02:00+08:00",
+      "retrieval_timestamp": "2026-07-27T08:33:47+08:00",
+      "priority": 5,
+      "freshness_score": 0,
+      "confidence_score": 64,
+      "decision": "rejected",
+      "rejection_reason": "weather_older_than_4h"
+    }
+  ],
+  "weather": {
+    "status": "rejected",
+    "record_id": null,
+    "conditions": "",
+    "temperature_c": null,
+    "humidity_percent": null,
+    "warnings": [],
+    "rain_risk": "",
+    "thunderstorm_risk": "",
+    "heat_risk": "",
+    "cold_risk": "",
+    "source_name": "",
+    "source_timestamp": "",
+    "retrieval_timestamp": "",
+    "source_url": "",
+    "freshness_score": 0,
+    "confidence_score": 0,
+    "rejection_reason": "no_valid_weather_record"
+  },
+  "top_news": [],
+  "multimedia_hits": [],
+  "transport": [],
+  "southside": [],
+  "special_events": [],
+  "holiday": null,
+  "audience_segments": [],
+  "recommended_topics": [],
+  "avoid_topics": [],
+  "topic_candidates": [],
+  "validation": {
+    "stale_items_rejected": [
+      {
+        "record_id": "jeffrey-catalogue:2026-07-27",
+        "reason": "weather_older_than_4h"
+      }
+    ],
+    "conflicts_rejected": [],
+    "missing_fields": [],
+    "status": "partial"
+  }
+}

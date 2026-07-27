@@ -1,6 +1,6 @@
 # AIOS Knowledge Contract — Jeffrey Module
 
-Version: 1.0.0  
+Version: 1.1.0
 Status: Approved for merge  
 Date: 2026-07-21
 
@@ -10,18 +10,20 @@ This contract defines how AI systems load and use Jeffrey-related knowledge with
 
 ## Required load order
 
-1. `identity.json`
-2. `voice_profile.json`
-3. `safety_rules.json`
-4. `internal_output_state.schema.json` using derived controls only
-5. `relationship_profile.schema.json` for the active anonymised client only
-6. `intent_structures.json` for the selected single intent
-7. Recent conversation summary, limited to the minimum relevant context
-8. `quality_rubric.json`
+1. Latest valid `aios/modules/jeffrey/context/YYYY-MM-DD-daily-context.json`, when `AIOS_DAILY_CONTEXT_V1=true`
+2. `identity.json`
+3. `voice_profile.json`
+4. `safety_rules.json`
+5. `internal_output_state.schema.json` using derived controls only
+6. `relationship_profile.schema.json` for the active anonymised client only
+7. `intent_structures.json` for the selected single intent
+8. Recent conversation summary, limited to the minimum relevant context
+9. `quality_rubric.json`
 
 ## Generation contract
 
-- Produce no more than two candidate drafts.
+- Interactive client generation produces no more than two candidate drafts. The scheduled catalogue batch is separate: five new drafts per existing category, plus exactly ten context drafts only when validated context exists.
+- The Jeffrey generator consumes stored AIOS records only and never fetches external weather APIs.
 - Start from a real-life or relationship context before fitness advice.
 - Use one purpose and at most one gentle action.
 - Treat templates as structures, not fixed sentences.

@@ -1,0 +1,65 @@
+name: Jeffrey Daily Context and Draft Catalogue
+
+on:
+  schedule:
+    - cron: "45 0 * * *" # 08:45 Asia/Hong_Kong, after upstream scheduled records
+  workflow_dispatch:
+    inputs:
+      date:
+        description: "Hong Kong date (YYYY-MM-DD); empty means today"
+        required: false
+        type: string
+
+permissions:
+  contents: write
+
+concurrency:
+  group: jeffrey-daily-context
+  cancel-in-progress: false
+
+jobs:
+  context-and-drafts:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    env:
+      AIOS_DAILY_CONTEXT_V1: "true"
+    steps:
+      - name: Check out main
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Run P0 tests before generation
+        run: |
+          node --test aios/tests/daily-context.test.mjs aios/tests/jeffrey-daily-generator.test.mjs
+          node aios/scripts/validate-production-consolidation.mjs
+
+      - name: Build Daily Context then Jeffrey drafts
+        env:
+          REQUESTED_DATE: ${{ inputs.date }}
+        run: |
+          if [ -n "$REQUESTED_DATE" ]; then
+            node aios/modules/jeffrey/run-daily.mjs --date "$REQUESTED_DATE"
+          else
+            node aios/modules/jeffrey/run-daily.mjs
+          fi
+
+      - name: Validate generated records
+        run: node aios/scripts/validate-jeffrey-daily-context.mjs
+
+      - name: Commit append-only draft records
+        run: |
+          if git diff --quiet -- aios/modules/jeffrey; then
+            echo "No new daily draft records"
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add aios/modules/jeffrey/context aios/modules/jeffrey/catalogues/generated aios/modules/jeffrey/qa aios/modules/jeffrey/reports aios/modules/jeffrey/latest.json
+          git commit -m "data: add Jeffrey daily context and draft catalogue"
+          git push origin HEAD:main

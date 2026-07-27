@@ -1,0 +1,233 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hudsonmar-852.github.io/aios/schemas/daily-context.schema.json",
+  "title": "AIOS Daily Context Record",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "date",
+    "timezone",
+    "generated_at",
+    "source_records",
+    "weather",
+    "top_news",
+    "multimedia_hits",
+    "transport",
+    "southside",
+    "special_events",
+    "holiday",
+    "audience_segments",
+    "recommended_topics",
+    "avoid_topics",
+    "topic_candidates",
+    "validation"
+  ],
+  "properties": {
+    "schema_version": {"const": "1.0"},
+    "date": {"type": "string", "pattern": "^\\d{4}-\\d{2}-\\d{2}$"},
+    "timezone": {"const": "Asia/Hong_Kong"},
+    "generated_at": {"type": "string", "format": "date-time"},
+    "source_records": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/sourceRecord"}
+    },
+    "weather": {"$ref": "#/$defs/weather"},
+    "top_news": {"type": "array", "items": {"$ref": "#/$defs/contextItem"}},
+    "multimedia_hits": {"type": "array", "items": {"$ref": "#/$defs/contextItem"}},
+    "transport": {"type": "array", "items": {"$ref": "#/$defs/contextItem"}},
+    "southside": {"type": "array", "items": {"$ref": "#/$defs/contextItem"}},
+    "special_events": {"type": "array", "items": {"$ref": "#/$defs/contextItem"}},
+    "holiday": {
+      "oneOf": [
+        {"type": "null"},
+        {"$ref": "#/$defs/contextItem"}
+      ]
+    },
+    "audience_segments": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {"$ref": "#/$defs/audienceSegment"}
+    },
+    "recommended_topics": {"type": "array", "items": {"type": "string"}},
+    "avoid_topics": {"type": "array", "items": {"type": "string"}},
+    "topic_candidates": {
+      "type": "array",
+      "items": {"$ref": "#/$defs/topicCandidate"}
+    },
+    "validation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "stale_items_rejected",
+        "conflicts_rejected",
+        "missing_fields",
+        "status"
+      ],
+      "properties": {
+        "stale_items_rejected": {"type": "array", "items": {"type": "object"}},
+        "conflicts_rejected": {"type": "array", "items": {"type": "object"}},
+        "missing_fields": {"type": "array", "items": {"type": "string"}},
+        "status": {"enum": ["pass", "partial", "fail"]}
+      }
+    }
+  },
+  "$defs": {
+    "audienceSegment": {
+      "enum": [
+        "office_worker",
+        "senior",
+        "runner",
+        "bodybuilding",
+        "golf",
+        "pain_recovery",
+        "general_wellness",
+        "southside_parent",
+        "healthcare_worker"
+      ]
+    },
+    "sourceRecord": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "record_id",
+        "record_type",
+        "source_kind",
+        "source_name",
+        "record_url",
+        "source_timestamp",
+        "retrieval_timestamp",
+        "priority",
+        "freshness_score",
+        "confidence_score",
+        "decision"
+      ],
+      "properties": {
+        "record_id": {"type": "string", "minLength": 1},
+        "record_type": {"type": "string", "minLength": 1},
+        "source_kind": {"type": "string", "minLength": 1},
+        "source_name": {"type": "string", "minLength": 1},
+        "record_url": {"type": "string", "minLength": 1},
+        "source_timestamp": {"type": "string"},
+        "retrieval_timestamp": {"type": "string"},
+        "priority": {"type": "integer", "minimum": 1, "maximum": 6},
+        "freshness_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "confidence_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "decision": {"enum": ["accepted", "rejected", "conflict_rejected"]},
+        "rejection_reason": {"type": ["string", "null"]}
+      }
+    },
+    "provenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "record_id",
+        "source_name",
+        "record_url",
+        "source_timestamp",
+        "retrieval_timestamp",
+        "freshness_score",
+        "confidence_score"
+      ],
+      "properties": {
+        "record_id": {"type": "string"},
+        "source_name": {"type": "string"},
+        "record_url": {"type": "string"},
+        "source_timestamp": {"type": "string"},
+        "retrieval_timestamp": {"type": "string"},
+        "freshness_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "confidence_score": {"type": "number", "minimum": 0, "maximum": 100}
+      }
+    },
+    "weather": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "status",
+        "record_id",
+        "conditions",
+        "temperature_c",
+        "humidity_percent",
+        "warnings",
+        "rain_risk",
+        "thunderstorm_risk",
+        "heat_risk",
+        "cold_risk",
+        "source_name",
+        "source_timestamp",
+        "retrieval_timestamp",
+        "source_url",
+        "freshness_score",
+        "confidence_score",
+        "rejection_reason"
+      ],
+      "properties": {
+        "status": {"enum": ["verified", "unavailable", "rejected"]},
+        "record_id": {"type": ["string", "null"]},
+        "conditions": {"type": "string"},
+        "temperature_c": {"type": ["number", "null"]},
+        "humidity_percent": {"type": ["number", "null"], "minimum": 0, "maximum": 100},
+        "warnings": {"type": "array", "items": {"type": "string"}},
+        "rain_risk": {"type": "string"},
+        "thunderstorm_risk": {"type": "string"},
+        "heat_risk": {"type": "string"},
+        "cold_risk": {"type": "string"},
+        "source_name": {"type": "string"},
+        "source_timestamp": {"type": "string"},
+        "retrieval_timestamp": {"type": "string"},
+        "source_url": {"type": "string"},
+        "freshness_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "confidence_score": {"type": "number", "minimum": 0, "maximum": 100},
+        "rejection_reason": {"type": ["string", "null"]}
+      }
+    },
+    "contextItem": {
+      "type": "object",
+      "additionalProperties": true,
+      "required": [
+        "id",
+        "title",
+        "summary",
+        "audience_segments",
+        "provenance"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "title": {"type": "string"},
+        "summary": {"type": "string"},
+        "audience_segments": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/audienceSegment"}
+        },
+        "provenance": {"$ref": "#/$defs/provenance"}
+      }
+    },
+    "topicCandidate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "id",
+        "type",
+        "title",
+        "summary",
+        "score",
+        "audience_segments",
+        "source_record_id",
+        "record_url"
+      ],
+      "properties": {
+        "id": {"type": "string"},
+        "type": {"type": "string"},
+        "title": {"type": "string"},
+        "summary": {"type": "string"},
+        "score": {"type": "number"},
+        "audience_segments": {
+          "type": "array",
+          "items": {"$ref": "#/$defs/audienceSegment"}
+        },
+        "source_record_id": {"type": "string"},
+        "record_url": {"type": "string"}
+      }
+    }
+  }
+}

@@ -1,5 +1,24 @@
 # Jeffrey AIOS Module Changelog
 
+## 2026-07-27 — v1.1.0
+
+### Added
+- Stored-record Daily Context collector with deterministic source priority.
+- Weather, news, trend and transport freshness/confidence rejection.
+- Conflict-safe topic and audience selection.
+- Append-only catalogue generator with five new drafts per existing category.
+- Exactly ten context drafts only when validated context supports them; otherwise zero.
+- Cross-history duplicate protection and automated QA with one rewrite pass.
+- Dashboard adapter, scheduler workflow, feature flag, schema, execution report and rollback documentation.
+
+### Safety
+- No external weather request exists in the Jeffrey generator.
+- Historical reminders remain unchanged and all new reminders require human approval.
+- The 2026-07-27 record used evergreen fallback because the stored weather record was stale.
+
+### Rollback
+Set `AIOS_DAILY_CONTEXT_V1=false`, revert the v1.1 implementation commit, preserve date records for audit, and do not clear production browser storage.
+
 ## 2026-07-21 — v1.0.0
 
 ### Decision

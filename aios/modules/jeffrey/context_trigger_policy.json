@@ -1,13 +1,12 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "module": "jeffrey_high_value_context_trigger",
   "status": "mvp",
   "source_tiers": {
     "tier_1_automatic_core": [
-      "hko_weather_and_warnings",
-      "government_practical_notices",
-      "local_transport_and_southside_disruption",
-      "curated_google_alert_results"
+      "aios_executive_dashboard_daily_record",
+      "aios_scheduled_weather_warning_record",
+      "aios_scheduled_news_transport_record"
     ],
     "tier_2_scheduled_manual_input": [
       "the_southside_activities",
@@ -36,7 +35,10 @@
     "minimum_total_to_generate": 70
   },
   "generation_rules": {
-    "max_daily_suggestions": 3,
+    "max_daily_suggestions_per_client": 3,
+    "catalogue_context_count_when_supported": 10,
+    "catalogue_context_count_when_unsupported": 0,
+    "scheduled_records_only": true,
     "generate_only_for_affected_segments": true,
     "never_force_fitness_angle": true,
     "weather_is_context_not_mandatory_content": true,

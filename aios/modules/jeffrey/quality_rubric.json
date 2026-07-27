@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "2.0.0",
   "thresholds": {
     "jeffrey_voice_score": 90,
     "warm_heart_score": 90,
@@ -14,12 +14,16 @@
     "does_not_pressure_or_sell",
     "does_not_expose_private_state",
     "does_not_make_medical_claims",
+    "has_no_unsupported_claim",
+    "has_valid_stored_record_provenance_when_context_specific",
+    "passes_freshness_and_confidence_thresholds",
+    "passes_exact_normalised_semantic_and_opening_duplicate_checks",
     "uses_zero_to_two_approved_emojis",
     "would_be_sent_by_jeffrey_without_rewriting"
   ],
   "rewrite_policy": {
-    "max_passes": 3,
+    "max_passes": 1,
     "reject_if_failed_after_max_passes": true,
-    "selection_rule": "Generate up to two candidates and retain only the highest-scoring approved draft."
+    "selection_rule": "Interactive client generation retains up to two candidates; governed daily catalogue generation retains exactly five per existing category and exactly ten context drafts only when validated context supports them."
   }
 }
