@@ -1,0 +1,98 @@
+{
+  "policy_version": "2.0",
+  "environment": "production",
+  "enabled": true,
+  "effective_date": "2026-07-28",
+  "timezone": "Asia/Hong_Kong",
+  "board": {
+    "visible_message_count": 5,
+    "show_historical_messages": false,
+    "archive_history_for_duplicate_check": true,
+    "primary_action": "copy_customer_text",
+    "secondary_actions": ["approval_state", "mark_used", "favourite"],
+    "forbid_equal_full_width_actions": true
+  },
+  "generation_mode": "curator",
+  "candidate_pool": {
+    "minimum": 25,
+    "recommended": 40,
+    "persist_candidates_to_visible_board": false
+  },
+  "voice_priority": {
+    "locale": "zh-HK",
+    "style": "familiar_hong_kong_friend",
+    "must_be": [
+      "warm",
+      "personal",
+      "natural_spoken_cantonese",
+      "practical",
+      "whatsapp_friendly"
+    ],
+    "must_not_be": [
+      "broadcast",
+      "old_fashioned",
+      "formal",
+      "corporate",
+      "promotional",
+      "weather_report",
+      "news_report",
+      "generic_ai_advice"
+    ],
+    "blocked_phrases": [
+      "溫馨提示",
+      "今日提提你",
+      "大家記得",
+      "請注意",
+      "各位",
+      "CTA：",
+      "CTA:"
+    ]
+  },
+  "content_focus": [
+    "hydration",
+    "stretching_mobility",
+    "breathing_rhythm",
+    "posture_screen_habits",
+    "rest_recovery",
+    "sensible_training_intensity",
+    "gym_preparation_follow_through",
+    "daily_common_sense_care"
+  ],
+  "review_weights": {
+    "human_warmth_friend_tone": 0.25,
+    "natural_hong_kong_cantonese": 0.20,
+    "gym_client_practical_value": 0.20,
+    "regular_habit_usefulness": 0.15,
+    "jeffrey_voice_fit": 0.10,
+    "reply_likelihood": 0.05,
+    "novelty_anti_repetition": 0.05
+  },
+  "hard_reject": [
+    "broadcast_tone",
+    "old_fashioned_or_formal",
+    "ai_generated_advice_tone",
+    "weather_news_government_report",
+    "internal_workflow_terms",
+    "more_than_one_action",
+    "not_useful_to_gym_client",
+    "duplicate_or_near_duplicate",
+    "medical_claim",
+    "forced_fitness_angle"
+  ],
+  "message_schema": {
+    "customer_text": "required",
+    "internal_reason": "hidden",
+    "reviewer_scores": "hidden_by_default",
+    "final_weighted_score": "hidden_by_default",
+    "source_name": "optional_context_only",
+    "source_timestamp": "optional_context_only",
+    "source_url": "optional_context_only",
+    "status": "draft_human_approval_required"
+  },
+  "copy_rule": "copy_customer_text_only",
+  "approval_required": true,
+  "rollback": {
+    "disable_by_setting_enabled_false": true,
+    "previous_mode": "catalogue"
+  }
+}
