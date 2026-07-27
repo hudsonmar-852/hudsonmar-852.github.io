@@ -1,0 +1,103 @@
+{
+  "catalogue_date": "2026-07-27",
+  "status": "draft_human_approval_required",
+  "merge_policy": {
+    "mode": "prepend_new_preserve_old",
+    "preserve_existing_reminders": true,
+    "new_reminders_position": "top",
+    "overwrite_existing": false
+  },
+  "weather_context": {
+    "refresh_status": "failed_current_warning_verification",
+    "source": "香港天文台開放數據 API",
+    "source_update_time": "2026-07-27T06:02:00+08:00",
+    "warning_update_times": [
+      "2026-07-27T05:00:00+08:00",
+      "2026-07-27T05:55:00+08:00"
+    ],
+    "retrieval_time": "2026-07-27T08:33:47+08:00",
+    "verified_observation": "06:00 香港天文台25°C、黃竹坑25°C、相對濕度91%；早上有雨",
+    "active_warnings": "無法確認08:33當刻狀態；05:55資料顯示紅色暴雨，雷暴警告原定有效至07:30",
+    "rain_thunderstorm_risk": "早上曾有大雨及狂風雷暴，但當刻風險未能由最新官方資料確認",
+    "heat_cold_risk": "06:00沒有可核實的酷熱或寒冷警告資料",
+    "generation_decision": "weather_specific_messages_blocked",
+    "source_url_current": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc",
+    "source_url_warning": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=warningInfo&lang=tc"
+  },
+  "quality_policy": {
+    "one_message_one_purpose": true,
+    "max_gentle_actions": 1,
+    "avoid_forced_fitness_angle": true,
+    "avoid_medical_claims": true,
+    "avoid_excessive_emojis": true,
+    "avoid_generic_ai_phrasing": true,
+    "quality_targets": {
+      "jeffrey_voice_min": 90,
+      "warm_heart_min": 90,
+      "reply_likelihood_min": 75,
+      "ai_smell_max": 10
+    }
+  },
+  "new_reminders": {
+    "weather_today": [],
+    "hydration": [
+      {"text": "一忙起上嚟最易成朝冇飲水，見到個杯就順手飲兩啖啦。"},
+      {"text": "飲水唔使一次過灌好多，隔一陣補少少會舒服啲。"},
+      {"text": "開會前記得飲啖水，講嘢耐咗個人冇咁乾。"},
+      {"text": "如果今日咖啡飲多咗，下一杯轉返清水就啱。"},
+      {"text": "出門前帶定支水，唔使去到口乾先搵。"}
+    ],
+    "stretching_mobility": [
+      {"text": "坐低做嘢耐咗，企直伸一伸個身已經幫到好多。"},
+      {"text": "膊頭緊緊地就慢慢向後轉幾圈，唔使大力。"},
+      {"text": "等車嗰陣可以輕輕郁下腳踝，雙腳會冇咁實。"},
+      {"text": "低頭睇電話耐咗，抬返高個畫面會舒服啲。"},
+      {"text": "朝早個身未醒晒，先行幾步再開始做嘢。"}
+    ],
+    "breathing_rhythm": [
+      {"text": "趕時間嗰陣最易憋住條氣，慢慢呼返出嚟先。"},
+      {"text": "做每組動作前先搵返呼吸節奏，個人會穩好多。"},
+      {"text": "心入面好多嘢轉緊，可以先用一個長呼氣停一停。"},
+      {"text": "行得急就放慢半步，呼吸自然會順返。"},
+      {"text": "肩頸一緊，多數連呼吸都急咗，呼氣時放鬆少少啦。"}
+    ],
+    "training_intensity": [
+      {"text": "今日狀態普通都可以照郁，重量保守啲就得。"},
+      {"text": "第一組覺得唔順，就調低少少難度，唔使硬頂。"},
+      {"text": "動作開始走樣嗰刻就收一收，質素比數量重要。"},
+      {"text": "今日時間唔多，揀兩三個熟悉動作做好佢就夠。"},
+      {"text": "身體未回復晒，就做輕一級版本，保持節奏先。"}
+    ],
+    "recovery_rest": [
+      {"text": "昨晚瞓得少，今日俾自己慢半拍都合理。"},
+      {"text": "午飯後如果眼攰，離開個畫面幾分鐘會醒神啲。"},
+      {"text": "肌肉有啲攰就唔使追住補課，休息都係進度一部分。"},
+      {"text": "今晚可以早少少收尾，等個人有時間靜落嚟。"},
+      {"text": "忙完一輪先坐低唞一陣，唔好即刻又塞滿下一件事。"}
+    ],
+    "daily_care": [
+      {"text": "今日有幾多做到幾多，唔使樣樣都滿分。"},
+      {"text": "食飯時間唔好拖得太後，照顧好自己先有力做其他嘢。"},
+      {"text": "如果個人有啲亂，先處理最重要嗰一樣就得。"},
+      {"text": "今日都記得留返少少時間俾自己，唔好全日都係工作。"},
+      {"text": "有咩唔順慢慢嚟，唔需要一次過解決晒。"}
+    ]
+  },
+  "qa_summary": {
+    "new_weather_reminders": 0,
+    "weather_block_reason": "current official warning status could not be verified at retrieval time",
+    "new_categories": 6,
+    "new_per_category": 5,
+    "new_evergreen_reminders": 30,
+    "total_new_reminders": 30,
+    "duplicate_check": "passed_against_2026-07-26_catalogue_and_within_new_catalogue",
+    "old_reminders_preserved": true,
+    "human_approval_required": true,
+    "estimated_scores": {
+      "jeffrey_voice": 93,
+      "warm_heart": 92,
+      "reply_likelihood": 79,
+      "ai_smell": 6
+    }
+  }
+}
