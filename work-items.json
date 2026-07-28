@@ -1,6 +1,6 @@
 {
   "schemaVersion": "1.0.0",
-  "generatedAt": "2026-07-28T00:00:00+08:00",
+  "generatedAt": "2026-07-28T12:20:00+08:00",
   "sourceMode": "google_drive_read_only_snapshot",
   "updateMode": "local_demo_only",
   "cache": {
@@ -9,21 +9,28 @@
   },
   "governance": {
     "complete": false,
+    "reviewStatus": "DRAFTS_CREATED_HUMAN_APPROVAL_PENDING",
     "documents": [
       {
         "name": "PRODUCT_BASELINE.md",
-        "available": false,
-        "reason": "Not found in AIOS PMO."
+        "available": true,
+        "status": "DRAFT",
+        "repositoryPath": "aios/governance/PRODUCT_BASELINE.md",
+        "reason": "Repository draft created from verified evidence; not present in AIOS PMO and not human-approved."
       },
       {
         "name": "DECISION_LOG.md",
-        "available": false,
-        "reason": "Not found in AIOS PMO."
+        "available": true,
+        "status": "DRAFT",
+        "repositoryPath": "aios/governance/DECISION_LOG.md",
+        "reason": "Repository draft created from verified evidence; proposed decisions remain unapproved."
       },
       {
         "name": "REGRESSION_CHECKLIST.md",
-        "available": false,
-        "reason": "Not found in AIOS PMO."
+        "available": true,
+        "status": "DRAFT",
+        "repositoryPath": "aios/governance/REGRESSION_CHECKLIST.md",
+        "reason": "Repository draft created from verified evidence; human release gates remain open."
       }
     ]
   },
@@ -37,6 +44,8 @@
       "summary": "Add a governed Work Items area to AIOS with searchable operational state, validated workflow transitions, source traceability and a safe Google Drive adapter boundary.",
       "priority": "P1",
       "status": "READY",
+      "implementationState": "LOCAL_IMPLEMENTATION_COMPLETE",
+      "architectureReview": "APPROVED_WITH_CONDITIONS",
       "module": "AIOS Dashboard / PMO",
       "owner": "Codex",
       "createdAt": "2026-07-28T00:00:00+08:00",
@@ -52,44 +61,45 @@
       "dependencies": [
         {
           "id": "TASK-20260728-001",
-          "status": "UNVERIFIED",
-          "reason": "Dependency specification was not found in AIOS PMO."
+          "status": "PARTIALLY_VERIFIED",
+          "reason": "Jeffrey Curator Engine v2 PR #7 implementation, tests, merge and deployment are verified; original task specification and formal ID mapping were not found."
         }
       ],
       "blockers": [
-        "Required governance references are missing from AIOS PMO.",
+        "Repository governance drafts require Hudson approval and are not present in AIOS PMO.",
+        "TASK-20260728-001 requires Hudson confirmation of the PR #7 mapping.",
         "Authenticated server-side Google Drive writes are not configured."
       ],
       "acceptanceCriteria": [
         {
           "id": "AC-01",
           "label": "Work Items navigation and summary metrics are visible.",
-          "completed": false
+          "completed": true
         },
         {
           "id": "AC-02",
           "label": "Search, filters, quick views and priority ordering work.",
-          "completed": false
+          "completed": true
         },
         {
           "id": "AC-03",
           "label": "Detail view exposes traceability, activity and execution command.",
-          "completed": false
+          "completed": true
         },
         {
           "id": "AC-04",
           "label": "Status transitions enforce approval, reason and completion gates.",
-          "completed": false
+          "completed": true
         },
         {
           "id": "AC-05",
           "label": "Drive failure and stale-cache states are explicit.",
-          "completed": false
+          "completed": true
         },
         {
           "id": "AC-06",
           "label": "Existing AIOS dashboard routes and modules pass regression validation.",
-          "completed": false
+          "completed": true
         }
       ],
       "activity": [
@@ -99,6 +109,13 @@
           "reason": "Imported from the approved Google Drive task specification.",
           "at": "2026-07-28T00:00:00+08:00",
           "mode": "read_only_snapshot"
+        },
+        {
+          "type": "architecture_reviewed",
+          "actor": "AIOS Chief Architect review",
+          "reason": "Read-only/local-demo MVP approved with conditions; Architecture Freeze and production Drive writes remain not approved.",
+          "at": "2026-07-28T12:20:00+08:00",
+          "mode": "repository_governance"
         }
       ]
     }

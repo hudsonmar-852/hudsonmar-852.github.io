@@ -1,8 +1,14 @@
 # Architecture Review Package — TASK-20260728-002
 
-Status: Pending Chief Architect Review  
-Review date: 2026-07-28  
+Status: **APPROVED WITH CONDITIONS** — human owner approval pending
+
+Review date: 2026-07-28
+
 Engineering Order: WI-20260728-002 / TASK-20260728-002
+
+Architecture Freeze: **NOT APPROVED**
+
+Production Google Drive writes: **NOT APPROVED**
 
 ## 1. Executive Summary
 
@@ -27,8 +33,8 @@ published.
 | No governed status engine | High | M | Implemented |
 | No task parser/conflict detector | Medium | S | Implemented and tested |
 | No secure Drive write runtime | High | L | Explicit read-only fallback |
-| Missing three governance documents | Critical | XS human action | Warning/blocker recorded |
-| TASK-20260728-001 unavailable | High | XS human action | Dependency marked unverified |
+| Missing three governance documents | Critical | S | Drafts created; human approval pending |
+| TASK-20260728-001 traceability | High | S | PARTIALLY VERIFIED; Hudson confirmation pending |
 
 ## 4. Execution Summary
 
@@ -43,6 +49,11 @@ published.
 
 - `TASK_INDEX.md`
 - `aios/docs/work-item-dashboard-v1.md`
+- `aios/governance/PRODUCT_BASELINE.md`
+- `aios/governance/DECISION_LOG.md`
+- `aios/governance/REGRESSION_CHECKLIST.md`
+- `aios/reviews/dependency-20260728-001-evidence.md`
+- `aios/docs/google-drive-write-architecture-proposal.md`
 - this Architecture Review Package
 
 ## 6. Documents Updated
@@ -99,27 +110,33 @@ The implementation remains dependency-free. Final evidence:
 
 - 28/28 Node tests passed, including 15 Work Items engine/adapter tests and
   four page contract tests.
-- 37 JSON files parsed, 103 public source files secret-scanned, 15 public
-  assets and 15 local links validated.
+- 37 JSON files parsed, 108 public source files secret-scanned, 20 public
+  assets and 15 local links validated after governance preparation.
 - AvatarOS regression validation passed.
 - All changed JavaScript modules passed syntax checks.
 - Three Playwright scenarios passed: desktop workflow, mobile/detail/no
   overflow, and pre-change baseline capture.
+- Desktop and mobile scenarios were re-run after the governance warning update;
+  both passed.
 - Chrome reported no console or page errors during the desktop workflow.
 
 ## 13. Outstanding Issues
 
-- `PRODUCT_BASELINE.md` missing.
-- `DECISION_LOG.md` missing.
-- `REGRESSION_CHECKLIST.md` missing.
-- TASK-20260728-001 missing from the Drive register.
+- Three repository governance drafts require Hudson review and approval.
+- TASK-20260728-001 remains absent from the Drive register and no original
+  specification was found. Jeffrey PR #7 is PARTIALLY VERIFIED as the matching
+  implementation candidate.
 - No approved server runtime or Drive service identity.
+- Cloudflare Access account-side authentication remains unverified.
+- The Jeffrey repository has an unrelated `fix-bible-render.yml` workflow
+  failure with no jobs; Curator validation and deployment still passed.
 
 ## 14. Recommendations
 
-Restore governance inputs first. Then approve a separate engineering order for
-an authenticated Drive adapter with concurrency control and immutable audit
-storage. Do not relabel local demo updates as production writes.
+Review and approve or amend the governance drafts. Confirm TASK-20260728-001
+traceability. If Drive writes are desired, approve a separate Engineering
+Order for the proposed protected server API. Do not relabel local demo updates
+as production writes.
 
 ## 15. MVP Readiness Score
 
@@ -128,18 +145,70 @@ governance, error handling, privacy boundary and tests are present.
 
 ## 16. Architecture Readiness Score
 
-84% for production Drive operation. The client boundary is sound; missing
-governance inputs and server-side persistence prevent production write status.
+84% for production Drive operation. The client boundary is sound; draft
+governance, unverified private authentication and absent server-side
+persistence prevent production write status.
 
 ## 17. Remaining Blockers
 
-Human/Chief Architect action is required to restore the governance documents,
-verify TASK-20260728-001 and approve a private server-side integration design.
+Hudson action is required to approve/amend the governance drafts, confirm the
+TASK-20260728-001 mapping and decide whether to authorize a private
+server-side integration Engineering Order.
 
 ## 18. Proposed Next Engineering Order
 
 After Chief Architect review: design and implement an authenticated Google
 Drive adapter behind the existing interface, with optimistic concurrency,
 idempotency and integration tests against a non-production register.
+
+## 19. Chief Architect Review Decision
+
+Decision: **APPROVED WITH CONDITIONS**
+
+This decision applies only to the read-only/local-demo Work Items MVP in commit
+`e7261d3`. It does not approve deployment, Architecture Freeze or production
+Google Drive writes.
+
+### Assessment
+
+| Review area | Finding | Decision |
+| --- | --- | --- |
+| Public/private separation | Raw task text and credentials stay out of the public repository | PASS |
+| Browser-local demo state | Clearly labeled and isolated from the source snapshot | PASS WITH LIMITATION |
+| Data integrity | Schema, sorting, conflicts and stale/error states are tested; local storage is not authoritative | PASS FOR DEMO ONLY |
+| Task status governance | Lifecycle and invalid transitions are explicit | PASS |
+| Completion gate | Criteria or override reason required | PASS; server re-enforcement required later |
+| Audit history | Useful local trail; client-controlled actor/time is not authoritative | PASS FOR DEMO ONLY |
+| Mobile/accessibility | Responsive flow, no overflow, semantic labels/dialog/live state | PASS WITH HUMAN AT REVIEW PENDING |
+| Security boundaries | Secret scan and private-source controls are explicit | PASS |
+| Google Drive writes | No secure server runtime exists | NOT APPROVED |
+| Secrets/OAuth | No browser secret exposure; production credential lifecycle is not configured | PASS CURRENT / BLOCKED FUTURE |
+| User access control | No write API exists; future API must validate Access JWT and role | NOT APPLICABLE CURRENT / REQUIRED FUTURE |
+| Rollback | One local feature commit; no Drive mutation | PASS |
+| Architecture compatibility | Additive static module; existing AIOS routes and contracts preserved | PASS |
+| Operational overhead | Low for read-only MVP; manual snapshot freshness remains debt | ACCEPTABLE FOR MVP |
+
+### Conditions
+
+1. Keep `sourceMode` read-only and `updateMode` local-demo until a separate
+   architecture-approved server implementation passes its full gate.
+2. Preserve the private source boundary and never publish raw task content.
+3. Obtain Hudson approval for the three governance drafts before describing
+   them as approved.
+4. Keep TASK-20260728-001 at PARTIALLY VERIFIED until Hudson confirms PR #7 or
+   supplies the original task record.
+5. Run GitHub Actions after any authorized push; local success is not CI
+   success.
+6. Perform human keyboard/screen-reader review before adding production write
+   controls.
+7. Preserve `automaticMerge: false` and the review-only nature of Amendment
+   Candidates and Discussion Queue entries.
+
+### Freeze decision
+
+Architecture Freeze: **NOT APPROVED**.
+
+Freeze requires explicit Hudson approval plus resolution of the governance
+drafts, TASK-001 traceability and any selected production-write architecture.
 
 READY FOR MVP DEVELOPMENT

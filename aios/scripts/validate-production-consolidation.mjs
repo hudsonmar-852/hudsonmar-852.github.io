@@ -76,6 +76,11 @@ const localAssets = [
   'aios/docs/assets/work-item-dashboard-before.png',
   'aios/docs/assets/work-item-dashboard-after-desktop.png',
   'aios/docs/assets/work-item-dashboard-after-mobile.png',
+  'aios/governance/PRODUCT_BASELINE.md',
+  'aios/governance/DECISION_LOG.md',
+  'aios/governance/REGRESSION_CHECKLIST.md',
+  'aios/reviews/dependency-20260728-001-evidence.md',
+  'aios/docs/google-drive-write-architecture-proposal.md',
   'work-items.json',
   'TASK_INDEX.md',
   'avataros/index.html',
@@ -123,6 +128,17 @@ for (const item of workItems.items) {
   if (item.source?.access !== 'authenticated_private' || item.source?.contentPublished !== false) {
     throw new Error(`Private source boundary is incomplete: ${item.id}`);
   }
+}
+for (const document of workItems.governance?.documents || []) {
+  if (document.available) {
+    const target = path.join(repositoryRoot, document.repositoryPath || '');
+    if (!document.repositoryPath || !fs.existsSync(target)) {
+      throw new Error(`Missing available governance document: ${document.name}`);
+    }
+  }
+}
+if (workItems.governance?.complete !== false) {
+  throw new Error('Draft governance must remain incomplete until human approval');
 }
 
 const reports = JSON.parse(fs.readFileSync(path.join(root, 'data/reports.json'), 'utf8'));

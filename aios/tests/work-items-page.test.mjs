@@ -31,4 +31,5 @@ test('runtime provides loading, empty, error, stale and confirmation states', ()
   assert.match(app, /Work item register unavailable/);
   assert.match(app, /stale data warning/);
   assert.match(app, /globalThis\.confirm/);
+  assert.match(app, /Drafts awaiting human approval/);
 });

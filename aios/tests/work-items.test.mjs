@@ -166,8 +166,12 @@ test('read-only adapter handles success, Drive failure and missing governance', 
   assert.equal((await adapter.listWorkItems()).length, 1);
   assert.equal(fetchReceiver, globalThis);
   await assert.rejects(() => adapter.updateWorkItem(), (error) => error.code === 'READ_ONLY_DRIVE');
+  assert.equal(
+    (await adapter.getGovernanceDocument('PRODUCT_BASELINE.md')).status,
+    'DRAFT'
+  );
   await assert.rejects(
-    () => adapter.getGovernanceDocument('PRODUCT_BASELINE.md'),
+    () => adapter.getGovernanceDocument('UNKNOWN.md'),
     (error) => error.code === 'GOVERNANCE_MISSING'
   );
 
@@ -206,4 +210,8 @@ test('snapshot exposes explicit stale-cache inputs and never publishes private s
   assert.equal(snapshot.updateMode, 'local_demo_only');
   assert.equal(snapshot.items[0].source.contentPublished, false);
   assert.equal(snapshot.items[0].source.access, 'authenticated_private');
+  assert.equal(snapshot.governance.complete, false);
+  assert.ok(snapshot.governance.documents.every((document) =>
+    document.status === 'DRAFT' && document.repositoryPath
+  ));
 });
