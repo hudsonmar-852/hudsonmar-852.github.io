@@ -1,5 +1,15 @@
 [
   {
+    "id": "CL-20260725-001",
+    "date": "2026-07-25",
+    "version": "Jeffrey Relationship Messaging Engine v1.0.0",
+    "change": "Added a relationship-first Cantonese messaging engine, verified HKO context, safe fallback, member and tone controls, history migration, tracking preservation and voice tests.",
+    "reason": "Replace generic health-information copy with short, warm, human-reviewed Hong Kong WhatsApp drafts without deleting production history.",
+    "source": "Approved Production Amendment J-RME-001",
+    "status": "Implemented; human review required before merge",
+    "rollback": "Revert the feature commit or restore production baseline 6130d9f. Never clear localStorage."
+  },
+  {
     "id": "CL-20260721-001",
     "date": "2026-07-21",
     "version": "AIOS Dashboard v3.1",

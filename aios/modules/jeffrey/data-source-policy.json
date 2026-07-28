@@ -1,0 +1,33 @@
+{
+  "schema_version": "1.0.0",
+  "primary": {
+    "weather": {
+      "provider": "Hong Kong Observatory",
+      "url": "https://data.weather.gov.hk/weatherAPI/opendata/weather.php?dataType=rhrread&lang=tc",
+      "cache_minutes": 30,
+      "maximum_source_age_minutes": 180
+    }
+  },
+  "provenance_fields": [
+    "source",
+    "sourceUrl",
+    "fetchedAt",
+    "publishedAt",
+    "verifiedAt",
+    "dataType",
+    "confidence"
+  ],
+  "failure_policy": "evergreen_only",
+  "unimplemented_fallback_sources": [
+    "CHP public health",
+    "Transport Department",
+    "MTR",
+    "news",
+    "public holidays and major sporting events"
+  ],
+  "rules": [
+    "Never treat forecasts as observations.",
+    "Never infer a member location from territory-wide data.",
+    "Never generate a real-time claim from stale or failed data."
+  ]
+}
