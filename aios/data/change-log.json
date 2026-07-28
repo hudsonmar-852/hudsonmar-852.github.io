@@ -48,5 +48,15 @@
     "source": "AIOS Production Consolidation v1",
     "status": "Waiting Review",
     "rollback": "Revert the dashboard index and project registry changes on this feature branch."
+  },
+  {
+    "id": "CL-20260727-001",
+    "date": "2026-07-27",
+    "version": "Jeffrey AIOS Module v1.1.0",
+    "change": "Added the stored-record Daily Context service, freshness/confidence validation, topic and audience selection, duplicate-safe draft generation, QA reports and dashboard adapter.",
+    "reason": "Provide production-safe daily relevance without direct provider calls or historical reminder mutation.",
+    "source": "AIOS-JDC-001",
+    "status": "Implemented pending human review",
+    "rollback": "Disable AIOS_DAILY_CONTEXT_V1 and revert the implementation commits; preserve date records and browser storage."
   }
 ]

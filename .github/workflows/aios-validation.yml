@@ -29,11 +29,12 @@ jobs:
           node-version: 22
 
       - name: Run unit tests
-        run: node --test aios/tests/production-consolidation.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/daily-context.test.mjs aios/tests/jeffrey-daily-generator.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
 
       - name: Validate production assets
         run: |
           node aios/scripts/validate-production-consolidation.mjs
+          node aios/scripts/validate-jeffrey-daily-context.mjs
           node avataros/scripts/validate-avataros.mjs
 
       - name: Check JavaScript syntax
@@ -42,6 +43,12 @@ jobs:
           node --check functions/private-test/index.test.mjs
           node --check aios/scripts/validate-production-consolidation.mjs
           node --check aios/tests/production-consolidation.test.mjs
+          node --check aios/scripts/validate-jeffrey-daily-context.mjs
+          node --check aios/modules/jeffrey/run-daily.mjs
+          node --check aios/modules/jeffrey/generator.js
+          node --check aios/services/daily-context/index.js
+          node --check aios/tests/daily-context.test.mjs
+          node --check aios/tests/jeffrey-daily-generator.test.mjs
           node --check avataros/scripts/validate-avataros.mjs
           node --check avataros/scripts/build-image-prompt.mjs
           node --check avataros/tests/prompt-builder.test.mjs

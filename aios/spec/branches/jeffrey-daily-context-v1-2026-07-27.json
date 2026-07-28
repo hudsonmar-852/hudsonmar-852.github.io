@@ -1,0 +1,13 @@
+{
+  "execution_order": "AIOS-JDC-001",
+  "module": "Jeffrey Daily Context Service v1",
+  "status": "implemented_pending_human_review",
+  "risk": "medium",
+  "branch": "agent/jeffrey-daily-context-v1",
+  "feature_flag": "AIOS_DAILY_CONTEXT_V1",
+  "historical_data_policy": "append_only_preserve_all",
+  "external_weather_calls_in_generator": false,
+  "automatic_distribution": false,
+  "rollback_required": true,
+  "architecture_freeze": "aios/docs/jeffrey-daily-context-v1.md"
+}

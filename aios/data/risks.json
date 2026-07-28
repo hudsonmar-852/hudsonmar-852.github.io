@@ -1,3 +1,4 @@
 [
-  {"id":"private-backend-pending","title":"Private backend pending","severity":"Medium","status":"Open","mitigation":"Keep live automation controls, credentials and endpoints outside this public repository until authenticated hosting is available."}
+  {"id":"private-backend-pending","title":"Private backend pending","severity":"Medium","status":"Open","mitigation":"Keep live automation controls, credentials and endpoints outside this public repository until authenticated hosting is available."},
+  {"id":"jeffrey-upstream-context-availability","title":"Jeffrey upstream context availability","severity":"Medium","status":"Mitigated","mitigation":"Reject stale, missing, conflicting or low-confidence records and generate evergreen drafts only; retain human approval and source provenance."}
 ]

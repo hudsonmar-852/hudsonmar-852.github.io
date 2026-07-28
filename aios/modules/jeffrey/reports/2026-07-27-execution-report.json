@@ -1,0 +1,269 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-07-27",
+  "feature_flag": "AIOS_DAILY_CONTEXT_V1",
+  "context_status": "evergreen_only",
+  "output_status": "draft_human_approval_required",
+  "old_reminders_preserved": true,
+  "new_reminders_prepended": true,
+  "context_specific_count": 0,
+  "evergreen_count": 30,
+  "duplicate_check_results": [
+    {
+      "id": "jdc-254d5a620114ab93",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.22857142857142856,
+      "match": "一忙起上嚟最易成朝冇飲水，見到個杯就順手飲兩啖啦。",
+      "action_phrases": [
+        "飲(?:返)?(?:兩啖|啖|少少)水"
+      ]
+    },
+    {
+      "id": "jdc-17674ae3aabc70f3",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.16666666666666666,
+      "match": "今日都記得留返少少時間俾自己，唔好全日都係工作。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-d7540c2e3b43045a",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.20689655172413793,
+      "match": "開會前記得飲啖水，講嘢耐咗個人冇咁乾。",
+      "action_phrases": [
+        "飲(?:返)?(?:兩啖|啖|少少)水"
+      ]
+    },
+    {
+      "id": "jdc-689dbc5fddada186",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.35714285714285715,
+      "match": "出門前帶定支水，唔使去到口乾先搵。",
+      "action_phrases": [
+        "飲(?:返)?(?:兩啖|啖|少少)水"
+      ]
+    },
+    {
+      "id": "jdc-c4629c4f88231f69",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.17647058823529413,
+      "match": "朝早第一杯唔使飲得急，慢慢飲幾啖先俾身體醒一醒。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-bee536e83dbf125b",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.125,
+      "match": "坐低做嘢耐咗，企直伸一伸個身已經幫到好多。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-e17b003e62013d65",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.27586206896551724,
+      "match": "膊頭緊緊地就慢慢向後轉幾圈，唔使大力。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-a2fb72312dfc0399",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.4864864864864865,
+      "match": "等車或者等升降機嗰陣，輕輕郁下腳踭，都算幫對腳醒一醒。",
+      "action_phrases": [
+        "郁(?:一郁|下)"
+      ]
+    },
+    {
+      "id": "jdc-3eb3e6b4dff8e361",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.13793103448275862,
+      "match": "朝早個身未醒晒，先行幾步再開始做嘢。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-1db8e60f97b1f445",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.6451612903225806,
+      "match": "低頭睇電話耐咗，抬返高個畫面會舒服啲。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-d97b7099c46e0536",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.125,
+      "match": "收工之後俾自己慢返少少，今日辛苦你喇。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-88622f1ba03ff0e9",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.21621621621621623,
+      "match": "做到心急嗰陣，先慢慢呼一口長氣，個節奏自然會返嚟。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-67687d54e987208b",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.3076923076923077,
+      "match": "行得急就放慢半步，呼吸自然會順返。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-8ea0318d49c56262",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.4117647058823529,
+      "match": "運動中一亂節奏，就停一停搵返呼吸先，唔使硬撐。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-22f740f9095aa4ca",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.4375,
+      "match": "肩膊不自覺縮起時，呼氣嗰下順便放低少少。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-50d7734801b893ae",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.16666666666666666,
+      "match": "第一組當熱身試下身體反應，之後先決定今日做到幾多。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-2d0fce7751d1020a",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.1935483870967742,
+      "match": "如果動作開始走樣，減少少重量反而更專業。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-6c90edae2a088acb",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.18181818181818182,
+      "match": "運動中一亂節奏，就停一停搵返呼吸先，唔使硬撐。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-d5a56e02adf590bc",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.25,
+      "match": "今日時間唔多，揀兩三個熟悉動作做好佢就夠。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-1cc7487b31b59279",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.15384615384615385,
+      "match": "一杯飲唔晒冇問題，隔陣再慢慢飲。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-83562f32d4d0691c",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.3125,
+      "match": "今晚可以早少少收尾，等個人有時間靜落嚟。",
+      "action_phrases": [
+        "早少少"
+      ]
+    },
+    {
+      "id": "jdc-577d746caa58b1fd",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.6060606060606061,
+      "match": "如果對腳仲攰，今日散步輕鬆行就夠，唔使再加碼。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-23b2fdbeaaa88f6a",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.34285714285714286,
+      "match": "忙完一輪先坐低唞一陣，唔好即刻又塞滿下一件事。",
+      "action_phrases": [
+        "抖(?:一抖|下)"
+      ]
+    },
+    {
+      "id": "jdc-f4745d7e3797a67b",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.29411764705882354,
+      "match": "肌肉有啲攰就唔使追住補課，休息都係進度一部分。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-0d72d269251ac81d",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.13333333333333333,
+      "match": "昨晚瞓得少，今日俾自己慢半拍都合理。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-fa7832a82a4e4eda",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.5454545454545454,
+      "match": "見你最近行程幾密，今日做到最重要嗰樣已經好夠。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-077af9e9b4f1ae93",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.3125,
+      "match": "今日狀態點都好，食餐正常飯先，唔好忙到求其頂住。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-35a303ab06adac2d",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.27586206896551724,
+      "match": "如果個人有啲亂，先處理最重要嗰一樣就得。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-f4c92334b258b418",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.5714285714285714,
+      "match": "收工之後俾自己慢返少少，今日辛苦你喇。",
+      "action_phrases": []
+    },
+    {
+      "id": "jdc-c1c5e638d3fba402",
+      "decision": "pass",
+      "reason": null,
+      "similarity": 0.23529411764705882,
+      "match": "今日忙唔忙呀？記得中間留返一兩分鐘俾自己透下氣。",
+      "action_phrases": []
+    }
+  ],
+  "excluded_items": [],
+  "source_records_considered": 1,
+  "source_records_accepted": 0,
+  "source_records_rejected": 1
+}
