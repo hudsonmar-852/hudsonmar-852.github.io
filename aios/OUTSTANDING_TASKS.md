@@ -1,8 +1,8 @@
 # AIOS Outstanding Engineering Tasks
 
-Last scanned: 2026-07-23
+Last scanned: 2026-07-28
 Mode: Production
-Architecture gate: EO-IMG-001 complete; Cycle 2 review pending
+Architecture gate: TASK-20260728-002 implementation complete; Chief Architect review pending
 
 ## P0
 
@@ -10,6 +10,27 @@ No build, CI definition, startup or critical data-safety failure was detected.
 Local tests and production validation pass.
 
 ## P1
+
+### AIOS-OUT-009 — Restore AIOS PMO governance inputs
+
+- Status: Blocked — document owner action required
+- Missing: `PRODUCT_BASELINE.md`, `DECISION_LOG.md`,
+  `REGRESSION_CHECKLIST.md`
+- Impact: Work Items can warn safely, but governance completeness cannot be
+  verified.
+
+### AIOS-OUT-010 — Verify TASK-20260728-001 dependency
+
+- Status: Blocked — source specification or completion evidence required
+- Impact: WI-20260728-002 retains the Drive source status but labels the
+  dependency `UNVERIFIED`.
+
+### AIOS-OUT-011 — Implement authenticated Google Drive adapter
+
+- Status: Blocked — architecture approval and private server identity required
+- Scope: Implement the existing adapter interface with authenticated writes,
+  version conflicts, idempotency and persistent audit history.
+- Safety: Do not place tokens or private task specifications in GitHub Pages.
 
 ### AIOS-OUT-001 — Approve the next core engineering scope
 
@@ -77,6 +98,8 @@ Local tests and production validation pass.
 
 ## Completed during this Production Mode run
 
+- Built the TASK-20260728-002 Work Items dashboard MVP with a public-safe
+  read-only Drive snapshot and local demo status updates.
 - Synchronized the AvatarOS public dashboard and system specification with the
   completed Sprint 0 state.
 - Re-ran all tests, source safety checks, route checks and syntax validation.

@@ -1,0 +1,106 @@
+{
+  "schemaVersion": "1.0.0",
+  "generatedAt": "2026-07-28T00:00:00+08:00",
+  "sourceMode": "google_drive_read_only_snapshot",
+  "updateMode": "local_demo_only",
+  "cache": {
+    "freshForMinutes": 1440,
+    "lastSuccessfulSync": "2026-07-28T00:00:00+08:00"
+  },
+  "governance": {
+    "complete": false,
+    "documents": [
+      {
+        "name": "PRODUCT_BASELINE.md",
+        "available": false,
+        "reason": "Not found in AIOS PMO."
+      },
+      {
+        "name": "DECISION_LOG.md",
+        "available": false,
+        "reason": "Not found in AIOS PMO."
+      },
+      {
+        "name": "REGRESSION_CHECKLIST.md",
+        "available": false,
+        "reason": "Not found in AIOS PMO."
+      }
+    ]
+  },
+  "items": [
+    {
+      "id": "WI-20260728-002",
+      "legacyIds": [
+        "TASK-20260728-002"
+      ],
+      "title": "Build AIOS Work Item Dashboard and Google Drive Task Register",
+      "summary": "Add a governed Work Items area to AIOS with searchable operational state, validated workflow transitions, source traceability and a safe Google Drive adapter boundary.",
+      "priority": "P1",
+      "status": "READY",
+      "module": "AIOS Dashboard / PMO",
+      "owner": "Codex",
+      "createdAt": "2026-07-28T00:00:00+08:00",
+      "updatedAt": "2026-07-28T00:00:00+08:00",
+      "source": {
+        "provider": "google_drive",
+        "documentId": "142MqniLMCdQVXjQKlabk8bI7zNDS0GmM",
+        "documentName": "codex task 280726b.txt",
+        "url": "https://drive.google.com/file/d/142MqniLMCdQVXjQKlabk8bI7zNDS0GmM",
+        "access": "authenticated_private",
+        "contentPublished": false
+      },
+      "dependencies": [
+        {
+          "id": "TASK-20260728-001",
+          "status": "UNVERIFIED",
+          "reason": "Dependency specification was not found in AIOS PMO."
+        }
+      ],
+      "blockers": [
+        "Required governance references are missing from AIOS PMO.",
+        "Authenticated server-side Google Drive writes are not configured."
+      ],
+      "acceptanceCriteria": [
+        {
+          "id": "AC-01",
+          "label": "Work Items navigation and summary metrics are visible.",
+          "completed": false
+        },
+        {
+          "id": "AC-02",
+          "label": "Search, filters, quick views and priority ordering work.",
+          "completed": false
+        },
+        {
+          "id": "AC-03",
+          "label": "Detail view exposes traceability, activity and execution command.",
+          "completed": false
+        },
+        {
+          "id": "AC-04",
+          "label": "Status transitions enforce approval, reason and completion gates.",
+          "completed": false
+        },
+        {
+          "id": "AC-05",
+          "label": "Drive failure and stale-cache states are explicit.",
+          "completed": false
+        },
+        {
+          "id": "AC-06",
+          "label": "Existing AIOS dashboard routes and modules pass regression validation.",
+          "completed": false
+        }
+      ],
+      "activity": [
+        {
+          "type": "registered",
+          "actor": "Codex",
+          "reason": "Imported from the approved Google Drive task specification.",
+          "at": "2026-07-28T00:00:00+08:00",
+          "mode": "read_only_snapshot"
+        }
+      ]
+    }
+  ]
+}

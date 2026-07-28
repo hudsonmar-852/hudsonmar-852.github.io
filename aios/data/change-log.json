@@ -1,5 +1,15 @@
 [
   {
+    "id": "CL-20260728-001",
+    "date": "2026-07-28",
+    "version": "AIOS Work Items v1.0.0",
+    "change": "Added an additive Work Items dashboard, governed status engine, public-safe task index, private Drive source traceability and clearly separated local demo updates.",
+    "reason": "Turn approved PMO task specifications into a searchable and auditable engineering queue without weakening the public/private boundary.",
+    "source": "WI-20260728-002 / TASK-20260728-002",
+    "status": "Pending Chief Architect Review",
+    "rollback": "Revert the TASK-20260728-002 commit. No Google Drive data is changed by this release."
+  },
+  {
     "id": "CL-20260721-001",
     "date": "2026-07-21",
     "version": "AIOS Dashboard v3.1",

@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow">
+  <title>AIOS · Work Items</title>
+  <link rel="stylesheet" href="./work-items.css">
+</head>
+<body>
+  <a class="skip-link" href="#work-items">Skip to work items</a>
+  <div class="shell">
+    <header class="top">
+      <a class="brand" href="../" aria-label="Back to AIOS Project Control">
+        <span class="logo" aria-hidden="true">AI</span>
+        <span>AIOS<br><small>Work Items</small></span>
+      </a>
+      <a class="back" href="../">← Project Control</a>
+    </header>
+
+    <main>
+      <section class="hero" aria-labelledby="page-title">
+        <div>
+          <p class="eyebrow">PMO · Operational register</p>
+          <h1 id="page-title">Work that is ready to move.</h1>
+          <p>Search, review and advance AIOS engineering work without exposing private task specifications.</p>
+        </div>
+        <div class="sync-card">
+          <span class="mode-badge">Read-only Drive snapshot</span>
+          <strong id="sync-status">Loading work item register…</strong>
+          <small id="sync-time">Awaiting sync status</small>
+        </div>
+      </section>
+
+      <aside class="notice notice-warning" id="governance-warning" hidden role="status">
+        <div>
+          <strong>Governance references are incomplete.</strong>
+          <span id="governance-message"></span>
+        </div>
+      </aside>
+
+      <aside class="notice notice-demo" role="note">
+        <div>
+          <strong>Local demo update mode</strong>
+          <span>Status changes stay in this browser and are not written to Google Drive.</span>
+        </div>
+        <button class="text-button" id="reset-demo" type="button">Reset local changes</button>
+      </aside>
+
+      <section class="metrics" id="metrics" aria-label="Work item summary">
+        <article class="metric skeleton"></article>
+        <article class="metric skeleton"></article>
+        <article class="metric skeleton"></article>
+        <article class="metric skeleton"></article>
+      </section>
+
+      <section class="workspace" id="work-items" aria-labelledby="work-items-title">
+        <div class="workspace-head">
+          <div>
+            <p class="eyebrow">Task register</p>
+            <h2 id="work-items-title">All work items</h2>
+          </div>
+          <div class="quick-views" aria-label="Quick views">
+            <button class="quick active" type="button" data-view="ALL">All</button>
+            <button class="quick" type="button" data-view="ACTIVE">Active</button>
+            <button class="quick" type="button" data-view="BLOCKED">Blocked</button>
+            <button class="quick" type="button" data-view="DONE">Done</button>
+          </div>
+        </div>
+
+        <form class="filters" id="filters">
+          <label class="search">
+            <span>Search</span>
+            <input id="search" type="search" placeholder="ID, title, owner or module" autocomplete="off">
+          </label>
+          <label>
+            <span>Status</span>
+            <select id="status-filter"><option value="ALL">All statuses</option></select>
+          </label>
+          <label>
+            <span>Priority</span>
+            <select id="priority-filter">
+              <option value="ALL">All priorities</option>
+              <option>P0</option><option>P1</option><option>P2</option><option>P3</option><option>P4</option>
+            </select>
+          </label>
+          <label>
+            <span>Owner</span>
+            <select id="owner-filter"><option value="ALL">All owners</option></select>
+          </label>
+          <label>
+            <span>Module</span>
+            <select id="module-filter"><option value="ALL">All modules</option></select>
+          </label>
+        </form>
+
+        <div id="register-state" class="state" role="status">Loading work items…</div>
+        <div class="table-wrap" id="table-wrap" hidden>
+          <table>
+            <thead>
+              <tr>
+                <th scope="col">Priority</th>
+                <th scope="col">Work item</th>
+                <th scope="col">Status</th>
+                <th scope="col">Module</th>
+                <th scope="col">Owner</th>
+                <th scope="col">Updated</th>
+              </tr>
+            </thead>
+            <tbody id="work-item-rows"></tbody>
+          </table>
+        </div>
+        <div class="card-list" id="work-item-cards" hidden></div>
+      </section>
+    </main>
+
+    <footer>
+      Source specifications stay private in Google Drive. Repository data contains public-safe operational metadata only.
+    </footer>
+  </div>
+
+  <dialog id="detail-dialog" aria-labelledby="detail-title">
+    <article class="detail">
+      <header class="detail-head">
+        <div>
+          <p class="eyebrow" id="detail-id"></p>
+          <h2 id="detail-title"></h2>
+        </div>
+        <button class="icon-button" id="close-detail" type="button" aria-label="Close work item details">×</button>
+      </header>
+      <div id="detail-content"></div>
+    </article>
+  </dialog>
+
+  <div class="toast" id="toast" role="status" aria-live="polite" hidden></div>
+  <script type="module" src="./app.mjs"></script>
+</body>
+</html>
