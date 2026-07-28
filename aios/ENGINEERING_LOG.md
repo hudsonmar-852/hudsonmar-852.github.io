@@ -8,7 +8,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Cycle: TASK-20260728-002
 - Completed Engineering Tasks: 1 / 1
 - Engineering Order: WI-20260728-002 — Implementation complete
-- Architecture Review: Pending Chief Architect review
+- Architecture Review: APPROVED WITH CONDITIONS; Hudson approval pending
 - Last updated: 2026-07-28
 
 ## Entry template
@@ -150,7 +150,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 ### WI-20260728-002 — Work Item Dashboard
 
 - Priority: P1
-- Status: Implementation complete; Pending Chief Architect Review
+- Status: Implementation complete; APPROVED WITH CONDITIONS; Hudson approval pending
 - Completed: 2026-07-28
 
 - Read the complete Google Drive task source before code changes.
@@ -166,3 +166,23 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Added unit, integration-style and page contract tests plus CI validation.
 - Architecture review package:
   `aios/reviews/architecture-review-2026-07-28-01.md`.
+
+### WI-20260728-002-GOV — Governance preparation and architecture review
+
+- Priority: P1
+- Status: Completed locally; human decisions pending
+- Completed: 2026-07-28
+- Objective: Discover missing governance evidence, draft controlled baseline
+  documents, verify TASK-20260728-001, review the Work Items architecture and
+  propose—but not implement—a secure Drive write architecture.
+- Files: `aios/governance/*.md`,
+  `aios/reviews/dependency-20260728-001-evidence.md`,
+  `aios/docs/google-drive-write-architecture-proposal.md`, task register and
+  architecture gate records.
+- Validation: AIOS full test/validation suite and governance cross-reference
+  checks.
+- Architecture impact: None implemented. The review approves only the current
+  read-only/local-demo MVP with conditions. Architecture Freeze and production
+  Drive writes remain not approved.
+- Human action: Approve/amend governance drafts, confirm TASK-001 mapping and
+  decide the proposed Drive runtime and identity model.

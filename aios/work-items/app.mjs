@@ -125,9 +125,12 @@ function renderSync() {
   elements.syncTime.textContent = `Snapshot generated ${formatDate(state.snapshot.generatedAt, true)}`;
 
   const missing = state.snapshot.governance?.documents?.filter((document) => !document.available) || [];
-  if (missing.length) {
+  const drafts = state.snapshot.governance?.documents?.filter((document) => document.status === 'DRAFT') || [];
+  if (missing.length || state.snapshot.governance?.complete === false) {
     elements.warning.hidden = false;
-    elements.warningMessage.textContent = `Missing: ${missing.map((document) => document.name).join(', ')}.`;
+    elements.warningMessage.textContent = missing.length
+      ? `Missing: ${missing.map((document) => document.name).join(', ')}.`
+      : `Drafts awaiting human approval: ${drafts.map((document) => document.name).join(', ')}.`;
   }
 }
 

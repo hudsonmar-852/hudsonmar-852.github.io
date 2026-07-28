@@ -100,8 +100,9 @@ No data migration is required for the current static dashboard.
 
 To enable real Drive writes later:
 
-1. Restore the missing governance documents under `AIOS PMO/00_Governance`.
-2. Verify and register TASK-20260728-001.
+1. Obtain Hudson approval for the repository governance drafts and place the
+   approved versions under `AIOS PMO/00_Governance`.
+2. Confirm whether Jeffrey PR #7 is TASK-20260728-001 and register the result.
 3. Approve a server runtime and identity model.
 4. Implement the same adapter contract on the server.
 5. Add idempotency, conflict/version checks and append-only audit persistence.
@@ -123,8 +124,10 @@ can also be removed with **Reset local changes**.
 ## Known limitations and risks
 
 - Drive writes are not configured.
-- Required governance documents are missing from AIOS PMO.
-- TASK-20260728-001 could not be independently verified.
+- Governance documents exist as repository drafts but are not approved or
+  present in AIOS PMO.
+- TASK-20260728-001 is PARTIALLY VERIFIED; the matching implementation evidence
+  exists, but the original task record and formal mapping are missing.
 - The read-only snapshot is refreshed by an engineering update, not an
   automated authenticated job.
 - Public metadata must remain deliberately minimal as new work items are added.
