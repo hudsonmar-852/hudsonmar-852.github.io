@@ -156,3 +156,19 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   tracking, privacy documentation and regression tests.
 - Production Gmail intake remains intentionally unconnected pending private
   runtime authorization and profile configuration.
+
+### WI-20260728-002 — Work Item Dashboard
+
+- Priority: P1
+- Status: Implementation complete; Pending Chief Architect Review
+- Completed: 2026-07-28
+- Read the complete Google Drive task source before code changes.
+- Added the AIOS Work Items dashboard as an additive route.
+- Added governed status transitions, search, filters, quick views, detail inspection, execution command copy and local demo activity history.
+- Added `work-items.json`, `TASK_INDEX.md` and the v1 schema.
+- Preserved Google Drive as the operational source without exposing private task text or credentials.
+- Implemented the approved read-only fallback because no secure server-side Drive write layer exists.
+- Recorded missing governance documents and TASK-20260728-001 as blockers.
+- Added unit, integration-style and page contract tests plus CI validation.
+- Architecture review package: `aios/reviews/architecture-review-2026-07-28-01.md`.
+

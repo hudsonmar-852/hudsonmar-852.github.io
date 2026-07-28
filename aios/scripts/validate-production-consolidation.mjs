@@ -8,6 +8,7 @@ const jsonFiles = [
   'config/security-storage-policy.json',
   'data/production-manifest.json',
   'examples/production-manifest.example.json',
+  'schemas/work-items.schema.json',
   'spec/branches/production-consolidation-2026-07-21.json',
   'templates/secret-inventory.example.json',
   'workflows/production-consolidation.json'
@@ -69,6 +70,14 @@ if (workflow.automaticMerge !== false) throw new Error('Production workflow must
 const localAssets = [
   'index.html',
   'aios/index.html',
+  'aios/work-items/index.html',
+  'aios/work-items/work-items.css',
+  'aios/work-items/app.mjs',
+  'aios/docs/assets/work-item-dashboard-before.png',
+  'aios/docs/assets/work-item-dashboard-after-desktop.png',
+  'aios/docs/assets/work-item-dashboard-after-mobile.png',
+  'work-items.json',
+  'TASK_INDEX.md',
   'avataros/index.html',
   'avataros/config/avataros.config.json',
   'avataros/docs/system-spec.md',
@@ -88,6 +97,31 @@ for (const project of projects) {
     const target = path.resolve(root, project.publicUrl);
     const entrypoint = path.extname(target) ? target : path.join(target, 'index.html');
     if (!fs.existsSync(entrypoint)) throw new Error(`Missing local project route: ${project.publicUrl}`);
+  }
+}
+
+const workItems = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'work-items.json'), 'utf8'));
+const workItemStatuses = new Set([
+  'BACKLOG',
+  'READY',
+  'IN_PROGRESS',
+  'REVIEW',
+  'CHANGES_REQUESTED',
+  'BLOCKED',
+  'COMPLETED',
+  'ARCHIVED'
+]);
+if (workItems.sourceMode !== 'google_drive_read_only_snapshot') {
+  throw new Error('Work item register must preserve the read-only Drive boundary');
+}
+if (workItems.updateMode !== 'local_demo_only') {
+  throw new Error('Work item register must not overstate Drive write capability');
+}
+for (const item of workItems.items) {
+  if (!/^WI-\d{8}-\d{3}$/.test(item.id)) throw new Error(`Invalid work item ID: ${item.id}`);
+  if (!workItemStatuses.has(item.status)) throw new Error(`Invalid work item status: ${item.status}`);
+  if (item.source?.access !== 'authenticated_private' || item.source?.contentPublished !== false) {
+    throw new Error(`Private source boundary is incomplete: ${item.id}`);
   }
 }
 
