@@ -5,7 +5,7 @@ export function flattenDailyCatalogue(catalogue) {
   return Object.entries(catalogue.new_reminders).flatMap(([category, reminders]) => (
     Array.isArray(reminders) ? reminders.map((reminder) => ({
       id: reminder.id,
-      topic: category === 'weather_today' ? 'AIOS 今日情境' : `AIOS ${category}`,
+      topic: catalogue.fused_topic || 'AIOS 今日主題',
       content: reminder.text,
       category,
       approvalStatus: 'pending',

@@ -3,7 +3,6 @@ import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { validateDailyContext } from '../services/daily-context/validator.js';
 import { duplicateCheck } from '../modules/jeffrey/anti-repetition.js';
-import { CATEGORY_ORDER } from '../modules/jeffrey/generator.js';
 
 const aiosRoot = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(aiosRoot, '..');
@@ -40,20 +39,15 @@ if (catalogue.merge_policy?.mode !== 'prepend_new_preserve_old') throw new Error
 if (catalogue.merge_policy?.preserve_existing_reminders !== true) throw new Error('Historical preservation missing');
 if (catalogue.merge_policy?.overwrite_existing !== false) throw new Error('Overwrite protection missing');
 
-for (const category of CATEGORY_ORDER) {
-  const reminders = catalogue.new_reminders?.[category];
-  if (!Array.isArray(reminders) || reminders.length !== 5) {
-    throw new Error(`Expected five reminders in ${category}`);
-  }
+const dailyFive = catalogue.new_reminders?.daily_five;
+if (!Array.isArray(dailyFive) || dailyFive.length !== 5) {
+  throw new Error('Catalogue must contain exactly five daily messages');
 }
-
-const contextReminders = catalogue.new_reminders?.weather_today;
-if (![0, 10].includes(contextReminders?.length)) throw new Error('Context reminder count must be exactly zero or ten');
-if (catalogue.context_status === 'validated' && contextReminders.length !== 10) {
-  throw new Error('Validated context must have exactly ten reminders');
+if (catalogue.creation_policy?.topic_mode !== 'single_fused_topic') {
+  throw new Error('Single fused topic policy missing');
 }
-if (catalogue.context_status !== 'validated' && contextReminders.length !== 0) {
-  throw new Error('Unsupported context must have zero reminders');
+if (catalogue.creation_policy?.group_sorting !== false) {
+  throw new Error('Group sorting must remain disabled');
 }
 
 const allReminders = Object.values(catalogue.new_reminders).flat();
@@ -96,5 +90,6 @@ if (execution.old_reminders_preserved !== true || execution.new_reminders_prepen
 
 console.log(
   `Validated Jeffrey Daily Context ${context.date}: ${allReminders.length} drafts, `
-  + `${contextReminders.length} context-specific, ${context.source_records.length} source records.`
+  + `${allReminders.filter((item) => item.context_specific).length} context-specific, `
+  + `${context.source_records.length} source records.`
 );

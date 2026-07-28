@@ -71,7 +71,7 @@ function baseDraft({ date, category, text, index }) {
 function contextDraft({ date, topic, text, index }) {
   const segment = topic.audience_segments[0] || 'general_wellness';
   return {
-    ...baseDraft({ date, category: 'weather_today', text, index }),
+    ...baseDraft({ date, category: 'daily_five', text, index }),
     id: stableId([date, topic.id, text]),
     context_specific: true,
     context_status: 'validated',
@@ -81,6 +81,8 @@ function contextDraft({ date, topic, text, index }) {
     source_record_id: topic.source_record_id,
     source_line: `AIOS Daily Context · ${topic.title}`,
     source_url: topic.record_url,
+    source_records: topic.source_records,
+    fused_topic: topic.title,
     freshness_score: topic.freshness_score,
     confidence_score: topic.confidence_score
   };
@@ -129,6 +131,28 @@ function generateEvergreenCategory({ date, category, history, report }) {
   return selected;
 }
 
+function generateEvergreenFive({ date, history, report }) {
+  const selected = [];
+  const offset = Number(date.replaceAll('-', '')) % CATEGORY_ORDER.length;
+  const categories = [...CATEGORY_ORDER.slice(offset), ...CATEGORY_ORDER.slice(0, offset)];
+  for (let round = 0; round < 8 && selected.length < 5; round += 1) {
+    for (const category of categories) {
+      if (selected.length === 5) break;
+      const text = EVERGREEN_TEMPLATES[category][round];
+      if (!text) continue;
+      const candidate = {
+        ...baseDraft({ date, category: 'daily_five', text, index: selected.length }),
+        message_angle: category,
+        fused_topic: '今日生活同訓練節奏'
+      };
+      const result = validateCandidate(candidate, [...history, ...selected], report, date, round);
+      if (result) selected.push(result.draft);
+    }
+  }
+  if (selected.length !== 5) throw new Error('Unable to produce five QA-passing daily reminders');
+  return selected;
+}
+
 function attachTopicScores(topic, context) {
   const record = context.source_records.find((item) => item.record_id === topic.source_record_id);
   return {
@@ -138,22 +162,41 @@ function attachTopicScores(topic, context) {
   };
 }
 
+function fuseTopics(context) {
+  const topics = context.topic_candidates.map((topic) => attachTopicScores(topic, context));
+  if (!topics.length) return null;
+  const primary = topics[0];
+  const sourceRecords = topics.map((topic) => ({
+    record_id: topic.source_record_id,
+    record_url: topic.record_url,
+    title: topic.title,
+    type: topic.type,
+    freshness_score: topic.freshness_score,
+    confidence_score: topic.confidence_score
+  }));
+  return {
+    ...primary,
+    title: topics.map((topic) => topic.title).filter(Boolean).slice(0, 3).join(' · '),
+    audience_segments: [...new Set(topics.flatMap((topic) => topic.audience_segments))],
+    source_records: sourceRecords
+  };
+}
+
 function generateContextSpecific({ date, context, history, report }) {
   if (context.validation.status !== 'pass' || !context.topic_candidates.length) return [];
   const selected = [];
-  const topics = context.topic_candidates.map((topic) => attachTopicScores(topic, context));
-  for (let round = 0; round < 16 && selected.length < 10; round += 1) {
-    const topic = topics[round % topics.length];
+  const topic = fuseTopics(context);
+  for (let round = 0; round < 10 && selected.length < 5; round += 1) {
     const pool = contextTemplatePool(topic.type);
-    const text = pool[Math.floor(round / topics.length) % pool.length];
+    const text = pool[round % pool.length];
     const candidate = contextDraft({ date, topic, text, index: round });
     const result = validateCandidate(candidate, [...history, ...selected], report, date, round);
     if (result) selected.push(result.draft);
   }
-  if (selected.length !== 10) {
+  if (selected.length !== 5) {
     report.excluded.push({
       id: 'context-batch',
-      failures: ['insufficient_qa_passing_context_reminders'],
+      failures: ['insufficient_qa_passing_daily_messages'],
       produced: selected.length
     });
     return [];
@@ -169,17 +212,17 @@ export function generateDailyCatalogue({ date, context, history = [], historyRef
     duplicate_checks: []
   };
   const contextReminders = generateContextSpecific({ date, context, history, report });
-  const newReminders = { weather_today: contextReminders };
-  const accumulated = [...history, ...contextReminders];
-  for (const category of CATEGORY_ORDER) {
-    const reminders = generateEvergreenCategory({ date, category, history: accumulated, report });
-    newReminders[category] = reminders;
-    accumulated.push(...reminders);
-  }
-  const contextStatus = contextReminders.length === 10 ? 'validated' : 'evergreen_only';
-  const totalEvergreen = CATEGORY_ORDER.reduce((sum, category) => sum + newReminders[category].length, 0);
+  const dailyFive = contextReminders.length === 5
+    ? contextReminders
+    : generateEvergreenFive({ date, history, report });
+  const newReminders = { daily_five: dailyFive };
+  const contextStatus = contextReminders.length === 5 ? 'validated' : 'evergreen_only';
+  const totalEvergreen = contextStatus === 'validated' ? 0 : dailyFive.length;
+  const fusedTopic = contextStatus === 'validated'
+    ? dailyFive[0].fused_topic
+    : '今日生活同訓練節奏';
   const catalogue = {
-    schema_version: '2.0',
+    schema_version: '3.0',
     catalogue_date: date,
     status: DRAFT_STATUS,
     context_status: contextStatus,
@@ -200,14 +243,21 @@ export function generateDailyCatalogue({ date, context, history = [], historyRef
       avoid_generic_ai_phrasing: true,
       human_approval_required: true
     },
+    creation_policy: {
+      messages_per_day: 5,
+      topic_mode: 'single_fused_topic',
+      source_mode: 'combined_validated_aios_records',
+      group_sorting: false
+    },
+    fused_topic: fusedTopic,
     new_reminders: newReminders,
     qa_summary: {
       context_specific_reminders: contextReminders.length,
       context_block_reason: contextStatus === 'validated' ? null : 'insufficient_validated_context',
-      new_categories: CATEGORY_ORDER.length,
+      new_categories: 1,
       new_per_category: 5,
       new_evergreen_reminders: totalEvergreen,
-      total_new_reminders: totalEvergreen + contextReminders.length,
+      total_new_reminders: dailyFive.length,
       duplicate_check: report.duplicate_checks.every((item) => item.decision === 'pass') ? 'passed' : 'passed_after_rewrite',
       old_reminders_preserved: true,
       human_approval_required: true,
@@ -239,6 +289,8 @@ export function generateDailyCatalogue({ date, context, history = [], historyRef
     new_reminders_prepended: true,
     context_specific_count: contextReminders.length,
     evergreen_count: totalEvergreen,
+    fused_topic: fusedTopic,
+    daily_message_count: dailyFive.length,
     duplicate_check_results: report.duplicate_checks,
     excluded_items: report.excluded,
     source_records_considered: context.source_records.length,

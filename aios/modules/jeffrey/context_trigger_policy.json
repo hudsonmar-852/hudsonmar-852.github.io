@@ -36,8 +36,10 @@
   },
   "generation_rules": {
     "max_daily_suggestions_per_client": 3,
-    "catalogue_context_count_when_supported": 10,
-    "catalogue_context_count_when_unsupported": 0,
+    "daily_message_count": 5,
+    "single_fused_topic": true,
+    "combine_validated_sources_before_generation": true,
+    "group_sorting": false,
     "scheduled_records_only": true,
     "generate_only_for_affected_segments": true,
     "never_force_fitness_angle": true,

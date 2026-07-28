@@ -1,5 +1,13 @@
 # Jeffrey AIOS Module Changelog
 
+## 2026-07-28 — v1.2.0
+
+### Simplified
+- Combine compatible validated scheduled records into one fused daily topic.
+- Produce exactly five drafts per day, including evergreen fallback days.
+- Remove category-group sorting from the daily output contract.
+- Preserve the full historical catalogue and duplicate checks.
+
 ## 2026-07-27 — v1.1.0
 
 ### Added

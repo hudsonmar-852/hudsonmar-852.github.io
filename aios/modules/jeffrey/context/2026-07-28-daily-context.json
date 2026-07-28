@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-07-28",
+  "timezone": "Asia/Hong_Kong",
+  "generated_at": "2026-07-27T18:11:57.971Z",
+  "source_records": [],
+  "weather": {
+    "status": "unavailable",
+    "record_id": null,
+    "conditions": "",
+    "temperature_c": null,
+    "humidity_percent": null,
+    "warnings": [],
+    "rain_risk": "",
+    "thunderstorm_risk": "",
+    "heat_risk": "",
+    "cold_risk": "",
+    "source_name": "",
+    "source_timestamp": "",
+    "retrieval_timestamp": "",
+    "source_url": "",
+    "freshness_score": 0,
+    "confidence_score": 0,
+    "rejection_reason": "no_valid_weather_record"
+  },
+  "top_news": [],
+  "multimedia_hits": [],
+  "transport": [],
+  "southside": [],
+  "special_events": [],
+  "holiday": null,
+  "audience_segments": [],
+  "recommended_topics": [],
+  "avoid_topics": [],
+  "topic_candidates": [],
+  "validation": {
+    "stale_items_rejected": [],
+    "conflicts_rejected": [],
+    "missing_fields": [],
+    "status": "partial"
+  }
+}

@@ -1,0 +1,239 @@
+{
+  "schema_version": "1.0",
+  "date": "2026-07-28",
+  "status": "pass_with_exclusions",
+  "thresholds": {
+    "jeffrey_voice_min": 90,
+    "warm_heart_min": 90,
+    "reply_likelihood_min": 75,
+    "ai_smell_max": 10
+  },
+  "attempted": 36,
+  "rewritten_once": 33,
+  "excluded_after_rewrite": [
+    {
+      "id": "jdc-5a5ef02e6b136825",
+      "text": "忙到轉場嗰陣，順手飲兩啖水先啦。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-2cb7338a4f9ee333",
+      "text": "坐咗一輪就企直十秒，個身會鬆少少。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-cc288a00ebe20fcb",
+      "text": "一急就容易收埋條氣，呼返長少少先。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-c234f396ad991047",
+      "text": "今日第一組做穩先，再睇下要唔要加。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-8fadfc6045dfc3a8",
+      "text": "今晚收尾早少少，俾個腦慢慢靜返落嚟。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-7fb027aaeaa3ea08",
+      "text": "今日最重要嗰樣做到，就已經好夠。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-74928ab7cfbee9b8",
+      "text": "支水放近少少，見到就自然會記得飲。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-f1798d9faf6cc004",
+      "text": "膊頭縮埋咗？慢慢向後郁一圈就得。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-b662a8fe82d3a467",
+      "text": "開始之前抖一口氣，個節奏會定好多。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-83ff2286b5bbce58",
+      "text": "重量輕少少冇問題，動作順先最重要。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-4e5d0cc95eae2320",
+      "text": "如果對腳仲有啲攰，今日輕鬆行就夠。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-d4e14eabef8640fc",
+      "text": "忙唔忙呀？食餐正常飯先再繼續。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-f663606b638b48c1",
+      "text": "今日講嘢多嘅話，中間飲啖水就夠。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-f06e433078e2f373",
+      "text": "等升降機嗰陣郁下腳趾，對腳醒返啲。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-dca8804fb7c4f241",
+      "text": "行快咗唔緊要，放慢半步就順返。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-2c5c51d9f850266e",
+      "text": "狀態未到就守住節奏，唔使硬追數字。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-b656caecaba27956",
+      "text": "忙完一輪坐低抖下，唔使即刻開下一樣。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-bf79e33394dd98a4",
+      "text": "今日有啲亂？逐樣慢慢處理就得。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-557decd1ae52c9cb",
+      "text": "出門口前飲少少水，唔使等口乾先算。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-1a4f622973034700",
+      "text": "如果個髖坐到實晒，起身行幾步先啦。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-04cbdbc65e906a63",
+      "text": "做到亂晒節奏，就停低搵返呼吸先。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-333473be15069396",
+      "text": "時間唔多就做熟嗰幾樣，做好已經夠。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-4dab2cd44c1368e8",
+      "text": "今日休息一晚都係進度，唔使補返晒。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-fbaa12b50b914684",
+      "text": "收工之後放慢少少，今日辛苦喇。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-947d0847cb34415c",
+      "text": "一杯飲唔晒冇問題，隔陣再慢慢飲。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-fbe810f7010228d2",
+      "text": "望電話耐咗，抬高少少個畫面會舒服啲。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-1ba9f231a66d6a6b",
+      "text": "膊頭一縮，呼氣嗰陣順便放低少少。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-ef19215cfb09c73a",
+      "text": "一開始卡卡地，調低一級再慢慢做。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-fdb8ca6da6630487",
+      "text": "瞓前放低個電話一陣，等自己慢慢停機。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-d48c3cfd2c2fe92a",
+      "text": "如果行程排得密，留返一陣俾自己。",
+      "failures": [
+        "duplicate"
+      ]
+    },
+    {
+      "id": "jdc-1f85d83e0c5e5b3a",
+      "text": "食飯前飲兩啖水，順便俾自己停一停。",
+      "failures": [
+        "one_action_maximum"
+      ]
+    }
+  ],
+  "accepted_ids": [
+    "jdc-14730fae9276eb17",
+    "jdc-9a74d29fe0d9ac25",
+    "jdc-7e59824731c8cf91",
+    "jdc-b303305a813de7f1",
+    "jdc-840fd7acf98af0c5"
+  ]
+}

@@ -5,7 +5,7 @@ import os from 'node:os';
 import path from 'node:path';
 import { collectDailyContext } from '../services/daily-context/index.js';
 import { duplicateCheck, semanticSimilarity } from '../modules/jeffrey/anti-repetition.js';
-import { generateDailyCatalogue, CATEGORY_ORDER } from '../modules/jeffrey/generator.js';
+import { generateDailyCatalogue } from '../modules/jeffrey/generator.js';
 import {
   flattenDailyCatalogue,
   loadLatestDailyAssets,
@@ -61,41 +61,44 @@ test('high semantic similarity blocks', () => {
   assert.equal(duplicateCheck(left, [{ text: right }]).decision, 'block');
 });
 
-test('validated context produces exactly ten sourced draft reminders', () => {
+test('validated context produces exactly five drafts from one fused topic', () => {
   const result = generateDailyCatalogue({
     date: '2026-07-27',
     context: validWarningContext(),
     history: []
   });
-  const reminders = result.catalogue.new_reminders.weather_today;
-  assert.equal(reminders.length, 10);
+  const reminders = result.catalogue.new_reminders.daily_five;
+  assert.equal(reminders.length, 5);
   assert.equal(result.catalogue.context_status, 'validated');
+  assert.equal(result.catalogue.creation_policy.topic_mode, 'single_fused_topic');
+  assert.equal(result.catalogue.creation_policy.group_sorting, false);
+  assert.equal(new Set(reminders.map((item) => item.fused_topic)).size, 1);
   for (const reminder of reminders) {
     assert.equal(reminder.status, 'draft_human_approval_required');
     assert.equal(reminder.approval_status, 'pending');
     assert.match(reminder.source_line, /AIOS Daily Context/);
     assert.match(reminder.source_url, /^\/aios\/.+\.json$/);
     assert.equal(reminder.context_specific, true);
+    assert.ok(reminder.source_records.length >= 1);
   }
 });
 
-test('unsupported context produces zero context reminders and evergreen only', () => {
+test('unsupported context produces exactly five evergreen reminders', () => {
   const context = collectDailyContext({ date: '2026-07-27', records: [], now: NOW });
   const result = generateDailyCatalogue({ date: '2026-07-27', context, history: [] });
-  assert.equal(result.catalogue.new_reminders.weather_today.length, 0);
+  assert.equal(result.catalogue.new_reminders.daily_five.length, 5);
   assert.equal(result.catalogue.context_status, 'evergreen_only');
-  assert.equal(result.catalogue.qa_summary.new_evergreen_reminders, 30);
+  assert.equal(result.catalogue.qa_summary.new_evergreen_reminders, 5);
 });
 
-test('each existing evergreen category receives five new drafts', () => {
+test('daily catalogue contains only one five-message collection', () => {
   const context = collectDailyContext({ date: '2026-07-27', records: [], now: NOW });
   const result = generateDailyCatalogue({ date: '2026-07-27', context, history: [] });
-  for (const category of CATEGORY_ORDER) {
-    assert.equal(result.catalogue.new_reminders[category].length, 5, category);
-    assert.equal(result.catalogue.new_reminders[category].every((item) => (
-      item.status === 'draft_human_approval_required'
-    )), true);
-  }
+  assert.deepEqual(Object.keys(result.catalogue.new_reminders), ['daily_five']);
+  assert.equal(result.catalogue.new_reminders.daily_five.length, 5);
+  assert.equal(result.catalogue.new_reminders.daily_five.every((item) => (
+    item.status === 'draft_human_approval_required'
+  )), true);
 });
 
 test('dashboard adapter prepends new drafts and preserves old reminder objects', () => {
@@ -103,10 +106,10 @@ test('dashboard adapter prepends new drafts and preserves old reminder objects',
   const context = collectDailyContext({ date: '2026-07-27', records: [], now: NOW });
   const { catalogue } = generateDailyCatalogue({ date: '2026-07-27', context, history: [] });
   const adapted = prependCatalogueReminders({ legacy: old, catalogue, enabled: true });
-  assert.equal(adapted.reminders.length, 31);
+  assert.equal(adapted.reminders.length, 6);
   assert.equal(adapted.reminders.at(-1), old[0]);
   assert.equal(adapted.reminders[0].approvalStatus, 'pending');
-  assert.equal(flattenDailyCatalogue(catalogue).length, 30);
+  assert.equal(flattenDailyCatalogue(catalogue).length, 5);
 });
 
 test('feature flag disabled leaves existing dashboard behavior untouched', () => {

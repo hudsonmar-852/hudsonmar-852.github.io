@@ -1,12 +1,12 @@
 {
   "schema_version": "1.0",
-  "date": "2026-07-27",
+  "date": "2026-07-28",
   "status": "draft_human_approval_required",
   "feature_flag": "AIOS_DAILY_CONTEXT_V1",
   "context_status": "evergreen_only",
-  "generated_at": "2026-07-27T09:03:41.460Z",
-  "daily_context_url": "/aios/modules/jeffrey/context/2026-07-27-daily-context.json",
-  "daily_catalogue_url": "/aios/modules/jeffrey/catalogues/generated/2026-07-27-daily-style-catalogue.json",
-  "qa_report_url": "/aios/modules/jeffrey/qa/2026-07-27-qa-report.json",
-  "execution_report_url": "/aios/modules/jeffrey/reports/2026-07-27-execution-report.json"
+  "generated_at": "2026-07-27T18:11:57.971Z",
+  "daily_context_url": "/aios/modules/jeffrey/context/2026-07-28-daily-context.json",
+  "daily_catalogue_url": "/aios/modules/jeffrey/catalogues/generated/2026-07-28-daily-style-catalogue.json",
+  "qa_report_url": "/aios/modules/jeffrey/qa/2026-07-28-qa-report.json",
+  "execution_report_url": "/aios/modules/jeffrey/reports/2026-07-28-execution-report.json"
 }

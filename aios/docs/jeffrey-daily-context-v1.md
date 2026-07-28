@@ -15,10 +15,10 @@ AIOS scheduled outputs and stored project records
   -> Daily Context Collector
   -> source priority + conflict rejection
   -> freshness + confidence validation
-  -> topic and audience selection
+  -> one fused topic from compatible validated records
   -> Jeffrey draft generator
   -> voice/safety/duplicate QA
-  -> append-only context, catalogue, QA and execution records
+  -> exactly five append-only draft messages
   -> dashboard adapter
 ```
 
@@ -28,6 +28,7 @@ The collector reads repository records only. The generator contains no external 
 
 - Historical catalogues remain unchanged.
 - New drafts are written under date-keyed directories and are prepended by adapters at read time.
+- Every daily catalogue contains one fused topic and exactly five messages; group sorting is disabled.
 - `latest.json` is the only mutable pointer; date records are append-only.
 - All outputs remain `draft_human_approval_required`.
 - The existing catalogue format remains available; v2 output carries `historical_catalogue_refs`.

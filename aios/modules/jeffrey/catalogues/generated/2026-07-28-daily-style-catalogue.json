@@ -1,0 +1,176 @@
+{
+  "schema_version": "3.0",
+  "catalogue_date": "2026-07-28",
+  "status": "draft_human_approval_required",
+  "context_status": "evergreen_only",
+  "daily_context_record_url": "/aios/modules/jeffrey/context/2026-07-28-daily-context.json",
+  "merge_policy": {
+    "mode": "prepend_new_preserve_old",
+    "preserve_existing_reminders": true,
+    "new_reminders_position": "top",
+    "overwrite_existing": false,
+    "historical_catalogue_refs": [
+      "/aios/modules/jeffrey/catalogues/2026-07-25-daily-style-catalogue.json",
+      "/aios/modules/jeffrey/catalogues/2026-07-26-daily-style-catalogue.json",
+      "/aios/modules/jeffrey/catalogues/2026-07-27-daily-style-catalogue.json",
+      "/aios/modules/jeffrey/catalogues/generated/2026-07-27-daily-style-catalogue.json"
+    ]
+  },
+  "quality_policy": {
+    "one_message_one_purpose": true,
+    "max_gentle_actions": 1,
+    "avoid_forced_fitness_angle": true,
+    "avoid_medical_claims": true,
+    "avoid_excessive_emojis": true,
+    "avoid_generic_ai_phrasing": true,
+    "human_approval_required": true
+  },
+  "creation_policy": {
+    "messages_per_day": 5,
+    "topic_mode": "single_fused_topic",
+    "source_mode": "combined_validated_aios_records",
+    "group_sorting": false
+  },
+  "fused_topic": "今日生活同訓練節奏",
+  "new_reminders": {
+    "daily_five": [
+      {
+        "id": "jdc-14730fae9276eb17",
+        "text": "今日返到屋企除鞋之後，郁兩下腳踝先。",
+        "category": "daily_five",
+        "status": "draft_human_approval_required",
+        "approval_status": "pending",
+        "context_specific": false,
+        "context_status": "evergreen",
+        "generated_order": 0,
+        "source_line": null,
+        "source_url": null,
+        "source_record_id": null,
+        "audience_segments": [],
+        "freshness_score": null,
+        "confidence_score": null,
+        "rewrite_count": 1,
+        "message_angle": "stretching_mobility",
+        "fused_topic": "今日生活同訓練節奏",
+        "qa": {
+          "jeffrey_voice": 100,
+          "warm_heart": 90,
+          "reply_likelihood": 75,
+          "ai_smell": 0
+        }
+      },
+      {
+        "id": "jdc-9a74d29fe0d9ac25",
+        "text": "今日腦入面好多嘢？呼一口長氣先再做。",
+        "category": "daily_five",
+        "status": "draft_human_approval_required",
+        "approval_status": "pending",
+        "context_specific": false,
+        "context_status": "evergreen",
+        "generated_order": 1,
+        "source_line": null,
+        "source_url": null,
+        "source_record_id": null,
+        "audience_segments": [],
+        "freshness_score": null,
+        "confidence_score": null,
+        "rewrite_count": 1,
+        "message_angle": "breathing_rhythm",
+        "fused_topic": "今日生活同訓練節奏",
+        "qa": {
+          "jeffrey_voice": 100,
+          "warm_heart": 90,
+          "reply_likelihood": 90,
+          "ai_smell": 0
+        }
+      },
+      {
+        "id": "jdc-7e59824731c8cf91",
+        "text": "今日留一兩下餘力，成組會穩好多。",
+        "category": "daily_five",
+        "status": "draft_human_approval_required",
+        "approval_status": "pending",
+        "context_specific": false,
+        "context_status": "evergreen",
+        "generated_order": 2,
+        "source_line": null,
+        "source_url": null,
+        "source_record_id": null,
+        "audience_segments": [],
+        "freshness_score": null,
+        "confidence_score": null,
+        "rewrite_count": 0,
+        "message_angle": "training_intensity",
+        "fused_topic": "今日生活同訓練節奏",
+        "qa": {
+          "jeffrey_voice": 100,
+          "warm_heart": 90,
+          "reply_likelihood": 75,
+          "ai_smell": 0
+        }
+      },
+      {
+        "id": "jdc-b303305a813de7f1",
+        "text": "個身未回氣就唔加碼，聽日再嚟。",
+        "category": "daily_five",
+        "status": "draft_human_approval_required",
+        "approval_status": "pending",
+        "context_specific": false,
+        "context_status": "evergreen",
+        "generated_order": 3,
+        "source_line": null,
+        "source_url": null,
+        "source_record_id": null,
+        "audience_segments": [],
+        "freshness_score": null,
+        "confidence_score": null,
+        "rewrite_count": 0,
+        "message_angle": "recovery_rest",
+        "fused_topic": "今日生活同訓練節奏",
+        "qa": {
+          "jeffrey_voice": 100,
+          "warm_heart": 90,
+          "reply_likelihood": 75,
+          "ai_smell": 0
+        }
+      },
+      {
+        "id": "jdc-840fd7acf98af0c5",
+        "text": "今日未做晒唔代表做得差，慢慢嚟。",
+        "category": "daily_five",
+        "status": "draft_human_approval_required",
+        "approval_status": "pending",
+        "context_specific": false,
+        "context_status": "evergreen",
+        "generated_order": 4,
+        "source_line": null,
+        "source_url": null,
+        "source_record_id": null,
+        "audience_segments": [],
+        "freshness_score": null,
+        "confidence_score": null,
+        "rewrite_count": 0,
+        "message_angle": "daily_care",
+        "fused_topic": "今日生活同訓練節奏",
+        "qa": {
+          "jeffrey_voice": 100,
+          "warm_heart": 98,
+          "reply_likelihood": 75,
+          "ai_smell": 0
+        }
+      }
+    ]
+  },
+  "qa_summary": {
+    "context_specific_reminders": 0,
+    "context_block_reason": "insufficient_validated_context",
+    "new_categories": 1,
+    "new_per_category": 5,
+    "new_evergreen_reminders": 5,
+    "total_new_reminders": 5,
+    "duplicate_check": "passed_after_rewrite",
+    "old_reminders_preserved": true,
+    "human_approval_required": true,
+    "excluded_after_rewrite": 31
+  }
+}

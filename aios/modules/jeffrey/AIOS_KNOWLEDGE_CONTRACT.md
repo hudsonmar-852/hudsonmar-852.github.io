@@ -22,7 +22,7 @@ This contract defines how AI systems load and use Jeffrey-related knowledge with
 
 ## Generation contract
 
-- Interactive client generation produces no more than two candidate drafts. The scheduled catalogue batch is separate: five new drafts per existing category, plus exactly ten context drafts only when validated context exists.
+- Interactive client generation produces no more than two candidate drafts. The scheduled daily board is separate: combine validated sources into one topic, then retain exactly five drafts for the day.
 - The Jeffrey generator consumes stored AIOS records only and never fetches external weather APIs.
 - Start from a real-life or relationship context before fitness advice.
 - Use one purpose and at most one gentle action.
