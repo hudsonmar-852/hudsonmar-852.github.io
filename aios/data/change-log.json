@@ -48,5 +48,15 @@
     "source": "AIOS Production Consolidation v1",
     "status": "Waiting Review",
     "rollback": "Revert the dashboard index and project registry changes on this feature branch."
+  },
+  {
+    "id": "CL-20260728-001",
+    "date": "2026-07-28",
+    "version": "AIOS Governance v3.5",
+    "change": "Added the Executable Agent Boundary Standard covering safe-output allowlists, human-readable workflow sources with compiled artifacts, observable goal missions, cross-repository documentation drafting, structured issue metadata and read-only no-clone repository inspection.",
+    "reason": "Turn AIOS governance guidance into enforceable, traceable runtime and repository boundaries while reducing unapproved writes and unnecessary cloning.",
+    "source": "AIOS-GOV-010",
+    "status": "Waiting Review",
+    "rollback": "Close or revert the feature branch, remove aios/governance/AIOS-GOV-010-executable-agent-boundary-standard.md and restore the prior decisions and change-log revisions."
   }
 ]
