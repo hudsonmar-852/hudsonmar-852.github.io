@@ -191,3 +191,38 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   Drive writes remain not approved.
 - Human action: Approve/amend governance drafts, confirm TASK-001 mapping and
   decide the proposed Drive runtime and identity model.
+
+### AIOS-PROD-004 — Harden public secret detection
+
+- Priority: P1
+- Status: Implemented locally; independent review pending
+- Completed: 2026-07-29
+- Objective: Extend the existing public-source safety control to detect
+  additional high-confidence credential formats and sensitive key files.
+- Files: `aios/scripts/secret-scan.mjs`,
+  `aios/scripts/validate-production-consolidation.mjs`,
+  `aios/tests/secret-scan.test.mjs`, `.github/workflows/aios-validation.yml`,
+  `README.md`
+- Validation: Full suite passes 34/34 with zero skipped or todo tests;
+  production and AvatarOS validators pass; `git diff --check` passes.
+- Architecture impact: None; maintenance strengthens the existing public/private
+  boundary without changing a public runtime contract.
+- Human action: Reconcile this divergent feature branch with `origin/main`
+  through governed review before publication.
+
+### AIOS-PROD-005 — Enforce published AvatarOS contracts
+
+- Priority: P1
+- Status: Implemented locally; independent review pending
+- Completed: 2026-07-29
+- Objective: Make manual production validation enforce the already-published
+  version 1.0.0 `additionalProperties` boundaries and `ageRange` maximum.
+- Files: `avataros/scripts/validate-avataros.mjs`,
+  `avataros/tests/validation.test.mjs`
+- Validation: Full suite passes 34/34 with zero skipped or todo tests;
+  production and AvatarOS validators pass; deterministic prompt compilation
+  succeeds; `git diff --check` passes.
+- Architecture impact: None; runtime validation now conforms to, rather than
+  changes, ADR-005 and EO-IMG-001 contracts.
+- Human action: Reconcile this divergent feature branch with `origin/main`
+  through governed review before publication.
