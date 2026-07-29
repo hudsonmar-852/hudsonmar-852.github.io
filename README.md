@@ -18,7 +18,7 @@ The public production baseline uses Node.js without third-party runtime
 packages. Run the same checks used by CI:
 
 ```sh
-node --test aios/tests/production-consolidation.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+node --test aios/tests/production-consolidation.test.mjs aios/tests/secret-scan.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
 node aios/scripts/validate-production-consolidation.mjs
 node avataros/scripts/validate-avataros.mjs
 node --check functions/private-test/index.js
