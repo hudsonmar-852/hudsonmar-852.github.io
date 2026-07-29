@@ -58,5 +58,15 @@
     "source": "AIOS-GOV-010",
     "status": "Waiting Review",
     "rollback": "Close or revert the feature branch, remove aios/governance/AIOS-GOV-010-executable-agent-boundary-standard.md and restore the prior decisions and change-log revisions."
+  },
+  {
+    "id": "CL-20260729-001",
+    "date": "2026-07-29",
+    "version": "AIOS Workflow Governance v3.6",
+    "change": "Added the Harness Stage Contract requiring Prototype, Plan, Implement and Review stages with distinct permissions, evidence gates, scope-change handling and rollback controls.",
+    "reason": "Prevent production work from moving directly from idea to execution, reduce scope drift and make stage completion independently verifiable.",
+    "source": "AIOS-WF-013",
+    "status": "Waiting Review",
+    "rollback": "Revert the pull request, remove aios/workflows/AIOS-WF-013-harness-stage-contract.md and restore the prior decisions and change-log revisions."
   }
 ]
