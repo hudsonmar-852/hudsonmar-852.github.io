@@ -190,7 +190,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 ### AIOS-PROD-004 — Harden public secret detection
 
 - Priority: P1
-- Status: Implemented locally; independent review pending
+- Status: Integrated locally on latest `origin/main`; PR review pending
 - Completed: 2026-07-29
 - Objective: Extend the existing public-source safety control to detect
   additional high-confidence credential formats and sensitive key files.
@@ -202,13 +202,12 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   production and AvatarOS validators pass; `git diff --check` passes.
 - Architecture impact: None; maintenance strengthens the existing public/private
   boundary without changing a public runtime contract.
-- Human action: Reconcile this divergent feature branch with `origin/main`
-  through governed review before publication.
+- Human action: Review the integrated branch before push or publication.
 
 ### AIOS-PROD-005 — Enforce published AvatarOS contracts
 
 - Priority: P1
-- Status: Implemented locally; independent review pending
+- Status: Integrated locally on latest `origin/main`; PR review pending
 - Completed: 2026-07-29
 - Objective: Make manual production validation enforce the already-published
   version 1.0.0 `additionalProperties` boundaries and `ageRange` maximum.
@@ -219,5 +218,4 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   succeeds; `git diff --check` passes.
 - Architecture impact: None; runtime validation now conforms to, rather than
   changes, ADR-005 and EO-IMG-001 contracts.
-- Human action: Reconcile this divergent feature branch with `origin/main`
-  through governed review before publication.
+- Human action: Review the integrated branch before push or publication.

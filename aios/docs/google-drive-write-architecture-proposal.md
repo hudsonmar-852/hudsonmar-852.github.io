@@ -1,9 +1,9 @@
 # Proposed Google Drive Write Architecture
 
-Document version: 0.1.0-proposal  
-Date: 2026-07-28  
-Owner: Hudson Mar  
-Prepared by: AIOS Chief Architect review  
+Document version: 0.1.0-proposal
+Date: 2026-07-28
+Owner: Hudson Mar
+Prepared by: AIOS Chief Architect review
 Decision status: **PROPOSED — NOT APPROVED OR IMPLEMENTED**
 
 ## Scope and non-goals

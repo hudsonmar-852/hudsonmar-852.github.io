@@ -1,8 +1,8 @@
 # TASK-20260728-001 Evidence Report
 
-Report version: 1.0.0  
-Review date: 2026-07-28  
-Reviewer: Codex governance review  
+Report version: 1.0.0
+Review date: 2026-07-28
+Reviewer: Codex governance review
 Final verification status: **PARTIALLY VERIFIED**
 
 ## Verification rule
@@ -32,12 +32,12 @@ found.
 
 ## Candidate implementation
 
-Repository: `hudsonmar-852/Jeffrey`  
-PR: [#7 — Replace reminder catalogue with Curator Engine v2](https://github.com/hudsonmar-852/Jeffrey/pull/7)  
-Branch: `agent/curator-engine-v2`  
-Head commit: `ec07bfd8b92aa2f166a4224180392c7ae3c1ecf3`  
-Merge commit: `03cfcf3fc0279c807ad2d7315c57ae1d72036c96`  
-Merged at: 2026-07-28 10:13 HKT  
+Repository: `hudsonmar-852/Jeffrey`
+PR: [#7 — Replace reminder catalogue with Curator Engine v2](https://github.com/hudsonmar-852/Jeffrey/pull/7)
+Branch: `agent/curator-engine-v2`
+Head commit: `ec07bfd8b92aa2f166a4224180392c7ae3c1ecf3`
+Merge commit: `03cfcf3fc0279c807ad2d7315c57ae1d72036c96`
+Merged at: 2026-07-28 10:13 HKT
 Merged by: `hudsonmar-852`
 
 ## Original objective

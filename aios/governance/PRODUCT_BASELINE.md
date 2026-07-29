@@ -1,10 +1,10 @@
 # AIOS Product Baseline
 
-Document version: 0.1.0-draft  
-Baseline date: 2026-07-28  
-Owner: Hudson Mar  
-Prepared by: Codex governance review  
-Review status: Draft — human approval pending  
+Document version: 0.1.0-draft
+Baseline date: 2026-07-28
+Owner: Hudson Mar
+Prepared by: Codex governance review
+Review status: Draft — human approval pending
 Public classification: Public-safe engineering metadata only
 
 ## Purpose

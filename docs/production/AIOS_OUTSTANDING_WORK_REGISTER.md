@@ -4,11 +4,16 @@ Audit date: 2026-07-29 HKT
 
 Repository: `hudsonmar-852/hudsonmar-852.github.io`
 
-Audited worktree: `agent/work-item-dashboard`
+Integrated worktree: `agent/work-item-dashboard-integrated`
 
 Baseline at audit start: 28 tests passed, 0 failed, 0 skipped, 0 todo; production and AvatarOS validators passed.
 
-Integration warning: the audited worktree is 2 commits ahead of and 8 commits behind `origin/main`. The two local commits contain the Work Items dashboard and its governance package. The newer default branch contains approved executable-agent-boundary and harness-stage standards. No merge, rebase, push, deployment, or Drive write is authorized by this register.
+Integration result: the Work Items dashboard, governance package, security
+hardening, and AvatarOS contract maintenance have been replayed onto
+`origin/main` commit `cea126f`. The integrated branch preserves the approved
+executable-agent-boundary and harness-stage standards. It is five commits ahead
+of `origin/main`, with no remaining default-branch commits behind it. No push,
+deployment, production merge, or Drive write has been performed.
 
 ## Evidence and constraints
 
@@ -23,11 +28,11 @@ Integration warning: the audited worktree is 2 commits ahead of and 8 commits be
 
 | Work ID | Title | Component | Description | Evidence | Requirement source | Current state | Priority | Risk | Complexity | Execution disposition |
 | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |
-| AIOS-PROD-001 | Reconcile the divergent Work Items branch | Git / integration | Preserve the two local Work Items commits while integrating eight newer `main` commits and resolving governance-file conflicts. | `git rev-list --left-right --count HEAD...origin/main` = `2 8`; material overlap in `ENGINEERING_LOG.md`, `OUTSTANDING_TASKS.md`, CI, and dashboard assets. | User production integration objective; AIOS-GOV-010; AIOS-WF-013 | Blocked pending explicit branch integration/PR direction | P0 | R3 | M | Do not merge or rebase automatically |
+| AIOS-PROD-001 | Reconcile the divergent Work Items branch | Git / integration | Preserve the Work Items work while integrating the newer default branch and its governance standards. | Integrated branch is five commits ahead and zero behind `origin/main`; 34/34 tests and both validators pass. | User production integration objective; AIOS-GOV-010; AIOS-WF-013 | Completed locally; push/PR review pending | P0 | R1 | M | Integrated in a separate recoverable worktree |
 | AIOS-PROD-002 | Approve the next core runtime Engineering Order | Core Runtime / Execution Engine / Registry / Plugin Runtime / REST API | Select and approve the public contracts and bounded implementation scope. These production components are not implemented in this repository. | `aios/OUTSTANDING_TASKS.md` AIOS-OUT-001; no matching runtime, registry, SDK, orchestrator, or API modules found. | Repository architecture gate | Blocked on Chief Architect decision | P1 | R3 | XL | Register only; speculative implementation prohibited |
 | AIOS-PROD-003 | Implement authenticated Drive writes | Work Items / Google Drive File Service | Add the approved private identity, conflict handling, idempotency, audit persistence, and reconciliation adapter after architecture decisions. | `aios/work-items/adapters.mjs`; `aios/docs/google-drive-write-architecture-proposal.md`; AIOS-OUT-011. | Work Items architecture review | Blocked on eight architecture decisions and private server identity | P1 | R3 | L | Keep production writes disabled |
-| AIOS-PROD-004 | Harden public secret detection | Production validator / security | Detect additional high-confidence credential formats and sensitive key files with isolated failure-case tests. | `aios/scripts/secret-scan.mjs`; `aios/tests/secret-scan.test.mjs`; full suite 34/34 passed. | Public/private boundary; AIOS-ENG-004 | Implemented locally; independent review pending | P1 | R1 | S | Conflict-safe maintenance stream |
-| AIOS-PROD-005 | Enforce published AvatarOS contracts | Image Engine validation | Reject unknown properties and align `ageRange` runtime validation with the published schema. | `avataros/scripts/validate-avataros.mjs`; `avataros/tests/validation.test.mjs`; full suite 34/34 passed. | ADR-005 and EO-IMG-001 version 1.0.0 contracts | Implemented locally; independent review pending | P1 | R1 | S | Conflict-safe contract maintenance |
+| AIOS-PROD-004 | Harden public secret detection | Production validator / security | Detect additional high-confidence credential formats and sensitive key files with isolated failure-case tests. | `aios/scripts/secret-scan.mjs`; `aios/tests/secret-scan.test.mjs`; full suite 34/34 passed. | Public/private boundary; AIOS-ENG-004 | Integrated locally; PR review pending | P1 | R1 | S | Conflict-safe maintenance stream |
+| AIOS-PROD-005 | Enforce published AvatarOS contracts | Image Engine validation | Reject unknown properties and align `ageRange` runtime validation with the published schema. | `avataros/scripts/validate-avataros.mjs`; `avataros/tests/validation.test.mjs`; full suite 34/34 passed. | ADR-005 and EO-IMG-001 version 1.0.0 contracts | Integrated locally; PR review pending | P1 | R1 | S | Conflict-safe contract maintenance |
 | AIOS-PROD-006 | Complete and enforce Work Items snapshot validation | Work Items schema / adapter | Complete the under-specified schema, validate fetched/cached snapshots before rendering, and reject malformed or private source data. | `aios/schemas/work-items.schema.json`; `aios/work-items/adapters.mjs`; validator subset checks. | Work Items v1 architecture | Blocked on contract approval and branch reconciliation | P1 | R2 | M | Prepare as next governed EO/maintenance plan |
 | AIOS-PROD-007 | Reconcile local overrides safely | Work Items adapter | Overlay only local workflow metadata so source title, criteria, URLs, and governance fields cannot be masked indefinitely. | `aios/work-items/adapters.mjs` stores and replaces whole items. | Google Drive authoritative-source rule | Blocked on Work Items branch integration and adapter contract approval | P2 | R2 | M | Add source-refresh and corrupt-cache tests when approved |
 | AIOS-PROD-008 | Verify Cloudflare Access externally | Private dashboard security | Test logged-out, approved, and denied identities and retain `pending_external_setup` until evidence exists. | `functions/private-test/index.js`; `aios/data/production-manifest.json`; AIOS-OUT-003. | ADR/security documentation | Blocked on external account and approved test identities | P1 | R3 | S | Human/external action required |
