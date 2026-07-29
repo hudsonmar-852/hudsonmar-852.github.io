@@ -4,6 +4,17 @@ Main-branch scope notice: this remains a draft governance record. References to
 the Work Items or Google Drive read-only prototype are retained as review
 evidence only; those implementations are paused and excluded from this change.
 
+## Proposed direction: phased AIOS work management
+
+Status: **DIRECTION RECORDED; IMPLEMENTATION PAUSED**
+
+The system direction now separates read-only Drive ingestion, the public-safe
+Work Items dashboard and authenticated private write-back. The approved
+architecture direction and phase gates are recorded in
+`aios/docs/aios-work-management-architecture.md`. Identity, runtime,
+authorization, audit, recovery and public-snapshot decisions remain required
+before implementation.
+
 Document version: 0.1.0-draft
 Date: 2026-07-28
 Owner: Hudson Mar
