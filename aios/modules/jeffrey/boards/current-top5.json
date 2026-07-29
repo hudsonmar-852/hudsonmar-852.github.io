@@ -1,5 +1,5 @@
 {
-  "board_version": "2.0",
+  "board_version": "2.1",
   "environment": "production",
   "date": "2026-07-28",
   "timezone": "Asia/Hong_Kong",
@@ -11,15 +11,7 @@
       "theme": "hydration",
       "customer_text": "你一忙就好易唔記得飲水，見到支水就飲兩啖先啦。",
       "internal_reason": "Frequent practical habit reminder for gym clients; familiar-friend tone.",
-      "reviewer_scores": {
-        "human_warmth_friend_tone": 96,
-        "natural_hong_kong_cantonese": 97,
-        "gym_client_practical_value": 94,
-        "regular_habit_usefulness": 98,
-        "jeffrey_voice_fit": 95,
-        "reply_likelihood": 82,
-        "novelty_anti_repetition": 88
-      },
+      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":97,"gym_client_practical_value":94,"regular_habit_usefulness":98,"jeffrey_voice_fit":95,"reply_likelihood":82,"novelty_anti_repetition":88},
       "final_weighted_score": 95.0,
       "status": "draft_human_approval_required"
     },
@@ -28,15 +20,7 @@
       "theme": "stretching_mobility",
       "customer_text": "坐咗咁耐，起身伸一伸先，條腰會冇咁實。",
       "internal_reason": "Useful daily movement cue for office and gym clients.",
-      "reviewer_scores": {
-        "human_warmth_friend_tone": 95,
-        "natural_hong_kong_cantonese": 96,
-        "gym_client_practical_value": 95,
-        "regular_habit_usefulness": 97,
-        "jeffrey_voice_fit": 94,
-        "reply_likelihood": 80,
-        "novelty_anti_repetition": 87
-      },
+      "reviewer_scores": {"human_warmth_friend_tone":95,"natural_hong_kong_cantonese":96,"gym_client_practical_value":95,"regular_habit_usefulness":97,"jeffrey_voice_fit":94,"reply_likelihood":80,"novelty_anti_repetition":87},
       "final_weighted_score": 94.5,
       "status": "draft_human_approval_required"
     },
@@ -45,15 +29,7 @@
       "theme": "training_intensity",
       "customer_text": "今日如果個人未回晒氣，做輕少少都得，唔使每次都頂盡。",
       "internal_reason": "Supports sensible training intensity without medical claims.",
-      "reviewer_scores": {
-        "human_warmth_friend_tone": 94,
-        "natural_hong_kong_cantonese": 96,
-        "gym_client_practical_value": 97,
-        "regular_habit_usefulness": 92,
-        "jeffrey_voice_fit": 95,
-        "reply_likelihood": 79,
-        "novelty_anti_repetition": 90
-      },
+      "reviewer_scores": {"human_warmth_friend_tone":94,"natural_hong_kong_cantonese":96,"gym_client_practical_value":97,"regular_habit_usefulness":92,"jeffrey_voice_fit":95,"reply_likelihood":79,"novelty_anti_repetition":90},
       "final_weighted_score": 94.4,
       "status": "draft_human_approval_required"
     },
@@ -62,15 +38,7 @@
       "theme": "posture_screen_habits",
       "customer_text": "望電話望耐咗就抬高少少個畫面，條頸會舒服啲。",
       "internal_reason": "Common posture reminder with one gentle action.",
-      "reviewer_scores": {
-        "human_warmth_friend_tone": 93,
-        "natural_hong_kong_cantonese": 95,
-        "gym_client_practical_value": 92,
-        "regular_habit_usefulness": 96,
-        "jeffrey_voice_fit": 93,
-        "reply_likelihood": 77,
-        "novelty_anti_repetition": 89
-      },
+      "reviewer_scores": {"human_warmth_friend_tone":93,"natural_hong_kong_cantonese":95,"gym_client_practical_value":92,"regular_habit_usefulness":96,"jeffrey_voice_fit":93,"reply_likelihood":77,"novelty_anti_repetition":89},
       "final_weighted_score": 92.9,
       "status": "draft_human_approval_required"
     },
@@ -79,31 +47,29 @@
       "theme": "recovery_rest",
       "customer_text": "今晚攰就早少少收工啦，俾個人有時間回一回氣。",
       "internal_reason": "Warm recovery reminder, natural and non-broadcast.",
-      "reviewer_scores": {
-        "human_warmth_friend_tone": 96,
-        "natural_hong_kong_cantonese": 95,
-        "gym_client_practical_value": 90,
-        "regular_habit_usefulness": 93,
-        "jeffrey_voice_fit": 94,
-        "reply_likelihood": 81,
-        "novelty_anti_repetition": 91
-      },
+      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":95,"gym_client_practical_value":90,"regular_habit_usefulness":93,"jeffrey_voice_fit":94,"reply_likelihood":81,"novelty_anti_repetition":91},
       "final_weighted_score": 93.2,
       "status": "draft_human_approval_required"
     }
   ],
   "ui_rules": {
     "show_only_messages_array": true,
+    "maximum_visible_messages": 5,
     "hide_internal_reason_by_default": true,
     "hide_reviewer_scores_by_default": true,
     "copy_field": "customer_text",
     "primary_action_label": "複製短訊",
-    "approval_badge_labels": ["待批核", "已批核"],
-    "secondary_action_labels": ["標記已用", "已使用", "收藏"],
+    "copied_action_label": "✓ 已複製",
+    "copy_is_usage_signal": true,
+    "show_separate_used_action": false,
+    "favourite_unselected_symbol": "☆",
+    "favourite_selected_symbol": "★",
+    "favourites_retrievable": true,
     "show_old_messages": false
   },
   "archive_policy": {
     "retain_history_for_duplicate_check": true,
-    "display_history_on_daily_board": false
+    "display_history_on_daily_board": false,
+    "retain_favourite_snapshot_locally": true
   }
 }
