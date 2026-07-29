@@ -29,7 +29,7 @@ jobs:
           node-version: 22
 
       - name: Run unit tests
-        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/job-match.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/job-match.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
 
       - name: Validate production assets
         run: |
@@ -41,11 +41,13 @@ jobs:
           node --check functions/private-test/index.js
           node --check functions/private-test/index.test.mjs
           node --check aios/scripts/validate-production-consolidation.mjs
+          node --check aios/scripts/secret-scan.mjs
           node --check aios/tests/production-consolidation.test.mjs
           node --check aios/job-match/engine.mjs
           node --check aios/job-match/app.mjs
           node --check aios/job-match/scripts/generate-daily.mjs
           node --check aios/tests/job-match.test.mjs
+          node --check aios/tests/secret-scan.test.mjs
           node --check aios/work-items/engine.mjs
           node --check aios/work-items/adapters.mjs
           node --check aios/work-items/app.mjs
