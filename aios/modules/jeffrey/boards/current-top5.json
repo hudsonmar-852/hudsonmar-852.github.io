@@ -1,54 +1,60 @@
 {
-  "board_version": "2.1",
+  "board_version": "2.2",
   "environment": "production",
-  "date": "2026-07-28",
+  "date": "2026-07-30",
   "timezone": "Asia/Hong_Kong",
   "status": "draft_human_approval_required",
+  "pipeline_summary": {
+    "candidate_count": 24,
+    "rejection_count": 19,
+    "duplicate_check_scope": "recent visible board and retained archive/history",
+    "old_messages_visible": false
+  },
   "visible_message_count": 5,
   "messages": [
     {
       "rank": 1,
-      "theme": "hydration",
-      "customer_text": "你一忙就好易唔記得飲水，見到支水就飲兩啖先啦。",
-      "internal_reason": "Frequent practical habit reminder for gym clients; familiar-friend tone.",
-      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":97,"gym_client_practical_value":94,"regular_habit_usefulness":98,"jeffrey_voice_fit":95,"reply_likelihood":82,"novelty_anti_repetition":88},
-      "final_weighted_score": 95.0,
+      "theme": "gym_preparation",
+      "customer_text": "出門口前望一望水同毛巾帶齊未，去到先唔使周圍搵。",
+      "internal_reason": "Very practical pre-gym reminder with a familiar, everyday Hong Kong tone and one simple action.",
+      "reviewer_scores": {"human_warmth_friend_tone":97,"natural_hong_kong_cantonese":98,"gym_client_practical_value":97,"regular_habit_usefulness":95,"jeffrey_voice_fit":97,"reply_likelihood":83,"novelty_anti_repetition":95},
+      "final_weighted_score": 96.5,
       "status": "draft_human_approval_required"
     },
     {
       "rank": 2,
-      "theme": "stretching_mobility",
-      "customer_text": "坐咗咁耐，起身伸一伸先，條腰會冇咁實。",
-      "internal_reason": "Useful daily movement cue for office and gym clients.",
-      "reviewer_scores": {"human_warmth_friend_tone":95,"natural_hong_kong_cantonese":96,"gym_client_practical_value":95,"regular_habit_usefulness":97,"jeffrey_voice_fit":94,"reply_likelihood":80,"novelty_anti_repetition":87},
-      "final_weighted_score": 94.5,
+      "theme": "breathing_rhythm",
+      "customer_text": "做動作嗰陣唔好谷住啖氣，慢慢呼返出嚟會順好多。",
+      "internal_reason": "Useful training habit reminder focused on breathing rhythm without making a medical claim.",
+      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":97,"gym_client_practical_value":98,"regular_habit_usefulness":94,"jeffrey_voice_fit":96,"reply_likelihood":80,"novelty_anti_repetition":96},
+      "final_weighted_score": 96.2,
       "status": "draft_human_approval_required"
     },
     {
       "rank": 3,
-      "theme": "training_intensity",
-      "customer_text": "今日如果個人未回晒氣，做輕少少都得，唔使每次都頂盡。",
-      "internal_reason": "Supports sensible training intensity without medical claims.",
-      "reviewer_scores": {"human_warmth_friend_tone":94,"natural_hong_kong_cantonese":96,"gym_client_practical_value":97,"regular_habit_usefulness":92,"jeffrey_voice_fit":95,"reply_likelihood":79,"novelty_anti_repetition":90},
-      "final_weighted_score": 94.4,
+      "theme": "daily_mobility",
+      "customer_text": "等𨋢或者沖咖啡嗰陣郁兩下膊頭，唔好成朝都縮住。",
+      "internal_reason": "Fits naturally into a real daily moment and encourages one light mobility action.",
+      "reviewer_scores": {"human_warmth_friend_tone":97,"natural_hong_kong_cantonese":98,"gym_client_practical_value":94,"regular_habit_usefulness":96,"jeffrey_voice_fit":96,"reply_likelihood":84,"novelty_anti_repetition":94},
+      "final_weighted_score": 96.0,
       "status": "draft_human_approval_required"
     },
     {
       "rank": 4,
-      "theme": "posture_screen_habits",
-      "customer_text": "望電話望耐咗就抬高少少個畫面，條頸會舒服啲。",
-      "internal_reason": "Common posture reminder with one gentle action.",
-      "reviewer_scores": {"human_warmth_friend_tone":93,"natural_hong_kong_cantonese":95,"gym_client_practical_value":92,"regular_habit_usefulness":96,"jeffrey_voice_fit":93,"reply_likelihood":77,"novelty_anti_repetition":89},
-      "final_weighted_score": 92.9,
+      "theme": "recovery",
+      "customer_text": "琴日操得重，今日個身仲實就留返少少力，唔使夾硬頂。",
+      "internal_reason": "Warm recovery guidance that sounds personal and supports sensible training intensity.",
+      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":97,"gym_client_practical_value":97,"regular_habit_usefulness":92,"jeffrey_voice_fit":97,"reply_likelihood":82,"novelty_anti_repetition":93},
+      "final_weighted_score": 95.8,
       "status": "draft_human_approval_required"
     },
     {
       "rank": 5,
-      "theme": "recovery_rest",
-      "customer_text": "今晚攰就早少少收工啦，俾個人有時間回一回氣。",
-      "internal_reason": "Warm recovery reminder, natural and non-broadcast.",
-      "reviewer_scores": {"human_warmth_friend_tone":96,"natural_hong_kong_cantonese":95,"gym_client_practical_value":90,"regular_habit_usefulness":93,"jeffrey_voice_fit":94,"reply_likelihood":81,"novelty_anti_repetition":91},
-      "final_weighted_score": 93.2,
+      "theme": "screen_posture",
+      "customer_text": "睇電腦睇到個頭愈伸愈前，坐返貼張櫈背先。",
+      "internal_reason": "Specific screen-posture cue in natural Cantonese with only one gentle action.",
+      "reviewer_scores": {"human_warmth_friend_tone":95,"natural_hong_kong_cantonese":97,"gym_client_practical_value":94,"regular_habit_usefulness":96,"jeffrey_voice_fit":95,"reply_likelihood":79,"novelty_anti_repetition":94},
+      "final_weighted_score": 95.1,
       "status": "draft_human_approval_required"
     }
   ],
@@ -57,19 +63,14 @@
     "maximum_visible_messages": 5,
     "hide_internal_reason_by_default": true,
     "hide_reviewer_scores_by_default": true,
+    "allow_optional_review_detail_view": true,
     "copy_field": "customer_text",
-    "primary_action_label": "複製短訊",
-    "copied_action_label": "✓ 已複製",
-    "copy_is_usage_signal": true,
-    "show_separate_used_action": false,
-    "favourite_unselected_symbol": "☆",
-    "favourite_selected_symbol": "★",
-    "favourites_retrievable": true,
+    "approval_badge_compact": true,
+    "secondary_action_labels": ["標記已用", "已使用", "收藏"],
     "show_old_messages": false
   },
   "archive_policy": {
     "retain_history_for_duplicate_check": true,
-    "display_history_on_daily_board": false,
-    "retain_favourite_snapshot_locally": true
+    "display_history_on_daily_board": false
   }
 }
