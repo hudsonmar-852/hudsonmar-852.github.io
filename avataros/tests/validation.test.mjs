@@ -45,3 +45,63 @@ test('preserves human approval for every image job', () => {
       && error.field === 'approval.humanApprovalRequired'
   );
 });
+
+test('enforces the Character Bible ageRange schema limit', () => {
+  const invalid = structuredClone(character);
+  invalid.identity.ageRange = 'x'.repeat(41);
+
+  assert.throws(
+    () => validateCharacter(invalid),
+    (error) => error instanceof AvatarValidationError
+      && error.field === 'identity.ageRange'
+      && /at most 40/.test(error.message)
+  );
+});
+
+test('rejects additional Character Bible properties at root and nested levels', () => {
+  const rootExtra = structuredClone(character);
+  rootExtra.temporary = true;
+  assert.throws(
+    () => validateCharacter(rootExtra),
+    (error) => error instanceof AvatarValidationError
+      && error.field === 'temporary'
+  );
+
+  for (const [field, property] of [
+    ['identity', 'nickname'],
+    ['consistency', 'seed'],
+    ['approval', 'approvedBy']
+  ]) {
+    const invalid = structuredClone(character);
+    invalid[field][property] = 'unexpected';
+    assert.throws(
+      () => validateCharacter(invalid),
+      (error) => error instanceof AvatarValidationError
+        && error.field === `${field}.${property}`
+    );
+  }
+});
+
+test('rejects additional Image Job properties at root and nested levels', () => {
+  const rootExtra = structuredClone(imageJob);
+  rootExtra.temporary = true;
+  assert.throws(
+    () => validateImageJob(rootExtra, new Set([character.id])),
+    (error) => error instanceof AvatarValidationError
+      && error.field === 'temporary'
+  );
+
+  for (const [field, property] of [
+    ['render', 'seed'],
+    ['scene', 'motion'],
+    ['approval', 'approvedBy']
+  ]) {
+    const invalid = structuredClone(imageJob);
+    invalid[field][property] = 'unexpected';
+    assert.throws(
+      () => validateImageJob(invalid, new Set([character.id])),
+      (error) => error instanceof AvatarValidationError
+        && error.field === `${field}.${property}`
+    );
+  }
+});

@@ -1,6 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  findPotentialSecret,
+  isScannableFilename
+} from './secret-scan.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(root, '..');
@@ -11,13 +15,6 @@ const jsonFiles = [
   'spec/branches/production-consolidation-2026-07-21.json',
   'templates/secret-inventory.example.json',
   'workflows/production-consolidation.json'
-];
-
-const forbiddenValuePatterns = [
-  /sk-[A-Za-z0-9_-]{16,}/,
-  /gh[pousr]_[A-Za-z0-9]{20,}/,
-  /https:\/\/[^\s"']*webhook/i,
-  /BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/
 ];
 
 for (const relative of jsonFiles) {
@@ -43,17 +40,17 @@ for (const filename of allJsonFiles) {
   JSON.parse(fs.readFileSync(filename, 'utf8'));
 }
 
-const scannableExtensions = new Set(['.html', '.js', '.json', '.md', '.mjs', '.txt', '.yml', '.yaml']);
 const secretScanFiles = repositoryFiles.filter((filename) => {
-  if (filename === fileURLToPath(import.meta.url)) return false;
-  return scannableExtensions.has(path.extname(filename)) || path.basename(filename).startsWith('.env');
+  if ([fileURLToPath(import.meta.url), fileURLToPath(new URL('./secret-scan.mjs', import.meta.url))].includes(filename)) {
+    return false;
+  }
+  return isScannableFilename(filename);
 });
 for (const filename of secretScanFiles) {
   const source = fs.readFileSync(filename, 'utf8');
-  for (const pattern of forbiddenValuePatterns) {
-    if (pattern.test(source)) {
-      throw new Error(`Potential secret in ${path.relative(repositoryRoot, filename)}`);
-    }
+  const secretType = findPotentialSecret(source);
+  if (secretType) {
+    throw new Error(`Potential ${secretType} in ${path.relative(repositoryRoot, filename)}`);
   }
 }
 

@@ -19,6 +19,15 @@ function assertObject(value, asset, field) {
   }
 }
 
+function assertAllowedProperties(value, allowedProperties, asset, field) {
+  const allowed = new Set(allowedProperties);
+  const unexpected = Object.keys(value).find((property) => !allowed.has(property));
+  if (unexpected) {
+    const propertyPath = field === 'root' ? unexpected : `${field}.${unexpected}`;
+    throw new AvatarValidationError(asset, propertyPath, 'is not an allowed property');
+  }
+}
+
 function assertString(value, asset, field, maxLength = 240) {
   if (typeof value !== 'string' || value.trim().length === 0) {
     throw new AvatarValidationError(asset, field, 'must be a non-empty string');
@@ -44,6 +53,12 @@ function assertStringArray(value, asset, field, minimum = 0) {
 
 export function validateCharacter(character, asset = 'character') {
   assertObject(character, asset, 'root');
+  assertAllowedProperties(
+    character,
+    ['schemaVersion', 'id', 'displayName', 'identity', 'consistency', 'approval'],
+    asset,
+    'root'
+  );
   if (character.schemaVersion !== '1.0.0') {
     throw new AvatarValidationError(asset, 'schemaVersion', 'must equal 1.0.0');
   }
@@ -51,16 +66,37 @@ export function validateCharacter(character, asset = 'character') {
   assertString(character.displayName, asset, 'displayName', 80);
 
   assertObject(character.identity, asset, 'identity');
-  for (const field of ['ageRange', 'presentation', 'faceShape', 'hair', 'eyes', 'skinTone']) {
-    assertString(character.identity[field], asset, `identity.${field}`, 120);
-  }
+  assertAllowedProperties(
+    character.identity,
+    ['ageRange', 'presentation', 'faceShape', 'hair', 'eyes', 'skinTone'],
+    asset,
+    'identity'
+  );
+  assertString(character.identity.ageRange, asset, 'identity.ageRange', 40);
+  assertString(character.identity.presentation, asset, 'identity.presentation', 80);
+  assertString(character.identity.faceShape, asset, 'identity.faceShape', 80);
+  assertString(character.identity.hair, asset, 'identity.hair', 120);
+  assertString(character.identity.eyes, asset, 'identity.eyes', 80);
+  assertString(character.identity.skinTone, asset, 'identity.skinTone', 80);
 
   assertObject(character.consistency, asset, 'consistency');
+  assertAllowedProperties(
+    character.consistency,
+    ['immutableTraits', 'wardrobeRules', 'negativePrompts'],
+    asset,
+    'consistency'
+  );
   assertStringArray(character.consistency.immutableTraits, asset, 'consistency.immutableTraits', 1);
   assertStringArray(character.consistency.wardrobeRules, asset, 'consistency.wardrobeRules');
   assertStringArray(character.consistency.negativePrompts, asset, 'consistency.negativePrompts');
 
   assertObject(character.approval, asset, 'approval');
+  assertAllowedProperties(
+    character.approval,
+    ['publicSafe', 'approvedForGeneration', 'humanApprovalRequired'],
+    asset,
+    'approval'
+  );
   if (typeof character.approval.publicSafe !== 'boolean') {
     throw new AvatarValidationError(asset, 'approval.publicSafe', 'must be a boolean');
   }
@@ -75,6 +111,12 @@ export function validateCharacter(character, asset = 'character') {
 
 export function validateImageJob(job, characterIds, asset = 'imageJob') {
   assertObject(job, asset, 'root');
+  assertAllowedProperties(
+    job,
+    ['schemaVersion', 'id', 'characterId', 'objective', 'render', 'scene', 'approval'],
+    asset,
+    'root'
+  );
   if (job.schemaVersion !== '1.0.0') {
     throw new AvatarValidationError(asset, 'schemaVersion', 'must equal 1.0.0');
   }
@@ -86,6 +128,12 @@ export function validateImageJob(job, characterIds, asset = 'imageJob') {
   assertString(job.objective, asset, 'objective', 240);
 
   assertObject(job.render, asset, 'render');
+  assertAllowedProperties(
+    job.render,
+    ['provider', 'style', 'aspectRatio', 'imageCount', 'format'],
+    asset,
+    'render'
+  );
   if (job.render.provider !== 'Grok Imagine') {
     throw new AvatarValidationError(asset, 'render.provider', 'must preserve the configured Grok Imagine provider');
   }
@@ -101,11 +149,18 @@ export function validateImageJob(job, characterIds, asset = 'imageJob') {
   }
 
   assertObject(job.scene, asset, 'scene');
+  assertAllowedProperties(job.scene, ['location', 'camera', 'lighting'], asset, 'scene');
   for (const field of ['location', 'camera', 'lighting']) {
     assertString(job.scene[field], asset, `scene.${field}`, 160);
   }
 
   assertObject(job.approval, asset, 'approval');
+  assertAllowedProperties(
+    job.approval,
+    ['publicSafe', 'humanApprovalRequired'],
+    asset,
+    'approval'
+  );
   if (typeof job.approval.publicSafe !== 'boolean') {
     throw new AvatarValidationError(asset, 'approval.publicSafe', 'must be a boolean');
   }
