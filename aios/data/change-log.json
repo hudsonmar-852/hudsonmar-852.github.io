@@ -68,5 +68,15 @@
     "source": "AIOS-WF-013",
     "status": "Waiting Review",
     "rollback": "Revert the pull request, remove aios/workflows/AIOS-WF-013-harness-stage-contract.md and restore the prior decisions and change-log revisions."
+  },
+  {
+    "id": "CL-20260805-001",
+    "date": "2026-08-05",
+    "version": "AIOS Governance v3.7",
+    "change": "Added the Verifiable Agent Operating Context standard covering instruction compliance canaries, acceptance evidence coverage, session resource envelopes, verified repository orientation, client-specific capability policies and cross-client continuity checks.",
+    "reason": "Ensure AIOS agents prove which instructions, repository state, permissions, acceptance criteria and execution limits are active before production-impacting work begins.",
+    "source": "AIOS-GOV-019",
+    "status": "Governance baseline implemented; runtime enforcement pending separate development",
+    "rollback": "Revert the pull request, remove aios/governance/AIOS-GOV-019-verifiable-agent-operating-context.md and restore the prior decisions and change-log revisions."
   }
 ]
