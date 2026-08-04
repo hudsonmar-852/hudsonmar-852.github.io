@@ -1,0 +1,99 @@
+{
+  "version": "1.0.0",
+  "updatedAt": "2026-08-05T02:45:00+08:00",
+  "policyDecision": "AIOS-GOV-019",
+  "implementationStatus": "repository_runtime_baseline",
+  "instructionCanary": {
+    "status": "ready",
+    "requiredPolicyVersion": "AIOS-GOV-019",
+    "requiredFields": [
+      "instruction_sources_loaded",
+      "policy_version",
+      "write_scope",
+      "completion_definition",
+      "unknown_handling",
+      "canary_result"
+    ],
+    "productionHookActive": false,
+    "note": "Machine-readable contract is available; automatic execution hook still requires workflow integration."
+  },
+  "acceptanceCoverage": {
+    "status": "ready",
+    "requiredColumns": [
+      "criterion_id",
+      "implementation_ref",
+      "test_ref",
+      "evidence_ref",
+      "status",
+      "remaining_risk"
+    ],
+    "allowedStatuses": ["PASS", "CONDITIONAL", "FAIL", "UNVERIFIED"]
+  },
+  "sessionEnvelope": {
+    "status": "ready",
+    "warningThreshold": 0.7,
+    "wrapUpThreshold": 0.9,
+    "checkpointRequiredAtLimit": true,
+    "hardProviderLimitConfigured": false
+  },
+  "repositoryOrientation": {
+    "status": "ready",
+    "requiredSections": [
+      "purpose",
+      "architecture",
+      "entry_points",
+      "commands",
+      "testing",
+      "security_boundaries",
+      "source_commit",
+      "unknown_areas"
+    ]
+  },
+  "clientPolicies": [
+    {
+      "client": "public_dashboard",
+      "read": "public_metadata_only",
+      "write": "none",
+      "secrets": "none",
+      "deploy": "none"
+    },
+    {
+      "client": "chatgpt_planning",
+      "read": "approved_sources",
+      "write": "draft_only",
+      "secrets": "none",
+      "deploy": "none"
+    },
+    {
+      "client": "codex_macbook",
+      "read": "approved_repositories",
+      "write": "approved_paths_via_pr",
+      "secrets": "runtime_scoped_only",
+      "deploy": "explicit_approval"
+    },
+    {
+      "client": "cloud_automation",
+      "read": "task_scoped",
+      "write": "pr_or_generated_artifact_only",
+      "secrets": "encrypted_runtime_only",
+      "deploy": "none_by_default"
+    }
+  ],
+  "continuityCheck": {
+    "status": "ready",
+    "requiredFields": [
+      "project_id",
+      "repository",
+      "branch",
+      "head_commit",
+      "instruction_version",
+      "active_task",
+      "active_attempt",
+      "last_verified_evidence",
+      "pending_changes",
+      "client",
+      "handoff_timestamp"
+    ],
+    "blockOnMismatch": true
+  }
+}
