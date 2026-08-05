@@ -157,6 +157,27 @@ Status: **CONFIRMED**
 
 ## Known gaps
 
+### AIOS Daily Job Match v1
+
+Status: **IMPLEMENTED LOCALLY; REVIEW PENDING**
+
+- Additive `/aios/job-match/` route for ranked alert review and direct
+  application links.
+- Deterministic normalized intake, deduplication, weighted profile matching,
+  preference exclusions and daily selection capped at 30.
+- Markdown and JSON daily outputs with Favourite, Applied and Not Suitable
+  decisions stored locally in the public demo.
+- Gmail/job-alert collection and the real career profile remain private-runtime
+  responsibilities. The public repository contains fictional examples only.
+- No job-site scraping, account automation, credential storage or production
+  Google Drive write is introduced.
+
+Evidence:
+
+- [`aios/job-match/README.md`](../job-match/README.md)
+- [`aios/job-match/engine.mjs`](../job-match/engine.mjs)
+- [`aios/tests/job-match.test.mjs`](../tests/job-match.test.mjs)
+
 | Gap | Classification | Effect |
 | --- | --- | --- |
 | Original TASK-20260728-001 specification absent | CONFIRMED | Formal task-to-PR traceability remains incomplete |
@@ -165,6 +186,8 @@ Status: **CONFIRMED**
 | Cloudflare Access account setup unverified | CONFIRMED | Private write API cannot be treated as production-ready |
 | Drive write architecture | PROPOSED | No implementation or production enablement allowed |
 | Architecture Freeze | HUMAN APPROVAL REQUIRED | Remains not approved |
+| Private Gmail alert adapter not connected | CONFIRMED | Daily production input requires a separately authorized private runtime |
+| Real career profile not configured | CONFIRMED | Public board remains fictional demo data |
 
 ## Rollback implications
 

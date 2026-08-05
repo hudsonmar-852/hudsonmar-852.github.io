@@ -219,3 +219,12 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Architecture impact: None; runtime validation now conforms to, rather than
   changes, ADR-005 and EO-IMG-001 contracts.
 - Human action: Review the integrated branch before push or publication.
+# 2026-08-05 — WI-20260805-001 Daily AIOS Job Match
+
+- Added a public-safe Job Match route without changing existing AIOS contracts.
+- Added normalized alert validation, deduplication, explainable 0–100 scoring,
+  history exclusions, ranking and a 30-item daily cap.
+- Added JSON and Markdown generation, fictional sample data, local decision
+  tracking, privacy documentation and regression tests.
+- Production Gmail intake remains intentionally unconnected pending private
+  runtime authorization and profile configuration.

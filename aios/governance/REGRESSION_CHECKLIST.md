@@ -132,6 +132,30 @@ Current result: **BLOCKED / NOT ENABLED**
 - [ ] Credential revocation and rotation drill recorded.
 - [ ] No private task content appears in logs or browser responses.
 
+## Scoped feature review
+
+## WI-20260805-001 Daily Job Match
+
+- [x] Job Match is an additive route; Work Items and all prior AIOS routes remain present.
+- [x] Normalized jobs require a title and application URL.
+- [x] Tracking parameters are removed from application URLs.
+- [x] Source-ID and canonical-URL duplicates are excluded.
+- [x] Scoring weights total 100 and return explainable reasons and risks.
+- [x] Minimum score and 30-item maximum are enforced.
+- [x] Applied, Not Suitable, Rejected and Expired history is excluded from later runs.
+- [x] Favourite, Applied and Not Suitable decisions persist in local storage.
+- [x] Direct application links open safely with `noopener noreferrer`.
+- [x] Loading, empty and retryable error states exist.
+- [x] Mobile layout and keyboard skip target are implemented.
+- [x] Example alerts, companies and profile are explicitly fictional/public-safe.
+- [x] No CV, email body, OAuth token, API secret or job-site login is committed.
+- [x] No scraping or production Gmail/Drive write is claimed.
+- [ ] Configure and authorize a private Gmail-label exporter before production use.
+- [ ] Store the real career profile and run history outside the public repository.
+- [ ] Perform human relevance review on the first five private daily runs.
+
+Release state: **LOCAL IMPLEMENTATION COMPLETE; PRIVATE INTAKE NOT DEPLOYED**
+
 ## Release decision
 
 Current scoped decision:

@@ -1,0 +1,56 @@
+{
+  "schemaVersion": 1,
+  "classification": "public-demo-data",
+  "jobs": [
+    {
+      "id": "demo-ai-transformation-lead",
+      "source": "jobsdb-alert",
+      "sourceId": "demo-001",
+      "title": "AI Transformation Lead",
+      "company": "Example Bank",
+      "location": "Hong Kong",
+      "workingMode": "Hybrid",
+      "employmentType": "Full-time",
+      "seniority": "Lead",
+      "salary": "Competitive package",
+      "postedAt": "2026-08-05T07:30:00+08:00",
+      "receivedAt": "2026-08-05T08:00:00+08:00",
+      "summary": "Lead enterprise generative AI adoption, governance, cross-functional roadmap delivery and stakeholder management in banking.",
+      "tags": ["AI transformation", "banking", "programme", "governance"],
+      "applyUrl": "https://example.com/jobs/demo-ai-transformation-lead"
+    },
+    {
+      "id": "demo-business-architect",
+      "source": "linkedin-alert",
+      "sourceId": "demo-002",
+      "title": "Senior Business Architect, Automation",
+      "company": "Example Insurance",
+      "location": "Hong Kong",
+      "workingMode": "Hybrid",
+      "employmentType": "Full-time",
+      "seniority": "Senior",
+      "postedAt": "2026-08-05T06:15:00+08:00",
+      "receivedAt": "2026-08-05T08:00:00+08:00",
+      "summary": "Shape digital transformation, automation roadmaps, business analysis and stakeholder governance for an insurance group.",
+      "tags": ["business architect", "insurance", "automation", "roadmap"],
+      "applyUrl": "https://example.com/jobs/demo-business-architect"
+    },
+    {
+      "id": "demo-enterprise-ai-consultant",
+      "source": "recruiter-email",
+      "sourceId": "demo-003",
+      "title": "Enterprise AI Consultant",
+      "company": "Example Consulting",
+      "location": "Hong Kong",
+      "workingMode": "Remote",
+      "employmentType": "Contract",
+      "seniority": "Principal",
+      "salary": "Competitive daily rate",
+      "postedAt": "2026-08-04T18:00:00+08:00",
+      "receivedAt": "2026-08-05T07:50:00+08:00",
+      "summary": "Advise clients on AI workflow design, digital transformation, business analysis, governance and delivery leadership.",
+      "tags": ["enterprise AI consultant", "consulting", "AI workflow", "delivery leadership"],
+      "applyUrl": "https://example.com/jobs/demo-enterprise-ai-consultant"
+    }
+  ]
+}

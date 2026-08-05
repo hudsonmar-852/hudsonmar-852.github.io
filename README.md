@@ -6,6 +6,7 @@ Public GitHub Pages layer for approved projects, demonstrations and AIOS status 
 
 - `/` — public project portal
 - `/aios/` — AIOS public monitoring dashboard
+- `/aios/job-match/` — public-safe Daily Job Match workflow demo
 - `/share/` — approved public knowledge library
 - `/avataros/` — AvatarOS public documentation and demo
 - `/prompt2/` — public Prompt Intelligence tool
@@ -18,7 +19,7 @@ The public production baseline uses Node.js without third-party runtime
 packages. Run the same checks used by CI:
 
 ```sh
-node --test aios/tests/production-consolidation.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+node --test aios/tests/production-consolidation.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs aios/tests/job-match.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
 node aios/scripts/validate-production-consolidation.mjs
 node avataros/scripts/validate-avataros.mjs
 node --check functions/private-test/index.js

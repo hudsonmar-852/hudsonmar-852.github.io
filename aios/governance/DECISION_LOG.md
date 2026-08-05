@@ -168,6 +168,34 @@ Architecture Review Package. Architecture Freeze and production Drive writes
 remain blocked until Hudson resolves the recorded decisions and production
 identity/storage controls are validated.
 
+## D-20260805-001 — Daily Job Match private-intake boundary
+
+Status: **IMPLEMENTED, REVIEW PENDING**
+
+### Decision implemented
+
+Use job-alert emails or approved exports as inputs to a private normalization
+adapter. Publish only the reusable matching engine, fictional samples and a
+read-only/local-decision dashboard. Do not scrape job sites, automate account
+login, expose Gmail credentials, commit a CV, or publish private email content.
+
+Daily processing is deterministic after intake: normalize, deduplicate, exclude
+prior Applied/Not Suitable decisions, score against a configurable profile,
+rank, cap at 30, and produce JSON plus Markdown. Gmail connectivity and private
+scheduling are deployment concerns and are not simulated in public code.
+
+### Trade-offs
+
+- Production runs require a separately authorized private runtime and profile.
+- Browser decisions in the public demo are device-local and not authoritative.
+- Deterministic keyword scoring is explainable and testable but does not yet
+  provide semantic model review; a future private reviewer may be additive.
+
+### Rollback
+
+Remove `/aios/job-match/`, its tests and the two additive dashboard links. No
+server data migration or external account reversal is required.
+
 ## Decision-change procedure
 
 1. Record a new decision or ADR; do not overwrite historical decisions.
