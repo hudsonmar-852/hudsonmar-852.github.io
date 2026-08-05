@@ -60,7 +60,7 @@ function render() {
       <div class="score"><strong>${escapeHtml(job.score)}</strong><span>${escapeHtml(recommendation(job.score))}</span></div>
       <div class="job-body">
         <div class="job-heading"><div><p class="company">${escapeHtml(job.company)}</p><h2>${escapeHtml(job.title)}</h2></div><span class="status status-${escapeHtml(status.toLowerCase())}">${escapeHtml(status.replace("_", " "))}</span></div>
-        <p class="meta">${escapeHtml(job.location || "Location not provided")} ${job.workingMode ? `· ${escapeHtml(job.workingMode)}` : ""} ${job.postedAt ? `· Posted ${escapeHtml(new Date(job.postedAt).toLocaleDateString("en-HK"))}` : ""}</p>
+        <p class="meta">${escapeHtml(job.location || "Location not provided")} ${job.workingMode ? `· ${escapeHtml(job.workingMode)}` : ""} ${job.postedAt ? `· Posted ${escapeHtml(new Date(job.postedAt).toLocaleDateString("en-HK"))}` : ""}${job.verifiedAt ? ` · Verified ${escapeHtml(new Date(job.verifiedAt).toLocaleDateString("en-HK"))}` : ""}</p>
         <p>${escapeHtml(job.summary)}</p>
         <div class="insights"><div><strong>Why it matches</strong><ul>${job.reasons.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div><div><strong>Review before applying</strong><ul>${job.risks.map((x) => `<li>${escapeHtml(x)}</li>`).join("")}</ul></div></div>
         <div class="actions"><a class="primary" href="${escapeHtml(job.applyUrl)}" target="_blank" rel="noopener noreferrer">View / Apply ↗</a><button data-status="FAVOURITE" data-id="${escapeHtml(job.id)}">Favourite</button><button data-status="APPLIED" data-id="${escapeHtml(job.id)}">Applied</button><button data-status="NOT_SUITABLE" data-id="${escapeHtml(job.id)}">Not suitable</button></div>
@@ -89,7 +89,7 @@ fetch("./data/current.json", { cache: "no-store" }).then((response) => {
   if (!Array.isArray(board.jobs)) throw new TypeError("Daily board has an invalid jobs collection");
   state.board = board;
   document.querySelector("#board-date").textContent = board.boardDate;
-  document.querySelector("#mode").textContent = board.mode === "demo" ? "Demo data" : "Private daily output";
+  document.querySelector("#mode").textContent = board.mode === "demo" ? "Demo data" : board.mode === "public-live" ? "Verified public listings" : "Private daily output";
   render();
 }).catch((error) => {
   metricsRoot.innerHTML = "";

@@ -2,6 +2,18 @@
   "schemaVersion": 1,
   "runs": [
     {
+      "generatedAt": "2026-08-05T11:46:51.509Z",
+      "boardDate": "2026-08-05",
+      "mode": "public-live",
+      "metrics": {
+        "collected": 8,
+        "duplicatesRemoved": 0,
+        "excludedByStatus": 0,
+        "qualified": 4,
+        "selected": 4
+      }
+    },
+    {
       "generatedAt": "2026-08-05T10:33:56.378Z",
       "boardDate": "2026-08-05",
       "mode": "demo",

@@ -1,32 +1,41 @@
 # AIOS Daily Job Match — 2026-08-05
 
-Generated: 2026-08-05T10:33:56.378Z
+Generated: 2026-08-05T11:46:51.509Z
 
-Collected 3; removed 0 duplicates; selected 3.
+Collected 8; removed 0 duplicates; selected 4.
 
-## 1. AI Transformation Lead — Example Bank
+## 1. AI Engineer - Manager — Sia
 
-- Match: **76/100 — Strong Match**
-- Location: Hong Kong · Hybrid
-- Posted: 2026-08-05T07:30:00+08:00
-- Why: Target role: ai transformation; Core strengths: stakeholder management, governance; AI/automation: generative ai; Preferred industry: banking; Delivery leadership: programme, program
-- Risks: None identified
-- [View / Apply](https://example.com/jobs/demo-ai-transformation-lead)
+- Match: **78/100 — Strong Match**
+- Location: Hong Kong · Not stated
+- Posted: Not provided
+- Why: Target role: enterprise ai consultant; Core strengths: stakeholder management, governance; AI/automation: genai, automation; Preferred industry: consulting; Delivery leadership: delivery leadership, cross-functional
+- Risks: Compensation not provided; Posting date not provided
+- [View / Apply](https://jobs.smartrecruiters.com/Sia/744000130354029-ai-engineer-manager)
 
-## 2. Senior Business Architect, Automation — Example Insurance
+## 2. AI ML Design Commercialization Manager — HSBC
 
-- Match: **75/100 — Strong Match**
-- Location: Hong Kong · Hybrid
-- Posted: 2026-08-05T06:15:00+08:00
-- Why: Target role: business architect; Core strengths: digital transformation, business analysis, governance; AI/automation: automation; Preferred industry: insurance; Delivery leadership: roadmap
+- Match: **77/100 — Strong Match**
+- Location: Central, Hong Kong · Hybrid
+- Posted: 2026-07-31T00:00:00+08:00
+- Why: Target role: ai transformation; Core strengths: business analysis, stakeholder management, governance; AI/automation: generative ai; Preferred industry: banking; Delivery leadership: delivery leadership, roadmap
 - Risks: Compensation not provided
-- [View / Apply](https://example.com/jobs/demo-business-architect)
+- [View / Apply](https://apply.careers.hsbc.com/job/Central-AI-ML-Design-Commercialization-Manager-International-Wealth-and-Premier-Banking-Hong/1359802857)
 
-## 3. Enterprise AI Consultant — Example Consulting
+## 3. Director, IT Architecture, Modernization, and AI Innovation — Prudential
 
-- Match: **75/100 — Strong Match**
-- Location: Hong Kong · Remote
-- Posted: 2026-08-04T18:00:00+08:00
-- Why: Target role: enterprise ai consultant; Core strengths: digital transformation, business analysis, governance; AI/automation: ai workflow; Preferred industry: consulting; Delivery leadership: delivery leadership
-- Risks: None identified
-- [View / Apply](https://example.com/jobs/demo-enterprise-ai-consultant)
+- Match: **67/100 — Possible Match**
+- Location: Hong Kong · Not stated
+- Posted: Not provided
+- Why: Target role: ai transformation, business architect; Core strengths: governance; Preferred industry: insurance, technology; Delivery leadership: programme, program
+- Risks: Compensation not provided; Posting date not provided; Review role requirements before applying
+- [View / Apply](https://prudential.wd3.myworkdayjobs.com/ms-MY/prudential/job/Director--IT-Architecture--Modernization--and-AI-Innovation_26060366)
+
+## 4. AI Solution, Principal — AIA
+
+- Match: **66/100 — Possible Match**
+- Location: Hong Kong · Not stated
+- Posted: 2026-07-26T00:00:00+08:00
+- Why: Target role: ai transformation, enterprise ai consultant; Core strengths: stakeholder management, governance; Preferred industry: insurance; Delivery leadership: delivery leadership, roadmap
+- Risks: Compensation not provided; Review role requirements before applying
+- [View / Apply](https://aia.wd3.myworkdayjobs.com/zh-CN/External/job/TDA-Transformation-GenAI-Solution--Principal_JR-67218)

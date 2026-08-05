@@ -71,6 +71,8 @@ export function normalizeJob(raw, index = 0) {
     salary: text(raw.salary),
     postedAt: text(raw.postedAt),
     receivedAt: text(raw.receivedAt),
+    verifiedAt: text(raw.verifiedAt),
+    sourceStatus: text(raw.sourceStatus) || "unverified",
     summary: text(raw.summary),
     tags: Array.isArray(raw.tags) ? raw.tags.map(text).filter(Boolean) : [],
     applyUrl

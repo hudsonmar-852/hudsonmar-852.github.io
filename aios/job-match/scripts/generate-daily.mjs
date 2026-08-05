@@ -76,11 +76,11 @@ const generatedAt = new Date().toISOString();
 const result = matchJobs(rawJobs, profile, { history: history.statuses || history });
 const board = {
   schemaVersion: 1,
-  classification: source.classification === "private" ? "private-derived-output" : "public-demo-data",
+  classification: source.classification === "private" ? "private-derived-output" : source.classification || "public-demo-data",
   generatedAt,
   boardDate: hongKongDate(),
   timezone: "Asia/Hong_Kong",
-  mode: source.classification === "private" ? "private" : "demo",
+  mode: source.classification === "private" ? "private" : source.classification === "public-job-data" ? "public-live" : "demo",
   profileId: profile.profileId || "private-profile",
   ...result
 };
