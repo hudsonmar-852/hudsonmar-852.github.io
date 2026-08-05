@@ -1,0 +1,119 @@
+{
+  "schemaVersion": 1,
+  "classification": "public-demo-data",
+  "generatedAt": "2026-08-05T10:33:56.378Z",
+  "boardDate": "2026-08-05",
+  "timezone": "Asia/Hong_Kong",
+  "mode": "demo",
+  "profileId": "public-example",
+  "jobs": [
+    {
+      "id": "demo-ai-transformation-lead",
+      "source": "jobsdb-alert",
+      "sourceId": "demo-001",
+      "title": "AI Transformation Lead",
+      "company": "Example Bank",
+      "location": "Hong Kong",
+      "workingMode": "Hybrid",
+      "employmentType": "Full-time",
+      "seniority": "Lead",
+      "salary": "Competitive package",
+      "postedAt": "2026-08-05T07:30:00+08:00",
+      "receivedAt": "2026-08-05T08:00:00+08:00",
+      "summary": "Lead enterprise generative AI adoption, governance, cross-functional roadmap delivery and stakeholder management in banking.",
+      "tags": [
+        "AI transformation",
+        "banking",
+        "programme",
+        "governance"
+      ],
+      "applyUrl": "https://example.com/jobs/demo-ai-transformation-lead",
+      "score": 76,
+      "reasons": [
+        "Target role: ai transformation",
+        "Core strengths: stakeholder management, governance",
+        "AI/automation: generative ai",
+        "Preferred industry: banking",
+        "Delivery leadership: programme, program"
+      ],
+      "risks": [],
+      "excluded": false,
+      "status": "NEW"
+    },
+    {
+      "id": "demo-business-architect",
+      "source": "linkedin-alert",
+      "sourceId": "demo-002",
+      "title": "Senior Business Architect, Automation",
+      "company": "Example Insurance",
+      "location": "Hong Kong",
+      "workingMode": "Hybrid",
+      "employmentType": "Full-time",
+      "seniority": "Senior",
+      "salary": "",
+      "postedAt": "2026-08-05T06:15:00+08:00",
+      "receivedAt": "2026-08-05T08:00:00+08:00",
+      "summary": "Shape digital transformation, automation roadmaps, business analysis and stakeholder governance for an insurance group.",
+      "tags": [
+        "business architect",
+        "insurance",
+        "automation",
+        "roadmap"
+      ],
+      "applyUrl": "https://example.com/jobs/demo-business-architect",
+      "score": 75,
+      "reasons": [
+        "Target role: business architect",
+        "Core strengths: digital transformation, business analysis, governance",
+        "AI/automation: automation",
+        "Preferred industry: insurance",
+        "Delivery leadership: roadmap"
+      ],
+      "risks": [
+        "Compensation not provided"
+      ],
+      "excluded": false,
+      "status": "NEW"
+    },
+    {
+      "id": "demo-enterprise-ai-consultant",
+      "source": "recruiter-email",
+      "sourceId": "demo-003",
+      "title": "Enterprise AI Consultant",
+      "company": "Example Consulting",
+      "location": "Hong Kong",
+      "workingMode": "Remote",
+      "employmentType": "Contract",
+      "seniority": "Principal",
+      "salary": "Competitive daily rate",
+      "postedAt": "2026-08-04T18:00:00+08:00",
+      "receivedAt": "2026-08-05T07:50:00+08:00",
+      "summary": "Advise clients on AI workflow design, digital transformation, business analysis, governance and delivery leadership.",
+      "tags": [
+        "enterprise AI consultant",
+        "consulting",
+        "AI workflow",
+        "delivery leadership"
+      ],
+      "applyUrl": "https://example.com/jobs/demo-enterprise-ai-consultant",
+      "score": 75,
+      "reasons": [
+        "Target role: enterprise ai consultant",
+        "Core strengths: digital transformation, business analysis, governance",
+        "AI/automation: ai workflow",
+        "Preferred industry: consulting",
+        "Delivery leadership: delivery leadership"
+      ],
+      "risks": [],
+      "excluded": false,
+      "status": "NEW"
+    }
+  ],
+  "metrics": {
+    "collected": 3,
+    "duplicatesRemoved": 0,
+    "excludedByStatus": 0,
+    "qualified": 3,
+    "selected": 3
+  }
+}
