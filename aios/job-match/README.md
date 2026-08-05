@@ -16,8 +16,10 @@ JobsDB / LinkedIn / Indeed / recruiter alert emails
 ```
 
 The repository deliberately does not scrape job sites, sign into job accounts,
-or contain Gmail credentials, CVs, email bodies, private profile values, or
-production output. `sample-alerts.json` and the example profile are fictional.
+or contain Gmail credentials, CVs, email bodies or private profile values.
+`sample-alerts.json` and the example profile are fictional. The optional
+`public-job-alerts.json` contains manually verified public employer listings and
+must be refreshed or expired as employer pages change.
 
 ## Generate a daily board
 
