@@ -1,0 +1,15 @@
+{
+  "schemaVersion": 1,
+  "profileId": "public-example",
+  "targetRoles": ["ai transformation", "business architect", "delivery manager", "enterprise ai consultant", "senior business analyst"],
+  "preferredIndustries": ["banking", "insurance", "consulting", "technology"],
+  "strengths": ["digital transformation", "business analysis", "stakeholder management", "governance"],
+  "deliveryLeadership": ["programme", "program", "delivery leadership", "cross-functional", "roadmap"],
+  "aiAutomation": ["artificial intelligence", "generative ai", "genai", "automation", "ai workflow"],
+  "seniority": ["lead", "principal", "senior", "manager"],
+  "workingMode": ["hong kong", "hybrid", "remote"],
+  "compensationSignals": ["competitive", "bonus", "medical", "salary"],
+  "avoid": ["junior", "commission only", "pure software engineer", "data scientist"],
+  "minimumScore": 65,
+  "dailyLimit": 30
+}

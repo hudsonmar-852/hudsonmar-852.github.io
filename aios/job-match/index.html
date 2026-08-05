@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="en-HK">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#07101d">
+  <meta name="description" content="AIOS Daily Job Match dashboard for reviewing ranked job-alert matches.">
+  <title>AIOS · Daily Job Match</title><link rel="stylesheet" href="./job-match.css">
+</head>
+<body><a class="skip" href="#job-list">Skip to matches</a><div class="shell">
+  <header class="top"><a class="brand" href="../"><span>AI</span><strong>AIOS<br><small>Daily Job Match</small></strong></a><a class="back" href="../">← AIOS</a></header>
+  <main>
+    <section class="hero"><div><p class="eyebrow">Career opportunity workflow</p><h1>Your best job-alert matches, ranked daily.</h1><p>Review a focused list, understand the match and risk signals, then open the original application page. Decisions stay on this device in the public demo.</p></div><aside><span id="mode">Loading…</span><strong id="board-date">—</strong><small>Asia/Hong_Kong</small></aside></section>
+    <section id="metrics" class="metrics" aria-label="Daily processing summary"><div class="loading">Loading daily results…</div></section>
+    <section class="privacy"><strong>Privacy boundary</strong><span>CVs, email bodies and credentials are never stored in this public module. Live Gmail intake and private profiles run outside GitHub Pages.</span></section>
+    <section class="toolbar"><input id="search" type="search" placeholder="Search title, company, location…" aria-label="Search matches"><div id="filters" class="filters" aria-label="Filter by status"><button class="active" data-filter="ALL">All</button><button data-filter="FAVOURITE">Favourites</button><button data-filter="APPLIED">Applied</button><button data-filter="NOT_SUITABLE">Not suitable</button></div></section>
+    <p id="notice" class="notice" role="status" aria-live="polite"></p><section id="job-list" class="jobs" aria-label="Ranked job matches"></section>
+  </main><footer>AIOS Daily Job Match v1.0 · Public-safe presentation layer · Local decisions only</footer>
+</div><script type="module" src="./app.mjs"></script></body></html>

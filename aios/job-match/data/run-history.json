@@ -1,0 +1,29 @@
+{
+  "schemaVersion": 1,
+  "runs": [
+    {
+      "generatedAt": "2026-08-05T10:33:56.378Z",
+      "boardDate": "2026-08-05",
+      "mode": "demo",
+      "metrics": {
+        "collected": 3,
+        "duplicatesRemoved": 0,
+        "excludedByStatus": 0,
+        "qualified": 3,
+        "selected": 3
+      }
+    },
+    {
+      "generatedAt": "2026-08-05T10:23:11.846Z",
+      "boardDate": "2026-08-05",
+      "mode": "demo",
+      "metrics": {
+        "collected": 3,
+        "duplicatesRemoved": 0,
+        "excludedByStatus": 0,
+        "qualified": 3,
+        "selected": 3
+      }
+    }
+  ]
+}
