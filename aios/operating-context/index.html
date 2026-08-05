@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AIOS · Agent Operating Context</title>
+<style>
+:root{--bg:#07101d;--panel:#0e1a2b;--line:#24364d;--text:#f6f8fb;--muted:#9fb0c5;--green:#5de09a;--amber:#ffc66d;--blue:#6cacff;--red:#ff8b8b}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--text);font:15px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans TC",sans-serif}.shell{width:min(1100px,calc(100% - 24px));margin:auto;padding:24px 0 40px}.top{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px}a{color:var(--blue);text-decoration:none}.hero,.panel{border:1px solid var(--line);border-radius:20px;background:var(--panel);padding:22px;margin-bottom:16px}.hero h1{margin:6px 0}.muted{color:var(--muted)}.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}.card{border:1px solid var(--line);border-radius:16px;padding:16px}.row{display:flex;justify-content:space-between;gap:12px;align-items:center}.status{font-size:.75rem;font-weight:800;border-radius:999px;padding:4px 9px}.ok{background:#123d2b;color:#77e6aa}.pending{background:#3d321d;color:#ffd383}.bad{background:#482225;color:#ffaaaa}table{width:100%;border-collapse:collapse}th,td{text-align:left;padding:10px;border-top:1px solid var(--line);vertical-align:top}th{color:var(--muted);font-size:.8rem}.list{margin:8px 0 0;padding-left:20px}@media(max-width:760px){.grid{grid-template-columns:1fr}.top{align-items:flex-start}}
+</style>
+</head>
+<body><main class="shell">
+<div class="top"><div><strong>AIOS</strong><div class="muted">Agent Operating Context</div></div><a href="../">← Dashboard</a></div>
+<section class="hero"><div class="muted">AIOS-GOV-019 · Runtime Baseline v1</div><h1>可驗證 Agent 操作環境</h1><p class="muted">顯示 Instruction Canary、驗收覆蓋、Session 資源限制、Repository Orientation、Client 權限及跨裝置延續檢查的真實實施狀態。</p></section>
+<div id="app"><section class="panel">Loading…</section></div>
+</main>
+<script>
+const esc=v=>String(v??'').replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+const badge=(ok,text)=>`<span class="status ${ok?'ok':'pending'}">${esc(text)}</span>`;
+fetch('../data/agent-operating-context.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error('Data unavailable');return r.json()}).then(d=>{
+ const cards=[
+  ['Instruction Canary',d.instructionCanary.status,d.instructionCanary.productionHookActive?'Hook active':'Contract ready · hook pending',d.instructionCanary.productionHookActive],
+  ['Acceptance Coverage',d.acceptanceCoverage.status,d.acceptanceCoverage.allowedStatuses.join(' · '),true],
+  ['Session Envelope',d.sessionEnvelope.status,`Warn ${Math.round(d.sessionEnvelope.warningThreshold*100)}% · Wrap ${Math.round(d.sessionEnvelope.wrapUpThreshold*100)}%`,true],
+  ['Repository Orientation',d.repositoryOrientation.status,`${d.repositoryOrientation.requiredSections.length} required sections`,true],
+  ['Client Policy',d.clientPolicies.length+' profiles','Least privilege baseline',true],
+  ['Continuity Check',d.continuityCheck.status,d.continuityCheck.blockOnMismatch?'Block on mismatch':'Warning only',d.continuityCheck.blockOnMismatch]
+ ];
+ document.querySelector('#app').innerHTML=`
+ <section class="panel"><div class="row"><div><strong>Implementation status</strong><div class="muted">Updated ${esc(d.updatedAt)}</div></div>${badge(true,d.implementationStatus)}</div></section>
+ <section class="grid">${cards.map(c=>`<article class="card"><div class="row"><strong>${esc(c[0])}</strong>${badge(c[3],c[1])}</div><div class="muted">${esc(c[2])}</div></article>`).join('')}</section>
+ <section class="panel"><h2>Client-specific capability policy</h2><div style="overflow:auto"><table><thead><tr><th>Client</th><th>Read</th><th>Write</th><th>Secrets</th><th>Deploy</th></tr></thead><tbody>${d.clientPolicies.map(p=>`<tr><td>${esc(p.client)}</td><td>${esc(p.read)}</td><td>${esc(p.write)}</td><td>${esc(p.secrets)}</td><td>${esc(p.deploy)}</td></tr>`).join('')}</tbody></table></div></section>
+ <section class="panel"><h2>Canary required fields</h2><ul class="list">${d.instructionCanary.requiredFields.map(x=>`<li>${esc(x)}</li>`).join('')}</ul><p class="muted">Automatic production hook remains pending workflow integration; this page does not overstate it as active.</p></section>`;
+}).catch(e=>document.querySelector('#app').innerHTML=`<section class="panel"><span class="status bad">Error</span><p>${esc(e.message)}</p></section>`);
+</script>
+</body></html>

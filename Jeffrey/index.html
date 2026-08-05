@@ -13,7 +13,7 @@
 </head>
 <body>
   <main class="wrap">
-    <header class="top"><div class="brand"><h1>Jeffrey Reminder Board</h1><p>Production Top 5 · 收藏訊息會保留喺收藏庫</p></div><a class="back" href="../">返回 Portal</a></header>
+    <header class="top"><div class="brand"><h1>Jeffrey Reminder Board</h1><p>Production Top 5 · <span id="boardDate">載入中</span> · 收藏訊息會保留喺收藏庫</p></div><a class="back" href="../">返回 Portal</a></header>
     <nav class="tabs" aria-label="訊息篩選">
       <button class="tab active" data-view="all">今日精選 <span id="allCount" class="badge">0</span></button>
       <button class="tab" data-view="favorites">★ 收藏 <span id="favCount" class="badge">0</span></button>
@@ -29,6 +29,7 @@
     const list=document.querySelector('#list');
     const allCount=document.querySelector('#allCount');
     const favCount=document.querySelector('#favCount');
+    const boardDate=document.querySelector('#boardDate');
     const toast=document.querySelector('#toast');
     let messages=[];
     let view='all';
@@ -84,7 +85,8 @@
       }
     });
     document.querySelectorAll('.tab').forEach(button=>button.addEventListener('click',()=>setView(button.dataset.view)));
-    fetch(BOARD_URL,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('board');return r.json()}).then(data=>{messages=Array.isArray(data.messages)?data.messages.slice(0,5):[];render()}).catch(()=>{list.innerHTML='<div class="empty error">暫時未能載入 production board，請稍後重新整理。</div>'});
+    const freshBoardUrl=`${BOARD_URL}?v=${Date.now()}`;
+    fetch(freshBoardUrl,{cache:'no-store'}).then(r=>{if(!r.ok)throw new Error('board');return r.json()}).then(data=>{messages=Array.isArray(data.messages)?data.messages.slice(0,5):[];boardDate.textContent=data.date||'日期未提供';render()}).catch(()=>{boardDate.textContent='更新失敗';list.innerHTML='<div class="empty error">暫時未能載入 production board，請稍後重新整理。</div>'});
   </script>
 </body>
 </html>

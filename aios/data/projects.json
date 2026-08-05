@@ -12,6 +12,18 @@
     "repository": "hudsonmar-852/hudsonmar-852.github.io"
   },
   {
+    "id": "agent-operating-context",
+    "name": "Agent Operating Context",
+    "description": "Machine-readable status for instruction canaries, acceptance coverage, session limits, client permissions and cross-client continuity.",
+    "category": "Governance",
+    "visibility": "Public metadata only",
+    "status": "Live",
+    "version": "1.0",
+    "lastUpdated": "2026-08-05",
+    "publicUrl": "./operating-context/",
+    "repository": "hudsonmar-852/hudsonmar-852.github.io"
+  },
+  {
     "id": "bible",
     "name": "Bible",
     "description": "Bible verses, daily blessings and shareable public content.",

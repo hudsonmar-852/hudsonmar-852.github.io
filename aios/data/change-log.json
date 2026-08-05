@@ -1,15 +1,5 @@
 [
   {
-    "id": "CL-20260728-001",
-    "date": "2026-07-28",
-    "version": "AIOS Work Items v1.0.0",
-    "change": "Added an additive Work Items dashboard, governed status engine, public-safe task index, private Drive source traceability and clearly separated local demo updates.",
-    "reason": "Turn approved PMO task specifications into a searchable and auditable engineering queue without weakening the public/private boundary.",
-    "source": "WI-20260728-002 / TASK-20260728-002",
-    "status": "Pending Chief Architect Review",
-    "rollback": "Revert the TASK-20260728-002 commit. No Google Drive data is changed by this release."
-  },
-  {
     "id": "CL-20260721-001",
     "date": "2026-07-21",
     "version": "AIOS Dashboard v3.1",
@@ -70,6 +60,16 @@
     "rollback": "Close or revert the feature branch, remove aios/governance/AIOS-GOV-010-executable-agent-boundary-standard.md and restore the prior decisions and change-log revisions."
   },
   {
+    "id": "CL-20260728-002",
+    "date": "2026-07-28",
+    "version": "AIOS Work Items v1.0.0",
+    "change": "Added an additive Work Items dashboard, governed status engine, public-safe task index, private Drive source traceability and clearly separated local demo updates.",
+    "reason": "Turn approved PMO task specifications into a searchable and auditable engineering queue without weakening the public/private boundary.",
+    "source": "WI-20260728-002 / TASK-20260728-002",
+    "status": "Pending Chief Architect Review",
+    "rollback": "Revert the TASK-20260728-002 commit. No Google Drive data is changed by this release."
+  },
+  {
     "id": "CL-20260729-001",
     "date": "2026-07-29",
     "version": "AIOS Workflow Governance v3.6",
@@ -78,5 +78,25 @@
     "source": "AIOS-WF-013",
     "status": "Waiting Review",
     "rollback": "Revert the pull request, remove aios/workflows/AIOS-WF-013-harness-stage-contract.md and restore the prior decisions and change-log revisions."
+  },
+  {
+    "id": "CL-20260805-001",
+    "date": "2026-08-05",
+    "version": "AIOS Governance v3.7",
+    "change": "Added the Verifiable Agent Operating Context standard covering instruction compliance canaries, acceptance evidence coverage, session resource envelopes, verified repository orientation, client-specific capability policies and cross-client continuity checks.",
+    "reason": "Ensure AIOS agents prove which instructions, repository state, permissions, acceptance criteria and execution limits are active before production-impacting work begins.",
+    "source": "AIOS-GOV-019",
+    "status": "Governance baseline implemented; runtime enforcement pending separate development",
+    "rollback": "Revert the pull request, remove aios/governance/AIOS-GOV-019-verifiable-agent-operating-context.md and restore the prior decisions and change-log revisions."
+  },
+  {
+    "id": "CL-20260805-002",
+    "date": "2026-08-05",
+    "version": "AIOS Agent Operating Context Runtime v1",
+    "change": "Added a machine-readable operating-context policy file, a public-safe status dashboard, client capability profiles, continuity blocking rules and a Node.js validation script.",
+    "reason": "Convert AIOS-GOV-019 from documentation-only governance into visible and testable repository assets without falsely claiming that external production hooks are already active.",
+    "source": "AIOS-GOV-019 runtime implementation",
+    "status": "Repository implementation complete; automatic production hook integration pending",
+    "rollback": "Revert the implementation pull request and remove aios/data/agent-operating-context.json, aios/operating-context/, aios/scripts/validate-agent-operating-context.mjs and the project registry entry."
   }
 ]
