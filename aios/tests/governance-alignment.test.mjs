@@ -30,7 +30,7 @@ test('direction confirmation has durable proposal-specific evidence', () => {
   assert.ok(direction.evidence_ref);
 });
 
-test('Work Items reconciliation proposal is scoped and remains blocked', () => {
+test('Work Items reconciliation direction is confirmed but execution remains blocked', () => {
   const proposals = load('aios/data/governance-proposals.json');
   const alignment = proposals.find((proposal) => proposal.proposal_id === 'P-GOV-ALIGN-001');
   const workItems = proposals.find((proposal) => proposal.proposal_id === 'P-WORK-ITEMS-RECON-001');
@@ -39,8 +39,9 @@ test('Work Items reconciliation proposal is scoped and remains blocked', () => {
   assert.equal(workItems.title, 'AIOS Work Items Reconciliation');
   assert.equal(workItems.major_change, true);
   assert.equal(workItems.requires_double_confirmation, true);
-  assert.equal(workItems.status, 'AWAITING_DIRECTION_CONFIRMATION');
-  assert.equal(workItems.first_confirmation.status, 'NOT_CONFIRMED');
+  assert.equal(workItems.status, 'DIRECTION_CONFIRMED');
+  assert.equal(workItems.first_confirmation.status, 'CONFIRMED');
+  assert.ok(workItems.first_confirmation.evidence_ref);
   assert.equal(workItems.second_confirmation.status, 'NOT_CONFIRMED');
   assert.equal(workItems.execution_status, 'NOT_STARTED');
   assert.equal(workItems.human_decision_required, true);
@@ -49,8 +50,19 @@ test('Work Items reconciliation proposal is scoped and remains blocked', () => {
     item.proposal_id === 'P-WORK-ITEMS-RECON-001'
   );
   assert.ok(pending);
-  assert.equal(pending.status, 'AWAITING_DIRECTION_CONFIRMATION');
+  assert.equal(pending.status, 'DIRECTION_CONFIRMED');
   assert.equal(pending.blocks_active_work, true);
+
+  const direction = load('aios/data/approval-registry.json').records.find((record) =>
+    record.proposal_id === 'P-WORK-ITEMS-RECON-001' &&
+    record.confirmation_type === 'DIRECTION' &&
+    record.confirmation_sequence === 1
+  );
+  assert.ok(direction);
+  assert.equal(direction.status, 'CONFIRMED');
+  assert.equal(direction.decision_text, 'APPROVE DIRECTION P-WORK-ITEMS-RECON-001');
+  assert.equal(direction.approved_direction, 'CREATE_NEW_CLEAN_BRANCH_AND_CHERRY_PICK');
+  assert.ok(direction.evidence_ref);
 });
 
 test('canonical record types and paths are unique', () => {
