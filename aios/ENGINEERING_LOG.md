@@ -147,6 +147,17 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - `aios/reviews/architecture-review-2026-07-23-01.md` — Approved 2026-07-23 with direction to prioritize Image Engine production hardening
 - `aios/reviews/architecture-review-2026-07-23-02.md` — Pending Chief Architect Review
 
+### EO-006 — AIOS MVP Foundation Completion
+
+- Priority: P1
+- Status: Pending Chief Architect Review
+- Completed: 2026-08-06
+- Objective: Prepare the AIOS foundation for Production MVP Review.
+- Files: `aios/core/*`, Drive File Service, EO tests, dashboard readiness data, and root EO deliverables.
+- Validation: Focused unit tests plus full repository validation and CI evidence recorded in the PR.
+- Architecture impact: Additive versioned internal MVP contracts; no existing public contract replaced.
+- Human action: Review architecture package, authorize Drive moves/deployment, and explicitly approve any merge.
+
 # 2026-08-05 — WI-20260805-001 Daily AIOS Job Match
 
 - Added a public-safe Job Match route without changing existing AIOS contracts.
