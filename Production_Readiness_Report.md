@@ -14,4 +14,4 @@
 | Testing | READY_FOR_MVP | Focused and repository suites required before PR |
 | Documentation | READY_FOR_MVP | EO deliverables and deployment/rollback guidance present |
 
-Overall: **READY FOR PRODUCTION MVP REVIEW**, not production launch. Remaining blockers are Drive file authorization, Apps Script deployment verification, draft PR CI, and explicit architecture/release approval.
+Overall: **READY FOR PRODUCTION MVP REVIEW**, not production launch. GitHub Actions run `31082016453` passed on draft PR #28. Remaining blockers are Drive file authorization, Apps Script deployment verification, and explicit architecture/release approval.

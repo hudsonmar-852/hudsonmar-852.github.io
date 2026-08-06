@@ -154,7 +154,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Completed: 2026-08-06
 - Objective: Prepare the AIOS foundation for Production MVP Review.
 - Files: `aios/core/*`, Drive File Service, EO tests, dashboard readiness data, and root EO deliverables.
-- Validation: Focused unit tests plus full repository validation and CI evidence recorded in the PR.
+- Validation: 26/26 tests, full repository validators, and GitHub Actions run `31082016453` passed on draft PR #28.
 - Architecture impact: Additive versioned internal MVP contracts; no existing public contract replaced.
 - Human action: Review architecture package, authorize Drive moves/deployment, and explicitly approve any merge.
 
