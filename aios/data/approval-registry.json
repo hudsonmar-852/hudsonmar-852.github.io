@@ -1,5 +1,25 @@
 {
   "policy": "aios/governance/AIOS-MAJOR-CHANGE-APPROVAL-POLICY.md",
-  "records": [],
+  "records": [
+    {
+      "proposal_id": "P-GOV-ALIGN-001",
+      "confirmation_type": "DIRECTION",
+      "confirmation_sequence": 1,
+      "status": "CONFIRMED",
+      "confirmed_by": "Hudson",
+      "confirmed_at": "2026-08-06T22:21:43+08:00",
+      "decision_text": "APPROVE DIRECTION",
+      "approved_direction": "CREATE_NEW_CLEAN_BRANCH_AND_CHERRY_PICK",
+      "approved_scope": {
+        "origin_main_baseline": "cb3ae9100e496307706ca64f7c1194b62d1d5741",
+        "preserve_branch": "agent/work-item-dashboard",
+        "preserve_head": "e9cb4300ef4f3626aed71bfd70e98a6d1c4007d8",
+        "reconciliation": "Create a separate clean reconciliation branch and worktree; selectively integrate the five audited commits; manually reconstruct shared integration files; preserve current main functionality.",
+        "validation": "Require all repository tests and validation to pass.",
+        "github_delivery": "Draft PR only; do not merge or mark ready for review; human review remains mandatory."
+      },
+      "evidence_ref": "aios/data/approval-registry.json#P-GOV-ALIGN-001-direction-1"
+    }
+  ],
   "note": "No legacy major approval is imported without durable proposal-specific evidence. Approval, rejection, and withdrawal records are append-only."
 }

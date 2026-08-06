@@ -4,13 +4,30 @@ import fs from 'node:fs';
 
 const load = (p) => JSON.parse(fs.readFileSync(p, 'utf8'));
 
-test('major proposal remains unapproved and requires two confirmations', () => {
+test('major proposal has direction confirmation but remains unapproved', () => {
   const proposal = load('aios/data/governance-proposals.json')[0];
   assert.equal(proposal.proposal_id, 'P-GOV-ALIGN-001');
   assert.equal(proposal.major_change, true);
   assert.equal(proposal.requires_double_confirmation, true);
-  assert.equal(proposal.status, 'AWAITING_DIRECTION_CONFIRMATION');
+  assert.equal(proposal.status, 'DIRECTION_CONFIRMED');
+  assert.equal(proposal.first_confirmation.status, 'CONFIRMED');
+  assert.ok(proposal.first_confirmation.evidence_ref);
+  assert.equal(proposal.second_confirmation.status, 'NOT_CONFIRMED');
   assert.equal(proposal.second_confirmation.evidence_ref, null);
+});
+
+test('direction confirmation has durable proposal-specific evidence', () => {
+  const approvals = load('aios/data/approval-registry.json').records;
+  const direction = approvals.find((record) =>
+    record.proposal_id === 'P-GOV-ALIGN-001' &&
+    record.confirmation_type === 'DIRECTION' &&
+    record.confirmation_sequence === 1
+  );
+  assert.ok(direction);
+  assert.equal(direction.status, 'CONFIRMED');
+  assert.equal(direction.decision_text, 'APPROVE DIRECTION');
+  assert.equal(direction.approved_direction, 'CREATE_NEW_CLEAN_BRANCH_AND_CHERRY_PICK');
+  assert.ok(direction.evidence_ref);
 });
 
 test('canonical record types and paths are unique', () => {

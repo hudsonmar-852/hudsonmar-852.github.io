@@ -2,18 +2,18 @@
   {
     "proposal_id": "P-GOV-ALIGN-001",
     "priority": "P0",
-    "status": "AWAITING_DIRECTION_CONFIRMATION",
+    "status": "DIRECTION_CONFIRMED",
     "impact_level": 3,
     "major_change": true,
     "created_at": "2026-08-06T00:00:00+08:00",
-    "last_reviewed_at": "2026-08-06T00:00:00+08:00",
+    "last_reviewed_at": "2026-08-06T22:21:43+08:00",
     "next_review_due": "2026-08-07T00:00:00+08:00",
     "aging_days": 0,
     "decision_health": "FRESH",
     "revalidation_required": false,
     "conflict_ids": ["C-AGENT-001", "C-DRIVE-001", "C-APPROVAL-001"],
     "blocks_active_work": true,
-    "recommendation": "Direction review; do not merge or resume development.",
+    "recommendation": "Prepare the updated final impact review for CREATE_NEW_CLEAN_BRANCH_AND_CHERRY_PICK; keep development blocked until exact execution confirmation is durably recorded.",
     "human_decision_required": true
   },
   {
