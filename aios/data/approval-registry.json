@@ -1,0 +1,5 @@
+{
+  "policy": "aios/governance/AIOS-MAJOR-CHANGE-APPROVAL-POLICY.md",
+  "records": [],
+  "note": "No legacy major approval is imported without durable proposal-specific evidence. Approval, rejection, and withdrawal records are append-only."
+}

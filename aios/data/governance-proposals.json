@@ -1,0 +1,29 @@
+[
+  {
+    "proposal_id": "P-GOV-ALIGN-001",
+    "title": "AIOS Governance Alignment and Source of Truth Recovery",
+    "summary": "Adopt the reviewed alignment package without resuming feature development.",
+    "impact_level": 3,
+    "major_change": true,
+    "requires_double_confirmation": true,
+    "status": "AWAITING_DIRECTION_CONFIRMATION",
+    "created_at": "2026-08-06T00:00:00+08:00",
+    "proposed_by": "Codex",
+    "owner": "Hudson",
+    "first_confirmation": {"status": "NOT_CONFIRMED", "confirmed_at": null, "evidence_ref": null},
+    "second_confirmation": {"status": "NOT_CONFIRMED", "confirmed_at": null, "evidence_ref": null},
+    "last_reviewed_at": "2026-08-06T00:00:00+08:00",
+    "next_review_due": "2026-08-07T00:00:00+08:00",
+    "decision_health": "FRESH",
+    "dependencies": ["Hudson direction confirmation", "manual Drive conflict review"],
+    "conflicts": ["C-AGENT-001", "C-DRIVE-001", "C-APPROVAL-001"],
+    "risks": ["Legacy approvals lack durable evidence", "Drive records have duplicate authority claims"],
+    "rollback": "Close the draft PR without merge; no production or Drive state is changed.",
+    "supersedes": [],
+    "superseded_by": null,
+    "execution_status": "NOT_STARTED",
+    "recommendation": "Review the impact package and provide direction confirmation only if acceptable.",
+    "human_decision_required": true,
+    "evidence": ["aios/reviews/AIOS-GOVERNANCE-ALIGNMENT-REVIEW.md"]
+  }
+]

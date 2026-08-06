@@ -1,0 +1,36 @@
+[
+  {
+    "proposal_id": "P-GOV-ALIGN-001",
+    "priority": "P0",
+    "status": "AWAITING_DIRECTION_CONFIRMATION",
+    "impact_level": 3,
+    "major_change": true,
+    "created_at": "2026-08-06T00:00:00+08:00",
+    "last_reviewed_at": "2026-08-06T00:00:00+08:00",
+    "next_review_due": "2026-08-07T00:00:00+08:00",
+    "aging_days": 0,
+    "decision_health": "FRESH",
+    "revalidation_required": false,
+    "conflict_ids": ["C-AGENT-001", "C-DRIVE-001", "C-APPROVAL-001"],
+    "blocks_active_work": true,
+    "recommendation": "Direction review; do not merge or resume development.",
+    "human_decision_required": true
+  },
+  {
+    "proposal_id": "LEGACY-CYCLE-2-REVIEW",
+    "priority": "P1",
+    "status": "UNVERIFIED",
+    "impact_level": 2,
+    "major_change": false,
+    "created_at": "2026-07-23T00:00:00+08:00",
+    "last_reviewed_at": "2026-07-23T00:00:00+08:00",
+    "next_review_due": "2026-07-30T00:00:00+08:00",
+    "aging_days": 14,
+    "decision_health": "OUTDATED_REVIEW_REQUIRED",
+    "revalidation_required": true,
+    "conflict_ids": ["C-STATUS-001"],
+    "blocks_active_work": true,
+    "recommendation": "Reconcile pending review with subsequent merged PRs; do not infer approval.",
+    "human_decision_required": true
+  }
+]
