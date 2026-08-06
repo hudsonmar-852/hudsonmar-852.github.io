@@ -21,9 +21,10 @@ class File {
   moveTo(p) { this.parent.files = this.parent.files.filter((x) => x !== this); this.parent = p; p.files.push(this); }
 }
 let registry;
-function setup() {
+function setup(propertyOverrides = {}) {
   registry = new Map(); const root = new Folder('root', 'Hudson AIOS'); const outside = new Folder('outside', 'Outside'); registry.set(root.id, root); registry.set(outside.id, outside);
-  const context = { JSON, String, Error, Date, Object, Array, Utilities: { getUuid: () => 'request-1', newBlob: (v) => ({ getBytes: () => Buffer.from(v) }) }, PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => ({ DRIVE_FILE_SERVICE_SECRET: 'secret', AIOS_ROOT_FOLDER_ID: 'root' })[k] }) }, DriveApp: { getFolderById: (id) => { const x = registry.get(id); if (!(x instanceof Folder)) throw new Error(); return x; }, getFileById: (id) => { const x = registry.get(id); if (!(x instanceof File)) throw new Error(); return x; } }, ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (text) => ({ text, setMimeType() { return this; } }) } };
+  const properties = { DRIVE_FILE_SERVICE_SECRET: 'secret', AIOS_ROOT_FOLDER_ID: 'root', ...propertyOverrides };
+  const context = { JSON, String, Error, Date, Object, Array, console: { log: () => {} }, Utilities: { getUuid: () => 'request-1', newBlob: (v) => ({ getBytes: () => Buffer.from(v) }) }, PropertiesService: { getScriptProperties: () => ({ getProperty: (k) => properties[k] }) }, DriveApp: { getFolderById: (id) => { const x = registry.get(id); if (!(x instanceof Folder)) throw new Error('Folder inaccessible'); return x; }, getFileById: (id) => { const x = registry.get(id); if (!(x instanceof File)) throw new Error('File inaccessible'); return x; } }, ContentService: { MimeType: { JSON: 'json' }, createTextOutput: (text) => ({ text, setMimeType() { return this; } }) } };
   vm.createContext(context); vm.runInContext(source, context); return { api: context, root, outside };
 }
 const post = (api, body) => JSON.parse(api.doPost({ postData: { contents: JSON.stringify(body) } }).text);
@@ -38,4 +39,21 @@ test('Drive service supports the complete non-destructive lifecycle', () => {
 test('Drive service rejects invalid secrets and outside-root access', () => {
   const { api, outside } = setup(); const file = outside.createFile('private.txt', 'x', 'text/plain');
   assert.equal(post(api, { secret: 'wrong', command: 'list_folder' }).error.code, 'UNAUTHORIZED'); assert.equal(post(api, { secret: 'secret', command: 'read', fileId: file.id }).error.code, 'OUTSIDE_ROOT');
+});
+test('authorization check reads configured folders, five files, and parents without mutations', () => {
+  const ids = ['source-1', 'source-2', 'source-3', 'source-4', 'source-5'];
+  const { api, root } = setup({ AIOS_COMMUNICATION_FOLDER_ID: 'communication', AIOS_PENDING_SOURCE_FILE_IDS: ids.join(',') });
+  const communication = new Folder('communication', 'Communication', root); root.folders.push(communication); registry.set(communication.id, communication);
+  for (const id of ids) { const file = new File(id, `${id}.md`, 'unchanged', 'text/markdown', root); root.files.push(file); registry.set(id, file); }
+  const before = root.files.map((file) => [file.id, file.name, file.content, file.parent.id]);
+  const report = api.testDriveMigrationAuthorization();
+  assert.equal(report.ok, true); assert.equal(report.readOnly, true); assert.equal(report.root.name, 'Hudson AIOS'); assert.equal(report.communication.name, 'Communication'); assert.equal(report.sources.length, 5);
+  assert.deepEqual(root.files.map((file) => [file.id, file.name, file.content, file.parent.id]), before);
+});
+test('authorization check reports an inaccessible source without modifying Drive state', () => {
+  const { api, root } = setup({ AIOS_COMMUNICATION_FOLDER_ID: 'communication', AIOS_PENDING_SOURCE_FILE_IDS: 'missing,source-2,source-3,source-4,source-5' });
+  const communication = new Folder('communication', 'Communication', root); root.folders.push(communication); registry.set(communication.id, communication);
+  for (const id of ['source-2', 'source-3', 'source-4', 'source-5']) { const file = new File(id, id, 'unchanged', 'text/plain', root); root.files.push(file); registry.set(id, file); }
+  const report = api.testDriveMigrationAuthorization();
+  assert.equal(report.ok, false); assert.equal(report.sources[0].accessible, false); assert.match(report.sources[0].error, /inaccessible/); assert.equal(root.files.length, 4);
 });

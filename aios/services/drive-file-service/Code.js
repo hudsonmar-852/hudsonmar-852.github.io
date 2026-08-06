@@ -3,6 +3,32 @@
 var AIOS_DRIVE_CONFIG = Object.freeze({ maxContentBytes: 75000, maxResults: 100, allowedMimeTypes: ['text/plain', 'text/markdown', 'application/json', 'text/csv'] });
 
 function doGet() { return driveJson_({ ok: true, service: 'AIOSDriveFileService', version: '1.0.0' }); }
+
+/**
+ * Performs a read-only authorization check for the EO-006 Drive migration.
+ * Configure AIOS_COMMUNICATION_FOLDER_ID and AIOS_PENDING_SOURCE_FILE_IDS in
+ * Script Properties before running this function from the Apps Script editor.
+ * AIOS_PENDING_SOURCE_FILE_IDS must contain exactly five comma-separated IDs.
+ */
+function testDriveMigrationAuthorization() {
+  var properties = PropertiesService.getScriptProperties();
+  var rootId = driveRequiredProperty_(properties, 'AIOS_ROOT_FOLDER_ID');
+  var communicationId = driveRequiredProperty_(properties, 'AIOS_COMMUNICATION_FOLDER_ID');
+  var sourceIds = driveRequiredProperty_(properties, 'AIOS_PENDING_SOURCE_FILE_IDS').split(',').map(function (id) { return id.trim(); }).filter(Boolean);
+  if (sourceIds.length !== 5) throw driveError_('INVALID_AUTH_TEST_CONFIG', 'AIOS_PENDING_SOURCE_FILE_IDS must contain exactly five comma-separated file IDs.');
+
+  var report = {
+    checkedAt: new Date().toISOString(),
+    readOnly: true,
+    root: driveAuthorizationFolderCheck_(rootId),
+    communication: driveAuthorizationFolderCheck_(communicationId),
+    sources: sourceIds.map(driveAuthorizationFileCheck_)
+  };
+  report.ok = report.root.accessible && report.communication.accessible && report.sources.every(function (source) { return source.accessible; });
+  console.log(JSON.stringify(report, null, 2));
+  return report;
+}
+
 function doPost(e) {
   var requestId = Utilities.getUuid();
   try {
@@ -19,6 +45,11 @@ function doPost(e) {
     return driveJson_({ ok: false, requestId: requestId, error: { code: error.code || 'INTERNAL_ERROR', message: error.code ? error.message : 'Unexpected service error.' } });
   }
 }
+
+function driveRequiredProperty_(properties, name) { var value = String(properties.getProperty(name) || '').trim(); if (!value) throw driveError_('SERVER_NOT_CONFIGURED', name + ' is not configured.'); return value; }
+function driveAuthorizationFolderCheck_(id) { try { var folder = DriveApp.getFolderById(id); return { id: id, name: folder.getName(), parents: driveParentMetadata_(folder), accessible: true }; } catch (error) { return { id: id, name: null, parents: [], accessible: false, error: String(error && error.message || error) }; } }
+function driveAuthorizationFileCheck_(id) { try { var file = DriveApp.getFileById(id); return { id: id, name: file.getName(), parents: driveParentMetadata_(file), accessible: true }; } catch (error) { return { id: id, name: null, parents: [], accessible: false, error: String(error && error.message || error) }; } }
+function driveParentMetadata_(item) { var output = []; var parents = item.getParents(); while (parents.hasNext()) { var parent = parents.next(); output.push({ id: parent.getId(), name: parent.getName() }); } return output; }
 
 function driveDispatch_(command, request, context) {
   switch (command) {

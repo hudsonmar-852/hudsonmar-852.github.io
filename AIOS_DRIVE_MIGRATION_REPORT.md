@@ -13,3 +13,16 @@ Pending reversible moves:
 5. Move `AIOS Knowledge Base — 2026-07-13` to `07_Knowledge Base`.
 
 Google rejected the first move with `403 appNotAuthorizedToFile`. The remaining moves were not retried. Rollback for any future move is to restore its recorded original parent, `Hudson AIOS`.
+
+## EO-006 authorization remediation
+
+Repository remediation completed on 2026-08-06:
+
+- The Apps Script manifest now explicitly requests `https://www.googleapis.com/auth/drive`; the previous manifest declared no explicit OAuth scopes.
+- `drive.file` is not used because the service must manage existing files that it did not create or open.
+- `script.external_request` is omitted because the implementation performs no outbound HTTP requests.
+- No `@OnlyCurrentDoc` annotation is present.
+- The service uses `DriveApp`, including `moveTo(destination)` for the approved future My Drive migration. It does not use the Advanced Drive API, so `supportsAllDrives` is not applicable to the current implementation.
+- `testDriveMigrationAuthorization` provides a non-destructive check of the configured AIOS root, Communication folder, five configured source files, and their current parents.
+
+External authorization remains pending. The Hudson Drive account must configure the two authorization-test Script Properties, run `testDriveMigrationAuthorization` in the Apps Script editor, approve the expanded Drive scope, and preserve the execution log as evidence. No pending file was moved, renamed, deleted, or modified by this remediation.
