@@ -30,6 +30,29 @@ test('direction confirmation has durable proposal-specific evidence', () => {
   assert.ok(direction.evidence_ref);
 });
 
+test('Work Items reconciliation proposal is scoped and remains blocked', () => {
+  const proposals = load('aios/data/governance-proposals.json');
+  const alignment = proposals.find((proposal) => proposal.proposal_id === 'P-GOV-ALIGN-001');
+  const workItems = proposals.find((proposal) => proposal.proposal_id === 'P-WORK-ITEMS-RECON-001');
+  assert.ok(workItems);
+  assert.deepEqual(Object.keys(workItems).sort(), Object.keys(alignment).sort());
+  assert.equal(workItems.title, 'AIOS Work Items Reconciliation');
+  assert.equal(workItems.major_change, true);
+  assert.equal(workItems.requires_double_confirmation, true);
+  assert.equal(workItems.status, 'AWAITING_DIRECTION_CONFIRMATION');
+  assert.equal(workItems.first_confirmation.status, 'NOT_CONFIRMED');
+  assert.equal(workItems.second_confirmation.status, 'NOT_CONFIRMED');
+  assert.equal(workItems.execution_status, 'NOT_STARTED');
+  assert.equal(workItems.human_decision_required, true);
+
+  const pending = load('aios/data/pending-decisions.json').find((item) =>
+    item.proposal_id === 'P-WORK-ITEMS-RECON-001'
+  );
+  assert.ok(pending);
+  assert.equal(pending.status, 'AWAITING_DIRECTION_CONFIRMATION');
+  assert.equal(pending.blocks_active_work, true);
+});
+
 test('canonical record types and paths are unique', () => {
   const rows = load('aios/data/canonical-records.json');
   assert.equal(new Set(rows.map((x) => x.record_type)).size, rows.length);

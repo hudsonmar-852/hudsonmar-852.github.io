@@ -25,5 +25,32 @@
     "recommendation": "Prepare the updated final impact review for the approved clean-branch and selective-cherry-pick direction; do not execute until the second confirmation is durably recorded.",
     "human_decision_required": true,
     "evidence": ["aios/reviews/AIOS-GOVERNANCE-ALIGNMENT-REVIEW.md"]
+  },
+  {
+    "proposal_id": "P-WORK-ITEMS-RECON-001",
+    "title": "AIOS Work Items Reconciliation",
+    "summary": "Safely reconcile the five audited commits from the divergent Work Items branch onto a new clean branch based on the verified current main baseline, without modifying the source branch or authorizing merge.",
+    "impact_level": 3,
+    "major_change": true,
+    "requires_double_confirmation": true,
+    "status": "AWAITING_DIRECTION_CONFIRMATION",
+    "created_at": "2026-08-06T22:28:16+08:00",
+    "proposed_by": "Codex",
+    "owner": "Hudson",
+    "first_confirmation": {"status": "NOT_CONFIRMED", "confirmed_at": null, "evidence_ref": null},
+    "second_confirmation": {"status": "NOT_CONFIRMED", "confirmed_at": null, "evidence_ref": null},
+    "last_reviewed_at": "2026-08-06T22:28:16+08:00",
+    "next_review_due": "2026-08-07T00:00:00+08:00",
+    "decision_health": "FRESH",
+    "dependencies": ["Hudson direction confirmation", "Hudson proposal-specific execution confirmation", "Source and origin/main baselines remain unchanged", "All required reconciliation validations pass"],
+    "conflicts": ["C-AGENT-001", "C-APPROVAL-001"],
+    "risks": ["Five shared integration files require manual reconstruction", "Baseline drift invalidates the reviewed conflict forecast", "CI, security scanning, Job Match, governance logs, or navigation could regress if conflict resolution drops current-main behavior"],
+    "rollback": "Before merge, close the Draft PR and remove only the new reconciliation branch and worktree through separately approved Git-native cleanup; preserve agent/work-item-dashboard and its HEAD unchanged.",
+    "supersedes": [],
+    "superseded_by": null,
+    "execution_status": "NOT_STARTED",
+    "recommendation": "Review the scoped proposal evidence and provide proposal-specific direction confirmation only if acceptable; keep development and merge permission closed until both confirmations are durable.",
+    "human_decision_required": true,
+    "evidence": ["aios/reviews/AIOS-WORK-ITEMS-RECONCILIATION-PROPOSAL.md"]
   }
 ]
