@@ -1,0 +1,12 @@
+mission: AIOS Governance Alignment
+development_freeze: true
+new_feature_work_allowed: false
+merge_allowed: false
+deployment_allowed: false
+destructive_actions_allowed: false
+github_write_scope: alignment branch only
+google_drive_write_scope: inventory and approved draft locations only
+major_change_approval: two-step explicit approval
+assumed_approval_allowed: false
+single_source_of_truth_required: true
+final_human_approval_required: Hudson
