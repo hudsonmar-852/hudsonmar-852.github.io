@@ -1,6 +1,6 @@
 # AIOS Major Change Approval Policy
 
-Status: Draft pending `P-GOV-ALIGN-001` approval  
+Status: Draft pending `P-GOV-ALIGN-001` approval
 Owner: Hudson
 
 Major or high-impact changes require two durable confirmations:

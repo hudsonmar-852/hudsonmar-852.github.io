@@ -1,6 +1,6 @@
 # AIOS Governance Index
 
-Status: Draft — pending two confirmations for `P-GOV-ALIGN-001`  
+Status: Draft — pending two confirmations for `P-GOV-ALIGN-001`
 Owner and final authority: Hudson
 
 ## Required reading order

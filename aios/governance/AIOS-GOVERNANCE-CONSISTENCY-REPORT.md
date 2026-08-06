@@ -1,6 +1,6 @@
 # AIOS Governance Consistency Report
 
-Audit date: 2026-08-06  
+Audit date: 2026-08-06
 Baseline: `origin/main@cb3ae91`
 
 | Requirement | Current file/path | Classification | Gap/conflict | Recommended canonical file | Action | Risk | Approval |

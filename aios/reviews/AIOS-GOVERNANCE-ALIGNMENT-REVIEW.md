@@ -1,9 +1,9 @@
 # AIOS Governance Alignment Review
 
-Proposal: `P-GOV-ALIGN-001`  
-Impact: 3 — Major  
-Status: Awaiting Direction Confirmation  
-Audit date: 2026-08-06  
+Proposal: `P-GOV-ALIGN-001`
+Impact: 3 — Major
+Status: Awaiting Direction Confirmation
+Audit date: 2026-08-06
 Repository baseline: `origin/main@cb3ae91`
 
 ## 1. Executive Summary
@@ -119,9 +119,9 @@ state that merge, deployment, and feature resumption are prohibited.
 
 ## 23. Final Approval Proposal
 
-Proposal ID: P-GOV-ALIGN-001  
-Impact Level: 3  
-Major Change: Yes  
+Proposal ID: P-GOV-ALIGN-001
+Impact Level: 3
+Major Change: Yes
 Status: Awaiting Direction Confirmation
 
 Direction confirmation is not execution approval. Only after the updated impact
