@@ -39,6 +39,19 @@
         "github_delivery": "Push only the reconciliation branch and create a Draft PR targeting main; do not merge or mark ready; human review remains mandatory."
       },
       "evidence_ref": "aios/data/approval-registry.json#P-WORK-ITEMS-RECON-001-direction-1"
+    },
+    {
+      "proposal_id": "P-WORK-ITEMS-RECON-001",
+      "confirmation_type": "EXECUTION",
+      "confirmation_sequence": 2,
+      "status": "CONFIRMED",
+      "confirmed_by": "Hudson",
+      "confirmed_at": "2026-08-11T15:37:00+08:00",
+      "decision_text": "APPROVE P-WORK-ITEMS-RECON-001",
+      "approved_direction": "CREATE_NEW_CLEAN_BRANCH_AND_CHERRY_PICK",
+      "approved_scope_ref": "aios/data/approval-registry.json#P-WORK-ITEMS-RECON-001-direction-1",
+      "execution_authorized": true,
+      "evidence_ref": "aios/data/approval-registry.json#P-WORK-ITEMS-RECON-001-execution-2"
     }
   ],
   "note": "No legacy major approval is imported without durable proposal-specific evidence. Approval, rejection, and withdrawal records are append-only."
