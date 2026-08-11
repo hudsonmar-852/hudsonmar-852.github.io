@@ -1,5 +1,26 @@
 # AIOS Codex Operating Instructions v1.0
 
+## Mandatory governance startup gate
+
+Before every AIOS development request, read:
+
+1. `aios/governance/AIOS-GOVERNANCE-INDEX.md`
+2. `aios/governance/AIOS-MAJOR-CHANGE-APPROVAL-POLICY.md`
+3. `aios/data/governance-proposals.json` and `aios/data/decisions.json`
+4. `aios/data/pending-decisions.json`
+5. `aios/data/decision-conflicts.json`
+
+Then run the instruction canary; verify approval and evidence; confirm write,
+merge, and deployment scope; and record evidence. If a source cannot be
+verified, stop with `BLOCKED — GOVERNANCE SOURCE NOT VERIFIED`.
+
+Major changes require two explicit confirmations. Generic “OK”, “Go”,
+“Continue”, “Yes”, or “Fine” is never final approval. Production merge and
+deployment require durable, proposal-specific execution approval.
+
+The alignment package is a draft until Hudson approves `P-GOV-ALIGN-001`;
+branch contents are not authority to merge or resume development.
+
 ## Production Mode trigger
 
 When the user enters the standalone command `P`, switch into AIOS Production
