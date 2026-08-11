@@ -1,9 +1,9 @@
 # AIOS Governance Decision Log
 
-Document version: 0.1.0-draft  
-Date: 2026-07-28  
-Owner: Hudson Mar  
-Maintainer: AIOS engineering  
+Document version: 0.1.0-draft
+Date: 2026-07-28
+Owner: Hudson Mar
+Maintainer: AIOS engineering
 Review status: Draft — human approval pending
 
 ## Authority and labels

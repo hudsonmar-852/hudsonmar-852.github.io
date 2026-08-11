@@ -1,7 +1,7 @@
 # AIOS Work Item Dashboard v1
 
-Status: Implementation complete; pending Chief Architect review  
-Task: WI-20260728-002 / TASK-20260728-002  
+Status: Implementation complete; pending Chief Architect review
+Task: WI-20260728-002 / TASK-20260728-002
 Date: 2026-07-28
 
 ## Objective

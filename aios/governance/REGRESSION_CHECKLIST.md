@@ -1,10 +1,10 @@
 # AIOS Regression Checklist
 
-Document version: 0.1.0-draft  
-Date: 2026-07-28  
-Owner: Hudson Mar  
-Maintainer: AIOS engineering  
-Review status: Draft — human approval pending  
+Document version: 0.1.0-draft
+Date: 2026-07-28
+Owner: Hudson Mar
+Maintainer: AIOS engineering
+Review status: Draft — human approval pending
 Applies to: TASK-20260728-002 and future Work Items changes
 
 ## Evidence notation
