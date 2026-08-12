@@ -1,8 +1,8 @@
 # AIOS Outstanding Engineering Tasks
 
-Last scanned: 2026-07-23
+Last scanned: 2026-07-28
 Mode: Production
-Architecture gate: EO-IMG-001 complete; Cycle 2 review pending
+Architecture gate: TASK-20260728-002 APPROVED WITH CONDITIONS; Architecture Freeze not approved
 
 ## P0
 
@@ -10,6 +10,30 @@ No build, CI definition, startup or critical data-safety failure was detected.
 Local tests and production validation pass.
 
 ## P1
+
+### AIOS-OUT-009 — Review and place AIOS PMO governance drafts
+
+- Status: Drafts complete — Hudson approval and Drive placement required
+- Drafts: `aios/governance/PRODUCT_BASELINE.md`,
+  `aios/governance/DECISION_LOG.md`,
+  `aios/governance/REGRESSION_CHECKLIST.md`
+- Impact: Repository evidence is consolidated, but governance completeness
+  cannot be marked approved.
+
+### AIOS-OUT-010 — Verify TASK-20260728-001 dependency
+
+- Status: PARTIALLY VERIFIED — Hudson mapping confirmation required
+- Evidence: Jeffrey PR #7 code, local tests, GitHub validation, merge and Pages
+  deployment are verified.
+- Missing: original task specification and explicit TASK-20260728-001 mapping.
+
+### AIOS-OUT-011 — Implement authenticated Google Drive adapter
+
+- Status: Proposed — Hudson architecture approval and private server identity required
+- Scope: Implement the existing adapter interface with authenticated writes,
+  version conflicts, idempotency and persistent audit history.
+- Safety: Do not place tokens or private task specifications in GitHub Pages.
+- Proposal: `aios/docs/google-drive-write-architecture-proposal.md`
 
 ### AIOS-OUT-001 — Approve the next core engineering scope
 
@@ -77,6 +101,8 @@ Local tests and production validation pass.
 
 ## Completed during this Production Mode run
 
+- Built the TASK-20260728-002 Work Items dashboard MVP with a public-safe
+  read-only Drive snapshot and local demo status updates.
 - Synchronized the AvatarOS public dashboard and system specification with the
   completed Sprint 0 state.
 - Re-ran all tests, source safety checks, route checks and syntax validation.
