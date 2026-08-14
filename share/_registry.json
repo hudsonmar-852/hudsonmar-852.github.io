@@ -42,13 +42,14 @@
       "slug": "hk-credit-card-asia-miles-guide",
       "title": "Jessica 香港信用卡儲 Cathay Asia Miles 指南",
       "status": "active",
-      "latest": "v1.1",
+      "latest": "v1.2",
       "permanent_url": "https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html",
       "folder": "share/hk-credit-card-asia-miles-guide/",
-      "last_update": "按 Jessica 每月 HK$4,000–15,000 真實消費重算排名；HSBC EveryMile 升至首選，加入 BOC Cheers Signature 戰術策略，修正里數有效期及 Citi／DBS 門檻。",
+      "last_update": "加入本地普通非指定簽賬重新排名、最新迎新／seasonal promotion、Top 3 轉里費及有效期，並更新 Jessica 短期開卡與長期主卡策略。",
       "versions": [
         {"version":"v1.0","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide/v1.0.html","date":"2026-08-14","git_code":"e4d9b2c2","change":"首版以較高消費模型比較主要 Asia Miles 信用卡。"},
-        {"version":"v1.1","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html","date":"2026-08-14","git_code":"f820c09f","change":"按 HK$4K–15K/月實際 spending 重算，加入 BOC Cheers Signature，並修正 HSBC RewardCash、Asia Miles、Citi 及 DBS 條款重點。"}
+        {"version":"v1.1","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html","date":"2026-08-14","git_code":"f820c09f","change":"按 HK$4K–15K/月實際 spending 重算，加入 BOC Cheers Signature，並修正 HSBC RewardCash、Asia Miles、Citi 及 DBS 條款重點。"},
+        {"version":"v1.2","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide/v1.2.html","date":"2026-08-14","git_code":"ab3ba8f8","change":"加入普通本地非指定簽賬排名、2026-08 最新迎新／seasonal promotion、Top 3 轉里費與有效期，以及先食迎新再用 HSBC 做主卡的實際策略。"}
       ]
     }
   ]
