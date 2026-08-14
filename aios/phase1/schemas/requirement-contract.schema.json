@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/requirement-contract/1.0.0",
+  "title": "AIOS Requirement Contract",
+  "allOf": [{"$ref": "formal-asset.schema.json"}],
+  "type": "object",
+  "required": ["objective", "task_specification", "required_outcomes", "assumptions", "constraints", "prohibited_actions", "unresolved_requirements", "acceptance_criteria", "output_contract", "validation"],
+  "properties": {
+    "objective": {"type": "string"},
+    "task_specification": {"type": "string"},
+    "required_outcomes": {"type": "array", "items": {"type": "string"}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "constraints": {"type": "array", "items": {"type": "string"}},
+    "prohibited_actions": {"type": "array", "items": {"type": "string"}},
+    "unresolved_requirements": {"type": "array", "items": {"type": "string"}},
+    "acceptance_criteria": {"type": "array", "items": {"type": "object", "required": ["id", "test", "expected"]}},
+    "output_contract": {"type": "object"},
+    "validation": {"type": "object"}
+  }
+}

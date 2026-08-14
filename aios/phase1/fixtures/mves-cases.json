@@ -1,0 +1,7 @@
+[
+  {"id":"MVES-GOLDEN-001","intent":"Preserve canonical expected output","category":"golden","input":{"value":"phase one"},"expected":"PHASE ONE"},
+  {"id":"MVES-NORMAL-001","intent":"Normalize ordinary input","category":"normal","input":{"value":"runtime"},"expected":"RUNTIME"},
+  {"id":"MVES-EDGE-001","intent":"Trim boundary whitespace","category":"edge","input":{"value":"  edge  "},"expected":"EDGE"},
+  {"id":"MVES-FAILURE-001","intent":"Classify missing input","category":"failure","input":{"value":null},"expect_error":"missing_value"},
+  {"id":"MVES-REGRESSION-001","intent":"Retain prior normalization behavior","category":"regression","input":{"value":"regression"},"expected":"REGRESSION"}
+]

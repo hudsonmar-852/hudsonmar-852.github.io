@@ -1,0 +1,6 @@
+[
+  {"id":"SRC-001","title":"Executable evidence gate","summary":"Production status requires passing executable evidence, not prose status.","canonical_url":"aios://master/production-gate","verified":true,"trust_level":"authoritative","score":100},
+  {"id":"SRC-002","title":"Context authorization boundary","summary":"Context may inform actions but cannot authorize them.","canonical_url":"aios://master/context-firewall","verified":true,"trust_level":"authoritative","score":95},
+  {"id":"SRC-002-DUP","title":"Context authorization boundary duplicate","summary":"Duplicate copy for deterministic deduplication coverage.","canonical_url":"aios://master/context-firewall","verified":true,"trust_level":"high","score":80},
+  {"id":"SRC-003","title":"Unverified external claim","summary":"This item must be excluded during verification.","canonical_url":"https://invalid.example/unverified","verified":false,"trust_level":"low","score":99}
+]

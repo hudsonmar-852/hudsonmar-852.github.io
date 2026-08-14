@@ -1,0 +1,30 @@
+{
+  "id": "AIOS-RELEASE-MANIFEST-001",
+  "type": "release_manifest",
+  "name": "AIOS Phase 1 Production Baseline Release",
+  "version": "1.0.0",
+  "status": "Candidate",
+  "canonical_location": "aios/phase1/AIOS_RELEASE_MANIFEST.json",
+  "owner": "AIOS Release Engineering",
+  "last_verified": "2026-08-14T13:00:03.000Z",
+  "dependencies": ["UAT-PHASE1-001", "RUNTIME-RP001-001", "EVAL-RP001-001"],
+  "release_id": "AIOS-PHASE1-1.0.0",
+  "release_status": "Candidate",
+  "commit": "WORKTREE_PENDING_COMMIT",
+  "deployment_mode": "local_production_baseline_with_simulated_external_publish",
+  "production_gate": {"schema_valid":true,"tests_pass":false,"mves_pass":true,"cat_pass":false,"no_critical_regression":true,"required_evidence_exists":true,"rollback_exists":true,"no_critical_blocker":true},
+  "evidence": [
+    "aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json",
+    "aios/phase1/evidence/baseline/RP001-ARTIFACT.md",
+    "aios/phase1/evidence/baseline/RP001-QA-RECORD.json",
+    "aios/phase1/evidence/baseline/RP001-KNOWLEDGE-PROMOTION.json",
+    "aios/phase1/evidence/baseline/RP001-EVALUATION.json",
+    "aios/phase1/evidence/baseline/AT001-AUTOMATION-LOG.json",
+    "aios/phase1/evidence/baseline/AI-HANDOFF-TEST.json",
+    "aios/phase1/AIOS_PHASE1_UAT_EVIDENCE.json",
+    "aios/phase1/AIOS_REGISTRY.json",
+    "aios/phase1/AIOS_KNOWN_ISSUES.md"
+  ],
+  "rollback": {"procedure":"aios/phase1/docs/OPERATIONS.md","strategy":"Revert the Phase 1 feature commit or disable its entrypoints; no existing foundation data is migrated or deleted."},
+  "known_issues": [{"id":"KI-PHASE1-001","severity":"Medium","status":"Open","summary":"External scheduler and publication are simulated because no integration credentials or publication approval are in scope."}]
+}

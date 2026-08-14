@@ -1,0 +1,108 @@
+{
+  "id": "UAT-PHASE1-001",
+  "type": "uat_report",
+  "name": "AIOS Phase 1 UAT Evidence",
+  "version": "1.0.0",
+  "status": "UAT",
+  "canonical_location": "aios/phase1/AIOS_PHASE1_UAT_EVIDENCE.json",
+  "owner": "AIOS QA",
+  "last_verified": "2026-08-14T13:00:03.000Z",
+  "dependencies": [
+    "RP001",
+    "AT001",
+    "EVAL-RP001-001"
+  ],
+  "overall_result": "PASS",
+  "items": [
+    {
+      "id": "UAT-001",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "RP001 completes all ten governed stages",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-002",
+      "status": "SIMULATED_PASS",
+      "test_method": "AT001 triggers RP001 without hidden business logic",
+      "evidence_location": "aios/phase1/evidence/baseline/AT001-AUTOMATION-LOG.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-003",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "Runtime Record is schema-valid",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-004",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "Concrete artifact and QA record exist",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-ARTIFACT.md",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-005",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "Knowledge promotion decision is recorded",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-KNOWLEDGE-PROMOTION.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-006",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "MVES covers and passes five required categories",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-EVALUATION.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-007",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "Canonical package supports chat-independent handoff",
+      "evidence_location": "aios/phase1/evidence/baseline/AI-HANDOFF-TEST.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-008",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "IDs, locations, statuses and canonical conflicts are traceable",
+      "evidence_location": "aios/phase1/evidence/baseline/../../AIOS_REGISTRY.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-009",
+      "status": "EXECUTABLE_PASS",
+      "test_method": "Known issues and rollback operations are documented",
+      "evidence_location": "aios/phase1/evidence/baseline/../../AIOS_KNOWN_ISSUES.md",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    },
+    {
+      "id": "UAT-010",
+      "status": "SIMULATED_PASS",
+      "test_method": "Simulated deployment passes smoke checks without external publication",
+      "evidence_location": "aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json",
+      "expected_result": "criterion satisfied",
+      "actual_result": "criterion satisfied",
+      "blocker": null
+    }
+  ]
+}
