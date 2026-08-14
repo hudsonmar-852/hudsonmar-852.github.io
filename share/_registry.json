@@ -1,5 +1,5 @@
 {
-  "updated": "2026-08-13",
+  "updated": "2026-08-14",
   "topics": [
     {
       "slug": "aas-injection-guide",
@@ -36,6 +36,19 @@
       "last_update": "首個分享版本：分清 NASM Personal Trainer Certificate 與 NCCA-accredited NASM-CPT，整理 CPR/AED、180 日考試窗口、Self-Study 與職涯應用。",
       "versions": [
         {"version":"v1.0","file":"https://hudsonmar-852.github.io/share/nasm-cpt-jeffrey-guide/v1.0.html","date":"2026-08-13","git_code":"e80a71a9","change":"首個分享版本：以 NASM 官方資料核實考試差異、入場資格、時間限制及 Jeffrey 建議路線。"}
+      ]
+    },
+    {
+      "slug": "hk-credit-card-asia-miles-guide",
+      "title": "Jessica 香港信用卡儲 Cathay Asia Miles 指南",
+      "status": "active",
+      "latest": "v1.1",
+      "permanent_url": "https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html",
+      "folder": "share/hk-credit-card-asia-miles-guide/",
+      "last_update": "按 Jessica 每月 HK$4,000–15,000 真實消費重算排名；HSBC EveryMile 升至首選，加入 BOC Cheers Signature 戰術策略，修正里數有效期及 Citi／DBS 門檻。",
+      "versions": [
+        {"version":"v1.0","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide/v1.0.html","date":"2026-08-14","git_code":"e4d9b2c2","change":"首版以較高消費模型比較主要 Asia Miles 信用卡。"},
+        {"version":"v1.1","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html","date":"2026-08-14","git_code":"f820c09f","change":"按 HK$4K–15K/月實際 spending 重算，加入 BOC Cheers Signature，並修正 HSBC RewardCash、Asia Miles、Citi 及 DBS 條款重點。"}
       ]
     }
   ]
