@@ -3,23 +3,23 @@
   "type": "canonical_registry",
   "name": "AIOS Phase 1 Canonical Registry",
   "version": "1.0.0",
-  "status": "UAT",
+  "status": "Production",
   "canonical_location": "aios/phase1/AIOS_REGISTRY.json",
   "owner": "AIOS Architecture",
   "last_verified": "2026-08-14T13:00:00.000Z",
   "dependencies": ["AIOS-MASTER-001"],
   "authority_model": ["AIOS-MASTER-001", "AIOS-REGISTRY-001", "versioned_assets", "runtime_evaluation_evidence", "AIOS-RELEASE-MANIFEST-001"],
   "assets": [
-    {"id":"AIOS-MASTER-001","type":"master_policy","name":"AIOS Master Phase 1 Policy","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/AIOS_MASTER.md","owner":"AIOS Chief Architect","last_verified":"2026-08-14T13:00:00.000Z","dependencies":[]},
-    {"id":"AIOS-REGISTRY-001","type":"canonical_registry","name":"AIOS Phase 1 Canonical Registry","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/AIOS_REGISTRY.json","owner":"AIOS Architecture","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["AIOS-MASTER-001"]},
-    {"id":"REQ-PHASE1-001","type":"requirement_contract","name":"Phase 1 Requirement Contract","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/config/requirement-contract.json","owner":"AIOS Chief Architect","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["AIOS-MASTER-001"]},
-    {"id":"RP001","type":"reference_pipeline","name":"Reference Research-to-Knowledge Pipeline","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/lib/rp001.mjs","owner":"AIOS Engineering","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["REQ-PHASE1-001","PROMPT-RP001-001"]},
+    {"id":"AIOS-MASTER-001","type":"master_policy","name":"AIOS Master Phase 1 Policy","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/AIOS_MASTER.md","owner":"AIOS Chief Architect","last_verified":"2026-08-14T13:00:00.000Z","dependencies":[]},
+    {"id":"AIOS-REGISTRY-001","type":"canonical_registry","name":"AIOS Phase 1 Canonical Registry","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/AIOS_REGISTRY.json","owner":"AIOS Architecture","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["AIOS-MASTER-001"]},
+    {"id":"REQ-PHASE1-001","type":"requirement_contract","name":"Phase 1 Requirement Contract","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/config/requirement-contract.json","owner":"AIOS Chief Architect","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["AIOS-MASTER-001"]},
+    {"id":"RP001","type":"reference_pipeline","name":"Reference Research-to-Knowledge Pipeline","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/lib/rp001.mjs","owner":"AIOS Engineering","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["REQ-PHASE1-001","PROMPT-RP001-001"]},
     {"id":"AT001","type":"automation_trigger","name":"RP001 Scheduled Automation Trigger","version":"1.0.0","status":"Simulated","canonical_location":"aios/phase1/lib/at001.mjs","owner":"AIOS Engineering","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["RP001"]},
-    {"id":"PROMPT-RP001-001","type":"prompt_asset_set","name":"RP001 Modular Prompt Assets","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/config/prompt-modules.json","owner":"AIOS Prompt Engineering","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["REQ-PHASE1-001"]},
+    {"id":"PROMPT-RP001-001","type":"prompt_asset_set","name":"RP001 Modular Prompt Assets","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/config/prompt-modules.json","owner":"AIOS Prompt Engineering","last_verified":"2026-08-14T13:00:00.000Z","dependencies":["REQ-PHASE1-001"]},
     {"id":"EVAL-RP001-001","type":"evaluation_run","name":"RP001 Minimum Viable Evaluation Suite","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/evidence/baseline/RP001-EVALUATION.json","owner":"AIOS Evaluation Engineering","last_verified":"2026-08-14T13:00:03.000Z","dependencies":["RP001","PROMPT-RP001-001"]},
     {"id":"RUNTIME-RP001-001","type":"runtime_record","name":"RP001 Baseline Runtime","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json","owner":"AIOS Engineering","last_verified":"2026-08-14T13:00:03.000Z","dependencies":["RP001","AT001","EVAL-RP001-001"]},
     {"id":"UAT-PHASE1-001","type":"uat_report","name":"AIOS Phase 1 UAT Evidence","version":"1.0.0","status":"UAT","canonical_location":"aios/phase1/AIOS_PHASE1_UAT_EVIDENCE.json","owner":"AIOS QA","last_verified":"2026-08-14T13:00:03.000Z","dependencies":["RUNTIME-RP001-001"]},
-    {"id":"AIOS-RELEASE-MANIFEST-001","type":"release_manifest","name":"AIOS Phase 1 Release Manifest","version":"1.0.0","status":"Candidate","canonical_location":"aios/phase1/AIOS_RELEASE_MANIFEST.json","owner":"AIOS Release Engineering","last_verified":"2026-08-14T13:00:03.000Z","dependencies":["UAT-PHASE1-001"]}
+    {"id":"AIOS-RELEASE-MANIFEST-001","type":"release_manifest","name":"AIOS Phase 1 Release Manifest","version":"1.0.0","status":"Production","canonical_location":"aios/phase1/AIOS_RELEASE_MANIFEST.json","owner":"AIOS Release Engineering","last_verified":"2026-08-14T13:00:03.000Z","dependencies":["UAT-PHASE1-001"]}
   ],
   "duplicate_scan": {"status":"PASS","conflicts":[],"legacy_assets":[{"location":"aios/data/production-manifest.json","classification":"repository-wide legacy production consolidation record","resolution":"retained; does not redefine Phase 1 release state"},{"location":"aios/docs/runtime-reliability-v2.md","classification":"approved source standard","resolution":"retained as historical policy source; executable Phase 1 assets are canonical implementation"}]}
 }

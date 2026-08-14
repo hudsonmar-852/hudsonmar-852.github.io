@@ -2,7 +2,7 @@
 
 Asset ID: `AIOS-MASTER-001`  
 Version: `1.0.0`  
-Status: `UAT`  
+Status: `Production`
 Owner: AIOS Chief Architect  
 Canonical location: `aios/phase1/AIOS_MASTER.md`  
 Last verified: `2026-08-14T13:00:00.000Z`

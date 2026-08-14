@@ -1,5 +1,12 @@
 # AIOS Engineering Log
 
+## 2026-08-14 — AIOS Phase 1 Production Baseline
+
+- Implemented the canonical Phase 1 SSOT package and approved P0 executable controls.
+- RP001/AT001 deterministic baseline, MVES, CAT, UAT-001–010, smoke, regression, and independent handoff evidence passed.
+- Local Phase 1 baseline promoted to Production; external AT001 scheduling and publication remain Simulated.
+- Architecture review: `aios/reviews/architecture-review-2026-08-14-01.md` — Pending Chief Architect Review.
+
 This ledger tracks bounded Engineering Tasks, Engineering Orders and Chief
 Architect review checkpoints. It contains public-safe engineering metadata only.
 
