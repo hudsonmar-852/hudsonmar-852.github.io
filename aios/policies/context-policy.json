@@ -1,0 +1,35 @@
+{
+  "version": "1.0.0",
+  "system_rules": {
+    "immutable_during_run": true,
+    "retrieval_may_override": false
+  },
+  "memory": {
+    "auto_promotion": false,
+    "requires_user_confirmation": true,
+    "requires_evidence": true,
+    "minimum_confidence": 0.75
+  },
+  "retrieval": {
+    "treat_as_untrusted": true,
+    "source_required": true,
+    "prompt_injection_scan_required": true
+  },
+  "artifacts": {
+    "version_required": true,
+    "lineage_required": true,
+    "destructive_change_requires_approval": true
+  },
+  "retention": {
+    "session_ttl_hours": 72,
+    "audit_ttl_days": 365,
+    "review_due_action": "exclude_until_reviewed"
+  },
+  "context_budget_percent": {
+    "system": 20,
+    "session": 20,
+    "memory": 20,
+    "artifacts": 15,
+    "retrieval": 25
+  }
+}
