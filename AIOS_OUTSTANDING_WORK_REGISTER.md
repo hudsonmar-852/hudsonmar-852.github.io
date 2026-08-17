@@ -1,5 +1,9 @@
 # AIOS Outstanding Work Register — EO-006
 
+Status: Historical EO-006 snapshot. For the current engineering queue, use
+`aios/OUTSTANDING_TASKS.md`. This record is retained as evidence and does not
+redefine current Phase 1 priorities or status.
+
 Evidence date: 2026-08-06. Baseline: `origin/main` at `cb3ae91`.
 
 ## P0

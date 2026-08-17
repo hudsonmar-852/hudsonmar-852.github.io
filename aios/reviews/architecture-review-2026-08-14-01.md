@@ -18,12 +18,13 @@ No new Foundation Layer, public API, plugin contract, authentication scope, data
 ## Evidence
 
 - Baseline implementation commit: `58d96ab38121cffc8c6ac8d331791a9c9c25a2bc`
-- Phase 1 tests: 13/13 passed
+- Phase 1 tests: 16/16 passed after the 2026-08-17 evidence-hardening audit
 - Existing repository tests: 28/28 passed
-- Production consolidation: 66 JSON files, 176 public source files, 7 public assets, and 17 links validated
+- Production consolidation: 66 JSON files, 177 public source files, 7 public assets, and 17 links validated
 - Agent Operating Context and AvatarOS validators passed
 - UAT-001–010 passed; UAT-002 and UAT-010 are `SIMULATED_PASS`
 - Independent chat-free AI handoff: PASS
+- 2026-08-17 maintenance audit: release validation now executes control and CAT tests, verifies the artifact digest and resolves the committed Production manifest; Phase 1 CI includes these controls.
 
 ## Known risks and deferred work
 

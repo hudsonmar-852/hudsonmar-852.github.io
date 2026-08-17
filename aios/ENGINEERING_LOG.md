@@ -1,5 +1,16 @@
 # AIOS Engineering Log
 
+## 2026-08-17 — Phase 1 release-evidence hardening
+
+- Reconciled canonical Phase 1 records with the current branch and executable evidence.
+- Corrected the Release Manifest provenance pointer to the committed Production declaration.
+- Changed release validation to execute control/CAT tests and verify artifact integrity, manifest consistency, and committed provenance.
+- Added Phase 1 tests and the hardened release gate to CI.
+- Validation: 44/44 combined tests passed; production consolidation, operating-context, Phase 1 release and AvatarOS validators passed.
+- Refreshed the current outstanding-task authority and marked the EO-006 register as historical evidence.
+- Architecture impact: None; maintenance strengthens the approved Phase 1 evidence gate and does not begin P1.
+- Human action: Phase 1 architecture review remains required before P1 feature expansion; remote CI verification remains external.
+
 ## 2026-08-14 — AIOS Phase 1 Production Baseline
 
 - Implemented the canonical Phase 1 SSOT package and approved P0 executable controls.
