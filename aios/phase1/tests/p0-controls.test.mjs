@@ -3,12 +3,13 @@ import fs from 'node:fs';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
+import { fileURLToPath } from 'node:url';
 import { buildPrompt } from '../lib/prompt-builder.mjs';
 import { selectContext, proposeContextEvolution } from '../lib/context-gate.mjs';
 import { discloseSkills, updateContinuity } from '../lib/continuity.mjs';
 import { runEvaluationSuite } from '../lib/evaluation.mjs';
 import { resolveLowRiskDuplicates } from '../lib/registry.mjs';
-import { validateContextItem, validateRequirementContract } from '../lib/validation.mjs';
+import { validateContextItem, validateReleaseManifest, validateRequirementContract } from '../lib/validation.mjs';
 
 const profile = { supported_models: ['test-engine'] };
 test('prompt pipeline separates stable/dynamic layers and rejects undefined variables', () => {
@@ -60,3 +61,36 @@ test('registry duplicate resolution retains history and selects newest approved 
   const resolved = resolveLowRiskDuplicates([{ ...base, version: '1.0.0' }, { ...base, version: '1.1.0', canonical_location: 'b' }]);
   assert.equal(resolved.find(({ version }) => version === '1.1.0').canonical, true); assert.equal(resolved.find(({ version }) => version === '1.0.0').archive_candidate, true);
 });
+
+test('production release provenance resolves to a committed Production manifest', () => {
+  const phaseRoot = new URL('../', import.meta.url);
+  const manifest = JSON.parse(fs.readFileSync(new URL('AIOS_RELEASE_MANIFEST.json', phaseRoot)));
+  const repository = path.resolve(fileURLToPath(new URL('../../..', import.meta.url)));
+  const committed = spawnSync('git', ['show', `${manifest.commit}:aios/phase1/AIOS_RELEASE_MANIFEST.json`], { cwd: repository, encoding: 'utf8' });
+  assert.equal(committed.status, 0);
+  const committedManifest = JSON.parse(committed.stdout);
+  assert.equal(committedManifest.release_id, manifest.release_id);
+  assert.equal(committedManifest.release_status, 'Production');
+});
+
+test('release manifest validator rejects incomplete gates and unsafe commit identifiers', () => {
+  const manifest = JSON.parse(fs.readFileSync(new URL('../AIOS_RELEASE_MANIFEST.json', import.meta.url)));
+  assert.deepEqual(validateReleaseManifest(manifest), []);
+  const invalid = structuredClone(manifest);
+  invalid.commit = '--help'; delete invalid.production_gate.cat_pass; invalid.evidence = [];
+  assert.ok(validateReleaseManifest(invalid).some((error) => error.includes('Git object ID')));
+  assert.ok(validateReleaseManifest(invalid).some((error) => error.includes('cat_pass')));
+  assert.ok(validateReleaseManifest(invalid).some((error) => error.includes('non-empty')));
+});
+
+test('runtime artifact digest and CI Phase 1 gate are executable controls', () => {
+  const phaseRoot = new URL('../', import.meta.url);
+  const runtime = JSON.parse(fs.readFileSync(new URL('evidence/baseline/RP001-RUNTIME-RECORD.json', phaseRoot)));
+  const artifact = fs.readFileSync(new URL('evidence/baseline/RP001-ARTIFACT.md', phaseRoot));
+  assert.equal(runtime.artifacts[0].sha256, crypto.createHash('sha256').update(artifact).digest('hex'));
+  const workflow = fs.readFileSync(new URL('../../../.github/workflows/aios-validation.yml', import.meta.url), 'utf8');
+  assert.match(workflow, /aios\/phase1\/tests\/\*\.test\.mjs/);
+  assert.match(workflow, /aios\/phase1\/scripts\/validate-release\.mjs/);
+});
+import crypto from 'node:crypto';
+import { spawnSync } from 'node:child_process';

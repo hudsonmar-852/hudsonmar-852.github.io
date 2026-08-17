@@ -64,6 +64,19 @@ export function validateRuntimeRecord(record) {
   return errors;
 }
 
+export function validateReleaseManifest(manifest) {
+  const errors = validateFormalAsset(manifest);
+  for (const field of ['release_id', 'release_status', 'commit', 'production_gate', 'evidence', 'rollback']) {
+    if (manifest[field] === undefined) errors.push(`${field} is required`);
+  }
+  if (!/^[0-9a-f]{40}$/.test(manifest.commit || '')) errors.push('commit must be a full 40-character Git object ID');
+  const gateFields = ['schema_valid', 'tests_pass', 'mves_pass', 'cat_pass', 'no_critical_regression', 'required_evidence_exists', 'rollback_exists', 'no_critical_blocker'];
+  for (const field of gateFields) if (typeof manifest.production_gate?.[field] !== 'boolean') errors.push(`production_gate.${field} must be boolean`);
+  if (!Array.isArray(manifest.evidence) || manifest.evidence.length === 0) errors.push('evidence must be a non-empty array');
+  if (!manifest.rollback?.procedure || !manifest.rollback?.strategy) errors.push('rollback requires procedure and strategy');
+  return errors;
+}
+
 export function assertValid(label, errors) {
   if (errors.length) throw new Error(`${label}: ${errors.join('; ')}`);
 }

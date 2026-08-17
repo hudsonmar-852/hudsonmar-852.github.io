@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -29,11 +31,13 @@ jobs:
           node-version: 22
 
       - name: Run unit tests
-        run: node --test aios/tests/*.test.mjs avataros/tests/*.test.mjs functions/private-test/index.test.mjs
+        run: node --test aios/tests/*.test.mjs aios/phase1/tests/*.test.mjs avataros/tests/*.test.mjs functions/private-test/index.test.mjs
 
       - name: Validate production assets
         run: |
           node aios/scripts/validate-production-consolidation.mjs
+          node aios/scripts/validate-agent-operating-context.mjs
+          node aios/phase1/scripts/validate-release.mjs
           node avataros/scripts/validate-avataros.mjs
 
       - name: Check JavaScript syntax

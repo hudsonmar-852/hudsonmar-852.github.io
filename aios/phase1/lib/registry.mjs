@@ -1,3 +1,4 @@
+import fs from 'node:fs';
 import path from 'node:path';
 import { validateFormalAsset } from './validation.mjs';
 
@@ -12,6 +13,7 @@ export function validateRegistry(registry, root) {
     errors.push(...validateFormalAsset(asset).map((error) => `${asset.id}: ${error}`));
     const location = path.resolve(root, asset.canonical_location);
     if (!location.startsWith(path.resolve(root))) errors.push(`${asset.id}: canonical_location escapes repository`);
+    else if (!fs.existsSync(location)) errors.push(`${asset.id}: canonical_location does not exist`);
     const existing = byId.get(asset.id) || [];
     existing.push(asset); byId.set(asset.id, existing);
   }
