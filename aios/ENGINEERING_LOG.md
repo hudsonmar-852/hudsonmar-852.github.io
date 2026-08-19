@@ -226,3 +226,14 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   changes, ADR-005 and EO-IMG-001 contracts.
 - Human action: Reconcile this divergent feature branch with `origin/main`
   through governed review before publication.
+
+### AIOS-VID-001 — Add model-routed Video Engine v1
+
+- Priority: P1
+- Status: Implemented on feature branch; CI review pending
+- Completed: 2026-08-20
+- Objective: Add a provider-neutral Video Job Contract, model capability registry, deterministic router, provider-specific prompt compiler, continuity lock and QA decision layer for Runway Gen-4, Sora 2, Veo 3.1, Kling and Hailuo.
+- Files: `aios/video-engine/model-registry.json`, `aios/video-engine/engine.mjs`, `aios/video-engine/README.md`, `aios/tests/video-engine.test.mjs`, `.github/workflows/aios-validation.yml`, `aios/data/production-manifest.json`.
+- Validation: Unit coverage added for automatic image-to-video mode, native audio routing, multi-reference routing, subject-reference routing, Runway image continuity prompting, production planning and QA state thresholds. GitHub CI required before merge.
+- Architecture impact: Additive module only. Existing Decision Engine, AvatarOS, provider boundaries and human approval controls remain unchanged. No provider API calls, credentials or paid generation are introduced.
+- Human action: None if CI passes; P1 motion designer, cinematography compiler and repair strategist remain planned extensions.
