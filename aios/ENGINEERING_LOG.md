@@ -104,7 +104,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Status: Completed
 - Completed: 2026-07-23
 - Objective: Add deterministic validation, cross-reference checks, error reporting and CI tests for AvatarOS inputs.
-- Files: `avataros/scripts/validate-avataros.mjs`, `avataros/tests/validation.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`
+- Files: `avataros/scripts/validate-avataros.mjs`, `avataros/tests/validation.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`, `aios/ENGINEERING_LOG.md`
 - Validation: Valid baseline and three failure cases are covered by Node.js tests.
 - Architecture impact: None; enforces the approved version 1.0.0 contracts and existing provider boundary.
 - Human action: None.
@@ -115,7 +115,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Status: Completed
 - Completed: 2026-07-23
 - Objective: Convert validated Character Bible and Image Job inputs into a repeatable Grok Imagine prompt pack.
-- Files: `avataros/scripts/build-image-prompt.mjs`, `avataros/tests/prompt-builder.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`
+- Files: `avataros/scripts/build-image-prompt.mjs`, `avataros/tests/prompt-builder.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`, `aios/ENGINEERING_LOG.md`
 - Validation: Deterministic output, approval enforcement and public-safety rejection are covered by unit tests.
 - Architecture impact: Implements the existing Prompt Engine output while retaining Grok Imagine and human approval boundaries.
 - Human action: Generated images still require manual Grok Imagine operation and review.
@@ -237,3 +237,14 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Validation: Unit coverage added for automatic image-to-video mode, native audio routing, multi-reference routing, subject-reference routing, Runway image continuity prompting, production planning and QA state thresholds. GitHub CI required before merge.
 - Architecture impact: Additive module only. Existing Decision Engine, AvatarOS, provider boundaries and human approval controls remain unchanged. No provider API calls, credentials or paid generation are introduced.
 - Human action: None if CI passes; P1 motion designer, cinematography compiler and repair strategist remain planned extensions.
+
+### AIOS-VID-002 — Implement Video Engine P1 production skills
+
+- Priority: P1
+- Status: Implemented on feature branch; CI review pending
+- Completed: 2026-08-20
+- Objective: Implement `video-motion-designer`, `cinematography-compiler` and `video-repair-strategist` as deterministic additive skills integrated with the existing Video Engine planning, prompt compilation and QA flow.
+- Files: `aios/video-engine/p1.mjs`, `aios/video-engine/engine.mjs`, `aios/video-engine/README.md`, `aios/video-engine/docs/P1_CODEX_PROMPT.md`, `aios/tests/video-engine.test.mjs`, `.github/workflows/aios-validation.yml`, `aios/data/production-manifest.json`, `aios/ENGINEERING_LOG.md`.
+- Validation: Unit coverage added for abstract-to-physical motion design, cinematography defaults and explicit lens preservation, P1 plan output, identity-drift repair diagnosis, smallest-correction-first behavior and QA repair attachment. CI syntax validation includes `p1.mjs`. Full GitHub CI required before merge.
+- Architecture impact: Additive P1 extension only. Existing Video Job Contract, model registry/router, provider-specific compilers, continuity lock, AvatarOS boundary, human review and provider/API boundaries remain intact.
+- Human action: None if CI passes. Provider execution adapters and automatic paid generation remain out of scope.
