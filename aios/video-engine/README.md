@@ -8,10 +8,12 @@ AIOS Video Engine converts a platform-independent video intent into a provider-s
 
 1. `video-director` — normalize user/image intent into a Video Job Contract.
 2. `video-continuity-lock` — preserve identity, wardrobe, environment, lighting, palette and camera-axis requirements.
-3. `video-model-router` — choose a provider from declared capabilities rather than hard-coded preference.
-4. `video-prompt-compiler` — compile the same job differently for Runway Gen-4, Sora 2, Veo 3.1, Kling or Hailuo.
-5. `video-qa-reviewer` — convert objective quality metrics into `PASS`, `REPAIR` or `REGENERATE`.
-6. P1 extension skills: `video-motion-designer`, `cinematography-compiler`, `video-repair-strategist`.
+3. `video-motion-designer` — convert abstract motion intent into visible, bounded subject/camera/scene motion and timing guidance.
+4. `cinematography-compiler` — normalize framing, angle, lens, movement, focus, depth of field, lighting and palette.
+5. `video-model-router` — choose a provider from declared capabilities rather than hard-coded preference.
+6. `video-prompt-compiler` — compile the same job differently for Runway Gen-4, Sora 2, Veo 3.1, Kling or Hailuo.
+7. `video-qa-reviewer` — convert objective quality metrics into `PASS`, `REPAIR` or `REGENERATE`.
+8. `video-repair-strategist` — diagnose the weakest QA dimension and propose the smallest deterministic correction first.
 
 ## Provider roles
 
@@ -29,6 +31,34 @@ Provider facts are registered in `model-registry.json`. Routing code must consum
 
 Image input automatically selects `image_to_video`. Default technical values are 8 seconds, 24 fps, 16:9 and high quality unless the caller specifies otherwise.
 
+## P1 motion contract
+
+`designMotion(job)` returns:
+
+- `subjectMotion` — visible physical action rather than abstract emotional wording where possible.
+- `cameraMotion` — one supporting camera movement.
+- `sceneMotion` — restrained environment response.
+- `timingGuidance` — bounded action beats appropriate for the clip duration.
+- `complexity` — currently fixed to `bounded`.
+
+The P1 motion layer deliberately avoids packing many independent events into one short clip.
+
+## P1 cinematography contract
+
+`compileCinematography(job)` normalizes:
+
+- shot/framing
+- camera angle
+- lens
+- camera movement
+- focus
+- depth of field
+- lighting
+- palette
+- continuity rule
+
+Explicit job fields win. Missing fields receive stable defaults. Provider prompt compilers consume this normalized plan while retaining distinct provider-specific prompting behavior.
+
 ## Routing principles
 
 Routing is deterministic and capability-first. Hard requirements (native audio, first/last frame, subject reference, motion brush, multiple references) receive stronger weights than general quality preference. The router returns the highest-scoring compatible model and its score for auditability.
@@ -41,15 +71,40 @@ Compilers preserve provider-specific prompting conventions. Image-to-video promp
 
 Runway compilation stays concise and motion-first; Sora uses structured cinematography/action/light/audio sections; Veo combines visual, camera and audio instructions; Kling and Hailuo emphasize subject/scene motion, camera and atmosphere.
 
-## QA contract
+## QA and repair contract
 
-`reviewVideo()` accepts normalized 0-100 metrics for identity, prompt adherence, motion realism, camera adherence, anatomy, temporal consistency and artifact severity. The current deterministic thresholds are:
+`reviewVideo()` accepts normalized 0-100 metrics for identity, prompt adherence, motion realism, camera adherence, anatomy, temporal consistency and artifact severity. The deterministic thresholds are:
 
 - `PASS`: overall >= 85
 - `REPAIR`: overall 70-84
 - `REGENERATE`: overall < 70
 
-External visual analysis and paid generation remain adapters outside this v1 core.
+P1 adds `diagnoseVideo()` and `buildRepairStrategy()`.
+
+The repair strategist identifies the weakest quality metric and maps it to one bounded correction such as reducing subject rotation, simplifying visible actions, locking camera language, reducing occlusion/extreme poses, strengthening continuity constraints or simplifying the scene. The governing principle is `smallest_correction_first`.
+
+A `REPAIR` review includes the diagnosis and repair plan. A `PASS` or `REGENERATE` review does not silently trigger provider calls or paid generation.
+
+## Planning output
+
+`planVideo(input)` returns:
+
+- normalized `job`
+- routed `model` and `routingScore`
+- `continuity` lock
+- P1 `motionDesign`
+- P1 `cinematography`
+- provider-specific compiled `prompt`
+
+This keeps planning inspectable before any future provider adapter is allowed to execute.
+
+## Codex workflow
+
+The reusable Codex engineering prompt for this phase is stored at:
+
+`aios/video-engine/docs/P1_CODEX_PROMPT.md`
+
+It instructs Codex to inspect `AGENTS.md`, preserve existing architecture, implement/test/document the three P1 skills, run repository validation and create a bounded PR without adding credentials or provider calls.
 
 ## Safety and architecture
 
@@ -58,3 +113,4 @@ External visual analysis and paid generation remain adapters outside this v1 cor
 - No production provider is permanently privileged; routing remains registry driven.
 - Human review can be inserted after QA without changing the core contract.
 - Provider adapters may be added later behind the same Video Job Contract.
+- P1 is additive and backward-compatible with the P0 Video Engine public functions.

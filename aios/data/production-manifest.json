@@ -29,9 +29,9 @@
     "videoPromptCompiler": "implemented",
     "videoContinuityLock": "implemented",
     "videoQaReviewer": "implemented",
-    "videoMotionDesigner": "planned_p1",
-    "cinematographyCompiler": "planned_p1",
-    "videoRepairStrategist": "planned_p1"
+    "videoMotionDesigner": "implemented_p1",
+    "cinematographyCompiler": "implemented_p1",
+    "videoRepairStrategist": "implemented_p1"
   },
   "deferred": [
     {
