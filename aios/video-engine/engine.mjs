@@ -1,4 +1,5 @@
 import registry from './model-registry.json' with { type: 'json' };
+import { buildRepairStrategy, compileCinematography, designMotion, diagnoseVideo } from './p1.mjs';
 
 const DEFAULTS = Object.freeze({ duration: 8, fps: 24, aspectRatio: '16:9', quality: 'high' });
 
@@ -59,9 +60,11 @@ function compact(parts) {
 export function compilePrompt(job, modelId) {
   if (!registry.models[modelId]) throw new Error(`Unknown video model: ${modelId}`);
 
-  const motion = compact([job.action, job.motion]);
-  const camera = compact([job.camera, job.lens && `Lens: ${job.lens}.`]);
-  const look = compact([job.lighting, job.palette, job.emotion]);
+  const motionDesign = designMotion(job);
+  const cinematography = compileCinematography(job);
+  const motion = compact([motionDesign.subjectMotion, motionDesign.sceneMotion]);
+  const camera = compact([cinematography.shot, cinematography.angle, cinematography.movement, `Lens: ${cinematography.lens}.`, cinematography.focus]);
+  const look = compact([cinematography.lighting, cinematography.palette, job.emotion]);
   const scene = compact([job.subject, job.environment, job.composition]);
   const continuity = job.mode === 'image_to_video'
     ? 'Based on the uploaded image, animate the scene naturally. Preserve the identity, lighting, and colors from the image.'
@@ -69,13 +72,13 @@ export function compilePrompt(job, modelId) {
 
   switch (modelId) {
     case 'runway_gen4':
-      return compact([motion || 'The subject moves naturally.', camera, job.environment && `The environment responds naturally to the motion.`, look, job.mode === 'image_to_video' ? continuity : '']);
+      return compact([motion || 'The subject moves naturally.', camera, look, job.mode === 'image_to_video' ? continuity : '']);
     case 'sora_2':
       return compact([
         `Scene: ${scene}.`,
-        `Cinematography: ${camera || 'natural cinematic framing'}.`,
-        `Action: ${motion || 'subtle natural movement'}.`,
-        `Lighting and palette: ${look || 'coherent natural lighting and color'}.`,
+        `Cinematography: ${camera}. Depth of field: ${cinematography.depthOfField}.`,
+        `Action: ${motion}. ${motionDesign.timingGuidance}`,
+        `Lighting and palette: ${look}.`,
         job.dialogue && `Dialogue: ${job.dialogue}.`,
         job.audio && `Background sound: ${job.audio}.`,
         continuity
@@ -84,6 +87,7 @@ export function compilePrompt(job, modelId) {
       return compact([
         scene,
         motion,
+        motionDesign.timingGuidance,
         camera,
         look,
         job.dialogue && `Dialogue: "${job.dialogue}".`,
@@ -91,9 +95,9 @@ export function compilePrompt(job, modelId) {
         continuity
       ]);
     case 'kling':
-      return compact([scene, motion, camera, look, continuity]);
+      return compact([scene, motion, camera, look, motionDesign.timingGuidance, continuity]);
     case 'hailuo':
-      return compact([scene, motion, camera, look, continuity]);
+      return compact([scene, motion, camera, look, motionDesign.timingGuidance, continuity]);
     default:
       throw new Error(`Compiler not implemented for: ${modelId}`);
   }
@@ -111,7 +115,7 @@ export function continuityLock(job) {
   };
 }
 
-export function reviewVideo(metrics = {}) {
+export function reviewVideo(metrics = {}, context = {}) {
   const weights = {
     identity: 0.22,
     promptAdherence: 0.18,
@@ -125,19 +129,29 @@ export function reviewVideo(metrics = {}) {
   const normalized = { ...metrics, artifactSeverityInverse: artifactInverse };
   const overall = Math.round(Object.entries(weights).reduce((sum, [key, weight]) => sum + (normalized[key] ?? 80) * weight, 0));
   const decision = overall >= 85 ? 'PASS' : overall >= 70 ? 'REPAIR' : 'REGENERATE';
-  return { overall, decision };
+  const diagnosis = diagnoseVideo(metrics, context);
+  return {
+    overall,
+    decision,
+    diagnosis,
+    repair: decision === 'REPAIR' ? buildRepairStrategy(metrics, context) : null
+  };
 }
 
 export function planVideo(input = {}) {
   const job = buildVideoJob(input);
   const route = routeModel(job);
+  const motionDesign = designMotion(job);
+  const cinematography = compileCinematography(job);
   return {
     job,
     model: route.id,
     routingScore: route.score,
     continuity: continuityLock(job),
+    motionDesign,
+    cinematography,
     prompt: compilePrompt(job, route.id)
   };
 }
 
-export { registry };
+export { buildRepairStrategy, compileCinematography, designMotion, diagnoseVideo, registry };
