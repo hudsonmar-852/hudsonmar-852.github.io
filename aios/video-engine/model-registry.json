@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "1.0.0",
+  "models": {
+    "runway_gen4": {
+      "priority": "P0",
+      "modes": ["image_to_video"],
+      "strengths": ["motion", "camera_motion", "scene_motion", "realism"],
+      "promptStyle": {"concise": true, "motionFirst": true, "positivePhrasing": true},
+      "supports": {"imageReference": true, "nativeAudio": false, "firstLastFrame": false, "videoExtension": false}
+    },
+    "sora_2": {
+      "priority": "P0",
+      "modes": ["text_to_video", "image_to_video"],
+      "strengths": ["cinematography", "narrative", "timing", "dialogue", "audio"],
+      "promptStyle": {"structured": true, "shotBased": true, "timingBeats": true},
+      "supports": {"imageReference": true, "nativeAudio": true, "remix": true, "firstLastFrame": false}
+    },
+    "veo_3_1": {
+      "priority": "P0",
+      "modes": ["text_to_video", "image_to_video", "video_extension"],
+      "strengths": ["photorealism", "reference_consistency", "native_audio", "interpolation", "extension"],
+      "promptStyle": {"descriptive": true, "cameraAware": true, "audioAware": true},
+      "supports": {"imageReference": true, "referenceImagesMax": 3, "nativeAudio": true, "firstLastFrame": true, "videoExtension": true, "resolutions": ["720p", "1080p"], "fps": 24}
+    },
+    "kling": {
+      "priority": "P1",
+      "modes": ["text_to_video", "image_to_video", "video_extension"],
+      "strengths": ["motion_control", "camera_control", "keyframes", "motion_brush"],
+      "promptStyle": {"subjectMotionScene": true, "cameraLanguage": true},
+      "supports": {"startEndFrames": true, "motionBrush": true, "professionalMode": true}
+    },
+    "hailuo": {
+      "priority": "P1",
+      "modes": ["text_to_video", "image_to_video", "subject_reference"],
+      "strengths": ["facial_consistency", "emotional_expression", "subject_reference", "precise_camera_motion"],
+      "promptStyle": {"subjectSceneMotion": true, "cameraAndAtmosphere": true},
+      "supports": {"subjectReference": true, "imageReference": true, "nativeAudio": false}
+    }
+  },
+  "skills": {
+    "video-director": "P0",
+    "video-model-router": "P0",
+    "video-prompt-compiler": "P0",
+    "video-continuity-lock": "P0",
+    "video-qa-reviewer": "P0",
+    "video-motion-designer": "P1",
+    "cinematography-compiler": "P1",
+    "video-repair-strategist": "P1"
+  }
+}
