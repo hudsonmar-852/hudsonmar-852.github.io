@@ -54,6 +54,7 @@ jobs:
           node --check aios/tests/work-items.test.mjs
           node --check aios/tests/work-items-page.test.mjs
           node --check aios/video-engine/engine.mjs
+          node --check aios/video-engine/p1.mjs
           node --check aios/tests/video-engine.test.mjs
           node --check avataros/scripts/validate-avataros.mjs
           node --check avataros/scripts/build-image-prompt.mjs
