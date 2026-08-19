@@ -29,7 +29,7 @@ jobs:
           node-version: 22
 
       - name: Run unit tests
-        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/job-match.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/job-match.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs aios/tests/video-engine.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
 
       - name: Validate production assets
         run: |
@@ -53,6 +53,8 @@ jobs:
           node --check aios/work-items/app.mjs
           node --check aios/tests/work-items.test.mjs
           node --check aios/tests/work-items-page.test.mjs
+          node --check aios/video-engine/engine.mjs
+          node --check aios/tests/video-engine.test.mjs
           node --check avataros/scripts/validate-avataros.mjs
           node --check avataros/scripts/build-image-prompt.mjs
           node --check avataros/tests/prompt-builder.test.mjs
