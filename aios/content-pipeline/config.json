@@ -15,5 +15,10 @@
     "passScore": 75,
     "minimumDimensionScore": 50
   },
+  "sourcePolicy": {
+    "defaultMaxAgeDays": 365,
+    "maxAgeDaysByType": { "official": 365, "primary": 365, "peerReviewed": 730, "professional": 365, "journalism": 30, "commentary": 90, "unknown": 30 },
+    "minimumClaimCoverage": 0.8
+  },
   "sourceAuthority": { "official": 6, "primary": 5, "peerReviewed": 4, "professional": 3, "journalism": 2, "commentary": 1, "unknown": 0 }
 }

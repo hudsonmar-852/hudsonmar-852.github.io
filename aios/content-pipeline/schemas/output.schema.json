@@ -1,0 +1,23 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://content-pipeline/output/1.1.0",
+  "title": "AIOS Content Pipeline Output",
+  "type": "object",
+  "required": ["schemaVersion", "runId", "topic", "stream", "selection", "stages", "outputs", "runtimeEvidence", "startedAt", "completedAt"],
+  "properties": {
+    "schemaVersion": { "const": "1.1.0" },
+    "runId": { "type": "string", "minLength": 1 },
+    "topic": { "type": "string", "minLength": 1 },
+    "stream": { "enum": ["standard", "enhanced"] },
+    "stages": { "type": "array", "items": { "type": "string" }, "minItems": 1 },
+    "outputs": { "type": "object" },
+    "runtimeEvidence": {
+      "type": "object",
+      "required": ["terminalState", "stages"],
+      "properties": {
+        "terminalState": { "enum": ["COMPLETED", "FAILED"] },
+        "stages": { "type": "array" }
+      }
+    }
+  }
+}

@@ -52,7 +52,10 @@ jobs:
           node --check aios/job-match/scripts/generate-daily.mjs
           node --check aios/tests/job-match.test.mjs
           node --check aios/content-pipeline/engine.mjs
+          node --check aios/content-pipeline/contracts.mjs
+          node --check aios/content-pipeline/provider-registry.mjs
           node --check aios/tests/content-pipeline.test.mjs
+          node --check aios/tests/content-pipeline-p1.test.mjs
           node --check aios/tests/dashboard-theme.test.mjs
           node --check aios/core/mission-manager.mjs
           node --check aios/core/decision-engine.mjs

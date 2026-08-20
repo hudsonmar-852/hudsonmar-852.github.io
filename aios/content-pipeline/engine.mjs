@@ -1,4 +1,6 @@
+import crypto from 'node:crypto';
 import defaultConfig from './config.json' with { type: 'json' };
+import { assertContract, validatePipelineInput, validatePipelineOutput } from './contracts.mjs';
 
 const VALID_STREAMS = new Set(['standard', 'enhanced']);
 const AGREEMENT = new Set(['agreement', 'contradiction', 'additional_insight', 'missing_evidence']);
@@ -121,20 +123,54 @@ export function buildSummaries(input) {
   };
 }
 
-export async function runContentPipeline(input, { config = defaultConfig, providers = {}, clock = () => new Date().toISOString() } = {}) {
-  if (!text(input?.topic)) throw new Error('topic is required');
+export function evaluateSourceCoverage({ claims = [], sources = [], now = new Date().toISOString() }, config = defaultConfig) {
+  const claimIds = unique(claims.map((claim) => typeof claim === 'string' ? claim : claim.id || claim.claimId));
+  const supported = new Set();
+  const freshness = sources.map((source) => {
+    const referenceDate = source.updatedAt || source.publishedAt || source.retrievedAt;
+    const ageDays = referenceDate ? Math.max(0, (dateValue(now) - dateValue(referenceDate)) / 86400000) : Infinity;
+    const maxAgeDays = config.sourcePolicy?.maxAgeDaysByType?.[source.sourceType] ?? config.sourcePolicy?.defaultMaxAgeDays ?? 365;
+    const fresh = ageDays <= maxAgeDays;
+    if (source.supports !== false && fresh) for (const claimId of source.claimIds || []) supported.add(claimId);
+    return { sourceId: source.id, ageDays: Number.isFinite(ageDays) ? Math.round(ageDays) : null, maxAgeDays, fresh };
+  });
+  const unsupportedClaimIds = claimIds.filter((id) => !supported.has(id));
+  const coverage = claimIds.length ? (claimIds.length - unsupportedClaimIds.length) / claimIds.length : 1;
+  return { coverage, minimumCoverage: config.sourcePolicy?.minimumClaimCoverage ?? 0.8, passed: coverage >= (config.sourcePolicy?.minimumClaimCoverage ?? 0.8), supportedClaimIds: claimIds.filter((id) => supported.has(id)), unsupportedClaimIds, freshness };
+}
+
+export async function runContentPipeline(input, { config = defaultConfig, providers = {}, providerRegistry = null, providerRouting = {}, clock = () => new Date().toISOString(), runId = crypto.randomUUID() } = {}) {
+  assertContract('pipeline input', validatePipelineInput(input));
   const selection = selectWorkflow(input, config);
   const locale = config.sectionLabels[input.locale] ? input.locale : 'default';
   const context = { ...structuredClone(input), selection, sectionLabels: structuredClone(config.sectionLabels[locale]), startedAt: clock(), outputs: {} };
-  for (const stage of config.streams[selection.stream]) {
-    context.outputs[stage] = providers[stage] ? await providers[stage](structuredClone(context)) : builtInStage(stage, context, config);
-    if (stage === 'researchComparison') context.researchComparison = context.outputs[stage];
-    if (stage === 'readerExperience') context.readerExperience = context.outputs[stage];
-    if (stage === 'readerQuestions') context.readerQuestions = context.outputs[stage].questions;
-    if (stage === 'sources') context.sources = context.outputs[stage];
+  const evidence = [];
+  try {
+    for (const stage of config.streams[selection.stream]) {
+      const stageStartedAt = clock();
+      if (providers[stage]) {
+        context.outputs[stage] = await providers[stage](structuredClone(context));
+        evidence.push({ stage, providerId: 'injected-stage-provider', status: 'PASS', startedAt: stageStartedAt, completedAt: clock() });
+      } else if (providerRegistry?.resolve(stage, { providerId: providerRouting[stage] })) {
+        const result = await providerRegistry.execute(stage, context, { providerId: providerRouting[stage] });
+        context.outputs[stage] = result.output; evidence.push(result.evidence);
+      } else {
+        context.outputs[stage] = builtInStage(stage, context, config);
+        evidence.push({ stage, providerId: 'aios-built-in', status: 'PASS', startedAt: stageStartedAt, completedAt: clock() });
+      }
+      if (stage === 'researchComparison') context.researchComparison = context.outputs[stage];
+      if (stage === 'readerExperience') context.readerExperience = context.outputs[stage];
+      if (stage === 'readerQuestions') context.readerQuestions = context.outputs[stage].questions;
+      if (stage === 'sources') { context.sources = context.outputs[stage]; context.sourceCoverage = evaluateSourceCoverage({ claims: context.claims, sources: context.sources, now: clock() }, config); }
+    }
+  } catch (error) {
+    evidence.push(error.evidence || { stage: config.streams[selection.stream][evidence.length], providerId: 'unknown', status: 'FAIL', completedAt: clock(), classification: error.code || 'workflow_error' });
+    error.runtimeEvidence = { runId, terminalState: 'FAILED', stages: evidence }; throw error;
   }
   context.completedAt = clock();
-  return { schemaVersion: '1.0.0', topic: context.topic, stream: selection.stream, selection, sectionLabels: context.sectionLabels, stages: config.streams[selection.stream], outputs: context.outputs, startedAt: context.startedAt, completedAt: context.completedAt };
+  const output = { schemaVersion: '1.1.0', runId, topic: context.topic, stream: selection.stream, selection, sectionLabels: context.sectionLabels, stages: config.streams[selection.stream], outputs: context.outputs, sourceCoverage: context.sourceCoverage || evaluateSourceCoverage({ claims: context.claims, sources: [] }, config), runtimeEvidence: { runId, terminalState: 'COMPLETED', stages: evidence }, startedAt: context.startedAt, completedAt: context.completedAt };
+  assertContract('pipeline output', validatePipelineOutput(output));
+  return output;
 }
 
 function builtInStage(stage, context, config) {
