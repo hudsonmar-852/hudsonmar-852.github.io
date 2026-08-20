@@ -90,7 +90,7 @@ export function selectWorkflow(input, config = defaultConfig) {
 }
 
 export function runQualityControl(input, config = defaultConfig) {
-  const sources = input.sources || [];
+  const sources = input.sources || input.rawSources || [];
   const comparison = input.researchComparison || [];
   const unsupported = unique(input.unsupportedClaims || []);
   const scores = {
