@@ -1,0 +1,19 @@
+{
+  "schemaVersion": "1.0.0",
+  "defaultStream": "standard",
+  "autoSelection": { "enabled": true, "enhancedThreshold": 4 },
+  "sectionLabels": {
+    "default": { "readerQuestions": "You may want to know", "interestingFacts": "Interesting facts", "threeMinuteSummary": "3-minute summary" },
+    "zh-HK": { "readerQuestions": "你可能想知道", "interestingFacts": "唔講你唔知", "threeMinuteSummary": "三分鐘快速看完" }
+  },
+  "streams": {
+    "standard": ["understand", "focusedResearch", "contentEnhancement", "readerExperience", "readerQuestions", "qualityControl", "presentation", "sources", "threeMinuteSummary", "publishStore"],
+    "enhanced": ["understand", "deepResearch", "factVerification", "researchComparison", "contentEnhancement", "readerExperience", "readerQuestions", "interestingFacts", "recommendation", "advancedQualityControl", "presentation", "sources", "multiLevelSummary", "publishStore"]
+  },
+  "qualityControl": {
+    "weights": { "accuracy": 0.3, "readerExperience": 0.2, "usefulness": 0.2, "contentQuality": 0.2, "presentation": 0.1 },
+    "passScore": 75,
+    "minimumDimensionScore": 50
+  },
+  "sourceAuthority": { "official": 6, "primary": 5, "peerReviewed": 4, "professional": 3, "journalism": 2, "commentary": 1, "unknown": 0 }
+}
