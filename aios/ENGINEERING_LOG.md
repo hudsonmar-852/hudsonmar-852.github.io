@@ -23,11 +23,11 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 
 ## Current review cycle
 
-- Cycle: 2
-- Completed Engineering Tasks: 4 / 5
-- Engineering Order: EO-IMG-001 — Completed
-- Architecture Review: Cycle 2 pending Chief Architect review
-- Last updated: 2026-07-23
+- Cycle: TASK-20260728-002
+- Completed Engineering Tasks: 1 / 1
+- Engineering Order: WI-20260728-002 — Implementation complete
+- Architecture Review: APPROVED WITH CONDITIONS; Hudson approval pending
+- Last updated: 2026-07-28
 
 ## Entry template
 
@@ -122,7 +122,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Status: Completed
 - Completed: 2026-07-23
 - Objective: Add deterministic validation, cross-reference checks, error reporting and CI tests for AvatarOS inputs.
-- Files: `avataros/scripts/validate-avataros.mjs`, `avataros/tests/validation.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`
+- Files: `avataros/scripts/validate-avataros.mjs`, `avataros/tests/validation.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`, `aios/ENGINEERING_LOG.md`
 - Validation: Valid baseline and three failure cases are covered by Node.js tests.
 - Architecture impact: None; enforces the approved version 1.0.0 contracts and existing provider boundary.
 - Human action: None.
@@ -133,7 +133,7 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 - Status: Completed
 - Completed: 2026-07-23
 - Objective: Convert validated Character Bible and Image Job inputs into a repeatable Grok Imagine prompt pack.
-- Files: `avataros/scripts/build-image-prompt.mjs`, `avataros/tests/prompt-builder.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`
+- Files: `avataros/scripts/build-image-prompt.mjs`, `avataros/tests/prompt-builder.test.mjs`, `.github/workflows/aios-validation.yml`, `README.md`, `aios/ENGINEERING_LOG.md`
 - Validation: Deterministic output, approval enforcement and public-safety rejection are covered by unit tests.
 - Architecture impact: Implements the existing Prompt Engine output while retaining Grok Imagine and human approval boundaries.
 - Human action: Generated images still require manual Grok Imagine operation and review.
@@ -196,3 +196,95 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
   tracking, privacy documentation and regression tests.
 - Production Gmail intake remains intentionally unconnected pending private
   runtime authorization and profile configuration.
+
+### WI-20260728-002 — Work Item Dashboard
+
+- Priority: P1
+- Status: Implementation complete; APPROVED WITH CONDITIONS; Hudson approval pending
+- Completed: 2026-07-28
+- Read the complete Google Drive task source before code changes.
+- Added the AIOS Work Items dashboard as an additive route.
+- Added governed status transitions, search, filters, quick views, detail inspection, execution command copy and local demo activity history.
+- Added `work-items.json`, `TASK_INDEX.md` and the v1 schema.
+- Preserved Google Drive as the operational source without exposing private task text or credentials.
+- Implemented the approved read-only fallback because no secure server-side Drive write layer exists.
+- Recorded missing governance documents and TASK-20260728-001 as blockers.
+- Added unit, integration-style and page contract tests plus CI validation.
+- Architecture review package: `aios/reviews/architecture-review-2026-07-28-01.md`.
+
+### WI-20260728-002-GOV — Governance preparation and architecture review
+
+- Priority: P1
+- Status: Completed locally; human decisions pending
+- Completed: 2026-07-28
+- Objective: Discover missing governance evidence, draft controlled baseline
+  documents, verify TASK-20260728-001, review the Work Items architecture and
+  propose—but not implement—a secure Drive write architecture.
+- Files: `aios/governance/*.md`,
+  `aios/reviews/dependency-20260728-001-evidence.md`,
+  `aios/docs/google-drive-write-architecture-proposal.md`, task register and
+  architecture gate records.
+- Validation: AIOS full test/validation suite and governance cross-reference
+  checks.
+- Architecture impact: None implemented. The review approves only the current
+  read-only/local-demo MVP with conditions. Architecture Freeze and production
+  Drive writes remain not approved.
+- Human action: Approve/amend governance drafts, confirm TASK-001 mapping and
+  decide the proposed Drive runtime and identity model.
+
+### AIOS-PROD-004 — Harden public secret detection
+
+- Priority: P1
+- Status: Implemented locally; independent review pending
+- Completed: 2026-07-29
+- Objective: Extend the existing public-source safety control to detect
+  additional high-confidence credential formats and sensitive key files.
+- Files: `aios/scripts/secret-scan.mjs`,
+  `aios/scripts/validate-production-consolidation.mjs`,
+  `aios/tests/secret-scan.test.mjs`, `.github/workflows/aios-validation.yml`,
+  `README.md`
+- Validation: Full suite passes 34/34 with zero skipped or todo tests;
+  production and AvatarOS validators pass; `git diff --check` passes.
+- Architecture impact: None; maintenance strengthens the existing public/private
+  boundary without changing a public runtime contract.
+- Human action: Reconcile this divergent feature branch with `origin/main`
+  through governed review before publication.
+
+### AIOS-PROD-005 — Enforce published AvatarOS contracts
+
+- Priority: P1
+- Status: Implemented locally; independent review pending
+- Completed: 2026-07-29
+- Objective: Make manual production validation enforce the already-published
+  version 1.0.0 `additionalProperties` boundaries and `ageRange` maximum.
+- Files: `avataros/scripts/validate-avataros.mjs`,
+  `avataros/tests/validation.test.mjs`
+- Validation: Full suite passes 34/34 with zero skipped or todo tests;
+  production and AvatarOS validators pass; deterministic prompt compilation
+  succeeds; `git diff --check` passes.
+- Architecture impact: None; runtime validation now conforms to, rather than
+  changes, ADR-005 and EO-IMG-001 contracts.
+- Human action: Reconcile this divergent feature branch with `origin/main`
+  through governed review before publication.
+
+### AIOS-VID-001 — Add model-routed Video Engine v1
+
+- Priority: P1
+- Status: Implemented on feature branch; CI review pending
+- Completed: 2026-08-20
+- Objective: Add a provider-neutral Video Job Contract, model capability registry, deterministic router, provider-specific prompt compiler, continuity lock and QA decision layer for Runway Gen-4, Sora 2, Veo 3.1, Kling and Hailuo.
+- Files: `aios/video-engine/model-registry.json`, `aios/video-engine/engine.mjs`, `aios/video-engine/README.md`, `aios/tests/video-engine.test.mjs`, `.github/workflows/aios-validation.yml`, `aios/data/production-manifest.json`.
+- Validation: Unit coverage added for automatic image-to-video mode, native audio routing, multi-reference routing, subject-reference routing, Runway image continuity prompting, production planning and QA state thresholds. GitHub CI required before merge.
+- Architecture impact: Additive module only. Existing Decision Engine, AvatarOS, provider boundaries and human approval controls remain unchanged. No provider API calls, credentials or paid generation are introduced.
+- Human action: None if CI passes; P1 motion designer, cinematography compiler and repair strategist remain planned extensions.
+
+### AIOS-VID-002 — Implement Video Engine P1 production skills
+
+- Priority: P1
+- Status: Implemented on feature branch; CI review pending
+- Completed: 2026-08-20
+- Objective: Implement `video-motion-designer`, `cinematography-compiler` and `video-repair-strategist` as deterministic additive skills integrated with the existing Video Engine planning, prompt compilation and QA flow.
+- Files: `aios/video-engine/p1.mjs`, `aios/video-engine/engine.mjs`, `aios/video-engine/README.md`, `aios/video-engine/docs/P1_CODEX_PROMPT.md`, `aios/tests/video-engine.test.mjs`, `.github/workflows/aios-validation.yml`, `aios/data/production-manifest.json`, `aios/ENGINEERING_LOG.md`.
+- Validation: Unit coverage added for abstract-to-physical motion design, cinematography defaults and explicit lens preservation, P1 plan output, identity-drift repair diagnosis, smallest-correction-first behavior and QA repair attachment. CI syntax validation includes `p1.mjs`. Full GitHub CI required before merge.
+- Architecture impact: Additive P1 extension only. Existing Video Job Contract, model registry/router, provider-specific compilers, continuity lock, AvatarOS boundary, human review and provider/API boundaries remain intact.
+- Human action: None if CI passes. Provider execution adapters and automatic paid generation remain out of scope.

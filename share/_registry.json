@@ -1,5 +1,5 @@
 {
-  "updated": "2026-07-03",
+  "updated": "2026-08-14",
   "topics": [
     {
       "slug": "aas-injection-guide",
@@ -10,20 +10,8 @@
       "folder": "share/aas-injection-guide/",
       "last_update": "新增男士使用期間的簡單飲食建議，按早餐、午餐、晚餐整理。",
       "versions": [
-        {
-          "version": "v0",
-          "file": "https://hudsonmar-852.github.io/share/aas-injection-guide/v0.html",
-          "date": "2026-07-02",
-          "git_code": "d5c08632",
-          "change": "首創版本：整理常見注射類固醇、使用概念、效果與主要副作用。"
-        },
-        {
-          "version": "v1",
-          "file": "https://hudsonmar-852.github.io/share/aas-injection-guide/v1.html",
-          "date": "2026-07-02",
-          "git_code": "c2ef18f5",
-          "change": "新增飲食建議章節，方便用早餐、午餐、晚餐方式閱讀。"
-        }
+        {"version":"v0","file":"https://hudsonmar-852.github.io/share/aas-injection-guide/v0.html","date":"2026-07-02","git_code":"d5c08632","change":"首創版本：整理常見注射類固醇、使用概念、效果與主要副作用。"},
+        {"version":"v1","file":"https://hudsonmar-852.github.io/share/aas-injection-guide/v1.html","date":"2026-07-02","git_code":"c2ef18f5","change":"新增飲食建議章節，方便用早餐、午餐、晚餐方式閱讀。"}
       ]
     },
     {
@@ -35,13 +23,33 @@
       "folder": "share/bodybuilding-nutrition-guide/",
       "last_update": "首創版本：整理 Bulking、Cutting、備賽飲食、補充品、香港外食選擇與常見迷思。",
       "versions": [
-        {
-          "version": "v0",
-          "file": "https://hudsonmar-852.github.io/share/bodybuilding-nutrition-guide/v0.html",
-          "date": "2026-07-03",
-          "git_code": "b4fb6a69",
-          "change": "首創版本：整理 Bulking、Cutting、備賽飲食、補充品、香港外食選擇與常見迷思。"
-        }
+        {"version":"v0","file":"https://hudsonmar-852.github.io/share/bodybuilding-nutrition-guide/v0.html","date":"2026-07-03","git_code":"b4fb6a69","change":"首創版本：整理 Bulking、Cutting、備賽飲食、補充品、香港外食選擇與常見迷思。"}
+      ]
+    },
+    {
+      "slug": "nasm-cpt-jeffrey-guide",
+      "title": "NASM-CPT｜Jeffrey 正確報讀與考證指南",
+      "status": "active",
+      "latest": "v1.0",
+      "permanent_url": "https://hudsonmar-852.github.io/share/nasm-cpt-jeffrey-guide.html",
+      "folder": "share/nasm-cpt-jeffrey-guide/",
+      "last_update": "首個分享版本：分清 NASM Personal Trainer Certificate 與 NCCA-accredited NASM-CPT，整理 CPR/AED、180 日考試窗口、Self-Study 與職涯應用。",
+      "versions": [
+        {"version":"v1.0","file":"https://hudsonmar-852.github.io/share/nasm-cpt-jeffrey-guide/v1.0.html","date":"2026-08-13","git_code":"e80a71a9","change":"首個分享版本：以 NASM 官方資料核實考試差異、入場資格、時間限制及 Jeffrey 建議路線。"}
+      ]
+    },
+    {
+      "slug": "hk-credit-card-asia-miles-guide",
+      "title": "Jessica 香港信用卡儲 Cathay Asia Miles 指南",
+      "status": "active",
+      "latest": "v1.2",
+      "permanent_url": "https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html",
+      "folder": "share/hk-credit-card-asia-miles-guide/",
+      "last_update": "加入本地普通非指定簽賬重新排名、最新迎新／seasonal promotion、Top 3 轉里費及有效期，並更新 Jessica 短期開卡與長期主卡策略。",
+      "versions": [
+        {"version":"v1.0","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide/v1.0.html","date":"2026-08-14","git_code":"e4d9b2c2","change":"首版以較高消費模型比較主要 Asia Miles 信用卡。"},
+        {"version":"v1.1","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide.html","date":"2026-08-14","git_code":"f820c09f","change":"按 HK$4K–15K/月實際 spending 重算，加入 BOC Cheers Signature，並修正 HSBC RewardCash、Asia Miles、Citi 及 DBS 條款重點。"},
+        {"version":"v1.2","file":"https://hudsonmar-852.github.io/share/hk-credit-card-asia-miles-guide/v1.2.html","date":"2026-08-14","git_code":"ab3ba8f8","change":"加入普通本地非指定簽賬排名、2026-08 最新迎新／seasonal promotion、Top 3 轉里費與有效期，以及先食迎新再用 HSBC 做主卡的實際策略。"}
       ]
     }
   ]

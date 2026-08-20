@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://hudsonmar-852.github.io/aios/schemas/work-items.schema.json",
+  "title": "AIOS Work Item Snapshot",
+  "type": "object",
+  "required": [
+    "schemaVersion",
+    "generatedAt",
+    "sourceMode",
+    "updateMode",
+    "governance",
+    "items"
+  ],
+  "properties": {
+    "schemaVersion": {
+      "const": "1.0.0"
+    },
+    "generatedAt": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "sourceMode": {
+      "const": "google_drive_read_only_snapshot"
+    },
+    "updateMode": {
+      "const": "local_demo_only"
+    },
+    "items": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "legacyIds",
+          "title",
+          "summary",
+          "priority",
+          "status",
+          "module",
+          "owner",
+          "createdAt",
+          "updatedAt",
+          "source",
+          "acceptanceCriteria",
+          "activity"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^WI-[0-9]{8}-[0-9]{3}$"
+          },
+          "legacyIds": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "pattern": "^TASK-[0-9]{8}-[0-9]{3}$"
+            }
+          },
+          "priority": {
+            "enum": [
+              "P0",
+              "P1",
+              "P2",
+              "P3",
+              "P4"
+            ]
+          },
+          "status": {
+            "enum": [
+              "BACKLOG",
+              "READY",
+              "IN_PROGRESS",
+              "REVIEW",
+              "CHANGES_REQUESTED",
+              "BLOCKED",
+              "COMPLETED",
+              "ARCHIVED"
+            ]
+          },
+          "source": {
+            "type": "object",
+            "required": [
+              "provider",
+              "documentId",
+              "url",
+              "access",
+              "contentPublished"
+            ],
+            "properties": {
+              "provider": {
+                "const": "google_drive"
+              },
+              "access": {
+                "const": "authenticated_private"
+              },
+              "contentPublished": {
+                "const": false
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

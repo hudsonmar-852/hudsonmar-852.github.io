@@ -1,6 +1,10 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
+import {
+  findPotentialSecret,
+  isScannableFilename
+} from './secret-scan.mjs';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const repositoryRoot = path.resolve(root, '..');
@@ -8,16 +12,10 @@ const jsonFiles = [
   'config/security-storage-policy.json',
   'data/production-manifest.json',
   'examples/production-manifest.example.json',
+  'schemas/work-items.schema.json',
   'spec/branches/production-consolidation-2026-07-21.json',
   'templates/secret-inventory.example.json',
   'workflows/production-consolidation.json'
-];
-
-const forbiddenValuePatterns = [
-  /sk-[A-Za-z0-9_-]{16,}/,
-  /gh[pousr]_[A-Za-z0-9]{20,}/,
-  /https:\/\/[^\s"']*webhook/i,
-  /BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY/
 ];
 
 for (const relative of jsonFiles) {
@@ -43,17 +41,17 @@ for (const filename of allJsonFiles) {
   JSON.parse(fs.readFileSync(filename, 'utf8'));
 }
 
-const scannableExtensions = new Set(['.html', '.js', '.json', '.md', '.mjs', '.txt', '.yml', '.yaml']);
 const secretScanFiles = repositoryFiles.filter((filename) => {
-  if (filename === fileURLToPath(import.meta.url)) return false;
-  return scannableExtensions.has(path.extname(filename)) || path.basename(filename).startsWith('.env');
+  if ([fileURLToPath(import.meta.url), fileURLToPath(new URL('./secret-scan.mjs', import.meta.url))].includes(filename)) {
+    return false;
+  }
+  return isScannableFilename(filename);
 });
 for (const filename of secretScanFiles) {
   const source = fs.readFileSync(filename, 'utf8');
-  for (const pattern of forbiddenValuePatterns) {
-    if (pattern.test(source)) {
-      throw new Error(`Potential secret in ${path.relative(repositoryRoot, filename)}`);
-    }
+  const secretType = findPotentialSecret(source);
+  if (secretType) {
+    throw new Error(`Potential ${secretType} in ${path.relative(repositoryRoot, filename)}`);
   }
 }
 
@@ -69,6 +67,19 @@ if (workflow.automaticMerge !== false) throw new Error('Production workflow must
 const localAssets = [
   'index.html',
   'aios/index.html',
+  'aios/work-items/index.html',
+  'aios/work-items/work-items.css',
+  'aios/work-items/app.mjs',
+  'aios/docs/assets/work-item-dashboard-before.png',
+  'aios/docs/assets/work-item-dashboard-after-desktop.png',
+  'aios/docs/assets/work-item-dashboard-after-mobile.png',
+  'aios/governance/PRODUCT_BASELINE.md',
+  'aios/governance/DECISION_LOG.md',
+  'aios/governance/REGRESSION_CHECKLIST.md',
+  'aios/reviews/dependency-20260728-001-evidence.md',
+  'aios/docs/google-drive-write-architecture-proposal.md',
+  'work-items.json',
+  'TASK_INDEX.md',
   'avataros/index.html',
   'avataros/config/avataros.config.json',
   'avataros/docs/system-spec.md',
@@ -89,6 +100,42 @@ for (const project of projects) {
     const entrypoint = path.extname(target) ? target : path.join(target, 'index.html');
     if (!fs.existsSync(entrypoint)) throw new Error(`Missing local project route: ${project.publicUrl}`);
   }
+}
+
+const workItems = JSON.parse(fs.readFileSync(path.join(repositoryRoot, 'work-items.json'), 'utf8'));
+const workItemStatuses = new Set([
+  'BACKLOG',
+  'READY',
+  'IN_PROGRESS',
+  'REVIEW',
+  'CHANGES_REQUESTED',
+  'BLOCKED',
+  'COMPLETED',
+  'ARCHIVED'
+]);
+if (workItems.sourceMode !== 'google_drive_read_only_snapshot') {
+  throw new Error('Work item register must preserve the read-only Drive boundary');
+}
+if (workItems.updateMode !== 'local_demo_only') {
+  throw new Error('Work item register must not overstate Drive write capability');
+}
+for (const item of workItems.items) {
+  if (!/^WI-\d{8}-\d{3}$/.test(item.id)) throw new Error(`Invalid work item ID: ${item.id}`);
+  if (!workItemStatuses.has(item.status)) throw new Error(`Invalid work item status: ${item.status}`);
+  if (item.source?.access !== 'authenticated_private' || item.source?.contentPublished !== false) {
+    throw new Error(`Private source boundary is incomplete: ${item.id}`);
+  }
+}
+for (const document of workItems.governance?.documents || []) {
+  if (document.available) {
+    const target = path.join(repositoryRoot, document.repositoryPath || '');
+    if (!document.repositoryPath || !fs.existsSync(target)) {
+      throw new Error(`Missing available governance document: ${document.name}`);
+    }
+  }
+}
+if (workItems.governance?.complete !== false) {
+  throw new Error('Draft governance must remain incomplete until human approval');
 }
 
 const reports = JSON.parse(fs.readFileSync(path.join(root, 'data/reports.json'), 'utf8'));
