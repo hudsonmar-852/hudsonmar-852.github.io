@@ -1,5 +1,16 @@
 # AIOS Engineering Log
 
+### AIOS-P1-20260820-001 — Content provider and evidence foundation
+
+- Priority: P1
+- Status: Completed locally; live provider selection pending
+- Completed: 2026-08-20
+- Objective: Formalize P1 content-pipeline contracts and add provider routing, runtime evidence, source freshness, and claim coverage without introducing vendor credentials or changing existing workflow definitions.
+- Files: `aios/content-pipeline/schemas/*`, `contracts.mjs`, `provider-registry.mjs`, `engine.mjs`, configuration, P1 tests, CI and documentation.
+- Validation: Targeted P0/P1 content-pipeline tests pass; full repository gate recorded after implementation.
+- Architecture impact: Additive version 1.1.0 output contract. P0 input behavior and built-in stage fallbacks remain compatible. External publication remains human-gated.
+- Human action: Select and approve the first live research provider, credential storage mechanism, cost/latency limits, and data-processing boundary before a network adapter is implemented.
+
 ### AIOS-P0-20260820 — Content workflow and semantic dashboard completion
 
 - Priority: P0

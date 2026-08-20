@@ -27,3 +27,11 @@ QC scores accuracy, reader experience, usefulness, content quality, and presenta
 Run `node --test aios/tests/*.test.mjs aios/phase1/tests/*.test.mjs avataros/tests/*.test.mjs functions/private-test/index.test.mjs`, followed by repository validators in the root README. GitHub Pages deployment needs no build step. External publishing, Drive operations, and credentials remain outside P0 authorization.
 
 Rollback by reverting the P0 commits. The feature has no database migration and does not mutate Drive or external systems.
+
+## P1 contract and provider foundation
+
+P1 promotes the runtime output to schema version `1.1.0`. JSON Schemas in `aios/content-pipeline/schemas/` define external input, structured source, and output contracts. `contracts.mjs` provides dependency-free runtime validation so local and CI behavior does not rely on an unapproved package.
+
+`provider-registry.mjs` registers credential-free providers by declared stage capability and priority. A `providerRouting` override can select a specific registered provider per stage. If no provider is registered, existing built-in behavior remains the backward-compatible fallback. Provider failures stop the workflow, attach sanitized FAILED runtime evidence, and never reach the publication stage.
+
+Every completed run includes a unique run ID and per-stage evidence. Source policy now evaluates domain-neutral age limits by source type and reports claim-to-source coverage. These controls report weak evidence without inventing citations. Live vendor adapters remain intentionally unimplemented until a provider, credential mechanism, cost policy, and data-processing boundary are approved.
