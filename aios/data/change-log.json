@@ -1,102 +1,14 @@
 [
-  {
-    "id": "CL-20260721-001",
-    "date": "2026-07-21",
-    "version": "AIOS Dashboard v3.1",
-    "change": "Added persistent innovation watchlist, amendment candidates, discussion queue and governed merge tracking.",
-    "reason": "Prevent high-value daily recommendations from being lost in chat history.",
-    "source": "AI Daily Workflow Review",
-    "status": "Implemented",
-    "rollback": "Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."
-  },
-  {
-    "id": "CL-20260721-002",
-    "date": "2026-07-21",
-    "version": "AIOS Security v3",
-    "change": "Replaced the planned shared username/password gate with Cloudflare Access and approved Google OAuth identities; added repository-side authentication architecture and governance documentation.",
-    "reason": "Remove password storage and reset responsibilities, support user-level revocation and preserve zero additional subscription cost at the current scale.",
-    "source": "AIOS-SEC-003",
-    "status": "Implemented",
-    "rollback": "Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate."
-  },
-  {
-    "id": "CL-20260721-003",
-    "date": "2026-07-21",
-    "version": "AIOS Private Login Test v1",
-    "change": "Added a Cloudflare Pages Function at /private-test/ that confirms successful Access authentication, displays the authenticated email header and provides a logout test.",
-    "reason": "Provide a safe, no-secret test target before placing a real private dashboard behind Google OAuth.",
-    "source": "AIOS-SEC-003 implementation test",
-    "status": "Repository implementation complete; external setup pending",
-    "rollback": "Delete functions/private-test/index.js and aios/security/private-login-test.md. Cloudflare Access policies must be removed separately."
-  },
-  {
-    "id": "CL-20260721-004",
-    "date": "2026-07-21",
-    "version": "AIOS Production Consolidation v1",
-    "change": "Removed the obsolete 1Password or Bitwarden dependency, introduced vendor-neutral secret metadata, added a machine-readable production manifest and validation assets, and recorded Grok login testing as deferred.",
-    "reason": "Turn approved decisions into consistent executable assets without overstating external OAuth deployment.",
-    "source": "AIOS-SEC-004",
-    "status": "Waiting Review",
-    "rollback": "Revert this feature branch or close its draft pull request without merging."
-  },
-  {
-    "id": "CL-20260721-005",
-    "date": "2026-07-21",
-    "version": "AIOS Dashboard v3.2",
-    "change": "Added a responsive Production Readiness panel driven by production-manifest.json, including public monitor, private OAuth, secret-storage and deferred-work states.",
-    "reason": "Expose the real implementation state without mixing repository completion with external Cloudflare setup.",
-    "source": "AIOS Production Consolidation v1",
-    "status": "Waiting Review",
-    "rollback": "Revert the dashboard index and project registry changes on this feature branch."
-  },
-  {
-    "id": "CL-20260728-001",
-    "date": "2026-07-28",
-    "version": "AIOS Governance v3.5",
-    "change": "Added the Executable Agent Boundary Standard covering safe-output allowlists, human-readable workflow sources with compiled artifacts, observable goal missions, cross-repository documentation drafting, structured issue metadata and read-only no-clone repository inspection.",
-    "reason": "Turn AIOS governance guidance into enforceable, traceable runtime and repository boundaries while reducing unapproved writes and unnecessary cloning.",
-    "source": "AIOS-GOV-010",
-    "status": "Waiting Review",
-    "rollback": "Close or revert the feature branch, remove aios/governance/AIOS-GOV-010-executable-agent-boundary-standard.md and restore the prior decisions and change-log revisions."
-  },
-  {
-    "id": "CL-20260729-001",
-    "date": "2026-07-29",
-    "version": "AIOS Workflow Governance v3.6",
-    "change": "Added the Harness Stage Contract requiring Prototype, Plan, Implement and Review stages with distinct permissions, evidence gates, scope-change handling and rollback controls.",
-    "reason": "Prevent production work from moving directly from idea to execution, reduce scope drift and make stage completion independently verifiable.",
-    "source": "AIOS-WF-013",
-    "status": "Waiting Review",
-    "rollback": "Revert the pull request, remove aios/workflows/AIOS-WF-013-harness-stage-contract.md and restore the prior decisions and change-log revisions."
-  },
-  {
-    "id": "CL-20260805-001",
-    "date": "2026-08-05",
-    "version": "AIOS Governance v3.7",
-    "change": "Added the Verifiable Agent Operating Context standard covering instruction compliance canaries, acceptance evidence coverage, session resource envelopes, verified repository orientation, client-specific capability policies and cross-client continuity checks.",
-    "reason": "Ensure AIOS agents prove which instructions, repository state, permissions, acceptance criteria and execution limits are active before production-impacting work begins.",
-    "source": "AIOS-GOV-019",
-    "status": "Governance baseline implemented; runtime enforcement pending separate development",
-    "rollback": "Revert the pull request, remove aios/governance/AIOS-GOV-019-verifiable-agent-operating-context.md and restore the prior decisions and change-log revisions."
-  },
-  {
-    "id": "CL-20260805-002",
-    "date": "2026-08-05",
-    "version": "AIOS Agent Operating Context Runtime v1",
-    "change": "Added a machine-readable operating-context policy file, a public-safe status dashboard, client capability profiles, continuity blocking rules and a Node.js validation script.",
-    "reason": "Convert AIOS-GOV-019 from documentation-only governance into visible and testable repository assets without falsely claiming that external production hooks are already active.",
-    "source": "AIOS-GOV-019 runtime implementation",
-    "status": "Repository implementation complete; automatic production hook integration pending",
-    "rollback": "Revert the implementation pull request and remove aios/data/agent-operating-context.json, aios/operating-context/, aios/scripts/validate-agent-operating-context.mjs and the project registry entry."
-  },
-  {
-    "id": "CL-20260728-002",
-    "date": "2026-07-28",
-    "version": "AIOS Work Items v1.0.0",
-    "change": "Added an additive Work Items dashboard, governed status engine, public-safe task index, private Drive source traceability and clearly separated local demo updates.",
-    "reason": "Turn approved PMO task specifications into a searchable and auditable engineering queue without weakening the public/private boundary.",
-    "source": "WI-20260728-002 / TASK-20260728-002",
-    "status": "Pending Chief Architect Review",
-    "rollback": "Revert the TASK-20260728-002 integration commit. No Google Drive data is changed by this release."
-  }
+  {"id":"CL-20260721-001","date":"2026-07-21","version":"AIOS Dashboard v3.1","change":"Added persistent innovation watchlist, amendment candidates, discussion queue and governed merge tracking.","reason":"Prevent high-value daily recommendations from being lost in chat history.","source":"AI Daily Workflow Review","status":"Implemented","rollback":"Restore dashboard blob eb4c8cd6900422888b1f4ad5530436991a8818a6 and remove the four registry JSON files."},
+  {"id":"CL-20260721-002","date":"2026-07-21","version":"AIOS Security v3","change":"Replaced the planned shared username/password gate with Cloudflare Access and approved Google OAuth identities; added repository-side authentication architecture and governance documentation.","reason":"Remove password storage and reset responsibilities, support user-level revocation and preserve zero additional subscription cost at the current scale.","source":"AIOS-SEC-003","status":"Implemented","rollback":"Remove aios/security/cloudflare-access-google-oauth.md and restore the previous decisions.json and change-log.json revisions. Cloudflare dashboard settings are separate."},
+  {"id":"CL-20260721-003","date":"2026-07-21","version":"AIOS Private Login Test v1","change":"Added a Cloudflare Pages Function at /private-test/ that confirms successful Access authentication, displays the authenticated email header and provides a logout test.","reason":"Provide a safe, no-secret test target before placing a real private dashboard behind Google OAuth.","source":"AIOS-SEC-003 implementation test","status":"Repository implementation complete; external setup pending","rollback":"Delete functions/private-test/index.js and aios/security/private-login-test.md. Cloudflare Access policies must be removed separately."},
+  {"id":"CL-20260721-004","date":"2026-07-21","version":"AIOS Production Consolidation v1","change":"Removed the obsolete 1Password or Bitwarden dependency, introduced vendor-neutral secret metadata, added a machine-readable production manifest and validation assets, and recorded Grok login testing as deferred.","reason":"Turn approved decisions into consistent executable assets without overstating external OAuth deployment.","source":"AIOS-SEC-004","status":"Waiting Review","rollback":"Revert this feature branch or close its draft pull request without merging."},
+  {"id":"CL-20260721-005","date":"2026-07-21","version":"AIOS Dashboard v3.2","change":"Added a responsive Production Readiness panel driven by production-manifest.json, including public monitor, private OAuth, secret-storage and deferred-work states.","reason":"Expose the real implementation state without mixing repository completion with external Cloudflare setup.","source":"AIOS Production Consolidation v1","status":"Waiting Review","rollback":"Revert the dashboard index and project registry changes on this feature branch."},
+  {"id":"CL-20260728-001","date":"2026-07-28","version":"AIOS Governance v3.5","change":"Added the Executable Agent Boundary Standard covering safe-output allowlists, human-readable workflow sources with compiled artifacts, observable goal missions, cross-repository documentation drafting, structured issue metadata and read-only no-clone repository inspection.","reason":"Turn AIOS governance guidance into enforceable, traceable runtime and repository boundaries while reducing unapproved writes and unnecessary cloning.","source":"AIOS-GOV-010","status":"Waiting Review","rollback":"Close or revert the feature branch, remove aios/governance/AIOS-GOV-010-executable-agent-boundary-standard.md and restore the prior decisions and change-log revisions."},
+  {"id":"CL-20260728-002","date":"2026-07-28","version":"AIOS Work Items v1.0.0","change":"Added an additive Work Items dashboard, governed status engine, public-safe task index, private Drive source traceability and clearly separated local demo updates.","reason":"Turn approved PMO task specifications into a searchable and auditable engineering queue without weakening the public/private boundary.","source":"WI-20260728-002 / TASK-20260728-002","status":"Pending Chief Architect Review","rollback":"Revert the TASK-20260728-002 integration commit. No Google Drive data is changed by this release."},
+  {"id":"CL-20260729-001","date":"2026-07-29","version":"AIOS Workflow Governance v3.6","change":"Added the Harness Stage Contract requiring Prototype, Plan, Implement and Review stages with distinct permissions, evidence gates, scope-change handling and rollback controls.","reason":"Prevent production work from moving directly from idea to execution, reduce scope drift and make stage completion independently verifiable.","source":"AIOS-WF-013","status":"Waiting Review","rollback":"Revert the pull request, remove aios/workflows/AIOS-WF-013-harness-stage-contract.md and restore the prior decisions and change-log revisions."},
+  {"id":"CL-20260805-001","date":"2026-08-05","version":"AIOS Governance v3.7","change":"Added the Verifiable Agent Operating Context standard covering instruction compliance canaries, acceptance evidence coverage, session resource envelopes, verified repository orientation, client-specific capability profiles, continuity blocking rules and cross-client continuity checks.","reason":"Ensure AIOS agents prove which instructions, repository state, permissions, acceptance criteria and execution limits are active before production-impacting work begins.","source":"AIOS-GOV-019","status":"Governance baseline implemented; runtime enforcement pending separate development","rollback":"Revert the pull request, remove aios/governance/AIOS-GOV-019-verifiable-agent-operating-context.md and restore the prior decisions and change-log revisions."},
+  {"id":"CL-20260805-002","date":"2026-08-05","version":"AIOS Agent Operating Context Runtime v1","change":"Added a machine-readable operating-context policy file, a public-safe status dashboard, client capability profiles, continuity blocking rules and a Node.js validation script.","reason":"Convert AIOS-GOV-019 from documentation-only governance into visible and testable repository assets without falsely claiming that external production hooks are already active.","source":"AIOS-GOV-019 runtime implementation","status":"Repository implementation complete; automatic production hook integration pending","rollback":"Revert the implementation pull request and remove aios/data/agent-operating-context.json, aios/operating-context/, aios/scripts/validate-agent-operating-context.mjs and the project registry entry."},
+  {"id":"CL-20260814-001","date":"2026-08-14","version":"AIOS Phase 1 Production Baseline v1.0.0","change":"Added the canonical Phase 1 SSOT package, P0 executable controls, RP001/AT001 deterministic runtime, MVES, schemas, tests, UAT and release evidence.","reason":"Convert approved P0 specifications into a working production baseline whose status is determined by executable evidence.","source":"AIOS Phase 1 mission","status":"Production gate passed for local baseline; external scheduling and publication remain simulated","rollback":"Revert the Phase 1 feature commits; preserve a copy of runtime/evaluation evidence as historical records."},
+  {"id":"CL-20260820-001","date":"2026-08-20","version":"AIOS Content Pipeline P0 / Dashboard v3.3","change":"Added a configurable dual-stream content pipeline with reader value, research comparison, structured sources, QC and summary modes; centralized semantic dashboard category tokens.","reason":"Complete the bounded AIOS P0 content workflow and make executive dashboard functions visually distinguishable while preserving existing runtime contracts.","source":"AIOS P0 continuation order","status":"Local validation passed; external publication not authorized","rollback":"Revert the P0 workflow, theme, test and documentation commits. No external data migration is required."}
 ]

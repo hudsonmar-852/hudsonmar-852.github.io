@@ -1,0 +1,9 @@
+{
+  "profile": {"id": "PROMPT-MODEL-PROFILE-001", "version": "1.0.0", "supported_models": ["deterministic-template-engine"], "required_capabilities": ["structured_text"], "max_context_tokens": 8192},
+  "roots": ["rp001-deliverable"],
+  "modules": [
+    {"id": "aios-output-policy", "version": "1.0.0", "layer": "stable", "dependencies": [], "content": "Produce evidence-based output. Never represent simulated publication as production publication."},
+    {"id": "executive-brief-format", "version": "1.0.0", "layer": "stable", "dependencies": ["aios-output-policy"], "content": "# AIOS Phase 1 Executive Brief\n\n## Verified findings\n\n{{findings}}\n\n## Recommendation\n\n{{recommendation}}"},
+    {"id": "rp001-deliverable", "version": "1.0.0", "layer": "dynamic", "dependencies": ["executive-brief-format"], "content": "Execution mode: deterministic local simulation. External publication: prohibited without human approval."}
+  ]
+}

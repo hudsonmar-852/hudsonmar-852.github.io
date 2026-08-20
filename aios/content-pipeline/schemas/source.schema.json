@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://content-pipeline/source/1.1.0",
+  "title": "AIOS Structured Source",
+  "type": "object",
+  "required": ["title", "url"],
+  "properties": {
+    "id": { "type": "string" },
+    "title": { "type": "string", "minLength": 1 },
+    "publisher": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "publishedAt": { "type": ["string", "null"], "format": "date-time" },
+    "updatedAt": { "type": ["string", "null"], "format": "date-time" },
+    "retrievedAt": { "type": ["string", "null"], "format": "date-time" },
+    "sourceType": { "enum": ["official", "primary", "peerReviewed", "professional", "journalism", "commentary", "unknown"] },
+    "authorityScore": { "type": "number", "minimum": 0, "maximum": 6 },
+    "claimIds": { "type": "array", "items": { "type": "string" }, "uniqueItems": true },
+    "supports": { "type": "boolean" }
+  },
+  "additionalProperties": true
+}

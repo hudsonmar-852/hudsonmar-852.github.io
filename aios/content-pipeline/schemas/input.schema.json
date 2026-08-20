@@ -1,0 +1,18 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://content-pipeline/input/1.1.0",
+  "title": "AIOS Content Pipeline Input",
+  "type": "object",
+  "required": ["topic"],
+  "properties": {
+    "topic": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "stream": { "enum": ["auto", "standard", "enhanced"] },
+    "locale": { "type": "string", "maxLength": 35 },
+    "audience": { "type": "string", "maxLength": 500 },
+    "objective": { "type": "string", "maxLength": 1000 },
+    "content": { "type": "string" },
+    "claims": { "type": "array", "items": { "type": "string" } },
+    "rawSources": { "type": "array", "items": { "$ref": "aios://content-pipeline/source/1.1.0" } }
+  },
+  "additionalProperties": true
+}

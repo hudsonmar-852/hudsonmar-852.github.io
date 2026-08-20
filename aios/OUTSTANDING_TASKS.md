@@ -1,13 +1,15 @@
 # AIOS Outstanding Engineering Tasks
 
-Last scanned: 2026-07-28
+Last scanned: 2026-08-20
 Mode: Production
-Architecture gate: TASK-20260728-002 APPROVED WITH CONDITIONS; Architecture Freeze not approved
+Architecture gate: Phase 1 Production Baseline and TASK-20260728-002 are integrated; architecture review `2026-08-14-01` remains the latest review record. The explicit AIOS P0 continuation order authorizes the bounded P0 scope only.
 
 ## P0
 
 No build, CI definition, startup or critical data-safety failure was detected.
-Local tests and production validation pass.
+Phase 1 release validation now executes its control/CAT tests, verifies artifact
+integrity and resolves the committed Production manifest. Local tests and
+production validation pass.
 
 ## P1
 
@@ -37,7 +39,7 @@ Local tests and production validation pass.
 
 ### AIOS-OUT-001 — Approve the next core engineering scope
 
-- Status: Blocked — Chief Architect decision required
+- Status: Blocked — Phase 1 architecture review and Chief Architect decision required
 - Scope candidates: Core Runtime, Execution Engine, Module Registry, Plugin
   Runtime and REST API
 - Reason: No approved Engineering Order or tracked implementation contract
@@ -47,9 +49,9 @@ Local tests and production validation pass.
 
 ## P2
 
-### AIOS-OUT-002 — Add validator failure-case regression tests
+### AIOS-OUT-002 — Expand legacy validator failure-case regression tests
 
-- Status: Ready after architecture review approval
+- Status: Ready after Phase 1 architecture review approval
 - Scope: Exercise malformed JSON, missing routes and secret-pattern failures in
   isolated fixtures.
 - Risk: Low
@@ -60,11 +62,12 @@ Local tests and production validation pass.
 - Scope: Test approved, unapproved and logged-out access to `/private-test/`.
 - Required result: Keep `pending_external_setup` until all cases are recorded.
 
-### AIOS-OUT-004 — Verify CI on GitHub
+### AIOS-OUT-004 — Verify Phase 1 CI on GitHub
 
-- Status: Blocked — commit and push authorization required
-- Scope: Split the working tree into logical commits, push a feature branch and
-  confirm the AIOS validation workflow passes.
+- Status: Blocked — external push/CI execution not authorized in this audit
+- Scope: Push the Phase 1 maintenance branch and confirm the workflow executes
+  legacy tests, Phase 1 tests, operating-context validation and the hardened
+  release gate.
 
 ### AIOS-OUT-005 — Add external project link monitoring
 
@@ -99,8 +102,14 @@ Local tests and production validation pass.
   browser regression coverage exist.
 - Reason: Cleanup is lower priority than validation and approved runtime work.
 
-## Completed during this Production Mode run
+## Completed during the 2026-08-17 maintenance audit
 
+- Reconciled the Phase 1 Master, Registry, Release Manifest, architecture
+  review, Known Issues and outstanding-work records with executable evidence.
+- Replaced manifest-asserted test/CAT checks with executable checks.
+- Added release-commit provenance, artifact-digest and CI inclusion controls.
+- Identified `AIOS_OUTSTANDING_WORK_REGISTER.md` as an EO-006 historical
+  snapshot; this file remains the current engineering task authority.
 - Built the TASK-20260728-002 Work Items dashboard MVP with a public-safe
   read-only Drive snapshot and local demo status updates.
 - Synchronized the AvatarOS public dashboard and system specification with the

@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/evaluation-run/1.0.0",
+  "title": "AIOS Evaluation Run",
+  "allOf": [{"$ref": "formal-asset.schema.json"}],
+  "type": "object",
+  "required": ["dataset_version", "prompt_version", "model_profile", "context_version", "runtime_configuration", "tool_versions", "environment_manifest", "result", "process_quality", "artifact_quality", "outcome_quality"],
+  "properties": {
+    "result": {"enum": ["PASS", "FAIL"]}, "dataset_version": {"type": "string"}, "prompt_version": {"type": "string"},
+    "model_profile": {"type": "object"}, "context_version": {"type": "string"}, "runtime_configuration": {"type": "object"},
+    "tool_versions": {"type": "object"}, "environment_manifest": {"type": "object"},
+    "process_quality": {"type": "object"}, "artifact_quality": {"type": "object"}, "outcome_quality": {"type": "object"}
+  }
+}

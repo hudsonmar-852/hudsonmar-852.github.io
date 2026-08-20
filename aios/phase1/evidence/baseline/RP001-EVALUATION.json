@@ -1,0 +1,100 @@
+{
+  "id": "EVAL-RP001-001",
+  "type": "evaluation_run",
+  "name": "RP001 MVES",
+  "version": "1.0.0",
+  "status": "UAT",
+  "canonical_location": "aios/phase1/evidence/baseline/RP001-EVALUATION.json",
+  "owner": "AIOS Engineering",
+  "last_verified": "2026-08-14T13:00:01.000Z",
+  "dependencies": [
+    "RP001",
+    "PROMPT-RP001-001"
+  ],
+  "dataset_version": "rp001-mves-1.0.0",
+  "prompt_version": "1.0.0",
+  "model_profile": {
+    "id": "PROMPT-MODEL-PROFILE-001",
+    "version": "1.0.0",
+    "supported_models": [
+      "deterministic-template-engine"
+    ],
+    "required_capabilities": [
+      "structured_text"
+    ],
+    "max_context_tokens": 8192
+  },
+  "context_version": "phase1-context-1.0.0",
+  "runtime_configuration": {
+    "mode": "deterministic_simulation",
+    "approval_policy": "auto_low_risk_simulation"
+  },
+  "tool_versions": {
+    "node": "v24.6.0"
+  },
+  "environment_manifest": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "timezone": "UTC",
+    "locale": "en-US"
+  },
+  "causal_comparison": false,
+  "result": "PASS",
+  "process_quality": {
+    "score": 100,
+    "single_intent_cases": true
+  },
+  "artifact_quality": {
+    "score": 100,
+    "golden_diff_passed": true
+  },
+  "outcome_quality": {
+    "score": 100,
+    "passed": 5,
+    "total": 5
+  },
+  "controlled_variables_changed": [],
+  "regression_comparison": null,
+  "cases": [
+    {
+      "id": "MVES-GOLDEN-001",
+      "intent": "Preserve canonical expected output",
+      "category": "golden",
+      "passed": true,
+      "expected": "PHASE ONE",
+      "actual": "PHASE ONE"
+    },
+    {
+      "id": "MVES-NORMAL-001",
+      "intent": "Normalize ordinary input",
+      "category": "normal",
+      "passed": true,
+      "expected": "RUNTIME",
+      "actual": "RUNTIME"
+    },
+    {
+      "id": "MVES-EDGE-001",
+      "intent": "Trim boundary whitespace",
+      "category": "edge",
+      "passed": true,
+      "expected": "EDGE",
+      "actual": "EDGE"
+    },
+    {
+      "id": "MVES-FAILURE-001",
+      "intent": "Classify missing input",
+      "category": "failure",
+      "passed": true,
+      "expected": "missing_value",
+      "actual": "missing_value"
+    },
+    {
+      "id": "MVES-REGRESSION-001",
+      "intent": "Retain prior normalization behavior",
+      "category": "regression",
+      "passed": true,
+      "expected": "REGRESSION",
+      "actual": "REGRESSION"
+    }
+  ]
+}

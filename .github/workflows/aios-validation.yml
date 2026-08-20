@@ -22,6 +22,8 @@ jobs:
     steps:
       - name: Check out repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Set up Node.js
         uses: actions/setup-node@v4
@@ -29,11 +31,13 @@ jobs:
           node-version: 22
 
       - name: Run unit tests
-        run: node --test aios/tests/production-consolidation.test.mjs aios/tests/job-match.test.mjs aios/tests/secret-scan.test.mjs aios/tests/work-items.test.mjs aios/tests/work-items-page.test.mjs aios/tests/video-engine.test.mjs avataros/tests/prompt-builder.test.mjs avataros/tests/validation.test.mjs functions/private-test/index.test.mjs
+        run: node --test aios/tests/*.test.mjs aios/phase1/tests/*.test.mjs avataros/tests/*.test.mjs functions/private-test/index.test.mjs
 
       - name: Validate production assets
         run: |
           node aios/scripts/validate-production-consolidation.mjs
+          node aios/scripts/validate-agent-operating-context.mjs
+          node aios/phase1/scripts/validate-release.mjs
           node avataros/scripts/validate-avataros.mjs
 
       - name: Check JavaScript syntax
@@ -47,6 +51,18 @@ jobs:
           node --check aios/job-match/app.mjs
           node --check aios/job-match/scripts/generate-daily.mjs
           node --check aios/tests/job-match.test.mjs
+          node --check aios/content-pipeline/engine.mjs
+          node --check aios/content-pipeline/contracts.mjs
+          node --check aios/content-pipeline/provider-registry.mjs
+          node --check aios/tests/content-pipeline.test.mjs
+          node --check aios/tests/content-pipeline-p1.test.mjs
+          node --check aios/tests/dashboard-theme.test.mjs
+          node --check aios/core/mission-manager.mjs
+          node --check aios/core/decision-engine.mjs
+          node --check aios/core/production-orchestrator.mjs
+          node --check aios/core/plugin-sdk.mjs
+          node --check aios/core/visual-qa.mjs
+          node --check aios/services/drive-file-service/Code.js
           node --check aios/tests/secret-scan.test.mjs
           node --check aios/work-items/engine.mjs
           node --check aios/work-items/adapters.mjs

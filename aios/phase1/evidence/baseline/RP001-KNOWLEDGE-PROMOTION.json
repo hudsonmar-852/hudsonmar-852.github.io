@@ -1,0 +1,10 @@
+{
+  "decision": "AMEND",
+  "status": "Candidate",
+  "target": "AIOS Phase 1 operational knowledge",
+  "reason": "Executable simulation and evaluation evidence support adding the baseline; external publication remains gated.",
+  "evidence": [
+    "RP001-ARTIFACT.md",
+    "RP001-QA-RECORD.json"
+  ]
+}
