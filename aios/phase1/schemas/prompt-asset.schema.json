@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/prompt-asset/1.0.0",
+  "title": "AIOS Modular Prompt Asset",
+  "allOf": [{"$ref": "formal-asset.schema.json"}],
+  "type": "object",
+  "required": ["layer", "content", "variables", "compatibility_profile", "evaluation_evidence"],
+  "properties": {
+    "layer": {"enum": ["stable", "dynamic"]}, "content": {"type": "string"},
+    "variables": {"type": "array", "items": {"type": "string"}},
+    "compatibility_profile": {"type": "string"}, "evaluation_evidence": {"type": "array", "items": {"type": "string"}}
+  }
+}

@@ -1,0 +1,12 @@
+{
+  "id": "QA-RP001-001",
+  "artifact": "ARTIFACT-RP001-001",
+  "status": "PASS",
+  "checks": {
+    "required_sections": true,
+    "non_empty": true,
+    "no_unverified_claims": true
+  },
+  "missing": [],
+  "evaluated_at": "2026-08-14T13:00:02.000Z"
+}

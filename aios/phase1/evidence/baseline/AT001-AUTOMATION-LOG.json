@@ -1,0 +1,14 @@
+{
+  "id": "AT001-RUN-001",
+  "status": "SIMULATED_PASS",
+  "hidden_business_logic": false,
+  "max_retries": 1,
+  "events": [
+    {
+      "automation": "AT001",
+      "event": "triggered",
+      "pipeline": "RP001"
+    }
+  ],
+  "runtime_record": "RP001-RUNTIME-RECORD.json"
+}

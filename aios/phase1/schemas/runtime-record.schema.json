@@ -1,0 +1,12 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/runtime-record/1.0.0",
+  "title": "AIOS Runtime Record",
+  "allOf": [{"$ref": "formal-asset.schema.json"}],
+  "type": "object",
+  "required": ["pipeline_id", "pipeline_version", "trigger", "started_at", "completed_at", "terminal_state", "stages", "artifacts", "qa_record", "knowledge_promotion_decision", "environment_manifest", "retry_count", "failure_classification"],
+  "properties": {
+    "terminal_state": {"enum": ["COMPLETED", "FAILED", "ESCALATED"]}, "stages": {"type": "array"}, "artifacts": {"type": "array"},
+    "retry_count": {"type": "integer", "minimum": 0, "maximum": 1}, "failure_classification": {"type": ["string", "null"]}
+  }
+}

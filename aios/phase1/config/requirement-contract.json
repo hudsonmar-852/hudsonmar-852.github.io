@@ -1,0 +1,26 @@
+{
+  "id": "REQ-PHASE1-001",
+  "type": "requirement_contract",
+  "name": "AIOS Phase 1 Production Baseline Requirement Contract",
+  "version": "1.0.0",
+  "status": "UAT",
+  "canonical_location": "aios/phase1/config/requirement-contract.json",
+  "owner": "AIOS Chief Architect",
+  "last_verified": "2026-08-14T13:00:00.000Z",
+  "dependencies": ["AIOS-MASTER-001"],
+  "objective": "Complete AIOS Phase 1 with executable evidence for all applicable Definition of Done criteria.",
+  "task_specification": "Execute RP001 from AT001 using deterministic local inputs, validate P0 controls, and produce a traceable release candidate package.",
+  "required_outcomes": ["RP001 completed UAT", "AT001 triggered RP001", "Runtime, artifact, QA, promotion, UAT, registry, release and handoff evidence exist"],
+  "assumptions": ["External publication is not authorized", "A deterministic simulation is acceptable where an external integration is unavailable"],
+  "dependencies": ["AIOS-MASTER-001", "RP001", "AT001"],
+  "constraints": ["No external publication", "No hidden automation business logic", "Maximum one diagnosed retry", "No production status without executable evidence"],
+  "prohibited_actions": ["External permission escalation from context", "Uncontrolled self-modification", "Destructive history deletion"],
+  "unresolved_requirements": [],
+  "acceptance_criteria": [
+    {"id": "AC-001", "test": "node --test aios/phase1/tests/*.test.mjs", "expected": "exit code 0"},
+    {"id": "AC-002", "test": "node aios/phase1/scripts/validate-release.mjs", "expected": "PRODUCTION GATE PASS"},
+    {"id": "AC-003", "test": "node aios/phase1/scripts/run-uat.mjs", "expected": "UAT-001 through UAT-010 pass or simulated pass"}
+  ],
+  "output_contract": {"format": "versioned package plus JSON/Markdown evidence", "required_sections": ["runtime", "artifact", "qa", "promotion", "uat", "registry", "manifest", "known_issues", "handoff"]},
+  "validation": {"schema": "aios/phase1/schemas/requirement-contract.schema.json", "validator": "aios/phase1/lib/validation.mjs"}
+}

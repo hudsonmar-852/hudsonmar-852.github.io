@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/release-manifest/1.0.0",
+  "title": "AIOS Release Manifest",
+  "allOf": [{"$ref": "formal-asset.schema.json"}],
+  "type": "object",
+  "required": ["release_id", "release_status", "commit", "production_gate", "evidence", "rollback"],
+  "properties": {
+    "release_status": {"enum": ["Draft", "Candidate", "UAT", "Simulated", "Production", "Blocked"]},
+    "production_gate": {"type": "object", "required": ["schema_valid", "tests_pass", "mves_pass", "cat_pass", "no_critical_regression", "required_evidence_exists", "rollback_exists", "no_critical_blocker"]},
+    "evidence": {"type": "array", "items": {"type": "string"}}, "rollback": {"type": "object"}
+  }
+}

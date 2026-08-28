@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/context-item/1.0.0",
+  "title": "AIOS Context Provenance Item",
+  "type": "object",
+  "required": ["id", "source", "trust_level", "externally_supplied", "user_controlled", "transformed_by", "verified", "allowed_for_reasoning", "allowed_for_tool_action"],
+  "properties": {
+    "id": {"type": "string"}, "source": {"type": "string"},
+    "trust_level": {"enum": ["low", "medium", "high", "authoritative"]},
+    "externally_supplied": {"type": "boolean"}, "user_controlled": {"type": "boolean"},
+    "transformed_by": {"type": "array", "items": {"type": "string"}},
+    "verified": {"type": "boolean"}, "allowed_for_reasoning": {"type": "boolean"},
+    "allowed_for_tool_action": {"type": "boolean"},
+    "inclusion_reason": {"type": ["string", "null"]}, "exclusion_reason": {"type": ["string", "null"]}
+  }
+}

@@ -1,0 +1,106 @@
+{
+  "id": "RUNTIME-RP001-001",
+  "type": "runtime_record",
+  "name": "RP001 Phase 1 baseline runtime",
+  "version": "1.0.0",
+  "status": "UAT",
+  "canonical_location": "aios/phase1/evidence/baseline/RP001-RUNTIME-RECORD.json",
+  "owner": "AIOS Engineering",
+  "last_verified": "2026-08-14T13:00:02.000Z",
+  "dependencies": [
+    "RP001",
+    "AT001",
+    "EVAL-RP001-001"
+  ],
+  "pipeline_id": "RP001",
+  "pipeline_version": "1.0.0",
+  "trigger": "AT001_simulated_schedule",
+  "started_at": "2026-08-14T13:00:00.000Z",
+  "completed_at": "2026-08-14T13:00:02.000Z",
+  "terminal_state": "COMPLETED",
+  "stages": [
+    {
+      "name": "source_collection",
+      "status": "PASS",
+      "evidence": "104f969cf46234b1a6d75a2a29651ab25528158c3acd0c116cb6c4b93a9e027d",
+      "output_summary": "4 items"
+    },
+    {
+      "name": "verification",
+      "status": "PASS",
+      "evidence": "b97f59a60e8925c663f60f5667080a149590da6aa56a23887f42e4a7f6d8528e",
+      "output_summary": "3 items"
+    },
+    {
+      "name": "deduplication",
+      "status": "PASS",
+      "evidence": "89a3b7ad1e041302e69dd63f94797d03daf0a237ae7d4046d0d3c5d89f16fab8",
+      "output_summary": "2 items"
+    },
+    {
+      "name": "ranking",
+      "status": "PASS",
+      "evidence": "89a3b7ad1e041302e69dd63f94797d03daf0a237ae7d4046d0d3c5d89f16fab8",
+      "output_summary": "2 items"
+    },
+    {
+      "name": "executive_analysis",
+      "status": "PASS",
+      "evidence": "c82e345c9bfd631f2f4fcfb8cf3dfce35d1fc0046b9e94154aed5348a1ca1f22",
+      "output_summary": "object"
+    },
+    {
+      "name": "deliverable_generation",
+      "status": "PASS",
+      "evidence": "8cf618901c63549676cd49e533c9282a6cc3a820f8b12d4a66c7f42ba9d8be53",
+      "output_summary": "string"
+    },
+    {
+      "name": "qa",
+      "status": "PASS",
+      "evidence": "bea1acb709ffa68ba6f932e6cdfffd6bfa6c7931d936cadfeb1c34b1ee337de1",
+      "output_summary": "object"
+    },
+    {
+      "name": "approval_gate",
+      "status": "PASS",
+      "evidence": "42860feeec0771dab884fc9172442d5866e5adf4c82ebe78c4a485c683e3e3b0",
+      "output_summary": "object"
+    },
+    {
+      "name": "simulated_publish",
+      "status": "PASS",
+      "evidence": "8eca12119d1dfe943b0ce7adc7b05af0c79d781140c8a7d9c9f720fe3ce49d9a",
+      "output_summary": "object"
+    },
+    {
+      "name": "knowledge_promotion",
+      "status": "PASS",
+      "evidence": "9b0eb01e9818b559fea76400b2aaeb0d045db98430e01f8bfe741f7474b1a0bd",
+      "output_summary": "object"
+    }
+  ],
+  "artifacts": [
+    {
+      "id": "ARTIFACT-RP001-001",
+      "location": "RP001-ARTIFACT.md",
+      "sha256": "8cf618901c63549676cd49e533c9282a6cc3a820f8b12d4a66c7f42ba9d8be53"
+    }
+  ],
+  "qa_record": "RP001-QA-RECORD.json",
+  "knowledge_promotion_decision": "RP001-KNOWLEDGE-PROMOTION.json",
+  "environment_manifest": {
+    "platform": "darwin",
+    "arch": "arm64",
+    "timezone": "UTC",
+    "locale": "en-US"
+  },
+  "retry_count": 0,
+  "failure_classification": null,
+  "tool_calls": [],
+  "cost": {
+    "currency": "USD",
+    "amount": 0,
+    "simulated": true
+  }
+}

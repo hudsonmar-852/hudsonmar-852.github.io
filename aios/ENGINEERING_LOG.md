@@ -1,5 +1,56 @@
 # AIOS Engineering Log
 
+### AIOS-P0-ACCEPTANCE-20260820 — Canonical final acceptance
+
+- Priority: P0
+- Status: Accepted
+- Completed: 2026-08-20
+- Objective: Execute the canonical P0 closure task and determine acceptance from current repository evidence after P1 foundation work remained separate.
+- Files: `/Users/hudsonmar/AIOS/.codex/tasks/p0-final-acceptance.md`, `aios/reviews/p0-final-acceptance-2026-08-20.md`, this log.
+- Validation: 94/94 tests, all repository validators, core/content/Drive syntax checks, and Git diff integrity passed; existing desktop/mobile browser evidence and dashboard structural coverage confirmed.
+- Architecture impact: None; acceptance evidence only.
+- Human action: None for P0 closure. Push, merge, deployment, Drive authorization, and live P1 provider selection remain separate actions.
+
+### AIOS-P1-20260820-001 — Content provider and evidence foundation
+
+- Priority: P1
+- Status: Completed locally; live provider selection pending
+- Completed: 2026-08-20
+- Objective: Formalize P1 content-pipeline contracts and add provider routing, runtime evidence, source freshness, and claim coverage without introducing vendor credentials or changing existing workflow definitions.
+- Files: `aios/content-pipeline/schemas/*`, `contracts.mjs`, `provider-registry.mjs`, `engine.mjs`, configuration, P1 tests, CI and documentation.
+- Validation: Targeted P0/P1 content-pipeline tests pass; full repository gate recorded after implementation.
+- Architecture impact: Additive version 1.1.0 output contract. P0 input behavior and built-in stage fallbacks remain compatible. External publication remains human-gated.
+- Human action: Select and approve the first live research provider, credential storage mechanism, cost/latency limits, and data-processing boundary before a network adapter is implemented.
+
+### AIOS-P0-20260820 — Content workflow and semantic dashboard completion
+
+- Priority: P0
+- Status: Completed locally; architecture review prepared
+- Completed: 2026-08-20
+- Objective: Reconcile the integrated AIOS baseline and complete the bounded P0 dual-stream content workflow, reader/research intelligence, QC/sources/summaries, semantic theme, dashboard differentiation, integration testing, and documentation.
+- Files: `aios/content-pipeline/*`, `aios/theme/tokens.css`, `aios/index.html`, P0 tests and documentation, CI/checkpoint records.
+- Validation: 87/87 repository tests passed before final review; production, operating-context, Phase 1 release, and AvatarOS validators passed. Desktop 1440×1000 and mobile 390×844 browser captures rendered successfully. Final gate rerun recorded in the P0 review.
+- Architecture impact: Additive content-pipeline module; existing Production Orchestrator, RP001, Mission Manager, Drive service, public/private boundary, and external approval gates are unchanged.
+- Human action: External deployment/publication and Drive authorization remain separately gated.
+
+## 2026-08-17 — Phase 1 release-evidence hardening
+
+- Reconciled canonical Phase 1 records with the current branch and executable evidence.
+- Corrected the Release Manifest provenance pointer to the committed Production declaration.
+- Changed release validation to execute control/CAT tests and verify artifact integrity, manifest consistency, and committed provenance.
+- Added Phase 1 tests and the hardened release gate to CI.
+- Validation: 44/44 combined tests passed; production consolidation, operating-context, Phase 1 release and AvatarOS validators passed.
+- Refreshed the current outstanding-task authority and marked the EO-006 register as historical evidence.
+- Architecture impact: None; maintenance strengthens the approved Phase 1 evidence gate and does not begin P1.
+- Human action: Phase 1 architecture review remains required before P1 feature expansion; remote CI verification remains external.
+
+## 2026-08-14 — AIOS Phase 1 Production Baseline
+
+- Implemented the canonical Phase 1 SSOT package and approved P0 executable controls.
+- RP001/AT001 deterministic baseline, MVES, CAT, UAT-001–010, smoke, regression, and independent handoff evidence passed.
+- Local Phase 1 baseline promoted to Production; external AT001 scheduling and publication remain Simulated.
+- Architecture review: `aios/reviews/architecture-review-2026-08-14-01.md` — Pending Chief Architect Review.
+
 This ledger tracks bounded Engineering Tasks, Engineering Orders and Chief
 Architect review checkpoints. It contains public-safe engineering metadata only.
 
@@ -146,6 +197,28 @@ Architect review checkpoints. It contains public-safe engineering metadata only.
 
 - `aios/reviews/architecture-review-2026-07-23-01.md` — Approved 2026-07-23 with direction to prioritize Image Engine production hardening
 - `aios/reviews/architecture-review-2026-07-23-02.md` — Pending Chief Architect Review
+
+### EO-006 — AIOS MVP Foundation Completion
+
+- Priority: P1
+- Status: Pending Chief Architect Review
+- Completed: 2026-08-06
+- Objective: Prepare the AIOS foundation for Production MVP Review.
+- Files: `aios/core/*`, Drive File Service, EO tests, dashboard readiness data, and root EO deliverables.
+- Validation: 26/26 tests, full repository validators, and GitHub Actions run `31082016453` passed on draft PR #28.
+- Architecture impact: Additive versioned internal MVP contracts; no existing public contract replaced.
+- Human action: Review architecture package, authorize Drive moves/deployment, and explicitly approve any merge.
+
+### EO-006-B01 — Remediate Drive existing-file authorization
+
+- Priority: P1
+- Status: Repository remediation complete; external authorization pending
+- Completed: 2026-08-06
+- Objective: Make the Drive scope explicit and add a non-destructive authorization check for the five pending migration sources.
+- Files: Drive File Service manifest, implementation, tests and documentation; Drive migration report.
+- Validation: Local repository tests and validators; manual Apps Script authorization remains required.
+- Architecture impact: None; retains the root-scoped `DriveApp` service and adds no external service or public command.
+- Human action: Run `testDriveMigrationAuthorization` as the Hudson Drive account and approve the full Drive scope. Do not move files until the read-only report passes.
 
 # 2026-08-05 — WI-20260805-001 Daily AIOS Job Match
 

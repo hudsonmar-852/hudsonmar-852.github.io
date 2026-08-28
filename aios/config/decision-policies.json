@@ -1,0 +1,10 @@
+{
+  "schemaVersion": "1.0.0",
+  "approvalThreshold": 80,
+  "priorities": { "block-secret-exposure": 100, "require-production-review": 90 },
+  "rules": [
+    { "id": "block-secret-exposure", "when": { "containsSecret": true }, "effect": "BLOCK", "priority": 100, "requiresHumanApproval": true },
+    { "id": "require-production-review", "when": { "environment": "production" }, "effect": "REQUIRE_APPROVAL", "priority": 90, "requiresHumanApproval": true },
+    { "id": "allow-safe-mock", "when": { "environment": "test", "provider": "mock" }, "effect": "ALLOW", "priority": 10 }
+  ]
+}

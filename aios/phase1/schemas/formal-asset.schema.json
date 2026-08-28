@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "aios://schemas/formal-asset/1.0.0",
+  "title": "AIOS Formal Asset",
+  "type": "object",
+  "required": ["id", "type", "name", "version", "status", "canonical_location", "owner", "last_verified", "dependencies"],
+  "properties": {
+    "id": {"type": "string", "minLength": 3},
+    "type": {"type": "string", "minLength": 1},
+    "name": {"type": "string", "minLength": 1},
+    "version": {"type": "string", "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"},
+    "status": {"enum": ["Draft", "Candidate", "UAT", "Simulated", "Production", "Blocked", "Deprecated", "Archived"]},
+    "canonical_location": {"type": "string", "minLength": 1},
+    "owner": {"type": "string", "minLength": 1},
+    "last_verified": {"type": "string", "format": "date-time"},
+    "dependencies": {"type": "array", "items": {"type": "string"}},
+    "supersedes": {"type": ["string", "null"]},
+    "superseded_by": {"type": ["string", "null"]}
+  }
+}
