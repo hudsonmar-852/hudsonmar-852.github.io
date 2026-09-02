@@ -1,0 +1,31 @@
+name: AIOS Context Tests
+
+on:
+  pull_request:
+    paths:
+      - "aios/**"
+      - ".github/workflows/aios-context-tests.yml"
+  push:
+    branches:
+      - "feature/five-layer-context-v1"
+    paths:
+      - "aios/**"
+      - ".github/workflows/aios-context-tests.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run AIOS context tests
+        run: python -m unittest discover -s aios/tests -v
